@@ -16,9 +16,11 @@ Here are some ideas to get you started:
 
 # KATHEU KILONZO
 
-## Psychologist × Software Engineer
+## Psychologist & Software Engineer
 
 ### Building technology around people, problems & impact
+
+### Testing
 
 👋 Hello, I'm Katheu
 
