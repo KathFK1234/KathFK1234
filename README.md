@@ -53,6 +53,7 @@ Deploying, containerizing and operating applications in production. I care about
 ### **Human-Centered Technology**
 
 Products where understanding the people using them matters just as much as the technology behind them.
+___
 
 ## 💻 TECHNOLOGY
 
@@ -83,6 +84,7 @@ React
 ### **Tools & Practices**
 
 Git · GitHub · Linux · Postman · Figma · Canva
+___
 
 ## 🚀 FEATURED PROJECTS
 
@@ -109,6 +111,7 @@ An AI application exploring the relationship between environmental conditions an
 *Python · FastAPI · AI · Railway*
 
 Repo Link: [MoodForecast AI Repository](https://github.com/KathFK1234/moodforecast_ai)
+___
 
 ## 🧩 ENGINEERING PHILOSOPHY
 
@@ -117,6 +120,7 @@ I care about more than getting code to run.
 I care about understanding the problem before solving it. Building systems that are maintainable, not just functional. Designing around real users and real constraints. Making complex systems understandable. Learning the why, not just the how. Using technology where it creates meaningful value.
 
 Code is communication. It should tell a story.
+___
 
 ## 🔬 WHERE PSYCHOLOGY MEETS ENGINEERING
 
@@ -125,16 +129,19 @@ My background in psychology directly influences how I approach software.
 It makes me naturally curious about human behaviour, decision-making, user experience, systems thinking, communication, and learning. I'm especially interested in how people interact with AI.
 
 I don't see psychology and engineering as separate. One helps me understand the people. The other helps me build for them.
+___
 
 ## 📚 CURRENTLY EXPLORING
 
 AI agents and agentic systems. Backend architecture at scale. Distributed systems. Deeper work with LLMs and prompt engineering. Cloud infrastructure and DevOps. Data-driven products. The emerging field of human-AI interaction.
 
 I'm experimenting with Ruby and other languages to understand how different design philosophies approach the same problems. There's something valuable in learning across different ecosystems.
+___
 
 ## 🌱 BEYOND THE CODE
 
 When I'm not building software, you'll find me writing poetry, playing piano, drawing, playing basketball, thinking about psychology, or distracted by cats.
+___
 
 ## 🤝 LET'S BUILD SOMETHING
 
@@ -148,6 +155,6 @@ Feel free to get me to know you.
 
 ────────────────────────────────────────────────
 
-*Build things. Understand people. Stay curious.*
+*Build things. Understand people. Stay curious. Keep going.*
 
 ────────────────────────────────────────────────
