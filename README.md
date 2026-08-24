@@ -146,8 +146,8 @@ Feel free to get me to know you.
 
 **[LinkedIn](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/) | [Email](mailto:fkatheukilonzo@gmail.com)**
 
-──────────────────────────────────────────────────────────
+────────────────────────────────────────────────
 
-     *Build things. Understand people. Stay curious.*     
+*Build things. Understand people. Stay curious.*
 
-──────────────────────────────────────────────────────────
+────────────────────────────────────────────────
