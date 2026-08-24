@@ -1,7 +1,3 @@
-# KK's About
-
-## Hi there 👋
-
 <!--
 
 **KathFK1234/KathFK1234** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
@@ -18,16 +14,11 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-┌─────────────────────────────────────────────────────────────┐
-│                                                             │
-│                         KATHEU KILONZO                       │
-│                                                             │
-│             Psychologist × Software Engineer                │
-│                                                             │
-│     Building technology around people, problems & impact    │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+# KATHEU KILONZO
 
+## Psychologist × Software Engineer
+
+### Building technology around people, problems & impact
 
 👋 Hello, I'm Katheu
 
