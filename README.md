@@ -22,7 +22,7 @@ I'm a psychologist turned software engineer who enjoys understanding complex pro
 
 My work sits at the intersection of people, technology, and problem-solving. I spend my time on backend systems and APIs, AI-powered applications, and tools that turn data into useful decisions.
 
-### 🧠 HOW I THINK
+### 🧠 HOW I THINK ---
 
 ---
 
