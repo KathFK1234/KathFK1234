@@ -14,9 +14,7 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-# <div align="center">
-    👋 Hello, I'm Katheu
-</div>
+# 👋 Hello, I'm Katheu
 
 ## Psychologist & Software Engineer - Building technology around people, problems & impact
 
