@@ -18,14 +18,13 @@ Here are some ideas to get you started:
 
 ## Psychologist & Software Engineer
 
----
-___
-
 I'm a psychologist turned software engineer who enjoys understanding complex problems and building technology that makes them simpler.
 
 My work sits at the intersection of people, technology, and problem-solving. I spend my time on backend systems and APIs, AI-powered applications, and tools that turn data into useful decisions.
 
-## 🧠 HOW I THINK
+### 🧠 HOW I THINK
+
+---
 
 Psychology taught me to ask: *Why do people behave this way?*
 
