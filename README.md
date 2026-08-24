@@ -16,7 +16,7 @@ Here are some ideas to get you started:
 
 # 👋 Hello, I'm Katheu
 
-## Psychologist & Software Engineer - Building technology around people, problems & impact
+## Psychologist & Software Engineer
 
 I'm a psychologist turned software engineer who enjoys understanding complex problems and building technology that makes them simpler.
 
