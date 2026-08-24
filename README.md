@@ -59,7 +59,7 @@ ___
 
 ### **Languages**
 
-Python · JavaScript · Ruby · SQL
+Python · HTML · C · CSS · JavaScript
 
 ### **Backend**
 
