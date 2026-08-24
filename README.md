@@ -1,5 +1,8 @@
-<!--
+# KK's About
+
 ## Hi there 👋
+
+<!--
 
 **KathFK1234/KathFK1234** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
@@ -144,7 +147,7 @@ If that sounds like you, let's talk.
 You're already on my GitHub, so now you know me.
 Feel free to get me to know you.
 
-**[LinkedIn](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/) [Email](mailto:fkatheukilonzo@gmail.com)**
+**[LinkedIn](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/) | [Email](mailto:fkatheukilonzo@gmail.com)**
 
 ──────────────────────────────────────────────────────────
 
