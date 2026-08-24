@@ -14,15 +14,15 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
-# 👋 Hello, I'm Katheu
+# Hey there! 👋 I'm Katheu :)
 
 ## Psychologist & Software Engineer
 
-I'm a psychologist turned software engineer who enjoys understanding complex problems and building technology that makes them simpler.
+I'm a psychologist turned software engineer who enjoys understanding complex problems and building technology that makes them simpler. My work sits at the intersection of people, technology, and problem-solving. I spend my time on backend systems and APIs, AI-powered applications, and tools that turn data into useful decisions.
 
-My work sits at the intersection of people, technology, and problem-solving. I spend my time on backend systems and APIs, AI-powered applications, and tools that turn data into useful decisions.
+___
 
-### 🧠 HOW I THINK ---
+### 🧠 HOW I THINK
 
 ---
 
