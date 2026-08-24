@@ -34,61 +34,61 @@ ___
 
 ## ⚙️ WHAT I BUILD
 
-### **Backend Systems**
+#### **Backend Systems**
 
 APIs, business logic, authentication, databases, integrations and reliable services that scale.
 
-### **AI-Powered Applications**
+#### **AI-Powered Applications**
 
 LLM applications, RAG systems, intelligent assistants, AI agents and practical AI that solves real problems.
 
-### **Data & Automation**
+#### **Data & Automation**
 
 Data pipelines, ETL processes, forecasting models and systems that turn data into actionable insights.
 
-### **Cloud & Infrastructure**
+#### **Cloud & Infrastructure**
 
 Deploying, containerizing and operating applications in production. I care about reliability, observability, and maintainability.
 
-### **Human-Centered Technology**
+#### **Human-Centered Technology**
 
 Products where understanding the people using them matters just as much as the technology behind them.
 ___
 
 ## 💻 TECHNOLOGY
 
-### **Languages**
+#### **Languages**
 
 Python · JavaScript · Ruby · SQL
 
-### **Backend**
+#### **Backend**
 
 FastAPI · Django · Django REST Framework
 
-### **Databases**
+#### **Databases**
 
 PostgreSQL · SQL
 
-### **Cloud & Infrastructure**
+#### **Cloud & Infrastructure**
 
 AWS · Supabase · DigitalOcean · Docker · Railway
 
-### **AI & Data**
+#### **AI & Data**
 
 LLMs · RAG · Vector Embeddings · Data Pipelines · Forecasting
 
-### **Frontend**
+#### **Frontend**
 
 React
 
-### **Tools & Practices**
+#### **Tools & Practices**
 
 Git · GitHub · Linux · Postman · Figma · Canva
 ___
 
 ## 🚀 FEATURED PROJECTS
 
-### **MindConnect**
+#### **MindConnect**
 
 A mental-health platform designed around the needs of young people in Kenya. This project emerged from conversations about how technology can support mental wellbeing in contexts where resources are limited.
 
@@ -96,7 +96,7 @@ A mental-health platform designed around the needs of young people in Kenya. Thi
 
 Repo Link: [MindConnect Repository](https://github.com/derick-macharia/mindconnect-platform)
 
-### **Chema Backend**
+#### **Chema Backend**
 
 A backend platform connecting agricultural data, AI-powered assistance and knowledge retrieval. Built to help farmers access actionable insights from their data.
 
@@ -104,7 +104,7 @@ A backend platform connecting agricultural data, AI-powered assistance and knowl
 
 The repository is private, therefore the link cannot be pasted here, unfortunately :(
 
-### **MoodForecast AI**
+#### **MoodForecast AI**
 
 An AI application exploring the relationship between environmental conditions and mood. This project sits squarely at the intersection of psychology and engineering: using weather data and machine learning to understand how context shapes wellbeing.
 
