@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katheu — Mind Interface</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,opsz@1,8..60&display=swap');
+
+  :root {
+    --bg: #0a0e0e;
+    --bg-raised: #0e1414;
+    --fg: #d8e3e0;
+    --fg-dim: #5b6b6a;
+    --accent: #5eead4;
+    --accent-dim: #2f6b62;
+    --accent2: #8ca9ff;
+    --warn: #f2a65a;
+    --line: #1c2626;
+    --mono: 'JetBrains Mono', monospace;
+    --serif: 'Source Serif 4', serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(94,234,212,0.05), transparent 40%),
+      radial-gradient(circle at 85% 92%, rgba(140,169,255,0.04), transparent 45%);
+    color: var(--fg);
+    font-family: var(--mono);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* status bar */
+  .statusbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--line);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--fg-dim);
+    flex-shrink: 0;
+  }
+  .statusbar .left { display: flex; align-items: center; gap: 8px; }
+  .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+
+  .navlinks { display: flex; gap: 14px; }
+  .navlinks button {
+    background: none; border: 1px solid var(--line); color: var(--fg-dim);
+    font-family: var(--mono); font-size: 11px; padding: 4px 10px;
+    border-radius: 3px; cursor: pointer; letter-spacing: 0.04em;
+    transition: all 0.15s ease;
+  }
+  .navlinks button:hover { color: var(--accent); border-color: var(--accent-dim); }
+
+  /* terminal */
+  .terminal {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 22px 12px;
+    scroll-behavior: smooth;
+  }
+  .terminal::-webkit-scrollbar { width: 8px; }
+  .terminal::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+
+  .line { margin-bottom: 2px; white-space: pre-wrap; word-break: break-word; line-height: 1.55; font-size: 14px; }
+  .prompt-line { display: flex; gap: 8px; }
+  .prompt-sym { color: var(--accent); flex-shrink: 0; }
+  .user-input { color: var(--fg); }
+  .output { color: var(--fg); margin: 2px 0 14px 0; }
+  .dim { color: var(--fg-dim); }
+  .accent { color: var(--accent); }
+  .accent2 { color: var(--accent2); }
+  .warn { color: var(--warn); }
+  .note {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--fg-dim);
+    font-size: 13px;
+    border-left: 2px solid var(--accent-dim);
+    padding-left: 10px;
+    margin: 6px 0 14px 0;
+  }
+
+  .boot { margin-bottom: 18px; }
+  .boot .title { color: var(--accent); font-size: 15px; font-weight: 700; letter-spacing: 0.03em; }
+
+  /* input row */
+  .input-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 22px 18px;
+    border-top: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+  .input-row .prompt-sym { font-size: 14px; }
+  .input-row input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--fg);
+    font-family: var(--mono);
+    font-size: 14px;
+    caret-color: var(--accent);
+  }
+  .input-row input::placeholder { color: var(--fg-dim); opacity: 0.6; }
+
+  .cursor-blink {
+    display: inline-block;
+    width: 8px; height: 15px;
+    background: var(--accent);
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+    vertical-align: text-bottom;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  a.linklike { color: var(--accent2); text-decoration: underline; text-underline-offset: 2px; }
+
+  @media (max-width: 640px) {
+    .navlinks { display: none; }
+    .terminal { padding: 16px 14px 8px; }
+    .line, .output { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="statusbar">
+  <div class="left"><span class="dot"></span> mind-interface v1.0 — connection established</div>
+  <div class="navlinks">
+    <button data-cmd="about">about</button>
+    <button data-cmd="projects">projects</button>
+    <button data-cmd="resume">resume</button>
+    <button data-cmd="contact">contact</button>
+  </div>
+</div>
+
+<div class="terminal" id="terminal"></div>
+
+<div class="input-row">
+  <span class="prompt-sym">&gt;</span>
+  <input id="cmdInput" type="text" autofocus autocomplete="off" spellcheck="false" placeholder="type help to begin" />
+</div>
+
+<script>
+const term = document.getElementById('terminal');
+const input = document.getElementById('cmdInput');
+let unlocked = { thinking: false };
+let mode = null; // set by whoami
+
+function scrollDown() { term.scrollTop = term.scrollHeight; }
+
+function printRaw(html, cls = 'output') {
+  const div = document.createElement('div');
+  div.className = cls;
+  div.innerHTML = html;
+  term.appendChild(div);
+  scrollDown();
+}
+
+function printEcho(cmd) {
+  const div = document.createElement('div');
+  div.className = 'prompt-line line';
+  div.innerHTML = `<span class="prompt-sym">&gt;</span><span class="user-input">${escapeHtml(cmd)}</span>`;
+  term.appendChild(div);
+  scrollDown();
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function note(text) { printRaw(text, 'note'); }
+
+const commandList = ['help','about','projects','resume','contact','mood','whoami','psychology','thinking','clear','sudo hire-me','coffee'];
+
+const commands = {
+  help() {
+    printRaw(
+      `<span class="accent">available commands</span>\n\n` +
+      `  about        who I am, briefly\n` +
+      `  projects     case studies, not a list\n` +
+      `  resume       the short version\n` +
+      `  contact      how to reach me\n` +
+      `  mood         pulls a live read from a project I built\n` +
+      `  psychology   why it's not a detour\n` +
+      `  whoami       tell the interface why you're here\n` +
+      `  clear        wipe the screen\n\n` +
+      `<span class="dim">some commands aren't listed here. type things. see what happens.</span>`
+    );
+  },
+
+  about() {
+    printRaw(
+      `I'm Katheu. Software engineer, School Lead Educator at TechLit Africa, ` +
+      `AWS Certified Cloud Practitioner. Backend-heavy: Python, FastAPI, Django, PostgreSQL, Docker.\n\n` +
+      `Before any of that, I studied psychology. That part didn't stop mattering when I started writing code — ` +
+      `it changed what I noticed in the code. More on that if you type <span class="accent2">psychology</span>.`
+    );
+  },
+
+  psychology() {
+    printRaw(
+      `Psychology wasn't my detour.\n\n` +
+      `It taught me to think about systems where the components happen to be people — ` +
+      `motivation, friction, why someone abandons a form on step three, why a wellbeing score ` +
+      `means nothing without the context around it.\n\n` +
+      `Software became another way of solving human problems. Same questions, different material.`
+    );
+    note(`type "thinking" if you want the longer version of how this shows up in how I build.`);
+  },
+
+  thinking() {
+    unlocked.thinking = true;
+    printRaw(
+      `psychology\n     \\\n      \\\n  systems ─── backend ─── ai\n      \\           \\\n       \\           education\n        research\n\n` +
+      `I don't experience these as separate careers stitched together. They're one habit of mind — ` +
+      `observe closely, form a hypothesis, build the smallest thing that tests it, watch what actually happens ` +
+      `versus what I predicted. That's true whether the "subjects" are students in a classroom or requests hitting an API under load.`
+    );
+  },
+
+  projects() {
+    printRaw(
+      `<span class="accent">MoodForecast AI</span> — a FastAPI service pairing live weather data with a psychological wellbeing score.\n\n` +
+      `<span class="dim">Problem</span>       most weather apps report conditions, not their effect on you\n` +
+      `<span class="dim">Observation</span>   the psych framing I know well: an external signal only matters through how it's appraised\n` +
+      `<span class="dim">Constraints</span>   real-time API limits, a scoring model that had to stay honest rather than just chipper\n` +
+      `<span class="dim">Solution</span>      FastAPI backend on Railway, live WeatherAI integration, a scoring layer over it\n` +
+      `<span class="dim">Try it</span>        type <span class="accent2">mood</span> below — it calls the real, live service\n\n` +
+      `<span class="dim">More case studies land here as they're written. This one's first because it's the one I can show you working, not just describe.</span>`
+    );
+  },
+
+  async mood() {
+    printRaw(`<span class="dim">contacting moodforecastai-production.up.railway.app ...</span>`);
+    try {
+      const res = await fetch('https://moodforecastai-production.up.railway.app/health', { mode: 'cors' });
+      if (!res.ok) throw new Error('non-200');
+      printRaw(`<span class="accent">connection live.</span> service responded. (wire this command to your real /wellbeing endpoint once CORS is open on it.)`);
+    } catch (e) {
+      printRaw(
+        `<span class="warn">couldn't reach the live service from here</span> — likely CORS, since this is a static preview, not your deployed domain.\n` +
+        `on your real site this hits your FastAPI endpoint directly and prints something like:\n\n` +
+        `  <span class="accent">wellbeing index: 7.2</span> — partly cloudy, mildly optimistic`
+      );
+    }
+  },
+
+  whoami() {
+    printRaw(
+      `<span class="dim">analyzing visitor input stream...</span>\n\nwhy are you here?\n\n` +
+      `  1. hiring\n  2. collaborating\n  3. just exploring`
+    );
+    mode = 'awaiting_whoami';
+  },
+
+  resume() {
+    printRaw(
+      `the short version:\n\n` +
+      `  Software Engineer + School Lead Educator, TechLit Africa\n` +
+      `  AWS Certified Cloud Practitioner (ALX AWS re/Start)\n` +
+      `  BA Psychology\n` +
+      `  Python · FastAPI · Django · PostgreSQL · Docker · Git · Linux\n\n` +
+      `<a class="linklike" href="#" onclick="return false;">download full resume →</a> <span class="dim">(wire this to your actual PDF)</span>`
+    );
+  },
+
+  contact() {
+    printRaw(
+      `reach me directly, no form in between:\n\n` +
+      `  email     <span class="accent2">you@yourdomain.com</span>\n` +
+      `  github    <span class="accent2">github.com/KathFK1234</span>\n\n` +
+      `or type <span class="accent">sudo hire-me</span> if you'd rather do it the fun way.`
+    );
+  },
+
+  'sudo hire-me'() {
+    printRaw(
+      `<span class="dim">[sudo] password for visitor: ********</span>\n` +
+      `<span class="accent">access granted.</span> no password needed, you just had to ask nicely.\n\n` +
+      `here's my email: <span class="accent2">you@yourdomain.com</span>`
+    );
+  },
+
+  coffee() {
+    printRaw(`<span class="warn">Error: coffee not found.</span>\nMotivation module compensating with sheer stubbornness.`);
+  },
+
+  clear() {
+    term.innerHTML = '';
+    boot();
+  },
+};
+
+function handleWhoamiAnswer(raw) {
+  const t = raw.trim().toLowerCase();
+  mode = null;
+  if (t === '1' || t.includes('hir')) {
+    printRaw(`noted. try <span class="accent">resume</span> or <span class="accent">projects</span> — that's probably what you're actually here for.`);
+  } else if (t === '2' || t.includes('collab')) {
+    printRaw(`good. try <span class="accent">projects</span> then <span class="accent">contact</span> — let's see if there's an overlap worth talking about.`);
+  } else {
+    printRaw(`fair enough. try <span class="accent">psychology</span> or just type random things. most commands respond to something.`);
+  }
+}
+
+function unknownCommand(raw) {
+  const hints = [
+    `unknown command.\n<span class="dim">hint: maybe ask about "thinking."</span>`,
+    `not a command I recognize.\n<span class="dim">try "help" if you're stuck.</span>`,
+    `nothing there yet.\n<span class="dim">this interface rewards curiosity more than precision. keep going.</span>`,
+  ];
+  printRaw(hints[Math.floor(Math.random() * hints.length)]);
+}
+
+function runCommand(raw) {
+  printEcho(raw);
+  if (mode === 'awaiting_whoami') { handleWhoamiAnswer(raw); return; }
+  const key = raw.trim().toLowerCase();
+  if (commands[key]) {
+    commands[key]();
+  } else if (key === '') {
+    // no-op
+  } else {
+    unknownCommand(raw);
+  }
+}
+
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const val = input.value;
+    input.value = '';
+    runCommand(val);
+  }
+});
+
+document.querySelectorAll('.navlinks button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    input.value = btn.dataset.cmd;
+    runCommand(btn.dataset.cmd);
+    input.value = '';
+    input.focus();
+  });
+});
+
+document.addEventListener('click', () => input.focus());
+
+function boot() {
+  printRaw(
+    `<div class="boot"><span class="title">MIND INTERFACE v1.0</span></div>` +
+    `connection established.\n\nwho are you looking for?\n\n` +
+    `<span class="dim">type</span> <span class="accent">help</span> <span class="dim">to see what this thing can do.</span>`
+  );
+}
+
+boot();
+</script>
+
+</body>
+</html>
