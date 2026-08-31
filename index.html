@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Katheu Kilonzo — Mind Interface">
+<meta property="og:description" content="A terminal-style portfolio for software engineering, psychology-informed product thinking, and systems work.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80">
+<link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg">
 <title>Katheu — Mind Interface</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,opsz@1,8..60&display=swap');
@@ -57,14 +62,15 @@
   }
   @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
 
-  .navlinks { display: flex; gap: 14px; flex-wrap: wrap; }
-  .navlinks button {
+  .navlinks, .mobile-nav { display: flex; gap: 14px; flex-wrap: wrap; }
+  .navlinks button, .mobile-nav button {
     background: none; border: 1px solid var(--line); color: var(--fg-dim);
     font-family: var(--mono); font-size: 11px; padding: 4px 10px;
     border-radius: 3px; cursor: pointer; letter-spacing: 0.04em;
     transition: all 0.15s ease;
   }
-  .navlinks button:hover { color: var(--accent); border-color: var(--accent-dim); }
+  .navlinks button:hover, .mobile-nav button:hover { color: var(--accent); border-color: var(--accent-dim); }
+  .mobile-nav { display: none; }
 
   /* terminal */
   .terminal {
@@ -189,6 +195,18 @@
 
   @media (max-width: 640px) {
     .navlinks { display: none; }
+    .mobile-nav {
+      display: flex;
+      justify-content: flex-start;
+      gap: 8px;
+      padding: 10px 14px 0;
+      border-bottom: 1px solid var(--line);
+      flex-wrap: wrap;
+    }
+    .input-row {
+      padding-left: 14px;
+      padding-right: 14px;
+    }
     .terminal { padding: 16px 14px 8px; }
     .line, .output { font-size: 13px; }
   }
@@ -207,11 +225,19 @@
   </div>
 </div>
 
+<div class="mobile-nav">
+  <button data-cmd="about">about</button>
+  <button data-cmd="projects">projects</button>
+  <button data-cmd="skills">skills</button>
+  <button data-cmd="resume">resume</button>
+  <button data-cmd="contact">contact</button>
+</div>
+
 <div class="terminal" id="terminal"></div>
 
 <div class="input-row">
   <span class="prompt-sym">&gt;</span>
-  <input id="cmdInput" type="text" autofocus autocomplete="off" spellcheck="false" placeholder="type help or press Tab to autocomplete" />
+  <input id="cmdInput" type="text" autofocus autocomplete="off" spellcheck="false" placeholder="type help" />
   <span class="tab-hint">Tab</span>
 </div>
 <div class="suggestions" id="suggestions"></div>
@@ -260,18 +286,19 @@ const commandList = [
   'sudo hire-me','coffee','cat','neofetch','git status','git log','top','whois'
 ];
 
-const directoryList = [
-  'home','projects','notes','research','moodforecast-ai','mindconnect','chema-backend','learning-lab',
-  'systems-thinking','build-journal','mindset','wellbeing','ux','education','backend','data','frontend',
-  'product','prototype','api','analytics','integration','experiments','playground'
-];
+const topLevelDirs = ['projects','notes','research','moodforecast-ai','mindconnect','chema-backend','learning-lab'];
+
+function visibleDirectoryNames() {
+  if (currentDir === 'home') return topLevelDirs;
+  return (systemDirs[currentDir] || []).map(([name]) => name);
+}
 
 function getPathCandidates(prefix) {
   const trimmed = String(prefix || '').trim();
-  if (!trimmed) return directoryList.slice(0, 8);
+  if (!trimmed) return visibleDirectoryNames().slice(0, 8);
 
   const normalized = trimmed.replace(/^\./, '').replace(/\/$/, '').toLowerCase();
-  return directoryList.filter(name => name.toLowerCase().startsWith(normalized) || name.toLowerCase().includes(normalized)).slice(0, 8);
+  return visibleDirectoryNames().filter(name => name.toLowerCase().startsWith(normalized) || name.toLowerCase().includes(normalized)).slice(0, 8);
 }
 
 function getDynamicSuggestions(query) {
@@ -391,8 +418,60 @@ const systemDirs = {
   ]
 };
 
+const directoryParents = {
+  home: null,
+  projects: 'home',
+  notes: 'home',
+  research: 'home',
+  'moodforecast-ai': 'projects',
+  mindconnect: 'projects',
+  'chema-backend': 'projects',
+  'learning-lab': 'projects',
+  'systems-thinking': 'notes',
+  'build-journal': 'notes',
+  mindset: 'notes',
+  wellbeing: 'research',
+  ux: 'research',
+  education: 'research',
+  backend: 'moodforecast-ai',
+  data: 'moodforecast-ai',
+  frontend: 'moodforecast-ai',
+  product: 'mindconnect',
+  prototype: 'mindconnect',
+  api: 'chema-backend',
+  analytics: 'chema-backend',
+  integration: 'chema-backend',
+  experiments: 'learning-lab',
+  playground: 'learning-lab'
+};
+
+let currentDir = 'home';
+
 function normalizeTarget(value) {
   return String(value || '').trim().replace(/^\.\//, '').replace(/\/$/, '').replace(/^\//, '').toLowerCase();
+}
+
+function resolveDirectory(target, allowParent = false) {
+  const normalized = normalizeTarget(target || 'home');
+  if (!normalized || normalized === '.' || normalized === 'home') return 'home';
+  if (normalized === '..') return allowParent ? (directoryParents[currentDir] || 'home') : null;
+
+  if (systemDirs[normalized]) return normalized;
+
+  const childMatches = (systemDirs[currentDir] || []).map(([name]) => name).includes(normalized);
+  if (childMatches) return normalized;
+
+  return null;
+}
+
+function currentPath() {
+  const pathParts = [];
+  let cursor = currentDir;
+  while (cursor && cursor !== 'home') {
+    pathParts.unshift(cursor);
+    cursor = directoryParents[cursor] || null;
+  }
+  return pathParts.length ? `/home/katheu/mind-interface/${pathParts.join('/')}` : '/home/katheu/mind-interface';
 }
 
 function renderDirectorySummary(dirName, entries) {
@@ -407,41 +486,37 @@ function renderDirectorySummary(dirName, entries) {
 
 function handleLs(raw) {
   const inputArgs = raw.replace(/^ls\s*/i, '').trim();
-  const target = normalizeTarget(inputArgs || 'home');
+  const target = inputArgs ? resolveDirectory(inputArgs) : currentDir;
 
-  if (target === '..') {
+  if (inputArgs === '..') {
     printRaw(`<span class="warn">hey, you're not allowed to do that.</span>\n<span class="dim">that path is blocked by a healthy respect for boundaries.</span>`);
     return;
   }
 
-  if (!target || target === 'home' || target === '.') {
-    renderDirectorySummary('home', systemDirs.home);
+  if (!target) {
+    printRaw(`<span class="warn">ls: ${escapeHtml(inputArgs || 'home')}: No such directory</span>\n<span class="dim">try "ls projects" or "ls moodforecast-ai".</span>`);
     return;
   }
 
-  if (systemDirs[target]) {
-    renderDirectorySummary(target, systemDirs[target]);
-    return;
-  }
-
-  printRaw(`<span class="warn">ls: ${escapeHtml(inputArgs || 'home')}: No such directory</span>\n<span class="dim">try "ls projects" or "ls moodforecast-ai".</span>`);
+  renderDirectorySummary(target, systemDirs[target]);
 }
 
 function handleCd(raw) {
   const args = raw.replace(/^cd\s*/i, '').trim();
-  const target = normalizeTarget(args);
 
   if (!args) {
     printRaw(`<span class="dim">cd: missing operand</span>\n<span class="dim">try "cd projects" or "cd .." if you enjoy drama.</span>`);
     return;
   }
 
-  if (target === '..') {
+  if (args === '..') {
     printRaw(`<span class="warn">hey, you're not allowed to do that.</span>\n<span class="dim">the shell is not performing a dramatic escape today.</span>`);
     return;
   }
 
-  if (systemDirs[target]) {
+  const target = resolveDirectory(args);
+  if (target) {
+    currentDir = target;
     printRaw(`<span class="accent">entered ${target}/</span>\n<span class="dim">use "ls" to browse around.</span>`);
     return;
   }
@@ -520,25 +595,24 @@ const commands = {
       <ul class="help-list">
         ${items.map(([cmd, desc]) => `<li><span class="cmd">${cmd}</span> <span class="desc">— ${desc}</span></li>`).join('')}
       </ul>
-      <div class="note">This interface is intentionally playful. Try random terminal-like commands and see what the system has to say.</div>
     `;
     printRaw(html);
   },
 
   about() {
     printRaw(
-      `I'm Katheu Kilonzo — a software engineer, educator, and psychology-informed builder.\n\n` +
-      `My work sits at the intersection of people, systems, and technology. I care about building software that solves real problems, reduces friction, and makes complex systems easier to understand.\n\n` +
-      `I currently work in software engineering and education, with a background in psychology that shapes how I reason about systems, user behavior, and human-centered design.\n\n` +
+      `I’m Katheu Kilonzo — a software engineer who built my way into product work through psychology, systems thinking, and a lot of hands-on debugging.\n\n` +
+      `The pattern is consistent: I look for the hidden friction in a flow, then design software around the behavior that actually happens in the real world. A form abandoned on step three is not a UX detail; it is a system problem. A wellbeing score without context is not insight; it is noise.\n\n` +
+      `That lens shows up in my work across backend engineering, AI product ideas, and education technology. I care about software that reduces confusion, respects attention, and makes complex systems feel clear.\n\n` +
       `Type <span class="accent2">psychology</span> if you want the deeper version.`
     );
   },
 
   psychology() {
     printRaw(
-      `Psychology wasn't a detour. It became the lens through which I look at software.\n\n` +
-      `I think in terms of behavior, motivation, friction, trust, and context. Why do people abandon a flow? Why does one system feel intuitive while another feels exhausting? Why do systems fail when they ignore the people using them?\n\n` +
-      `That mindset shows up in how I build: cleaner interfaces, clearer APIs, more human-centered design, and more thoughtful product decisions.`
+      `Psychology is not a side topic in my work — it is one of the main reasons I build software the way I do.\n\n` +
+      `I think about motivation, friction, trust, context, and what people actually do when they are tired, confused, or under time pressure. That showed up in MoodForecast AI: the same weather signal means different things depending on context, not just on the numbers. It also shaped how I think about product design and frontend flow quality.\n\n` +
+      `The question is never only “can this work technically?” It is also “why would someone keep using it, trust it, and understand it?”` 
     );
   },
 
@@ -553,11 +627,11 @@ const commands = {
   projects() {
     printRaw(
       `<span class="accent">MoodForecast AI</span> — a system exploring how environmental conditions influence mood and emotional wellbeing.\n\n` +
-      `<span class="dim">Problem</span>       weather apps report conditions; they rarely interpret how those conditions affect a person\n` +
-      `<span class="dim">Observation</span>   the same signal can mean very different things depending on context, behavior, and perception\n` +
-      `<span class="dim">Solution</span>      FastAPI backend, live weather data integration, and a psychologically informed wellbeing scoring layer\n\n` +
-      `<span class="accent">MindConnect</span> — a mental-health platform designed around youth-centered support and human-centered digital care.\n\n` +
-      `<span class="accent">Chema Backend</span> — an agricultural and data-aware backend platform built to connect information, AI assistance, and decision support.`
+      `<span class="dim">Problem</span>       weather apps report conditions; they rarely explain what those conditions mean for a person’s state, day, or habits\n` +
+      `<span class="dim">Observation</span>   the same signal can feel reassuring, draining, or chaotic depending on context, routine, and perception\n` +
+      `<span class="dim">Solution</span>      FastAPI backend, live weather data integration, and a psychologically informed wellbeing scoring layer designed to interpret the situation rather than just record it\n\n` +
+      `<span class="accent">MindConnect</span> — a digital mental-health concept shaped around youth-centered support, low-friction care journeys, and clearer emotional checkpoints in digital experiences.\n\n` +
+      `<span class="accent">Chema Backend</span> — an agricultural and data platform built to connect decision-support, operational information, and AI assistance in a way that is practical for real work rather than abstract automation.`
     );
   },
 
@@ -578,8 +652,8 @@ const commands = {
       `current and relevant experience:\n\n` +
       `  School Lead Educator — TechLit Africa\n` +
       `  AWS Certified Cloud Practitioner\n` +
-      `  Software engineering and backend development across AI, APIs, and real-world systems\n\n` +
-      `The work I do tends to connect technical execution with human learning, product needs, and systems thinking.`
+      `  Backend systems work across AI, APIs, and real-world tooling\n\n` +
+      `The common thread is practical systems thinking: design for how people actually behave, learn, and make decisions, then build the software to support that reality.`
     );
   },
 
@@ -630,19 +704,18 @@ const commands = {
   },
 
   ls() {
-    printRaw(
-      `<span class="accent">projects/</span>\n` +
-      `  moodforecast-ai/\n` +
-      `  mindconnect/\n` +
-      `  chema-backend/\n` +
-      `  ideas/\n` +
-      `  experiments/\n\n` +
-      `<span class="dim">nothing is broken. the repo is just ambitious.</span>`
-    );
+    const currentEntries = systemDirs[currentDir] || [];
+    if (!currentEntries.length) {
+      printRaw(`<span class="dim">${currentDir}/</span>\n<span class="warn">empty directory. the universe is calm for now.</span>`);
+      return;
+    }
+
+    const rows = currentEntries.map(([name, detail]) => `  ${name}/  ${detail}`).join('\n');
+    printRaw(`<span class="accent">${currentDir}/</span>\n${rows}`);
   },
 
   pwd() {
-    printRaw(`/home/katheu/mind-interface`);
+    printRaw(currentPath());
   },
 
   date() {
@@ -851,7 +924,7 @@ function runCommand(raw) {
     return;
   }
 
-  if (lower.startsWith('ls')) {
+  if (lower === 'ls' || lower.startsWith('ls ')) {
     handleLs(trimmed);
     return;
   }
@@ -954,6 +1027,14 @@ document.querySelectorAll('.navlinks button').forEach(btn => {
 });
 
 document.addEventListener('click', () => input.focus());
+
+function updatePlaceholder() {
+  const isMobile = window.matchMedia('(max-width: 640px)').matches;
+  input.placeholder = isMobile ? 'type help' : 'type help';
+}
+
+window.addEventListener('resize', updatePlaceholder);
+updatePlaceholder();
 
 function boot() {
   printRaw(
