@@ -80,7 +80,11 @@
   .prompt-line { display: flex; gap: 8px; }
   .prompt-sym { color: var(--accent); flex-shrink: 0; }
   .user-input { color: var(--fg); }
-  .output { color: var(--fg); margin: 2px 0 14px 0; }
+  .output {
+    color: var(--fg);
+    margin: 2px 0 14px 0;
+    white-space: pre-wrap;
+  }
   .dim { color: var(--fg-dim); }
   .accent { color: var(--accent); }
   .accent2 { color: var(--accent2); }
@@ -93,6 +97,7 @@
     border-left: 2px solid var(--accent-dim);
     padding-left: 10px;
     margin: 6px 0 14px 0;
+    white-space: pre-wrap;
   }
 
   .boot { margin-bottom: 18px; }
@@ -203,9 +208,9 @@
 const term = document.getElementById('terminal');
 const input = document.getElementById('cmdInput');
 const suggestionsBox = document.getElementById('suggestions');
-let unlocked = { thinking: false };
-let mode = null; // set by whoami
+let mode = null;
 let commandHistory = [];
+let historyIndex = null;
 
 function scrollDown() { term.scrollTop = term.scrollHeight; }
 
@@ -226,14 +231,13 @@ function printEcho(cmd) {
 }
 
 function escapeHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
-
-function note(text) { printRaw(text, 'note'); }
 
 const commandList = [
   'help','about','projects','skills','experience','resume','contact','mood','whoami',
-  'psychology','thinking','ls','pwd','date','uname','fortune','history','clear',
+  'psychology','thinking','ls','ls projects','ls projects/','ls moodforecast-ai','ls mindconnect','ls schema-backend',
+  'pwd','date','uname','fortune','history','clear','cd ..','cd projects','cd notes','cd research',
   'sudo hire-me','coffee','cat','neofetch','git status','git log','top','whois'
 ];
 
@@ -253,8 +257,9 @@ function showSuggestions(query) {
   }
 
   suggestionsBox.innerHTML = matches.map(cmd => {
-    const highlighted = cmd.toLowerCase().replace(q, `<strong>${q}</strong>`);
-    return `<div class="suggestion-row" data-cmd="${cmd}">${highlighted}</div>`;
+    const safeQuery = escapeHtml(q);
+    const highlighted = cmd.toLowerCase().replace(q, `<strong>${safeQuery}</strong>`);
+    return `<div class="suggestion-row" data-cmd="${escapeHtml(cmd)}">${highlighted}</div>`;
   }).join('');
   suggestionsBox.classList.add('visible');
 
@@ -270,6 +275,131 @@ function showSuggestions(query) {
   });
 }
 
+const systemDirs = {
+  home: [
+    ['projects', 'active product, backend, and experimentation work'],
+    ['notes', 'learning notes, experiments, and curious ideas'],
+    ['research', 'psychology, product, and systems thinking notes']
+  ],
+  projects: [
+    ['moodforecast-ai', 'AI weather-to-wellbeing forecasting experience'],
+    ['mindconnect', 'human-centered digital support and wellbeing concepts'],
+    ['chema-backend', 'agricultural data and decision-support systems'],
+    ['learning-lab', 'small experiments and practical prototypes']
+  ],
+  notes: [
+    ['systems-thinking', 'patterns, design observations, and product notes'],
+    ['build-journal', 'ideas and lessons from shipping work'],
+    ['mindset', 'psychology and behaviour reflections']
+  ],
+  research: [
+    ['wellbeing', 'mood, context, and human behaviour observations'],
+    ['ux', 'friction, trust, and product behavior notes'],
+    ['education', 'teaching, learning, and human-centered systems']
+  ],
+  'moodforecast-ai': [
+    ['backend', 'FastAPI services and weather integration'],
+    ['data', 'signals, context, and mood scoring logic'],
+    ['frontend', 'user-facing visual summaries and dashboards']
+  ],
+  mindconnect: [
+    ['product', 'user journeys and digital care experience flows'],
+    ['research', 'supporting material and implementation notes'],
+    ['prototype', 'early product concepts and interaction ideas']
+  ],
+  'chema-backend': [
+    ['api', 'core endpoints and orchestration services'],
+    ['analytics', 'decision-support and reporting logic'],
+    ['integration', 'data pipelines and operational tooling']
+  ],
+  'learning-lab': [
+    ['experiments', 'micro-prototypes and technical tests'],
+    ['notes', 'lessons from building and iterating'],
+    ['playground', 'curiosity-driven ideas and shell experiments']
+  ]
+};
+
+function normalizeTarget(value) {
+  return String(value || '').trim().replace(/^\.\//, '').replace(/\/$/, '').replace(/^\//, '').toLowerCase();
+}
+
+function renderDirectorySummary(dirName, entries) {
+  if (!entries || !entries.length) {
+    printRaw(`<span class="dim">${dirName}/</span>\n<span class="warn">empty directory. the universe is calm for now.</span>`);
+    return;
+  }
+
+  const rows = entries.map(([name, detail]) => `  ${name}/  ${detail}`).join('\n');
+  printRaw(`<span class="accent">${dirName}/</span>\n${rows}`);
+}
+
+function handleLs(raw) {
+  const inputArgs = raw.replace(/^ls\s*/i, '').trim();
+  const target = normalizeTarget(inputArgs || 'home');
+
+  if (target === '..') {
+    printRaw(`<span class="warn">hey, you're not allowed to do that.</span>\n<span class="dim">that path is blocked by a healthy respect for boundaries.</span>`);
+    return;
+  }
+
+  if (!target || target === 'home' || target === '.') {
+    renderDirectorySummary('home', systemDirs.home);
+    return;
+  }
+
+  if (systemDirs[target]) {
+    renderDirectorySummary(target, systemDirs[target]);
+    return;
+  }
+
+  printRaw(`<span class="warn">ls: ${escapeHtml(inputArgs || 'home')}: No such directory</span>\n<span class="dim">try "ls projects" or "ls moodforecast-ai".</span>`);
+}
+
+function handleCd(raw) {
+  const args = raw.replace(/^cd\s*/i, '').trim();
+  const target = normalizeTarget(args);
+
+  if (!args) {
+    printRaw(`<span class="dim">cd: missing operand</span>\n<span class="dim">try "cd projects" or "cd .." if you enjoy drama.</span>`);
+    return;
+  }
+
+  if (target === '..') {
+    printRaw(`<span class="warn">hey, you're not allowed to do that.</span>\n<span class="dim">the shell is not performing a dramatic escape today.</span>`);
+    return;
+  }
+
+  if (systemDirs[target]) {
+    printRaw(`<span class="accent">entered ${target}/</span>\n<span class="dim">use "ls" to browse around.</span>`);
+    return;
+  }
+
+  printRaw(`<span class="warn">cd: ${escapeHtml(args)}: No such file or directory</span>\n<span class="dim">this path does not exist in this little universe.</span>`);
+}
+
+function completeCommand() {
+  const partial = input.value.trim();
+  if (!partial) return;
+
+  const candidates = commandList.filter(cmd => cmd.toLowerCase().startsWith(partial.toLowerCase()));
+  if (!candidates.length) return;
+
+  if (candidates.length === 1) {
+    input.value = candidates[0];
+    return;
+  }
+
+  let prefix = candidates[0];
+  for (let i = 1; i < candidates.length; i++) {
+    const candidate = candidates[i];
+    while (!candidate.toLowerCase().startsWith(prefix.toLowerCase()) && prefix.length > 0) {
+      prefix = prefix.slice(0, -1);
+    }
+    if (!prefix) break;
+  }
+  input.value = prefix;
+}
+
 const commands = {
   help() {
     const items = [
@@ -283,6 +413,9 @@ const commands = {
       ['thinking', 'the mental model behind my work'],
       ['mood', 'check the live MoodForecast AI service'],
       ['ls', 'list the projects and ideas in this little universe'],
+      ['ls projects', 'see a brief summary of the project folders'],
+      ['cd projects', 'enter the projects directory'],
+      ['cd ..', 'the deeply dramatic exit command'],
       ['pwd', 'reveal the current working directory'],
       ['date', 'print the current timestamp'],
       ['uname', 'reveal the machine identity'],
@@ -356,7 +489,7 @@ const commands = {
 
   experience() {
     printRaw(
-      `current and relevant experience\n\n` +
+      `current and relevant experience:\n\n` +
       `  School Lead Educator — TechLit Africa\n` +
       `  AWS Certified Cloud Practitioner\n` +
       `  Software engineering and backend development across AI, APIs, and real-world systems\n\n` +
@@ -442,7 +575,13 @@ const commands = {
       '“Curiosity is a better deployment strategy than perfection.”',
       '“A product that understands context will always beat a product that only computes.”',
       '“Even a system with a perfectly tuned API still needs a little human sense.”',
-      '“The most useful code is often the kind that makes another person feel less stuck.”'
+      '“The most useful code is often the kind that makes another person feel less stuck.”',
+      '“Good systems reduce friction before they ever need to explain themselves.”',
+      '“People do not remember the code; they remember how the product felt.”',
+      '“The best interfaces feel invisible because they respect attention.”',
+      '“A thoughtful product is a product that makes people feel seen.”',
+      '“The most durable work is the kind that keeps learning from real users.”',
+      '“Software is not just logic. It is also trust, tone, and timing.”'
     ];
     printRaw(`<span class="accent2">${lines[Math.floor(Math.random() * lines.length)]}</span>`);
   },
@@ -485,7 +624,7 @@ const commands = {
   },
 
   cat() {
-    printRaw(`\n(=^.^=)\n  /| |\\\n  / |_| \\`);
+    printRaw(`(=^.^=)\nhehehe\nI love cats :)`);
   },
 
   'git status'() {
@@ -543,12 +682,55 @@ function handleWhoamiAnswer(raw) {
   const t = raw.trim().toLowerCase();
   mode = null;
 
-  if (t === '1' || t.includes('hir')) {
-    printRaw(`noted. try <span class="accent">resume</span> or <span class="accent">projects</span> — those will tell the quicker story.`);
-  } else if (t === '2' || t.includes('collab')) {
-    printRaw(`good. try <span class="accent">projects</span> then <span class="accent">contact</span> — I’m always interested in meaningful overlap.`);
+  if (t === '1' || t.includes('hir') || t.includes('job') || t.includes('hire')) {
+    printRaw(
+      `<span class="accent">hiring profile</span>\n` +
+      `Katheu Kilonzo is a software engineer with a psychology-informed lens on product and systems.\n\n` +
+      `I build backend systems, AI-powered experiences, and practical tools that are grounded in real user needs.\n\n` +
+      `Key strengths:\n` +
+      `  • Python, FastAPI, Django, REST APIs\n` +
+      `  • practical AI workflows and product thinking\n` +
+      `  • human-centered design informed by psychology\n\n` +
+      `Featured work:\n` +
+      `  • MoodForecast AI\n` +
+      `  • Chema Backend\n` +
+      `  • MindConnect concept work\n\n` +
+      `Next steps:\n` +
+      `  type <span class="accent">resume</span>\n` +
+      `  type <span class="accent">projects</span>\n` +
+      `  type <span class="accent">contact</span>\n` +
+      `  or use <span class="accent">sudo hire-me</span> for the direct route.`
+    );
+  } else if (t === '2' || t.includes('collab') || t.includes('build') || t.includes('partner')) {
+    printRaw(
+      `<span class="accent">collaboration profile</span>\n` +
+      `I enjoy building with people who care about quality, clarity, and thoughtful product decisions.\n\n` +
+      `Current interests:\n` +
+      `  • AI-enabled product experiences\n` +
+      `  • backend architecture and APIs\n` +
+      `  • psychology-informed UX + digital wellbeing\n` +
+      `  • education technology and tooling\n\n` +
+      `Relevant work:\n` +
+      `  • MoodForecast AI\n` +
+      `  • Chema Backend\n` +
+      `  • developer tooling and learning systems\n\n` +
+      `Best next move:\n` +
+      `  type <span class="accent">projects</span>\n` +
+      `  type <span class="accent">skills</span>\n` +
+      `  type <span class="accent">contact</span>`
+    );
   } else {
-    printRaw(`fair enough. type <span class="accent">psychology</span> or <span class="accent">thinking</span> if you want the deeper version of the story.`);
+    printRaw(
+      `<span class="accent">explorer mode</span>\n` +
+      `I like curious people. This should feel a little like a playful system, but it still points to real work.\n\n` +
+      `Try any of these for a better route:\n` +
+      `  • <span class="accent">fortune</span>\n` +
+      `  • <span class="accent">thinking</span>\n` +
+      `  • <span class="accent">psychology</span>\n` +
+      `  • <span class="accent">projects</span>\n` +
+      `  • <span class="accent">help</span>\n\n` +
+      `The interface rewards curiosity more than certainty.`
+    );
   }
 }
 
@@ -556,7 +738,9 @@ function unknownCommand(raw) {
   const hints = [
     `unknown command.\n<span class="dim">hint: maybe try "thinking" or "psychology".</span>`,
     `command not found.\n<span class="dim">type "help" if you're lost.</span>`,
-    `not recognized yet.\n<span class="dim">this interface rewards curiosity more than precision.</span>`
+    `not recognized yet.\n<span class="dim">this interface rewards curiosity more than precision.</span>`,
+    `this command is not in the system.\n<span class="dim">hey, even good explorers need a map sometimes.</span>`,
+    `command rejected by the universe.\n<span class="dim">maybe try "fortune" and keep going.</span>`
   ];
   printRaw(hints[Math.floor(Math.random() * hints.length)]);
 }
@@ -566,6 +750,7 @@ function runCommand(raw) {
   if (!trimmed) return;
 
   commandHistory.push(trimmed);
+  historyIndex = null;
   printEcho(trimmed);
 
   if (mode === 'awaiting_whoami') {
@@ -573,17 +758,29 @@ function runCommand(raw) {
     return;
   }
 
-  const key = trimmed.toLowerCase();
+  const lower = trimmed.toLowerCase();
 
-  if (commands[key]) {
-    commands[key]();
-  } else if (commands[trimmed]) {
-    commands[trimmed]();
-  } else if (key === '') {
-    // no-op
-  } else {
-    unknownCommand(trimmed);
+  if (lower === 'cd ..' || lower.startsWith('cd ')) {
+    handleCd(trimmed);
+    return;
   }
+
+  if (lower.startsWith('ls')) {
+    handleLs(trimmed);
+    return;
+  }
+
+  if (commands[lower]) {
+    commands[lower]();
+    return;
+  }
+
+  if (commands[trimmed]) {
+    commands[trimmed]();
+    return;
+  }
+
+  unknownCommand(trimmed);
 }
 
 input.addEventListener('input', (e) => {
@@ -591,6 +788,37 @@ input.addEventListener('input', (e) => {
 });
 
 input.addEventListener('keydown', (e) => {
+  if (e.key === 'Tab') {
+    e.preventDefault();
+    completeCommand();
+    showSuggestions(input.value);
+    return;
+  }
+
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (!commandHistory.length) return;
+    if (historyIndex === null) historyIndex = commandHistory.length;
+    historyIndex = Math.max(0, historyIndex - 1);
+    input.value = commandHistory[historyIndex];
+    showSuggestions('');
+    return;
+  }
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    if (historyIndex === null) return;
+    historyIndex = Math.min(commandHistory.length, historyIndex + 1);
+    if (historyIndex >= commandHistory.length) {
+      input.value = '';
+      historyIndex = null;
+    } else {
+      input.value = commandHistory[historyIndex];
+    }
+    showSuggestions('');
+    return;
+  }
+
   if (e.key === 'Enter') {
     const val = input.value;
     input.value = '';
