@@ -57,7 +57,7 @@
   }
   @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
 
-  .navlinks { display: flex; gap: 14px; }
+  .navlinks { display: flex; gap: 14px; flex-wrap: wrap; }
   .navlinks button {
     background: none; border: 1px solid var(--line); color: var(--fg-dim);
     font-family: var(--mono); font-size: 11px; padding: 4px 10px;
@@ -142,10 +142,11 @@
 <body>
 
 <div class="statusbar">
-  <div class="left"><span class="dot"></span> mind-interface v1.0 — connection established</div>
+  <div class="left"><span class="dot"></span> mind-interface v2.0 — connection established</div>
   <div class="navlinks">
     <button data-cmd="about">about</button>
     <button data-cmd="projects">projects</button>
+    <button data-cmd="skills">skills</button>
     <button data-cmd="resume">resume</button>
     <button data-cmd="contact">contact</button>
   </div>
@@ -188,152 +189,185 @@ function escapeHtml(s) {
 
 function note(text) { printRaw(text, 'note'); }
 
-const commandList = ['help','about','projects','resume','contact','mood','whoami','psychology','thinking','clear','sudo hire-me','coffee'];
+const commandList = ['help','about','projects','skills','experience','resume','contact','mood','whoami','psychology','thinking','clear','sudo hire-me','coffee','cat'];
 
 const commands = {
   help() {
     printRaw(
       `<span class="accent">available commands</span>\n\n` +
-      `  about        who I am, briefly\n` +
-      `  projects     case studies, not a list\n` +
-      `  resume       the short version\n` +
-      `  contact      how to reach me\n` +
-      `  mood         pulls a live read from a project I built\n` +
-      `  psychology   why it's not a detour\n` +
-      `  whoami       tell the interface why you're here\n` +
-      `  clear        wipe the screen\n\n` +
-      `<span class="dim">some commands aren't listed here. type things. see what happens.</span>`
+      `  about        who I am and why this exists\n` +
+      `  psychology   how my psychology background shapes my thinking\n` +
+      `  projects     case studies and feature work\n` +
+      `  skills       languages, systems, and tools\n` +
+      `  experience   where I work and what I do\n` +
+      `  resume       short professional summary\n` +
+      `  contact      reach out directly\n` +
+      `  thinking     the mental model behind my work\n` +
+      `  mood         connect to the MoodForecast AI service\n` +
+      `  clear        reset the interface\n\n` +
+      `<span class="dim">curiosity is rewarded here. some commands are hidden.</span>`
     );
   },
 
   about() {
     printRaw(
-      `I'm Katheu. Software engineer, School Lead Educator at TechLit Africa, ` +
-      `AWS Certified Cloud Practitioner. Backend-heavy: Python, FastAPI, Django, PostgreSQL, Docker.\n\n` +
-      `Before any of that, I studied psychology. That part didn't stop mattering when I started writing code — ` +
-      `it changed what I noticed in the code. More on that if you type <span class="accent2">psychology</span>.`
+      `I'm Katheu Kilonzo — a software engineer, educator, and psychology-informed builder.\n\n` +
+      `My work sits at the intersection of people, systems, and technology. I care about building software that solves real problems, reduces friction, and makes complex systems easier to understand.\n\n` +
+      `I currently work in software engineering and education, with a background in psychology that shapes how I reason about systems, user behavior, and human-centered design.\n\n` +
+      `Type <span class="accent2">psychology</span> if you want the deeper version.`
     );
   },
 
   psychology() {
     printRaw(
-      `Psychology wasn't my detour.\n\n` +
-      `It taught me to think about systems where the components happen to be people — ` +
-      `motivation, friction, why someone abandons a form on step three, why a wellbeing score ` +
-      `means nothing without the context around it.\n\n` +
-      `Software became another way of solving human problems. Same questions, different material.`
+      `Psychology wasn't a detour. It became the lens through which I look at software.\n\n` +
+      `I think in terms of behavior, motivation, friction, trust, and context. Why do people abandon a flow? Why does one system feel intuitive while another feels exhausting? Why do systems fail when they ignore the people using them?\n\n` +
+      `That mindset shows up in how I build: cleaner interfaces, clearer APIs, more human-centered design, and more thoughtful product decisions.`
     );
-    note(`type "thinking" if you want the longer version of how this shows up in how I build.`);
   },
 
   thinking() {
-    unlocked.thinking = true;
     printRaw(
       `psychology\n     \\\n      \\\n  systems ─── backend ─── ai\n      \\           \\\n       \\           education\n        research\n\n` +
-      `I don't experience these as separate careers stitched together. They're one habit of mind — ` +
-      `observe closely, form a hypothesis, build the smallest thing that tests it, watch what actually happens ` +
-      `versus what I predicted. That's true whether the "subjects" are students in a classroom or requests hitting an API under load.`
+      `I do not treat these as separate careers. They are one way of thinking: observe, form a hypothesis, build a small test, learn from reality, and iterate.\n\n` +
+      `Whether the subject is a student, a user flow, an API, or a model output, the same habit of mind applies: understand the context, design for the system, and learn from what actually happens.`
     );
   },
 
   projects() {
     printRaw(
-      `<span class="accent">MoodForecast AI</span> — a FastAPI service pairing live weather data with a psychological wellbeing score.\n\n` +
-      `<span class="dim">Problem</span>       most weather apps report conditions, not their effect on you\n` +
-      `<span class="dim">Observation</span>   the psych framing I know well: an external signal only matters through how it's appraised\n` +
-      `<span class="dim">Constraints</span>   real-time API limits, a scoring model that had to stay honest rather than just chipper\n` +
-      `<span class="dim">Solution</span>      FastAPI backend on Railway, live WeatherAI integration, a scoring layer over it\n` +
-      `<span class="dim">Try it</span>        type <span class="accent2">mood</span> below — it calls the real, live service\n\n` +
-      `<span class="dim">More case studies land here as they're written. This one's first because it's the one I can show you working, not just describe.</span>`
+      `<span class="accent">MoodForecast AI</span> — a system exploring how environmental conditions influence mood and emotional wellbeing.\n\n` +
+      `<span class="dim">Problem</span>       weather apps report conditions; they rarely interpret how those conditions affect a person\n` +
+      `<span class="dim">Observation</span>   the same signal can mean very different things depending on context, behavior, and perception\n` +
+      `<span class="dim">Solution</span>      FastAPI backend, live weather data integration, and a psychologically informed wellbeing scoring layer\n\n` +
+      `<span class="accent">MindConnect</span> — a mental-health platform designed around youth-centered support and human-centered digital care.\n\n` +
+      `<span class="accent">Chema Backend</span> — an agricultural and data-aware backend platform built to connect information, AI assistance, and decision support.`
     );
   },
 
-  async mood() {
-    printRaw(`<span class="dim">contacting moodforecastai-production.up.railway.app ...</span>`);
-    try {
-      const res = await fetch('https://moodforecastai-production.up.railway.app/health', { mode: 'cors' });
-      if (!res.ok) throw new Error('non-200');
-      printRaw(`<span class="accent">connection live.</span> service responded. (wire this command to your real /wellbeing endpoint once CORS is open on it.)`);
-    } catch (e) {
-      printRaw(
-        `<span class="warn">couldn't reach the live service from here</span> — likely CORS, since this is a static preview, not your deployed domain.\n` +
-        `on your real site this hits your FastAPI endpoint directly and prints something like:\n\n` +
-        `  <span class="accent">wellbeing index: 7.2</span> — partly cloudy, mildly optimistic`
-      );
-    }
-  },
-
-  whoami() {
+  skills() {
     printRaw(
-      `<span class="dim">analyzing visitor input stream...</span>\n\nwhy are you here?\n\n` +
-      `  1. hiring\n  2. collaborating\n  3. just exploring`
+      `core stack\n\n` +
+      `  languages: <span class="accent2">Python, JavaScript, HTML, CSS, C, Shell</span>\n` +
+      `  backend:   <span class="accent2">FastAPI, Django, DRF, REST APIs, PostgreSQL</span>\n` +
+      `  cloud:     <span class="accent2">AWS, Docker, Railway, Supabase, DigitalOcean</span>\n` +
+      `  ai:        <span class="accent2">LLMs, RAG, intelligent assistants, practical automation</span>\n` +
+      `  tooling:   <span class="accent2">Git, GitHub, Linux, Postman, Figma, Canva</span>\n\n` +
+      `I enjoy building systems that are not only functional but also resilient, understandable, and grounded in user context.`
     );
-    mode = 'awaiting_whoami';
+  },
+
+  experience() {
+    printRaw(
+      `current and relevant experience\n\n` +
+      `  School Lead Educator — TechLit Africa\n` +
+      `  AWS Certified Cloud Practitioner\n` +
+      `  Software engineering and backend development across AI, APIs, and real-world systems\n\n` +
+      `The work I do tends to connect technical execution with human learning, product needs, and systems thinking.`
+    );
   },
 
   resume() {
     printRaw(
-      `the short version:\n\n` +
-      `  Software Engineer + School Lead Educator, TechLit Africa\n` +
-      `  AWS Certified Cloud Practitioner (ALX AWS re/Start)\n` +
+      `short professional summary:\n\n` +
+      `  Software Engineer + School Lead Educator\n` +
+      `  AWS Certified Cloud Practitioner\n` +
       `  BA Psychology\n` +
       `  Python · FastAPI · Django · PostgreSQL · Docker · Git · Linux\n\n` +
-      `<a class="linklike" href="#" onclick="return false;">download full resume →</a> <span class="dim">(wire this to your actual PDF)</span>`
+      `  <a class="linklike" href="https://www.linkedin.com/in/katheu-kilonzo-1a260422a/" target="_blank" rel="noreferrer">linkedin profile</a>\n` +
+      `  <a class="linklike" href="https://github.com/KathFK1234" target="_blank" rel="noreferrer">github</a>`
     );
   },
 
   contact() {
     printRaw(
-      `reach me directly, no form in between:\n\n` +
-      `  email     <span class="accent2">you@yourdomain.com</span>\n` +
-      `  github    <span class="accent2">github.com/KathFK1234</span>\n\n` +
-      `or type <span class="accent">sudo hire-me</span> if you'd rather do it the fun way.`
+      `reach me directly:\n\n` +
+      `  email:     <span class="accent2">fkatheukilonzo@gmail.com</span>\n` +
+      `  github:    <span class="accent2">github.com/KathFK1234</span>\n` +
+      `  linkedin:  <span class="accent2">linkedin.com/in/katheu-kilonzo-1a260422a</span>\n\n` +
+      `or type <span class="accent">sudo hire-me</span> if you want the dramatic path.`
     );
   },
 
   'sudo hire-me'() {
     printRaw(
       `<span class="dim">[sudo] password for visitor: ********</span>\n` +
-      `<span class="accent">access granted.</span> no password needed, you just had to ask nicely.\n\n` +
-      `here's my email: <span class="accent2">you@yourdomain.com</span>`
+      `<span class="accent">access granted.</span> no password required, just interest.\n\n` +
+      `email: <span class="accent2">fkatheukilonzo@gmail.com</span>\n` +
+      `linkedin: <a class="linklike" href="https://www.linkedin.com/in/katheu-kilonzo-1a260422a/" target="_blank" rel="noreferrer">connect here</a>`
     );
   },
 
-  coffee() {
-    printRaw(`<span class="warn">Error: coffee not found.</span>\nMotivation module compensating with sheer stubbornness.`);
+  async mood() {
+    printRaw(`<span class="dim">contacting MoodForecast AI service ...</span>`);
+    try {
+      const res = await fetch('https://moodforecastai-production.up.railway.app/health', { mode: 'cors' });
+      if (!res.ok) throw new Error('non-200');
+      printRaw(`<span class="accent">connection live.</span> the service responded correctly. This is the kind of system I enjoy building: expressive, useful, and grounded in context.`);
+    } catch (e) {
+      printRaw(
+        `<span class="warn">live connection unavailable from this static preview.</span>\n` +
+        `This command is meant to hit your deployed FastAPI endpoint directly. In production, it would return something like:\n\n` +
+        `  <span class="accent">wellbeing index: 7.2</span> — partly cloudy, mildly optimistic`
+      );
+    }
   },
 
   clear() {
     term.innerHTML = '';
     boot();
   },
+
+  coffee() {
+    printRaw(`<span class="warn">Error: coffee not found.</span>\nMotivation module compensating with stubborn optimism.`);
+  },
+
+  cat() {
+    printRaw(`\n(=^.^=)\n  /| |\\\n  / |_| \\`);
+  },
+
+  whoami() {
+    printRaw(
+      `<span class="dim">visitor profile scan started...</span>\n\n` +
+      `what brings you here?\n\n` +
+      `  1. hiring\n  2. collaborating\n  3. just exploring`
+    );
+    mode = 'awaiting_whoami';
+  }
 };
 
 function handleWhoamiAnswer(raw) {
   const t = raw.trim().toLowerCase();
   mode = null;
+
   if (t === '1' || t.includes('hir')) {
-    printRaw(`noted. try <span class="accent">resume</span> or <span class="accent">projects</span> — that's probably what you're actually here for.`);
+    printRaw(`noted. try <span class="accent">resume</span> or <span class="accent">projects</span> — those will tell the quicker story.`);
   } else if (t === '2' || t.includes('collab')) {
-    printRaw(`good. try <span class="accent">projects</span> then <span class="accent">contact</span> — let's see if there's an overlap worth talking about.`);
+    printRaw(`good. try <span class="accent">projects</span> then <span class="accent">contact</span> — I’m always interested in meaningful overlap.`);
   } else {
-    printRaw(`fair enough. try <span class="accent">psychology</span> or just type random things. most commands respond to something.`);
+    printRaw(`fair enough. type <span class="accent">psychology</span> or <span class="accent">thinking</span> if you want the deeper version of the story.`);
   }
 }
 
 function unknownCommand(raw) {
   const hints = [
-    `unknown command.\n<span class="dim">hint: maybe ask about "thinking."</span>`,
-    `not a command I recognize.\n<span class="dim">try "help" if you're stuck.</span>`,
-    `nothing there yet.\n<span class="dim">this interface rewards curiosity more than precision. keep going.</span>`,
+    `unknown command.\n<span class="dim">hint: maybe try "thinking" or "psychology".</span>`,
+    `command not found.\n<span class="dim">type "help" if you're lost.</span>`,
+    `not recognized yet.\n<span class="dim">this interface rewards curiosity more than precision.</span>`
   ];
   printRaw(hints[Math.floor(Math.random() * hints.length)]);
 }
 
 function runCommand(raw) {
   printEcho(raw);
-  if (mode === 'awaiting_whoami') { handleWhoamiAnswer(raw); return; }
+
+  if (mode === 'awaiting_whoami') {
+    handleWhoamiAnswer(raw);
+    return;
+  }
+
   const key = raw.trim().toLowerCase();
+
   if (commands[key]) {
     commands[key]();
   } else if (key === '') {
@@ -364,9 +398,9 @@ document.addEventListener('click', () => input.focus());
 
 function boot() {
   printRaw(
-    `<div class="boot"><span class="title">MIND INTERFACE v1.0</span></div>` +
+    `<div class="boot"><span class="title">MIND INTERFACE v2.0</span></div>` +
     `connection established.\n\nwho are you looking for?\n\n` +
-    `<span class="dim">type</span> <span class="accent">help</span> <span class="dim">to see what this thing can do.</span>`
+    `<span class="dim">type</span> <span class="accent">help</span> <span class="dim">to explore the system.</span>`
   );
 }
 
