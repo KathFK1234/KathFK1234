@@ -120,6 +120,45 @@
   }
   .input-row input::placeholder { color: var(--fg-dim); opacity: 0.6; }
 
+  .suggestions {
+    position: relative;
+    margin-top: 8px;
+    padding: 8px 10px;
+    border: 1px solid var(--line);
+    background: rgba(14, 20, 20, 0.78);
+    border-radius: 6px;
+    max-width: 420px;
+    display: none;
+  }
+
+  .suggestions.visible { display: block; }
+  .suggestion-row {
+    font-size: 12px;
+    color: var(--fg-dim);
+    padding: 4px 0;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+  }
+  .suggestion-row strong { color: var(--accent); }
+  .suggestion-row:hover { color: var(--accent); }
+
+  .help-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .help-list li {
+    margin: 6px 0;
+    line-height: 1.6;
+  }
+  .help-list .cmd {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .help-list .desc {
+    color: var(--fg);
+  }
+
   .cursor-blink {
     display: inline-block;
     width: 8px; height: 15px;
@@ -158,12 +197,15 @@
   <span class="prompt-sym">&gt;</span>
   <input id="cmdInput" type="text" autofocus autocomplete="off" spellcheck="false" placeholder="type help to begin" />
 </div>
+<div class="suggestions" id="suggestions"></div>
 
 <script>
 const term = document.getElementById('terminal');
 const input = document.getElementById('cmdInput');
+const suggestionsBox = document.getElementById('suggestions');
 let unlocked = { thinking: false };
 let mode = null; // set by whoami
+let commandHistory = [];
 
 function scrollDown() { term.scrollTop = term.scrollHeight; }
 
@@ -191,35 +233,77 @@ function note(text) { printRaw(text, 'note'); }
 
 const commandList = [
   'help','about','projects','skills','experience','resume','contact','mood','whoami',
-  'psychology','thinking','ls','pwd','date','uname','fortune','clear','sudo hire-me',
-  'coffee','cat','neofetch'
+  'psychology','thinking','ls','pwd','date','uname','fortune','history','clear',
+  'sudo hire-me','coffee','cat','neofetch','git status','git log','top','whois'
 ];
+
+function showSuggestions(query) {
+  const q = query.trim().toLowerCase();
+  if (!q) {
+    suggestionsBox.classList.remove('visible');
+    suggestionsBox.innerHTML = '';
+    return;
+  }
+
+  const matches = commandList.filter(cmd => cmd.toLowerCase().includes(q)).slice(0, 6);
+  if (!matches.length) {
+    suggestionsBox.classList.remove('visible');
+    suggestionsBox.innerHTML = '';
+    return;
+  }
+
+  suggestionsBox.innerHTML = matches.map(cmd => {
+    const highlighted = cmd.toLowerCase().replace(q, `<strong>${q}</strong>`);
+    return `<div class="suggestion-row" data-cmd="${cmd}">${highlighted}</div>`;
+  }).join('');
+  suggestionsBox.classList.add('visible');
+
+  suggestionsBox.querySelectorAll('.suggestion-row').forEach(row => {
+    row.addEventListener('click', () => {
+      input.value = row.dataset.cmd;
+      suggestionsBox.classList.remove('visible');
+      suggestionsBox.innerHTML = '';
+      runCommand(row.dataset.cmd);
+      input.value = '';
+      input.focus();
+    });
+  });
+}
 
 const commands = {
   help() {
-    printRaw(
-      `<span class="accent">available commands</span>\n\n` +
-      `• <span class="accent2">about</span> — who I am and why this exists\n` +
-      `• <span class="accent2">psychology</span> — why psychology shapes how I build software\n` +
-      `• <span class="accent2">projects</span> — case studies and featured work\n` +
-      `• <span class="accent2">skills</span> — stack, tools, and technical strengths\n` +
-      `• <span class="accent2">experience</span> — background and current work\n` +
-      `• <span class="accent2">resume</span> — quick professional summary\n` +
-      `• <span class="accent2">contact</span> — email, GitHub, and LinkedIn\n` +
-      `• <span class="accent2">thinking</span> — the mental model behind my work\n` +
-      `• <span class="accent2">mood</span> — check the live MoodForecast AI service\n` +
-      `• <span class="accent2">ls</span> — list the projects and ideas in this little universe\n` +
-      `• <span class="accent2">pwd</span> — reveal the current working directory\n` +
-      `• <span class="accent2">date</span> — print the current timestamp\n` +
-      `• <span class="accent2">uname</span> — reveal the machine identity\n` +
-      `• <span class="accent2">fortune</span> — a tiny burst of wisdom\n` +
-      `• <span class="accent2">whoami</span> — ask the interface why you are here\n` +
-      `• <span class="accent2">clear</span> — reset the terminal\n` +
-      `• <span class="accent2">coffee</span> — because every serious build needs motivation\n` +
-      `• <span class="accent2">cat</span> — a very important cat\n` +
-      `• <span class="accent2">sudo hire-me</span> — the dramatic hiring path\n\n` +
-      `<span class="dim">type any of these or explore with terminal-like commands. the interface is intentionally playful.</span>`
-    );
+    const items = [
+      ['about', 'who I am and why this exists'],
+      ['psychology', 'why psychology shapes how I build software'],
+      ['projects', 'case studies and featured work'],
+      ['skills', 'stack, tools, and technical strengths'],
+      ['experience', 'background and current work'],
+      ['resume', 'quick professional summary'],
+      ['contact', 'email, GitHub, and LinkedIn'],
+      ['thinking', 'the mental model behind my work'],
+      ['mood', 'check the live MoodForecast AI service'],
+      ['ls', 'list the projects and ideas in this little universe'],
+      ['pwd', 'reveal the current working directory'],
+      ['date', 'print the current timestamp'],
+      ['uname', 'reveal the machine identity'],
+      ['fortune', 'a tiny burst of wisdom'],
+      ['history', 'show recent terminal commands you explored'],
+      ['whoami', 'ask the interface why you are here'],
+      ['clear', 'reset the terminal'],
+      ['coffee', 'because every serious build needs motivation'],
+      ['cat', 'a very important cat'],
+      ['sudo hire-me', 'the dramatic hiring path'],
+      ['neofetch', 'show a tiny system summary for this strange little universe']
+    ];
+
+    const html = `
+      <span class="accent">available commands</span>
+      <ul class="help-list">
+        ${items.map(([cmd, desc]) => `<li><span class="cmd">${cmd}</span> <span class="desc">— ${desc}</span></li>`).join('')}
+      </ul>
+      <div class="note">This interface is intentionally playful. Try random terminal-like commands and see what the system has to say.</div>
+    `;
+    printRaw(html);
   },
 
   about() {
@@ -356,9 +440,26 @@ const commands = {
       '“Build things that make life feel simpler, not just more technical.”',
       '“The best systems are the ones people trust enough to keep using.”',
       '“Curiosity is a better deployment strategy than perfection.”',
-      '“A product that understands context will always beat a product that only computes.”'
+      '“A product that understands context will always beat a product that only computes.”',
+      '“Even a system with a perfectly tuned API still needs a little human sense.”',
+      '“The most useful code is often the kind that makes another person feel less stuck.”'
     ];
     printRaw(`<span class="accent2">${lines[Math.floor(Math.random() * lines.length)]}</span>`);
+  },
+
+  history() {
+    if (!commandHistory.length) {
+      printRaw(`<span class="dim">history is empty. try a command and come back. bravery is a habit.</span>`);
+      return;
+    }
+
+    const html = `
+      <span class="accent">command history</span>
+      <ul class="help-list">
+        ${commandHistory.slice().reverse().map(entry => `<li><span class="cmd">${escapeHtml(entry)}</span></li>`).join('')}
+      </ul>
+    `;
+    printRaw(html);
   },
 
   neofetch() {
@@ -385,6 +486,47 @@ const commands = {
 
   cat() {
     printRaw(`\n(=^.^=)\n  /| |\\\n  / |_| \\`);
+  },
+
+  'git status'() {
+    printRaw(
+      `<span class="accent">On branch main</span>\n` +
+      `Your branch is feeling optimistic.\n` +
+      `Changes not staged for commit: 1\n` +
+      `  • still building a better portfolio\n` +
+      `  • still learning how humans actually use software`
+    );
+  },
+
+  'git log'() {
+    printRaw(
+      `<span class="dim">commit history</span>\n` +
+      `c9e4d2a  build: more curiosity, less noise\n` +
+      `b1027aa  fix: psychology still matters\n` +
+      `a1980fd  feat: became more human-centered\n` +
+      `...\n` +
+      `<span class="accent">origin/main</span> ──> still learning`
+    );
+  },
+
+  top() {
+    printRaw(
+      `<span class="accent">top</span>\n` +
+      `PID USER    PR  NI  VIRT  RES  SHR S  %CPU %MEM COMMAND\n` +
+      `1234 katheu  20  0  65m  9m  4m S   4.1  0.2 node\n` +
+      `5204 katheu  20  0  35m  7m  3m S   2.8  0.1 python\n` +
+      `<span class="dim">status: thinking deeply and shipping carefully</span>`
+    );
+  },
+
+  whois() {
+    printRaw(
+      `<span class="accent">WHOIS katheu</span>\n` +
+      `Name: Katheu Kilonzo\n` +
+      `Role: software engineer, educator, systems thinker\n` +
+      `Interests: psychology, AI, backend systems, product design\n` +
+      `Verdict: interesting enough to keep investigating`
+    );
   },
 
   whoami() {
@@ -420,28 +562,40 @@ function unknownCommand(raw) {
 }
 
 function runCommand(raw) {
-  printEcho(raw);
+  const trimmed = raw.trim();
+  if (!trimmed) return;
+
+  commandHistory.push(trimmed);
+  printEcho(trimmed);
 
   if (mode === 'awaiting_whoami') {
-    handleWhoamiAnswer(raw);
+    handleWhoamiAnswer(trimmed);
     return;
   }
 
-  const key = raw.trim().toLowerCase();
+  const key = trimmed.toLowerCase();
 
   if (commands[key]) {
     commands[key]();
+  } else if (commands[trimmed]) {
+    commands[trimmed]();
   } else if (key === '') {
     // no-op
   } else {
-    unknownCommand(raw);
+    unknownCommand(trimmed);
   }
 }
+
+input.addEventListener('input', (e) => {
+  showSuggestions(e.target.value);
+});
 
 input.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     const val = input.value;
     input.value = '';
+    suggestionsBox.classList.remove('visible');
+    suggestionsBox.innerHTML = '';
     runCommand(val);
   }
 });
@@ -451,6 +605,8 @@ document.querySelectorAll('.navlinks button').forEach(btn => {
     input.value = btn.dataset.cmd;
     runCommand(btn.dataset.cmd);
     input.value = '';
+    suggestionsBox.classList.remove('visible');
+    suggestionsBox.innerHTML = '';
     input.focus();
   });
 });
