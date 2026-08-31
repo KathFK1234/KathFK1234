@@ -189,23 +189,36 @@ function escapeHtml(s) {
 
 function note(text) { printRaw(text, 'note'); }
 
-const commandList = ['help','about','projects','skills','experience','resume','contact','mood','whoami','psychology','thinking','clear','sudo hire-me','coffee','cat'];
+const commandList = [
+  'help','about','projects','skills','experience','resume','contact','mood','whoami',
+  'psychology','thinking','ls','pwd','date','uname','fortune','clear','sudo hire-me',
+  'coffee','cat','neofetch'
+];
 
 const commands = {
   help() {
     printRaw(
       `<span class="accent">available commands</span>\n\n` +
-      `  about        who I am and why this exists\n` +
-      `  psychology   how my psychology background shapes my thinking\n` +
-      `  projects     case studies and feature work\n` +
-      `  skills       languages, systems, and tools\n` +
-      `  experience   where I work and what I do\n` +
-      `  resume       short professional summary\n` +
-      `  contact      reach out directly\n` +
-      `  thinking     the mental model behind my work\n` +
-      `  mood         connect to the MoodForecast AI service\n` +
-      `  clear        reset the interface\n\n` +
-      `<span class="dim">curiosity is rewarded here. some commands are hidden.</span>`
+      `• <span class="accent2">about</span> — who I am and why this exists\n` +
+      `• <span class="accent2">psychology</span> — why psychology shapes how I build software\n` +
+      `• <span class="accent2">projects</span> — case studies and featured work\n` +
+      `• <span class="accent2">skills</span> — stack, tools, and technical strengths\n` +
+      `• <span class="accent2">experience</span> — background and current work\n` +
+      `• <span class="accent2">resume</span> — quick professional summary\n` +
+      `• <span class="accent2">contact</span> — email, GitHub, and LinkedIn\n` +
+      `• <span class="accent2">thinking</span> — the mental model behind my work\n` +
+      `• <span class="accent2">mood</span> — check the live MoodForecast AI service\n` +
+      `• <span class="accent2">ls</span> — list the projects and ideas in this little universe\n` +
+      `• <span class="accent2">pwd</span> — reveal the current working directory\n` +
+      `• <span class="accent2">date</span> — print the current timestamp\n` +
+      `• <span class="accent2">uname</span> — reveal the machine identity\n` +
+      `• <span class="accent2">fortune</span> — a tiny burst of wisdom\n` +
+      `• <span class="accent2">whoami</span> — ask the interface why you are here\n` +
+      `• <span class="accent2">clear</span> — reset the terminal\n` +
+      `• <span class="accent2">coffee</span> — because every serious build needs motivation\n` +
+      `• <span class="accent2">cat</span> — a very important cat\n` +
+      `• <span class="accent2">sudo hire-me</span> — the dramatic hiring path\n\n` +
+      `<span class="dim">type any of these or explore with terminal-like commands. the interface is intentionally playful.</span>`
     );
   },
 
@@ -311,6 +324,54 @@ const commands = {
         `  <span class="accent">wellbeing index: 7.2</span> — partly cloudy, mildly optimistic`
       );
     }
+  },
+
+  ls() {
+    printRaw(
+      `<span class="accent">projects/</span>\n` +
+      `  moodforecast-ai/\n` +
+      `  mindconnect/\n` +
+      `  chema-backend/\n` +
+      `  ideas/\n` +
+      `  experiments/\n\n` +
+      `<span class="dim">nothing is broken. the repo is just ambitious.</span>`
+    );
+  },
+
+  pwd() {
+    printRaw(`/home/katheu/mind-interface`);
+  },
+
+  date() {
+    const now = new Date();
+    printRaw(`<span class="accent">${now.toString()}</span>`);
+  },
+
+  uname() {
+    printRaw(`Linux katheu-portfolio 6.8.0-52-generic x86_64 GNU/Linux`);
+  },
+
+  fortune() {
+    const lines = [
+      '“Build things that make life feel simpler, not just more technical.”',
+      '“The best systems are the ones people trust enough to keep using.”',
+      '“Curiosity is a better deployment strategy than perfection.”',
+      '“A product that understands context will always beat a product that only computes.”'
+    ];
+    printRaw(`<span class="accent2">${lines[Math.floor(Math.random() * lines.length)]}</span>`);
+  },
+
+  neofetch() {
+    printRaw(
+      `<span class="accent">katheu@mind-interface</span>\n` +
+      `-------------------------------\n` +
+      `OS:   human-centered software\n` +
+      `Host: build-with-purpose\n` +
+      `Kernel: curiosity 1.0\n` +
+      `Uptime: forever curious\n` +
+      `Shell: terminal-of-thoughts\n` +
+      `Theme: psychology + product + code`
+    );
   },
 
   clear() {
