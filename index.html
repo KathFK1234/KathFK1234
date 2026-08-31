@@ -486,10 +486,10 @@ function renderDirectorySummary(dirName, entries) {
 
 function handleLs(raw) {
   const inputArgs = raw.replace(/^ls\s*/i, '').trim();
-  const target = inputArgs ? resolveDirectory(inputArgs) : currentDir;
+  const target = inputArgs ? resolveDirectory(inputArgs, inputArgs === '..') : currentDir;
 
-  if (inputArgs === '..') {
-    printRaw(`<span class="warn">hey, you're not allowed to do that.</span>\n<span class="dim">that path is blocked by a healthy respect for boundaries.</span>`);
+  if (inputArgs === '..' && currentDir === 'home') {
+    renderDirectorySummary('home', systemDirs.home);
     return;
   }
 
@@ -510,11 +510,19 @@ function handleCd(raw) {
   }
 
   if (args === '..') {
-    printRaw(`<span class="warn">hey, you're not allowed to do that.</span>\n<span class="dim">the shell is not performing a dramatic escape today.</span>`);
+    const parent = directoryParents[currentDir] || 'home';
+
+    if (currentDir === 'home') {
+      printRaw(`<span class="dim">already at home.</span>\n<span class="dim">current directory: /home/katheu/mind-interface</span>`);
+      return;
+    }
+
+    currentDir = parent;
+    printRaw(`<span class="accent">entered ${parent}/</span>\n<span class="dim">use "ls" to browse around.</span>`);
     return;
   }
 
-  const target = resolveDirectory(args);
+  const target = resolveDirectory(args, false);
   if (target) {
     currentDir = target;
     printRaw(`<span class="accent">entered ${target}/</span>\n<span class="dim">use "ls" to browse around.</span>`);
