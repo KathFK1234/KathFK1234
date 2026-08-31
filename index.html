@@ -124,6 +124,12 @@
     caret-color: var(--accent);
   }
   .input-row input::placeholder { color: var(--fg-dim); opacity: 0.6; }
+  .tab-hint {
+    font-size: 11px;
+    color: var(--fg-dim);
+    margin-left: 8px;
+    letter-spacing: 0.04em;
+  }
 
   .suggestions {
     position: relative;
@@ -205,7 +211,8 @@
 
 <div class="input-row">
   <span class="prompt-sym">&gt;</span>
-  <input id="cmdInput" type="text" autofocus autocomplete="off" spellcheck="false" placeholder="type help to begin" />
+  <input id="cmdInput" type="text" autofocus autocomplete="off" spellcheck="false" placeholder="type help or press Tab to autocomplete" />
+  <span class="tab-hint">Tab</span>
 </div>
 <div class="suggestions" id="suggestions"></div>
 
@@ -248,10 +255,42 @@ function escapeHtml(s) {
 
 const commandList = [
   'help','about','projects','skills','experience','resume','contact','mood','whoami',
-  'psychology','thinking','ls','ls projects','ls projects/','ls moodforecast-ai','ls mindconnect','ls schema-backend',
-  'pwd','date','uname','fortune','history','clear','cd ..','cd projects','cd notes','cd research',
+  'psychology','thinking','ls','pwd','date','uname','fortune','history','clear',
+  'cd ..','cd projects','cd notes','cd research','cd moodforecast-ai','cd mindconnect','cd chema-backend',
   'sudo hire-me','coffee','cat','neofetch','git status','git log','top','whois'
 ];
+
+const directoryList = [
+  'home','projects','notes','research','moodforecast-ai','mindconnect','chema-backend','learning-lab',
+  'systems-thinking','build-journal','mindset','wellbeing','ux','education','backend','data','frontend',
+  'product','prototype','api','analytics','integration','experiments','playground'
+];
+
+function getPathCandidates(prefix) {
+  const trimmed = String(prefix || '').trim();
+  if (!trimmed) return directoryList.slice(0, 8);
+
+  const normalized = trimmed.replace(/^\./, '').replace(/\/$/, '').toLowerCase();
+  return directoryList.filter(name => name.toLowerCase().startsWith(normalized) || name.toLowerCase().includes(normalized)).slice(0, 8);
+}
+
+function getDynamicSuggestions(query) {
+  const text = String(query || '').trim();
+  if (!text) return [];
+
+  const match = text.match(/^([a-zA-Z]+)\s*(.*)$/);
+  if (!match) return [];
+
+  const command = match[1].toLowerCase();
+  const rest = (match[2] || '').trim();
+
+  if ((command === 'ls' || command === 'cd') && rest) {
+    const options = getPathCandidates(rest).map(value => `${command} ${value}`);
+    return options.length ? options : [`${command} ${rest}`];
+  }
+
+  return [];
+}
 
 function showSuggestions(query) {
   const q = query.trim().toLowerCase();
@@ -260,7 +299,9 @@ function showSuggestions(query) {
     return;
   }
 
-  const matches = commandList.filter(cmd => cmd.toLowerCase().includes(q)).slice(0, 6);
+  const dynamic = getDynamicSuggestions(query);
+  let matches = dynamic.length ? dynamic : commandList.filter(cmd => cmd.toLowerCase().includes(q)).slice(0, 6);
+
   if (!matches.length) {
     hideSuggestions();
     return;
@@ -271,8 +312,12 @@ function showSuggestions(query) {
   }
 
   suggestionsBox.innerHTML = matches.map((cmd, index) => {
-    const safeQuery = escapeHtml(q);
-    const highlighted = cmd.toLowerCase().replace(q, `<strong>${safeQuery}</strong>`);
+    const value = String(cmd).toLowerCase();
+    const loweredQuery = q.toLowerCase();
+    const highlightStart = value.indexOf(loweredQuery);
+    const highlighted = highlightStart >= 0
+      ? `${escapeHtml(cmd.slice(0, highlightStart))}<strong>${escapeHtml(cmd.slice(highlightStart, highlightStart + q.length))}</strong>${escapeHtml(cmd.slice(highlightStart + q.length))}`
+      : escapeHtml(cmd);
     const selectedClass = index === activeSuggestionIndex ? ' selected' : '';
     return `<div class="suggestion-row${selectedClass}" data-cmd="${escapeHtml(cmd)}">${highlighted}</div>`;
   }).join('');
@@ -407,6 +452,19 @@ function handleCd(raw) {
 function completeCommand() {
   const partial = input.value.trim();
   if (!partial) return;
+
+  const pathMatch = partial.match(/^([a-zA-Z]+)\s+(.*)$/);
+  if (pathMatch) {
+    const command = pathMatch[1].toLowerCase();
+    const rest = (pathMatch[2] || '').trim();
+    if ((command === 'ls' || command === 'cd') && rest) {
+      const candidates = getPathCandidates(rest).map(value => `${command} ${value}`);
+      if (candidates.length) {
+        input.value = candidates[0];
+        return;
+      }
+    }
+  }
 
   const candidates = commandList.filter(cmd => cmd.toLowerCase().startsWith(partial.toLowerCase()));
   if (!candidates.length) return;
@@ -818,13 +876,31 @@ input.addEventListener('input', (e) => {
 input.addEventListener('keydown', (e) => {
   if (e.key === 'Tab') {
     e.preventDefault();
+    const partial = input.value.trim();
+    if (!partial) {
+      printRaw('<span class="dim">tip: press Tab to autocomplete commands and folders like "ls projects" or "cd notes".</span>');
+      return;
+    }
+
     if (suggestionsBox.classList.contains('visible')) {
       acceptVisibleSuggestion();
       return;
     }
 
-    const partial = input.value.trim();
-    if (!partial) return;
+    const match = partial.match(/^([a-zA-Z]+)\s*(.*)$/);
+    if (match) {
+      const command = match[1].toLowerCase();
+      const rest = (match[2] || '').trim();
+      if ((command === 'ls' || command === 'cd') && rest) {
+        const options = getPathCandidates(rest);
+        if (options.length) {
+          input.value = `${command} ${options[0]}`;
+          activeSuggestionIndex = 0;
+          showSuggestions(input.value);
+          return;
+        }
+      }
+    }
 
     const matches = commandList.filter(cmd => cmd.toLowerCase().startsWith(partial.toLowerCase()));
     if (matches.length) {
