@@ -1,160 +1,165 @@
-<!--
+# Katheu Kilonzo
 
-**KathFK1234/KathFK1234** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+### Software Engineer • Psychology-informed Builder • AI & Backend Systems
 
-Here are some ideas to get you started:
+I build technology at the intersection of human behavior, systems thinking, and practical engineering.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+My work sits where psychology meets software: understanding people, designing better experiences, and building tools that solve real problems in meaningful ways.
 
-# Hey there! 👋 I'm Katheu :)
+---
 
-## Psychologist & Software Engineer
+## Why I build
 
-I'm a psychologist turned software engineer who enjoys understanding complex problems and building technology that makes them simpler. My work sits at the intersection of people, technology, and problem-solving. I spend my time on backend systems and APIs, AI-powered applications, and tools that turn data into useful decisions.
-___
+Psychology taught me to ask:
 
-## 🧠 HOW I THINK
+- Why do people behave the way they do?
+- What creates friction?
+- What makes a system useful instead of merely functional?
 
-Psychology taught me to ask: *Why do people behave this way?*
+Engineering taught me to ask:
 
-Engineering taught me to ask: *How can we build something that works?*
+- How do we design reliable systems?
+- How do we turn complexity into clarity?
+- How do we build tools that create value for real people?
 
-AI makes me ask: *What becomes possible when we combine the two?*
+I care deeply about products that are not just technically sound, but useful, human-centered, and grounded in context.
 
-I'm drawn to problems where the technical solution is only one part of the equation. The harder part is understanding the people using it.
-___
+---
 
-## ⚙️ WHAT I BUILD
+## Core strengths
 
-### **Backend Systems**
+### Backend & systems
 
-APIs, business logic, authentication, databases, integrations and reliable services that scale.
+- Python
+- FastAPI
+- Django
+- Django REST Framework
+- PostgreSQL
+- SQL
+- Authentication and business logic
+- API design and service architecture
 
-### **AI-Powered Applications**
+### Cloud & infrastructure
 
-LLM applications, RAG systems, intelligent assistants, AI agents and practical AI that solves real problems.
+- AWS
+- Docker
+- Railway
+- Supabase
+- DigitalOcean
+- Linux
+- Git and GitHub workflows
 
-### **Data & Automation**
+### AI & data
 
-Data pipelines, ETL processes, forecasting models and systems that turn data into actionable insights.
+- LLM-powered applications
+- RAG systems
+- AI assistants and practical automation
+- Forecasting
+- Data pipelines
+- Human-AI interaction
 
-### **Cloud & Infrastructure**
+### Product & research thinking
 
-Deploying, containerizing and operating applications in production. I care about reliability, observability, and maintainability.
+- User-centered design
+- Systems thinking
+- Behavioral analysis
+- Research-driven problem solving
+- Product experimentation
 
-### **Human-Centered Technology**
+---
 
-Products where understanding the people using them matters just as much as the technology behind them.
-___
+## What I care about
 
-## 💻 TECHNOLOGY
+I approach engineering as a form of understanding.
 
-### **Languages**
+Good software should:
 
-Python · HTML · CSS · JavaScript · C · Ruby · Shell
+- solve the right problem
+- respect the people using it
+- remain maintainable and honest
+- communicate intent clearly
+- create long-term value, not just short-term output
 
-### **Backend**
+Code is not just logic. It is communication, design, and decision-making.
 
-FastAPI · Django · Django REST Framework
+---
 
-### **Databases**
+## Featured work
 
-PostgreSQL · SQL
+### MoodForecast AI
 
-### **Cloud & Infrastructure**
+An AI application exploring the relationship between environmental conditions and emotional wellbeing. The project sits at the intersection of psychology and engineering by connecting external context with human experience and turning that into a useful, interpretable system.
 
-AWS · Supabase · DigitalOcean · Docker · Railway
+Technologies: Python · FastAPI · AI · Railway
 
-### **AI & Data**
+Repo: [MoodForecast AI](https://github.com/KathFK1234/moodforecast_ai)
 
-LLMs · RAG · Vector Embeddings · Data Pipelines · Forecasting
+### MindConnect
 
-### **Frontend**
+A mental-health and support platform designed around the realities of young people in Kenya, with a focus on accessibility, empathy, and practical support. It reflects my interest in human-centered technology and systems that respond to real human needs.
 
-React
+Technologies: Figma · MongoDB · Express · Node.js · AI
 
-### **Tools & Practices**
+Repo: [MindConnect](https://github.com/derick-macharia/mindconnect-platform)
 
-Git · GitHub · Linux · Postman · Figma · Canva
-___
+### Chema Backend
 
-## 🚀 FEATURED PROJECTS
+A data-driven backend platform designed to connect agricultural knowledge, AI assistance, and actionable information. It reflects my interest in building systems that help people make better decisions with real-world constraints in mind.
 
-### **MindConnect**
+Technologies: FastAPI · PostgreSQL · SQLAlchemy · Supabase · Groq
 
-A mental-health platform designed around the needs of young people in Kenya. This project emerged from conversations about how technology can support mental wellbeing in contexts where resources are limited.
+---
 
-*Figma · MongoDB · Express · Node.js · AI*
+## The intersection of psychology and engineering
 
-Repo Link: [MindConnect Repository](https://github.com/derick-macharia/mindconnect-platform)
+My psychology background shapes how I build software.
 
-### **Chema Backend**
+It makes me more attentive to:
 
-A backend platform connecting agricultural data, AI-powered assistance and knowledge retrieval. Built to help farmers access actionable insights from their data.
+- human behavior
+- decision-making
+- friction and motivation
+- trust and usability
+- communication and learning
+- systems where people are the variable that matters most
 
-*FastAPI · PostgreSQL · SQLAlchemy · Supabase · Groq*
+I do not see psychology and engineering as separate disciplines. One helps me understand the people. The other helps me build for them.
 
-The repository is private, therefore the link cannot be pasted here, unfortunately :(
+---
 
-### **MoodForecast AI**
+## Current focus
 
-An AI application exploring the relationship between environmental conditions and mood. This project sits squarely at the intersection of psychology and engineering: using weather data and machine learning to understand how context shapes wellbeing.
+I am actively exploring:
 
-*Python · FastAPI · AI · Railway*
+- AI agents and agentic systems
+- backend architecture at scale
+- LLM-based products and intelligent tooling
+- cloud-native engineering
+- human-centered AI experiences
+- research-driven product development
 
-Repo Link: [MoodForecast AI Repository](https://github.com/KathFK1234/moodforecast_ai)
-___
+I also enjoy learning across ecosystems, which is why I continue experimenting with different languages and design philosophies.
 
-## 🧩 ENGINEERING PHILOSOPHY
+---
 
-I care about more than getting code to run.
+## Beyond code
 
-I care about understanding the problem before solving it. Building systems that are maintainable, not just functional. Designing around real users and real constraints. Making complex systems understandable. Learning the why, not just the how. Using technology where it creates meaningful value.
+When I am not building software, I am usually thinking, writing, drawing, learning, or engaging with the stuff that feeds my curiosity: psychology, creativity, systems, and human connection.
 
-Code is communication. It should tell a story.
-___
+---
 
-## 🔬 WHERE PSYCHOLOGY MEETS ENGINEERING
+## Let’s build something meaningful
 
-My background in psychology directly influences how I approach software.
+I’m interested in collaborating with people who are building thoughtful products, solving difficult problems, and asking deeper questions.
 
-It makes me naturally curious about human behaviour, decision-making, user experience, systems thinking, communication, and learning. I'm especially interested in how people interact with AI.
+If that sounds like you, let’s talk.
 
-I don't see psychology and engineering as separate. One helps me understand the people. The other helps me build for them.
-___
+### Reach me
 
-## 📚 CURRENTLY EXPLORING
+- LinkedIn: [Katheu Kilonzo](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/)
+- Email: [fkatheukilonzo@gmail.com](mailto:fkatheukilonzo@gmail.com)
+- GitHub: [@KathFK1234](https://github.com/KathFK1234)
 
-AI agents and agentic systems. Backend architecture at scale. Distributed systems. Deeper work with LLMs and prompt engineering. Cloud infrastructure and DevOps. Data-driven products. The emerging field of human-AI interaction.
+---
 
-I'm experimenting with Ruby and other languages to understand how different design philosophies approach the same problems. There's something valuable in learning across different ecosystems.
-___
-
-## 🌱 BEYOND THE CODE
-
-When I'm not building software, you'll find me writing poetry, playing piano, drawing, playing basketball, thinking about psychology, or distracted by cats.
-___
-
-## 🤝 LET'S BUILD SOMETHING
-
-I'm interested in working with people who are building interesting things, solving meaningful problems, and asking difficult questions.
-
-If that sounds like you, let's talk.
-You're already on my GitHub, so now you know me.
-Feel free to get me to know you.
-
-**[LinkedIn](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/) | [Email](mailto:fkatheukilonzo@gmail.com)**
-
-────────────────────────────────────────────────
-
-*Build things. Understand people. Stay curious. Keep going.*
-
-────────────────────────────────────────────────
+Build systems that make sense to people.
