@@ -120,7 +120,7 @@ The backend work connects agricultural information, LLM assistance, and decision
 
 - **Personality and friendship selection research:** collaborated with a five-person team, coordinated survey collection from 150+ respondents, and led analysis for a behavioral research study.
 - **Millennium Fellowship Art Therapy Clubhouse:** co-led a team supporting 40+ youth through an art therapy initiative, including planning, coordination, and stakeholder engagement.
-- **Mathematics Olympiad:** placed third nationally, an early proof that analytical problem-solving was already part of the story.
+- **Mathematics Olympiad:** placed third regionally, an early proof that analytical problem-solving was already part of the story.
 
 ---
 
