@@ -6,8 +6,8 @@
 <meta property="og:title" content="Katheu Kilonzo — Mind Interface">
 <meta property="og:description" content="A terminal-style portfolio for software engineering, psychology-informed product thinking, and systems work.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80">
-<link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg">
+<meta property="og:image" content="https://kathfk1234.vercel.app/og-image.svg">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <title>Katheu — Mind Interface</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,opsz@1,8..60&display=swap');
@@ -195,6 +195,7 @@
 
   @media (max-width: 640px) {
     .navlinks { display: none; }
+    .tab-hint { display: none; }
     .mobile-nav {
       display: flex;
       justify-content: flex-start;
@@ -286,11 +287,11 @@ const commandList = [
   'sudo hire-me','coffee','cat','neofetch','git status','git log','top','whois'
 ];
 
-const topLevelDirs = ['projects','notes','research','moodforecast-ai','mindconnect','chema-backend','learning-lab'];
+const topLevelDirs = ['projects', 'notes', 'research'];
 
 function visibleDirectoryNames() {
   if (currentDir === 'home') return topLevelDirs;
-  return (systemDirs[currentDir] || []).map(([name]) => name);
+  return (systemDirs[currentDir] || []).filter(([, , type]) => type !== 'file').map(([name]) => name);
 }
 
 function getPathCandidates(prefix) {
@@ -368,7 +369,7 @@ function acceptVisibleSuggestion() {
     return;
   }
 
-  activeSuggestionIndex = (activeSuggestionIndex + 1) % rows.length;
+  if (activeSuggestionIndex < 0) activeSuggestionIndex = 0;
   const selected = rows[activeSuggestionIndex];
   input.value = selected.dataset.cmd;
   showSuggestions(input.value);
@@ -399,7 +400,7 @@ const systemDirs = {
   'moodforecast-ai': [
     ['backend', 'FastAPI services and weather integration'],
     ['data', 'signals, context, and mood scoring logic'],
-    ['frontend', 'user-facing visual summaries and dashboards']
+    ['frontend', 'user-facing visual summaries and dashboards'],
   ],
   mindconnect: [
     ['product', 'user journeys and digital care experience flows'],
@@ -415,6 +416,48 @@ const systemDirs = {
     ['experiments', 'micro-prototypes and technical tests'],
     ['notes', 'lessons from building and iterating'],
     ['playground', 'curiosity-driven ideas and shell experiments']
+  ],
+  backend: [
+    ['main.py', 'FastAPI service entry point and health checks', 'file'],
+    ['weather_client.py', 'live weather integration and external API handling', 'file'],
+    ['README.md', 'service notes, setup, and deployment context', 'file']
+  ],
+  data: [
+    ['etl_pipeline.py', 'cleaning and transforming environmental signals', 'file'],
+    ['sarimax_notes.md', 'forecasting experiments and interpretation notes', 'file'],
+    ['scoring_model.py', 'context-aware wellbeing scoring logic', 'file']
+  ],
+  frontend: [
+    ['dashboard.js', 'visual summaries for weather and wellbeing signals', 'file'],
+    ['context-panel.html', 'the interface layer for interpreting a forecast', 'file']
+  ],
+  product: [
+    ['user-journeys.md', 'low-friction support flows for young people', 'file'],
+    ['care-checkpoints.md', 'places where trust and clarity matter most', 'file']
+  ],
+  prototype: [
+    ['concept-notes.md', 'early interaction ideas and product questions', 'file'],
+    ['support-flow.fig', 'exploratory screens for a human-centered care journey', 'file']
+  ],
+  api: [
+    ['routes.py', 'FastAPI endpoints for agricultural decision support', 'file'],
+    ['auth.py', 'token-based authentication and role-aware access', 'file']
+  ],
+  analytics: [
+    ['commodity_forecast.py', 'SARIMAX experiments for commodity price analytics', 'file'],
+    ['insights.md', 'turning model output into actionable information', 'file']
+  ],
+  integration: [
+    ['llm_service.py', 'LLM integration for agricultural assistance', 'file'],
+    ['deployment.md', 'Docker, Railway, and credential-management notes', 'file']
+  ],
+  experiments: [
+    ['terminal-ui.html', 'this portfolio interface and its shell behavior', 'file'],
+    ['api-tests.py', 'small checks for reliable backend behavior', 'file']
+  ],
+  playground: [
+    ['ideas.md', 'small questions worth turning into working prototypes', 'file'],
+    ['shell-notes.md', 'lessons from making a browser terminal feel coherent', 'file']
   ]
 };
 
@@ -453,7 +496,8 @@ function normalizeTarget(value) {
 
 function resolveDirectory(target, allowParent = false) {
   const normalized = normalizeTarget(target || 'home');
-  if (!normalized || normalized === '.' || normalized === 'home') return 'home';
+  if (!normalized || normalized === '.') return currentDir;
+  if (normalized === 'home') return 'home';
   if (normalized === '..') return allowParent ? (directoryParents[currentDir] || 'home') : null;
 
   if (systemDirs[normalized]) return normalized;
@@ -480,7 +524,7 @@ function renderDirectorySummary(dirName, entries) {
     return;
   }
 
-  const rows = entries.map(([name, detail]) => `  ${name}/  ${detail}`).join('\n');
+  const rows = entries.map(([name, detail, type]) => `  ${name}${type === 'file' ? '' : '/'}  ${detail}`).join('\n');
   printRaw(`<span class="accent">${dirName}/</span>\n${rows}`);
 }
 
@@ -509,7 +553,12 @@ function handleCd(raw) {
     return;
   }
 
-  if (args === '..') {
+  if (args === '.') {
+    printRaw(`<span class="dim">already in ${currentDir}/.</span>\n<span class="dim">current directory: ${currentPath()}</span>`);
+    return;
+  }
+
+  if (args === '..' || args === '../') {
     const parent = directoryParents[currentDir] || 'home';
 
     if (currentDir === 'home') {
@@ -709,17 +758,6 @@ const commands = {
         `  <span class="accent">wellbeing index: 7.2</span> — partly cloudy, mildly optimistic`
       );
     }
-  },
-
-  ls() {
-    const currentEntries = systemDirs[currentDir] || [];
-    if (!currentEntries.length) {
-      printRaw(`<span class="dim">${currentDir}/</span>\n<span class="warn">empty directory. the universe is calm for now.</span>`);
-      return;
-    }
-
-    const rows = currentEntries.map(([name, detail]) => `  ${name}/  ${detail}`).join('\n');
-    printRaw(`<span class="accent">${currentDir}/</span>\n${rows}`);
   },
 
   pwd() {
@@ -1024,7 +1062,7 @@ input.addEventListener('keydown', (e) => {
   }
 });
 
-document.querySelectorAll('.navlinks button').forEach(btn => {
+document.querySelectorAll('.navlinks button, .mobile-nav button').forEach(btn => {
   btn.addEventListener('click', () => {
     input.value = btn.dataset.cmd;
     runCommand(btn.dataset.cmd);
