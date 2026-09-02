@@ -1,10 +1,12 @@
 # Katheu Kilonzo
 
-### Software Engineer • Psychology-informed Builder • AI & Backend Systems
+### Psychologist • Backend Engineer • Human-centered Systems Builder
 
-I build technology at the intersection of human behavior, systems thinking, and practical engineering.
+I build technology at the intersection of human behavior, data, cloud infrastructure, and practical engineering.
 
-My work sits where psychology meets software: understanding people, designing better experiences, and building tools that solve real problems in meaningful ways.
+My work sits where psychology meets software: understanding people, designing better experiences, and building APIs and data workflows that solve real problems in meaningful ways.
+
+Currently, I am a School Lead Educator at TechLit Africa, where I lead hands-on digital literacy learning and mentor students through creativity, problem-solving, and self-expression with technology. Before that, I worked as a Backend Developer Intern at Chakula Africa, building REST APIs and forecasting workflows for agricultural platforms.
 
 ---
 
@@ -92,6 +94,8 @@ An AI application exploring the relationship between environmental conditions an
 
 Technologies: Python · FastAPI · AI · Railway
 
+The interesting part was not only making a forecast. It was asking how an environmental signal should be interpreted by a person whose context, routine, and wellbeing are changing.
+
 Repo: [MoodForecast AI](https://github.com/KathFK1234/moodforecast_ai)
 
 ### MindConnect
@@ -100,6 +104,8 @@ A mental-health and support platform designed around the realities of young peop
 
 Technologies: Figma · MongoDB · Express · Node.js · AI
 
+This is concept work, shaped by my interest in youth-centered mental-health support and digital experiences that make the next step feel clear.
+
 Repo: [MindConnect](https://github.com/derick-macharia/mindconnect-platform)
 
 ### Chema Backend
@@ -107,6 +113,14 @@ Repo: [MindConnect](https://github.com/derick-macharia/mindconnect-platform)
 A data-driven backend platform designed to connect agricultural knowledge, AI assistance, and actionable information. It reflects my interest in building systems that help people make better decisions with real-world constraints in mind.
 
 Technologies: FastAPI · PostgreSQL · SQLAlchemy · Supabase · Groq
+
+The backend work connects agricultural information, LLM assistance, and decision support. It is deliberately practical: useful output matters more than impressive automation.
+
+### Research and community work
+
+- **Personality and friendship selection research:** collaborated with a five-person team, coordinated survey collection from 150+ respondents, and led analysis for a behavioral research study.
+- **Millennium Fellowship Art Therapy Clubhouse:** co-led a team supporting 40+ youth through an art therapy initiative, including planning, coordination, and stakeholder engagement.
+- **Mathematics Olympiad:** placed third nationally, an early proof that analytical problem-solving was already part of the story.
 
 ---
 
@@ -137,6 +151,8 @@ I am actively exploring:
 - cloud-native engineering
 - human-centered AI experiences
 - research-driven product development
+
+I am also interested in reliable ETL workflows, forecasting, API security, and the difficult human questions that appear once a technical system reaches real users.
 
 I also enjoy learning across ecosystems, which is why I continue experimenting with different languages and design philosophies.
 
