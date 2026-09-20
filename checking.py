@@ -1,0 +1,1 @@
+print("Access granted. Welcome to the system.")
