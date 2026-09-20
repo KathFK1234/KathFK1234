@@ -535,7 +535,7 @@ function getFilePreview(file) {
     'routes.py': '@router.get("/insights")\ndef get_insights():\n    return {"status": "context matters"}',
     'ideas.md': 'Build the smallest useful version. Listen carefully. Iterate honestly.'
   };
-  return previews[String(file).toLowerCase()] || 'This file is represented in the portfolio index, but its contents are still being written.';
+  return previews[String(file).toLowerCase()] || 'This file is represented in the portfolio index; its public preview is intentionally brief.';
 }
 
 function handleLs(raw) {
@@ -873,10 +873,15 @@ const commands = {
     printRaw(`<span class="warn">Error: coffee not found.</span>\nMotivation module compensating with stubborn optimism.`);
   },
 
-  cat() {
-    const file = arguments[0] && arguments[0].trim();
+  cat(raw) {
+    const file = raw.replace(/^cat\s*/i, '').trim();
     if (file) {
-      printRaw(`<span class="warn">cat: ${escapeHtml(file)}: Permission denied</span>\n<span class="dim">That file contains secrets, unfinished thoughts, or an aggressively protected cat.</span>`);
+      const knownFiles = Object.values(systemDirs).flat().filter(([, , type]) => type === 'file').map(([name]) => name.toLowerCase());
+      if (file.toLowerCase() === 'readme.md' || knownFiles.includes(file.toLowerCase())) {
+        printRaw(`<span class="accent">${escapeHtml(file)}</span>\n${escapeHtml(getFilePreview(file))}`);
+        return;
+      }
+      printRaw(`<span class="warn">cat: ${escapeHtml(file)}: Permission denied</span>\n<span class="dim">That path contains secrets, unfinished thoughts, or an aggressively protected cat.</span>`);
       return;
     }
     printRaw(`(=^.^=)\nhehehe\nI love cats :)`);

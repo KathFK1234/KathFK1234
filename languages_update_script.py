@@ -97,7 +97,7 @@ class GitHubLanguageFetcher:
     def format_languages_for_readme(self, languages):
         """Format languages as a markdown string."""
         if not languages:
-            return "Not yet determined"
+            return "No languages detected"
         return " · ".join(languages)
 
 
