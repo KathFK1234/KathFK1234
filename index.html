@@ -281,10 +281,10 @@ function escapeHtml(s) {
 }
 
 const commandList = [
-  'help','about','projects','skills','experience','resume','contact','mood','whoami',
+  'help','about','projects','skills','experience','education','volunteer','resume','contact','mood','whoami',
   'psychology','thinking','ls','pwd','date','uname','fortune','history','clear',
   'cd ..','cd projects','cd notes','cd research','cd moodforecast-ai','cd mindconnect','cd chema-backend',
-  'sudo hire-me','coffee','cat','neofetch','git status','git log','top','whois'
+  'sudo hire-me','hire-me','coffee','cat','head','grep','find','tree','man','echo','open','neofetch','git status','git log','top','whois'
 ];
 
 const topLevelDirs = ['projects', 'notes', 'research'];
@@ -528,6 +528,16 @@ function renderDirectorySummary(dirName, entries) {
   printRaw(`<span class="accent">${dirName}/</span>\n${rows}`);
 }
 
+function getFilePreview(file) {
+  const previews = {
+    'readme.md': 'Katheu Kilonzo — psychologist, backend engineer, human-centered systems builder.',
+    'main.py': 'from fastapi import FastAPI\n\napp = FastAPI(title="useful systems")',
+    'routes.py': '@router.get("/insights")\ndef get_insights():\n    return {"status": "context matters"}',
+    'ideas.md': 'Build the smallest useful version. Listen carefully. Iterate honestly.'
+  };
+  return previews[String(file).toLowerCase()] || 'This file is represented in the portfolio index, but its contents are still being written.';
+}
+
 function handleLs(raw) {
   const inputArgs = raw.replace(/^ls\s*/i, '').trim();
   const target = inputArgs ? resolveDirectory(inputArgs, inputArgs === '..') : currentDir;
@@ -626,6 +636,8 @@ const commands = {
       ['projects', 'case studies and featured work'],
       ['skills', 'stack, tools, and technical strengths'],
       ['experience', 'background and current work'],
+      ['education', 'academic training and certifications'],
+      ['volunteer', 'community work and service'],
       ['resume', 'quick professional summary'],
       ['contact', 'email, GitHub, and LinkedIn'],
       ['thinking', 'the mental model behind my work'],
@@ -643,6 +655,14 @@ const commands = {
       ['clear', 'reset the terminal'],
       ['coffee', 'because every serious build needs motivation'],
       ['cat', 'a very important cat'],
+      ['head', 'peek at the first lines of a file'],
+      ['grep', 'search the interface for a word'],
+      ['find', 'find a project or idea by name'],
+      ['tree', 'show the project directory tree'],
+      ['man', 'read the manual for a command'],
+      ['echo', 'make the terminal repeat you'],
+      ['open', 'open a useful external profile'],
+      ['hire-me', 'the less dramatic hiring path'],
       ['sudo hire-me', 'the dramatic hiring path'],
       ['neofetch', 'show a tiny system summary for this strange little universe']
     ];
@@ -707,10 +727,35 @@ const commands = {
   experience() {
     printRaw(
       `current and relevant experience:\n\n` +
-      `  School Lead Educator — TechLit Africa\n` +
-      `  AWS Certified Cloud Practitioner\n` +
-      `  Backend systems work across AI, APIs, and real-world tooling\n\n` +
+      `  School Lead Educator — TechLit Africa (Apr 2026 — Present)\n` +
+      `  Backend Developer Intern — Chakula Africa (Feb 2026 — Apr 2026)\n` +
+      `  Technical Apprentice — TechLeap at Zynamis (Nov 2025 — Feb 2026)\n` +
+      `  Class Representative — Kenyatta University (Sep 2024 — Apr 2025)\n` +
+      `  Student Psychologist — Mathari Teaching and Referral Hospital (May 2024 — Sep 2024)\n` +
+      `  Student Attache — KEMRI VCT (May 2023 — Jul 2023)\n\n` +
       `The common thread is practical systems thinking: design for how people actually behave, learn, and make decisions, then build the software to support that reality.`
+    );
+  },
+
+  education() {
+    printRaw(
+      `learning path:\n\n` +
+      `  BA Psychology — Kenyatta University (2021 — 2025)\n` +
+      `  ALX Software Engineering (2024 — Present)\n` +
+      `  AWS re/Start — AWS Certified Cloud Practitioner (2025)\n` +
+      `  Alliance Girls' High School — KCSE, B+\n\n` +
+      `The formal subjects differ, but the through-line is consistent: understand difficult systems, then make them useful.`
+    );
+  },
+
+  volunteer() {
+    printRaw(
+      `community work:\n\n` +
+      `  Volunteer Educator — Joy Village\n` +
+      `  Social Media Support — UNV East Africa\n` +
+      `  Global Admissions Committee Member — Millennium Campus Network\n` +
+      `  Millennium Fellowship — Art Therapy Clubhouse\n\n` +
+      `People, access, and opportunity are not side quests. They are part of the system.`
     );
   },
 
@@ -829,7 +874,81 @@ const commands = {
   },
 
   cat() {
+    const file = arguments[0] && arguments[0].trim();
+    if (file) {
+      printRaw(`<span class="warn">cat: ${escapeHtml(file)}: Permission denied</span>\n<span class="dim">That file contains secrets, unfinished thoughts, or an aggressively protected cat.</span>`);
+      return;
+    }
     printRaw(`(=^.^=)\nhehehe\nI love cats :)`);
+  },
+
+  head(raw) {
+    const file = raw.replace(/^head\s*/i, '').trim();
+    if (!file) {
+      printRaw(`<span class="warn">head: missing file operand</span>\n<span class="dim">try "head README.md".</span>`);
+      return;
+    }
+    printRaw(`<span class="accent">${escapeHtml(file)}</span>\n${escapeHtml(getFilePreview(file))}`);
+  },
+
+  grep(raw) {
+    const query = raw.replace(/^grep\s*/i, '').trim();
+    if (!query) {
+      printRaw(`<span class="warn">grep: missing search pattern</span>\n<span class="dim">try "grep psychology".</span>`);
+      return;
+    }
+    const matches = ['psychology', 'backend', 'human-centered', 'Python', 'AI', 'education'].filter(item => item.toLowerCase().includes(query.toLowerCase()));
+    printRaw(matches.length ? matches.map(item => `<span class="accent">${item}</span> — found in the mind-interface index`).join('\n') : `<span class="dim">no matches.</span>\n<span class="dim">The search went deep and came back with snacks, but no results.</span>`);
+  },
+
+  find(raw) {
+    const query = raw.replace(/^find\s*/i, '').trim().toLowerCase();
+    if (!query) {
+      printRaw(`<span class="warn">find: missing search term</span>\n<span class="dim">try "find mood".</span>`);
+      return;
+    }
+    const matches = Object.keys(systemDirs).filter(name => name.includes(query));
+    printRaw(matches.length ? matches.map(name => `<span class="accent">./${name}</span>`).join('\n') : `<span class="dim">find: no paths matched "${escapeHtml(query)}".</span>`);
+  },
+
+  tree() {
+    printRaw(`<span class="accent">.</span>\n├── projects/\n│   ├── moodforecast-ai/\n│   ├── mindconnect/\n│   ├── chema-backend/\n│   └── learning-lab/\n├── notes/\n└── research/`);
+  },
+
+  man(raw) {
+    const command = raw.replace(/^man\s*/i, '').trim().toLowerCase();
+    const manuals = {
+      cat: 'prints a tiny cat, or refuses to expose protected files',
+      cd: 'changes your location inside the portfolio universe',
+      grep: 'searches the personal index for a word',
+      hire: 'reveals the shortest route to contact Katheu',
+      ls: 'lists the folders currently available'
+    };
+    printRaw(manuals[command] ? `<span class="accent">MANUAL: ${command}</span>\n${manuals[command]}.` : `<span class="warn">No manual entry for ${escapeHtml(command || 'nothing')}.</span>\n<span class="dim">The documentation team is currently staring thoughtfully at the ceiling.</span>`);
+  },
+
+  echo(raw) {
+    const message = raw.replace(/^echo\s*/i, '');
+    printRaw(escapeHtml(message || 'echo: you said nothing, but somehow it was profound.'));
+  },
+
+  open(raw) {
+    const target = raw.replace(/^open\s*/i, '').trim().toLowerCase();
+    const links = {
+      github: 'https://github.com/KathFK1234',
+      linkedin: 'https://www.linkedin.com/in/katheu-kilonzo-1a260422a/',
+      email: 'mailto:fkatheukilonzo@gmail.com'
+    };
+    if (!links[target]) {
+      printRaw(`<span class="warn">open: unknown target</span>\n<span class="dim">try "open github", "open linkedin", or "open email".</span>`);
+      return;
+    }
+    window.open(links[target], '_blank', 'noopener,noreferrer');
+    printRaw(`<span class="accent">opening ${escapeHtml(target)} ...</span>`);
+  },
+
+  'hire-me'() {
+    commands['sudo hire-me']();
   },
 
   'git status'() {
@@ -976,12 +1095,18 @@ function runCommand(raw) {
   }
 
   if (commands[lower]) {
-    commands[lower]();
+    commands[lower](trimmed);
     return;
   }
 
   if (commands[trimmed]) {
-    commands[trimmed]();
+    commands[trimmed](trimmed);
+    return;
+  }
+
+  const commandName = lower.split(/\s+/, 1)[0];
+  if (commands[commandName]) {
+    commands[commandName](trimmed);
     return;
   }
 

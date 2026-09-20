@@ -15,6 +15,7 @@ import argparse
 from collections import Counter
 from pathlib import Path
 import re
+from requests import HTTPError, RequestException
 
 
 class GitHubLanguageFetcher:
@@ -42,11 +43,13 @@ class GitHubLanguageFetcher:
                 "sort": "updated",
             }
 
-            response = requests.get(url, headers=self.headers, params=params)
-
-            if response.status_code != 200:
-                print(f"Error: {response.status_code}")
-                print(response.json())
+            try:
+                response = requests.get(
+                    url, headers=self.headers, params=params, timeout=20
+                )
+                response.raise_for_status()
+            except (HTTPError, RequestException) as error:
+                print(f"Error fetching repositories: {error}")
                 break
 
             repos = response.json()
@@ -55,13 +58,16 @@ class GitHubLanguageFetcher:
 
             for repo in repos:
                 if repo["languages_url"]:
-                    lang_response = requests.get(
-                        repo["languages_url"], headers=self.headers
-                    )
-                    if lang_response.status_code == 200:
+                    try:
+                        lang_response = requests.get(
+                            repo["languages_url"], headers=self.headers, timeout=20
+                        )
+                        lang_response.raise_for_status()
                         langs = lang_response.json()
                         languages.extend(langs.keys())
                         print(f"  ✓ {repo['name']}: {', '.join(langs.keys())}")
+                    except (HTTPError, RequestException) as error:
+                        print(f"  Could not read languages for {repo['name']}: {error}")
 
             page += 1
 
@@ -79,19 +85,6 @@ class GitHubLanguageFetcher:
         most_common = counter.most_common(top_n * 2)  # Get extra to curate
 
         # Prioritize languages and filter
-        priority_order = [
-            "Python",
-            "JavaScript",
-            "TypeScript",
-            "SQL",
-            "HTML",
-            "CSS",
-            "Go",
-            "Rust",
-            "Java",
-            "C++",
-        ]
-
         curated = []
         for lang, count in most_common:
             if lang not in ["Shell", "Dockerfile"]:  # Exclude non-programming

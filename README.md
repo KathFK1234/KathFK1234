@@ -162,6 +162,35 @@ I also enjoy learning across ecosystems, which is why I continue experimenting w
 
 When I am not building software, I am usually thinking, writing, drawing, learning, or engaging with the stuff that feeds my curiosity: psychology, creativity, systems, and human connection.
 
+## Explore the CLI portfolio
+
+Open `index.html` locally or visit the deployed page and type `help` into the terminal. The interface is intentionally playful, but the commands point to real work and real contact details.
+
+Useful commands include:
+
+- `about`, `experience`, `education`, `volunteer`, `projects`, `skills`, and `contact`
+- `ls`, `cd projects`, `pwd`, `tree`, `find mood`, and `cat`
+- `head README.md`, `grep psychology`, `man cat`, and `echo hello`
+- `fortune`, `neofetch`, `history`, `whoami`, and `coffee`
+- `open github`, `open linkedin`, `open email`, and `hire-me`
+
+Commands are case-insensitive, `Tab` completes commands and folders, and the arrow keys revisit command history. The simulated file system is deliberately sandboxed: it does not read arbitrary files from the visitor's computer.
+
+### Local checks
+
+The page is static and needs no build step. Serve it locally when testing browser behavior:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000`. To validate the language updater without changing this README, run:
+
+```bash
+python3 -m py_compile languages_update_script.py
+python3 languages_update_script.py --help
+```
+
 ---
 
 ## Let’s build something meaningful
