@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 Fetch programming languages from all public GitHub repositories
-and update your README with a curated list.
+and update your README with a curated list and a pie chart.
 
-The list is written between these two markers in the README:
+Both are written between these two markers in the README:
 
     <!-- languages:start -->
     <!-- languages:end -->
@@ -28,6 +28,7 @@ from requests import RequestException
 
 START_MARKER = "<!-- languages:start -->"
 END_MARKER = "<!-- languages:end -->"
+EXCLUDED = ["Shell", "Dockerfile"]  # Exclude non-programming
 
 
 class GitHubLanguageFetcher:
@@ -35,6 +36,7 @@ class GitHubLanguageFetcher:
         self.username = username
         self.token = token
         self.headers = {}
+        self.language_bytes = Counter()
         if token:
             self.headers["Authorization"] = f"Bearer {token}"
 
@@ -77,6 +79,7 @@ class GitHubLanguageFetcher:
                         lang_response.raise_for_status()
                         langs = lang_response.json()
                         languages.extend(langs.keys())
+                        self.language_bytes.update(langs)
                         print(f"  ✓ {repo['name']}: {', '.join(langs.keys())}")
                     except RequestException as error:
                         print(f"  Could not read languages for {repo['name']}: {error}")
@@ -99,7 +102,7 @@ class GitHubLanguageFetcher:
         # Prioritize languages and filter
         curated = []
         for lang, count in most_common:
-            if lang not in ["Shell", "Dockerfile"]:  # Exclude non-programming
+            if lang not in EXCLUDED:
                 curated.append(lang)
                 if len(curated) >= top_n:
                     break
@@ -111,6 +114,18 @@ class GitHubLanguageFetcher:
         if not languages:
             return "No languages detected"
         return " · ".join(languages)
+
+    def format_chart_for_readme(self, languages):
+        """Format a Mermaid pie chart of code volume for the curated languages."""
+        sizes = sorted(
+            ((lang, self.language_bytes[lang]) for lang in languages),
+            key=lambda item: item[1],
+            reverse=True,
+        )
+        lines = ["```mermaid", "pie title Code in my public repositories (KB)"]
+        lines += [f'    "{lang}" : {size / 1024:.1f}' for lang, size in sizes if size]
+        lines.append("```")
+        return "\n".join(lines)
 
 
 def update_readme(readme_path, formatted_languages):
@@ -194,9 +209,10 @@ def main():
 
     curated = fetcher.get_curated_languages(languages, args.top_n)
     formatted = fetcher.format_languages_for_readme(curated)
+    formatted += "\n\n" + fetcher.format_chart_for_readme(curated)
 
     print("📝 Curated languages for your README:\n")
-    print(f"  {formatted}\n")
+    print(f"{formatted}\n")
 
     if args.dry_run:
         print("(Dry run: README not modified)")

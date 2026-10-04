@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 250" width="840" height="250" role="img" aria-label="Terminal window: whoami — Katheu Kilonzo, psychologist, backend engineer, educator">
+  <style>
+    text { font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace; font-size: 15px; fill: #d8e3e0; }
+    .dim { fill: #6f8280; }
+    .accent { fill: #5eead4; }
+    .accent2 { fill: #8ca9ff; }
+    .name { font-size: 34px; font-weight: 700; fill: #5eead4; letter-spacing: 1px; }
+    .cat text { font-size: 17px; fill: #8ca9ff; white-space: pre; }
+    .cursor { fill: #5eead4; animation: blink 1.1s steps(1, end) infinite; }
+    .line1 { animation: show 0.01s 0.3s both; }
+    .line2 { animation: rise 0.5s 0.9s both; }
+    .line3 { animation: rise 0.5s 1.3s both; }
+    .line4 { animation: show 0.01s 1.9s both; }
+    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes show { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .cursor, .line1, .line2, .line3, .line4 { animation: none; } }
+  </style>
+  <defs>
+    <radialGradient id="glow" cx="15%" cy="0%" r="80%">
+      <stop offset="0" stop-color="#5eead4" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#5eead4" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="frame"><rect x="1" y="1" width="838" height="248" rx="12"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="840" height="250" fill="#0a0e0e"/>
+    <rect width="840" height="250" fill="url(#glow)"/>
+    <rect width="840" height="38" fill="#0e1414"/>
+    <line x1="0" y1="38" x2="840" y2="38" stroke="#1c2626"/>
+  </g>
+  <rect x="1" y="1" width="838" height="248" rx="12" fill="none" stroke="#1c2626" stroke-width="2"/>
+
+  <circle cx="24" cy="19" r="6" fill="#f2665a"/>
+  <circle cx="44" cy="19" r="6" fill="#f2a65a"/>
+  <circle cx="64" cy="19" r="6" fill="#5eead4"/>
+  <text x="420" y="24" text-anchor="middle" class="dim" style="font-size:13px">katheu kilonzo — ~</text>
+
+  <text x="28" y="76" class="line1"><tspan class="accent">visitor@katheu</tspan><tspan class="dim">:</tspan><tspan class="accent2">~</tspan><tspan class="dim">$</tspan> whoami</text>
+  <text x="28" y="128" class="name line2">Katheu Kilonzo</text>
+  <text x="28" y="160" class="line3">psychologist <tspan class="dim">·</tspan> backend engineer <tspan class="dim">·</tspan> educator</text>
+  <text x="28" y="184" class="dim line3">building systems that make sense to people</text>
+  <g class="line4">
+    <text x="28" y="222"><tspan class="accent">visitor@katheu</tspan><tspan class="dim">:</tspan><tspan class="accent2">~</tspan><tspan class="dim">$</tspan></text>
+    <rect class="cursor" x="198" y="208" width="10" height="18"/>
+  </g>
+
+  <g class="cat line3">
+    <text x="690" y="104" xml:space="preserve"> /\_/\</text>
+    <text x="690" y="126" xml:space="preserve">( o.o )</text>
+    <text x="690" y="148" xml:space="preserve"> &gt; ^ &lt;</text>
+  </g>
+</svg>

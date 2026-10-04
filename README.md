@@ -1,190 +1,185 @@
-# Katheu Kilonzo
+<div align="center">
 
-### Psychologist • Backend Engineer • Human-centered Systems Builder
+<a href="https://kathfk1234.github.io/KathFK1234/">
+  <img src="./assets/header.svg" alt="Terminal window reading: whoami — Katheu Kilonzo, psychologist, backend engineer, educator" width="840">
+</a>
 
-I build technology at the intersection of human behavior, data, cloud infrastructure, and practical engineering.
+<br><br>
 
-My work sits where psychology meets software: understanding people, designing better experiences, and building APIs and data workflows that solve real problems in meaningful ways.
+[![Portfolio](https://img.shields.io/badge/terminal_portfolio-open-5eead4?style=for-the-badge&logo=gnometerminal&logoColor=0a0e0e)](https://kathfk1234.github.io/KathFK1234/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-connect-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/)
+[![Email](https://img.shields.io/badge/email-say_hello-8ca9ff?style=for-the-badge&logo=gmail&logoColor=0a0e0e)](mailto:fkatheukilonzo@gmail.com)
 
-Currently, I am a School Lead Educator at TechLit Africa, where I lead hands-on digital literacy learning and mentor students through creativity, problem-solving, and self-expression with technology. Before that, I worked as a Backend Developer Intern at Chakula Africa, building REST APIs and forecasting workflows for agricultural platforms.
+</div>
 
----
+I build technology where human behavior, data, cloud infrastructure, and practical engineering meet. Psychology helps me understand the people; engineering lets me build for them.
+
+Right now I am a **School Lead Educator at TechLit Africa**, leading hands-on digital literacy learning. Before that I was a **Backend Developer Intern at Chakula Africa**, building REST APIs and forecasting workflows for agricultural platforms.
 
 ## Why I build
 
-Psychology taught me to ask:
+<table>
+<tr>
+<th width="50%">Psychology taught me to ask</th>
+<th width="50%">Engineering taught me to ask</th>
+</tr>
+<tr>
+<td valign="top">
 
 - Why do people behave the way they do?
 - What creates friction?
 - What makes a system useful instead of merely functional?
 
-Engineering taught me to ask:
+</td>
+<td valign="top">
 
 - How do we design reliable systems?
 - How do we turn complexity into clarity?
 - How do we build tools that create value for real people?
 
-I care deeply about products that are not just technically sound, but useful, human-centered, and grounded in context.
+</td>
+</tr>
+</table>
 
----
+```mermaid
+flowchart LR
+    P["Psychology<br/>how people actually behave"] --> F{"Where is<br/>the friction?"}
+    F --> S["Systems thinking"]
+    S --> B["Backend engineering"]
+    S --> A["AI products"]
+    S --> E["Education"]
+    B --> U(["Software that makes sense to people"])
+    A --> U
+    E --> U
+```
 
-## Core strengths
+## Toolbox
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=python,fastapi,django,postgres,docker,aws,linux,git,github,js,html,css,c,bash,supabase,figma,postman&perline=9" alt="Python, FastAPI, Django, PostgreSQL, Docker, AWS, Linux, Git, GitHub, JavaScript, HTML, CSS, C, Bash, Supabase, Figma, Postman">
+
+</div>
+
+| Area | What I work with |
+| --- | --- |
+| **Backend & systems** | Python · FastAPI · Django · Django REST Framework · PostgreSQL · SQL · authentication and business logic · API design |
+| **Cloud & infrastructure** | AWS (Certified Cloud Practitioner) · Docker · Railway · Supabase · DigitalOcean · Linux · Git and GitHub workflows |
+| **AI & data** | LLM-powered applications · RAG systems · AI assistants · forecasting · data pipelines · human-AI interaction |
+| **Product & research** | User-centered design · systems thinking · behavioral analysis · research-driven problem solving |
 
 ### Languages
 
 <!-- languages:start -->
-Python · HTML · C · CSS · JavaScript
+Python · HTML · CSS · C · JavaScript · TypeScript
+
+```mermaid
+pie title Code in my public repositories (KB)
+    "Python" : 147.6
+    "TypeScript" : 80.9
+    "C" : 62.7
+    "HTML" : 59.0
+    "CSS" : 32.2
+    "JavaScript" : 13.3
+```
 <!-- languages:end -->
-
-### Backend & systems
-
-- Python
-- FastAPI
-- Django
-- Django REST Framework
-- PostgreSQL
-- SQL
-- Authentication and business logic
-- API design and service architecture
-
-### Cloud & infrastructure
-
-- AWS
-- Docker
-- Railway
-- Supabase
-- DigitalOcean
-- Linux
-- Git and GitHub workflows
-
-### AI & data
-
-- LLM-powered applications
-- RAG systems
-- AI assistants and practical automation
-- Forecasting
-- Data pipelines
-- Human-AI interaction
-
-### Product & research thinking
-
-- User-centered design
-- Systems thinking
-- Behavioral analysis
-- Research-driven problem solving
-- Product experimentation
-
----
-
-## What I care about
-
-I approach engineering as a form of understanding.
-
-Good software should:
-
-- solve the right problem
-- respect the people using it
-- remain maintainable and honest
-- communicate intent clearly
-- create long-term value, not just short-term output
-
-Code is not just logic. It is communication, design, and decision-making.
-
----
 
 ## Featured work
 
+<table>
+<tr>
+<td width="33%" valign="top">
+
 ### MoodForecast AI
 
-An AI application exploring the relationship between environmental conditions and emotional wellbeing. The project sits at the intersection of psychology and engineering by connecting external context with human experience and turning that into a useful, interpretable system.
+Weather apps report conditions. This asks what those conditions mean for a person: live weather becomes a mood score, an energy level, and concrete recommendations.
 
-Technologies: Python · FastAPI · AI · Railway
+`Python` `FastAPI` `SQLModel` `Railway`
 
-The interesting part was not only making a forecast. It was asking how an environmental signal should be interpreted by a person whose context, routine, and wellbeing are changing.
+[Live demo](https://moodforecastai-production.up.railway.app) · [Source](https://github.com/KathFK1234/moodforecast_ai)
 
-Repo: [MoodForecast AI](https://github.com/KathFK1234/moodforecast_ai) · Live: [moodforecastai-production.up.railway.app](https://moodforecastai-production.up.railway.app)
+</td>
+<td width="33%" valign="top">
 
 ### MindConnect
 
-A mental-health and support platform designed around the realities of young people in Kenya, with a focus on accessibility, empathy, and practical support. It reflects my interest in human-centered technology and systems that respond to real human needs.
+A mental-health support concept designed around the realities of young people in Kenya: accessible, empathetic, and clear about the next step.
 
-Technologies: Figma · MongoDB · Express · Node.js · AI
+`Figma` `MongoDB` `Express` `Node.js`
 
-This is concept work, shaped by my interest in youth-centered mental-health support and digital experiences that make the next step feel clear.
+[Source](https://github.com/derick-macharia/mindconnect-platform) · concept work, built with a team
 
-Repo: [MindConnect](https://github.com/derick-macharia/mindconnect-platform)
+</td>
+<td width="33%" valign="top">
 
 ### Chema Backend
 
-A data-driven backend platform designed to connect agricultural knowledge, AI assistance, and actionable information. It reflects my interest in building systems that help people make better decisions with real-world constraints in mind.
+A backend connecting agricultural knowledge, AI assistance, and decision support. Deliberately practical: useful output over impressive automation.
 
-Technologies: FastAPI · PostgreSQL · SQLAlchemy · Supabase · Groq
+`FastAPI` `PostgreSQL` `Supabase` `Groq`
 
-The backend work connects agricultural information, LLM assistance, and decision support. It is deliberately practical: useful output matters more than impressive automation.
+Built at Chakula Africa · source is private
 
-### Research and community work
+</td>
+</tr>
+</table>
 
-- **Personality and friendship selection research:** collaborated with a five-person team, coordinated survey collection from 150+ respondents, and led analysis for a behavioral research study.
-- **Millennium Fellowship Art Therapy Clubhouse:** co-led a team supporting 40+ youth through an art therapy initiative, including planning, coordination, and stakeholder engagement.
-- **Mathematics Olympiad:** placed third regionally, an early proof that analytical problem-solving was already part of the story.
+**Research and community**
 
----
+- **Personality and friendship selection research** — worked in a five-person team, coordinated survey collection from 150+ respondents, and led the analysis.
+- **Millennium Fellowship, Art Therapy Clubhouse** — co-led a team supporting 40+ youth through an art therapy initiative.
+- **Mathematics Olympiad** — placed third regionally; analytical problem-solving was already part of the story.
 
-## The intersection of psychology and engineering
+## The path so far
 
-My psychology background shapes how I build software.
+```mermaid
+timeline
+    2021 : BA Psychology begins at Kenyatta University
+    2023 : Student Attache at KEMRI VCT
+    2024 : ALX Software Engineering begins
+         : Student Psychologist at Mathari Teaching and Referral Hospital
+         : Class Representative at Kenyatta University
+    2025 : AWS Certified Cloud Practitioner
+         : BA Psychology completed
+         : Technical Apprentice with TechLeap at Zynamis
+    2026 : Backend Developer Intern at Chakula Africa
+         : School Lead Educator at TechLit Africa
+```
 
-It makes me more attentive to:
+## On GitHub
 
-- human behavior
-- decision-making
-- friction and motivation
-- trust and usability
-- communication and learning
-- systems where people are the variable that matters most
+<div align="center">
 
-I do not see psychology and engineering as separate disciplines. One helps me understand the people. The other helps me build for them.
+<img height="165" src="https://github-readme-stats.vercel.app/api?username=KathFK1234&show_icons=true&hide_border=true&bg_color=0a0e0e&title_color=5eead4&text_color=d8e3e0&icon_color=8ca9ff" alt="GitHub statistics for KathFK1234">
+<img height="165" src="https://streak-stats.demolab.com?user=KathFK1234&hide_border=true&background=0a0e0e&ring=5eead4&fire=f2a65a&currStreakLabel=5eead4&currStreakNum=d8e3e0&sideNums=d8e3e0&sideLabels=8ca9ff&dates=6f8280&stroke=1c2626" alt="GitHub contribution streak for KathFK1234">
 
----
+</div>
 
-## Current focus
+## Currently exploring
 
-I am actively exploring:
+AI agents and agentic systems · backend architecture at scale · LLM-based products · cloud-native engineering · reliable ETL and forecasting workflows · API security · and the human questions that appear once a technical system reaches real users.
 
-- AI agents and agentic systems
-- backend architecture at scale
-- LLM-based products and intelligent tooling
-- cloud-native engineering
-- human-centered AI experiences
-- research-driven product development
+Beyond code, I am usually thinking, writing, drawing, or learning about psychology, creativity, and human connection.
 
-I am also interested in reliable ETL workflows, forecasting, API security, and the difficult human questions that appear once a technical system reaches real users.
+## The terminal portfolio
 
-I also enjoy learning across ecosystems, which is why I continue experimenting with different languages and design philosophies.
+**[kathfk1234.github.io/KathFK1234](https://kathfk1234.github.io/KathFK1234/)** is a working terminal. Type `help`, or try these:
 
----
+| Try | What happens |
+| --- | --- |
+| `about` · `projects` · `skills` · `experience` | the short version of this page |
+| `ls` · `cd projects/moodforecast-ai` · `tree` | browse real folders of notes and project write-ups |
+| `cat README.md` · `grep friction` · `find mood` | read and search them |
+| `mood nairobi` | calls the live MoodForecast AI service |
+| `theme` · `font` · `crt` | change how the terminal looks |
+| `fortune` · `neofetch` · `coffee` · `sudo hire-me` | for the curious |
 
-## Beyond code
+`Tab` completes commands and paths, `↑`/`↓` revisit history, and any highlighted command can be clicked or tapped. Add `?cmd=projects` to the URL to open the page with a command already run.
 
-When I am not building software, I am usually thinking, writing, drawing, learning, or engaging with the stuff that feeds my curiosity: psychology, creativity, systems, and human connection.
+<details>
+<summary><b>How it is built, and how to run it</b></summary>
 
-## Explore the CLI portfolio
-
-**[kathfk1234.github.io/KathFK1234](https://kathfk1234.github.io/KathFK1234/)** — type `help` into the terminal. The interface is intentionally playful, but the commands point to real work and real contact details.
-
-Useful commands include:
-
-- `about`, `experience`, `education`, `volunteer`, `projects`, `skills`, and `contact`
-- `ls`, `cd projects/moodforecast-ai`, `pwd`, `tree`, `find mood`, and `cat README.md`
-- `head`, `tail`, `wc`, `grep friction`, `man cat`, and `echo hello $USER`
-- `mood nairobi`, which calls the live MoodForecast AI service
-- `theme`, `font`, and `crt` to change how the terminal looks
-- `fortune`, `neofetch`, `history`, `whoami`, and `coffee`
-- `open github`, `open linkedin`, `open email`, and `sudo hire-me`
-
-Commands are case-insensitive. `Tab` completes commands and paths, `↑`/`↓` revisit history, `→` accepts the grey suggestion, and `Ctrl+L` clears the screen. Any highlighted command in the output can be clicked or tapped. Add `?cmd=projects` to the URL to open the page with a command already run.
-
-### How it is built
+<br>
 
 Vite + React + TypeScript. The terminal's file system is the real [content/home/](content/home/) folder: add a file there and it appears in `ls`, `cat`, `grep`, `find`, and `tree`.
 
@@ -201,27 +196,27 @@ npm run build    # type-check and build into dist/
 
 Pushing to `main` builds and deploys the site through [.github/workflows/deploy.yml](.github/workflows/deploy.yml). In the repository settings, Pages → Source must be set to **GitHub Actions**.
 
-To refresh the languages list above from the GitHub API:
+The languages list and chart above come from the GitHub API:
 
 ```bash
 python3 languages_update_script.py --dry-run   # preview
 python3 languages_update_script.py             # rewrite the section in this README
 ```
 
----
+</details>
 
 ## Let’s build something meaningful
 
-I’m interested in collaborating with people who are building thoughtful products, solving difficult problems, and asking deeper questions.
+I like working with people who are building thoughtful products, solving difficult problems, and asking deeper questions. If that sounds like you, let’s talk.
 
-If that sounds like you, let’s talk.
+<div align="center">
 
-### Reach me
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Katheu_Kilonzo-0a66c2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/)
+[![Email](https://img.shields.io/badge/email-fkatheukilonzo%40gmail.com-8ca9ff?style=flat-square&logo=gmail&logoColor=0a0e0e)](mailto:fkatheukilonzo@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-KathFK1234-5eead4?style=flat-square&logo=github&logoColor=0a0e0e)](https://github.com/KathFK1234)
 
-- LinkedIn: [Katheu Kilonzo](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/)
-- Email: [fkatheukilonzo@gmail.com](mailto:fkatheukilonzo@gmail.com)
-- GitHub: [@KathFK1234](https://github.com/KathFK1234)
+<br>
 
----
+<sub>Build systems that make sense to people.</sub>
 
-Build systems that make sense to people.
+</div>
