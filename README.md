@@ -99,14 +99,15 @@ flowchart TD
 Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 
 ```mermaid
-pie title Code across my repositories (KB)
-    "Python" : 398.3
-    "TypeScript" : 285.1
-    "HTML" : 97.2
-    "C" : 62.7
-    "CSS" : 43.5
-    "JavaScript" : 18.6
-    "Ruby" : 10.1
+%%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
+pie title Share of code across my repositories
+    "Python · 44.1%" : 419.4
+    "TypeScript · 31.4%" : 298.7
+    "HTML · 10.2%" : 97.2
+    "C · 6.6%" : 62.7
+    "CSS · 4.6%" : 43.5
+    "JavaScript · 2.0%" : 18.6
+    "Ruby · 1.1%" : 10.1
 ```
 <!-- languages:end -->
 

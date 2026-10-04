@@ -351,8 +351,18 @@ class GitHubLanguageFetcher:
             key=lambda item: item[1],
             reverse=True,
         )
-        lines = ["```mermaid", "pie title Code across my repositories (KB)"]
-        lines += [f'    "{lang}" : {size / 1024:.1f}' for lang, size in sizes if size]
+        total = sum(size for _, size in sizes) or 1
+        lines = [
+            "```mermaid",
+            # Percentages go in the legend; this hides the ones drawn on the slices
+            '%%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%',
+            "pie title Share of code across my repositories",
+        ]
+        lines += [
+            f'    "{lang} · {size / total:.1%}" : {size / 1024:.1f}'
+            for lang, size in sizes
+            if size
+        ]
         lines.append("```")
         return "\n".join(lines)
 
