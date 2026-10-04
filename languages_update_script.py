@@ -39,6 +39,7 @@ import sys
 from collections import Counter
 from datetime import date
 from pathlib import Path
+from urllib.parse import quote
 
 import requests
 from requests import RequestException
@@ -144,7 +145,14 @@ LANGUAGE_ICONS = {
 }
 
 # Tools that never appear in a dependency file but belong in the icon row
-BASE_ICONS = ["aws", "linux", "git", "github", "figma", "postman"]
+BASE_ICONS = {
+    "aws": "AWS",
+    "linux": "Linux",
+    "git": "Git",
+    "github": "GitHub",
+    "figma": "Figma",
+    "postman": "Postman",
+}
 
 MANIFEST_PATTERN = re.compile(
     r"(^|/)(requirements[^/]*\.txt|pyproject\.toml|Pipfile|package\.json|Gemfile)$"
@@ -376,29 +384,47 @@ class GitHubLanguageFetcher:
                 grouped.append((category, names))
         return grouped
 
-    def icon_ids(self, languages):
-        """Icons for the README: languages, then detected tools, then the fixed ones."""
-        icons = [LANGUAGE_ICONS[lang] for lang in languages if lang in LANGUAGE_ICONS]
-        if "Shell" in self.language_repos:
-            icons.append(LANGUAGE_ICONS["Shell"])
+    def icon_entries(self, languages):
+        """(icon, name, link) for the README: languages, detected tools, then the fixed ones."""
+        entries = []
+        shown = list(languages) + (["Shell"] if "Shell" in self.language_repos else [])
+        for lang in shown:
+            if lang in LANGUAGE_ICONS:
+                # Language icons open my repositories written in that language
+                link = f"https://github.com/{self.username}?tab=repositories&language={quote(lang.lower())}"
+                entries.append((LANGUAGE_ICONS[lang], lang, link))
         for _, names in self.tools_by_category():
-            icons += [self.tool_info[name][1] for name in names if self.tool_info[name][1]]
-        icons += BASE_ICONS
-        return list(dict.fromkeys(icons))  # keep order, drop repeats
+            entries += [
+                (self.tool_info[name][1], name, "#toolbox")
+                for name in names
+                if self.tool_info[name][1]
+            ]
+        entries += [(icon, name, "#toolbox") for icon, name in BASE_ICONS.items()]
+
+        unique = {}
+        for icon, name, link in entries:
+            unique.setdefault(icon, (icon, name, link))  # keep order, drop repeats
+        return list(unique.values())
 
     def format_stack_for_readme(self, languages, updated):
-        """Format the icon row and the table of detected tools."""
-        icon_list = self.icon_ids(languages)
-        icons = ",".join(icon_list)
+        """Format the icon rows and the table of detected tools."""
+        entries = self.icon_entries(languages)
         # Even rows of at most 10, so the last row is never a lone icon
-        rows = -(-len(icon_list) // 10)
-        per_line = -(-len(icon_list) // rows)
-        lines = [
-            '<div align="center">',
-            "",
-            f'<img src="https://skillicons.dev/icons?i={icons}&perline={per_line}" alt="Icons for the languages and tools listed below">',
-            "",
-            "</div>",
+        rows = -(-len(entries) // 10)
+        per_line = -(-len(entries) // rows)
+
+        # One image per tool, each carrying its name, so hovering shows what it is
+        lines = ['<p align="center">']
+        for index, (icon, name, link) in enumerate(entries):
+            lines.append(
+                f'  <a href="{link}" title="{name}">'
+                f'<img src="https://skillicons.dev/icons?i={icon}" width="48" height="48" alt="{name}" title="{name}">'
+                "</a>"
+            )
+            if (index + 1) % per_line == 0 and index + 1 < len(entries):
+                lines.append("  <br>")
+        lines += [
+            "</p>",
             "",
             "<br>",
             "",

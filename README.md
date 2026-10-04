@@ -62,11 +62,32 @@ flowchart TD
 ## Toolbox
 
 <!-- stack:start -->
-<div align="center">
-
-<img src="https://skillicons.dev/icons?i=python,html,css,js,c,ts,ruby,bash,fastapi,django,react,vite,postgres,vitest,docker,githubactions,aws,linux,git,github,figma,postman&perline=8" alt="Icons for the languages and tools listed below">
-
-</div>
+<p align="center">
+  <a href="https://github.com/KathFK1234?tab=repositories&language=python" title="Python"><img src="https://skillicons.dev/icons?i=python" width="48" height="48" alt="Python" title="Python"></a>
+  <a href="https://github.com/KathFK1234?tab=repositories&language=html" title="HTML"><img src="https://skillicons.dev/icons?i=html" width="48" height="48" alt="HTML" title="HTML"></a>
+  <a href="https://github.com/KathFK1234?tab=repositories&language=css" title="CSS"><img src="https://skillicons.dev/icons?i=css" width="48" height="48" alt="CSS" title="CSS"></a>
+  <a href="https://github.com/KathFK1234?tab=repositories&language=javascript" title="JavaScript"><img src="https://skillicons.dev/icons?i=js" width="48" height="48" alt="JavaScript" title="JavaScript"></a>
+  <a href="https://github.com/KathFK1234?tab=repositories&language=c" title="C"><img src="https://skillicons.dev/icons?i=c" width="48" height="48" alt="C" title="C"></a>
+  <a href="https://github.com/KathFK1234?tab=repositories&language=typescript" title="TypeScript"><img src="https://skillicons.dev/icons?i=ts" width="48" height="48" alt="TypeScript" title="TypeScript"></a>
+  <a href="https://github.com/KathFK1234?tab=repositories&language=ruby" title="Ruby"><img src="https://skillicons.dev/icons?i=ruby" width="48" height="48" alt="Ruby" title="Ruby"></a>
+  <a href="https://github.com/KathFK1234?tab=repositories&language=shell" title="Shell"><img src="https://skillicons.dev/icons?i=bash" width="48" height="48" alt="Shell" title="Shell"></a>
+  <br>
+  <a href="#toolbox" title="FastAPI"><img src="https://skillicons.dev/icons?i=fastapi" width="48" height="48" alt="FastAPI" title="FastAPI"></a>
+  <a href="#toolbox" title="Django"><img src="https://skillicons.dev/icons?i=django" width="48" height="48" alt="Django" title="Django"></a>
+  <a href="#toolbox" title="React"><img src="https://skillicons.dev/icons?i=react" width="48" height="48" alt="React" title="React"></a>
+  <a href="#toolbox" title="Vite"><img src="https://skillicons.dev/icons?i=vite" width="48" height="48" alt="Vite" title="Vite"></a>
+  <a href="#toolbox" title="PostgreSQL"><img src="https://skillicons.dev/icons?i=postgres" width="48" height="48" alt="PostgreSQL" title="PostgreSQL"></a>
+  <a href="#toolbox" title="Vitest"><img src="https://skillicons.dev/icons?i=vitest" width="48" height="48" alt="Vitest" title="Vitest"></a>
+  <a href="#toolbox" title="Docker"><img src="https://skillicons.dev/icons?i=docker" width="48" height="48" alt="Docker" title="Docker"></a>
+  <a href="#toolbox" title="GitHub Actions"><img src="https://skillicons.dev/icons?i=githubactions" width="48" height="48" alt="GitHub Actions" title="GitHub Actions"></a>
+  <br>
+  <a href="#toolbox" title="AWS"><img src="https://skillicons.dev/icons?i=aws" width="48" height="48" alt="AWS" title="AWS"></a>
+  <a href="#toolbox" title="Linux"><img src="https://skillicons.dev/icons?i=linux" width="48" height="48" alt="Linux" title="Linux"></a>
+  <a href="#toolbox" title="Git"><img src="https://skillicons.dev/icons?i=git" width="48" height="48" alt="Git" title="Git"></a>
+  <a href="#toolbox" title="GitHub"><img src="https://skillicons.dev/icons?i=github" width="48" height="48" alt="GitHub" title="GitHub"></a>
+  <a href="#toolbox" title="Figma"><img src="https://skillicons.dev/icons?i=figma" width="48" height="48" alt="Figma" title="Figma"></a>
+  <a href="#toolbox" title="Postman"><img src="https://skillicons.dev/icons?i=postman" width="48" height="48" alt="Postman" title="Postman"></a>
+</p>
 
 <br>
 
@@ -101,7 +122,7 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 44.1%" : 419.4
+    "Python · 44.2%" : 419.7
     "TypeScript · 31.4%" : 298.7
     "HTML · 10.2%" : 97.2
     "C · 6.6%" : 62.7
