@@ -100,11 +100,11 @@ Python · HTML · CSS · C · JavaScript · TypeScript
 
 ```mermaid
 pie title Code across my repositories (KB)
-    "Python" : 159.9
-    "TypeScript" : 84.1
+    "Python" : 162.1
+    "TypeScript" : 85.1
     "C" : 62.7
-    "HTML" : 59.0
-    "CSS" : 32.2
+    "HTML" : 59.5
+    "CSS" : 32.0
     "JavaScript" : 13.3
 ```
 <!-- languages:end -->
