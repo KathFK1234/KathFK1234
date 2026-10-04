@@ -20,7 +20,7 @@ export interface DirNode {
 
 export type FsNode = FileNode | DirNode;
 
-export const HOME_PATH = '/home/katheu/mind-interface';
+export const HOME_PATH = '/home/katheu';
 const ABOUT_FILE = '_about';
 
 export function buildTree(files: Record<string, string>, prefix: string): DirNode {

@@ -1,5 +1,5 @@
 export const THEMES = {
-  teal: 'the original mind-interface palette',
+  teal: 'the original palette',
   amber: 'warm phosphor, like a 1980s monitor',
   matrix: 'green on black',
   violet: 'late-night purple',
@@ -25,8 +25,8 @@ export interface Prefs {
 
 export const DEFAULT_PREFS: Prefs = { theme: 'teal', font: 'plex', crt: false };
 
-const PREFS_KEY = 'mind-interface:prefs';
-const HISTORY_KEY = 'mind-interface:history';
+const PREFS_KEY = 'katheu:prefs';
+const HISTORY_KEY = 'katheu:history';
 const HISTORY_LIMIT = 100;
 
 function read<T>(key: string): T | null {

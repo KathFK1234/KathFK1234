@@ -246,15 +246,24 @@ body {
   letter-spacing: 0.06em;
 }
 
-.ascii,
-.fetch pre {
-  margin: 0 0 10px;
+.hero {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero-art {
+  margin: 0;
   font-family: var(--art);
-  font-size: 12px;
-  line-height: 1.02;
+  font-size: 13px;
+  line-height: 1.3;
   color: var(--accent);
-  text-shadow: 0 0 12px var(--glow);
-  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.hero-text {
+  color: var(--fg);
 }
 
 .art {
@@ -262,9 +271,11 @@ body {
 }
 
 .fetch pre {
+  margin: 0;
+  font-family: var(--art);
   font-size: 1.25em;
   line-height: 1.2;
-  margin: 0;
+  color: var(--accent);
 }
 
 .fetch {
@@ -400,8 +411,8 @@ body {
   .ps1-host {
     display: none;
   }
-  .ascii {
-    font-size: 6.4px;
+  .hero {
+    gap: 14px;
   }
   .rows {
     padding-left: 1ch;

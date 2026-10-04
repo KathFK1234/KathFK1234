@@ -45,7 +45,7 @@ describe('file system', () => {
     expect(resolvePath([], 'projects/moodforecast-ai')).toEqual(['projects', 'moodforecast-ai']);
     expect(resolvePath(['projects'], '../notes')).toEqual(['notes']);
     expect(resolvePath(['projects'], '~/research')).toEqual(['research']);
-    expect(resolvePath(['projects'], '/home/katheu/mind-interface/notes')).toEqual(['notes']);
+    expect(resolvePath(['projects'], '/home/katheu/notes')).toEqual(['notes']);
     expect(resolvePath([], '../..')).toEqual([]);
     expect(resolvePath([], 'PROJECTS/')).toEqual(['projects']);
     expect(resolvePath([], 'nope')).toBeNull();
@@ -86,7 +86,7 @@ describe('commands', () => {
   it('navigates with cd and reports the right place', async () => {
     const { ctx, run } = shell();
     await run('cd projects/moodforecast-ai');
-    expect(await run('pwd')).toBe('/home/katheu/mind-interface/projects/moodforecast-ai');
+    expect(await run('pwd')).toBe('/home/katheu/projects/moodforecast-ai');
     expect(await run('ls')).toMatch(/backend\/.*data\/.*frontend\//s);
     await run('cd ..');
     expect(ctx.state.cwd).toEqual(['projects']);

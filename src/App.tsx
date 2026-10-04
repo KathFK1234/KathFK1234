@@ -214,7 +214,7 @@ export default function App() {
         <div className="status-title">
           <span className="dot" />
           <span>
-            katheu@mind-interface<span className="status-path">: {path}</span>
+            katheu kilonzo<span className="status-path"> — {path}</span>
           </span>
         </div>
         <nav className="navlinks" aria-label="shortcuts">

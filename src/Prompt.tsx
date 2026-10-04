@@ -21,7 +21,7 @@ export function Ps1({ path, question }: { path: string; question: boolean }) {
   return (
     <span className="ps1">
       <span className="ps1-host">
-        <span className="accent">visitor@mind-interface</span>
+        <span className="accent">visitor@katheu</span>
         <span className="dim">:</span>
       </span>
       <span className="accent2">{path}</span>

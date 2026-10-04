@@ -127,27 +127,50 @@ function FileText({ name, text }: { name: string; text: string }) {
   );
 }
 
-const BANNER = String.raw`
-██╗  ██╗ █████╗ ████████╗██╗  ██╗███████╗██╗   ██╗
-██║ ██╔╝██╔══██╗╚══██╔══╝██║  ██║██╔════╝██║   ██║
-█████╔╝ ███████║   ██║   ███████║█████╗  ██║   ██║
-██╔═██╗ ██╔══██║   ██║   ██╔══██║██╔══╝  ██║   ██║
-██║  ██╗██║  ██║   ██║   ██║  ██║███████╗╚██████╔╝
-╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝`.slice(1);
+const artRow = (text: string) => `│ ${text.padEnd(18)} │`;
 
+/** The welcome block: a cat peeking over a terminal, beside a short introduction. */
 export function Banner() {
   return (
-    <>
-      <pre className="ascii" aria-hidden="true">{BANNER}</pre>
-      <div className="title">MIND INTERFACE v3.0</div>
-      <Dim>psychology × backend engineering × human-centered systems</Dim>
-      {'\n\n'}
-      connection established.{'\n\n'}
-      who are you looking for?{'\n\n'}
-      <Dim>type</Dim> <Cmd>help</Cmd> <Dim>to explore, or start with</Dim> <Cmd>about</Cmd>
-      <Dim>,</Dim> <Cmd>projects</Cmd> <Dim>or</Dim> <Cmd>ls</Cmd>
-      <Dim>.</Dim>
-    </>
+    <div className="hero">
+      <pre className="hero-art" aria-hidden="true">
+        <span className="accent2">{'        /\\_/\\\n       ( o.o )\n'}</span>
+        {' ┌──────'}
+        <span className="accent2">U</span>
+        {'───'}
+        <span className="accent2">U</span>
+        {'─────────┐\n'}
+        {` ${artRow('$ whoami')}\n`}
+        {[' psychologist', ' backend engineer', ' educator'].map(line => (
+          <Fragment key={line}>
+            {' │'}
+            <span className="hero-text">{line.padEnd(20)}</span>
+            {'│\n'}
+          </Fragment>
+        ))}
+        {' │ $ '}
+        <span className="cursor blink">{' '}</span>
+        {`${' '.repeat(15)} │\n`}
+        {` └${'─'.repeat(20)}┘`}
+      </pre>
+      <div>
+        <div className="title">Hi, I’m Katheu Kilonzo.</div>
+        <Dim>psychology × backend engineering × human-centered systems</Dim>
+        {'\n\n'}
+        <Rows
+          rows={[
+            [<Accent2>now</Accent2>, 'School Lead Educator at TechLit Africa'],
+            [<Accent2>builds</Accent2>, 'backend systems and AI products shaped by how people behave'],
+            [<Accent2>trained</Accent2>, 'BA Psychology · AWS Certified Cloud Practitioner'],
+            [<Accent2>based</Accent2>, 'Kenya (EAT)'],
+          ]}
+        />
+        {'\n'}
+        <Dim>type</Dim> <Cmd>help</Cmd> <Dim>to explore, or start with</Dim> <Cmd>about</Cmd>
+        <Dim>,</Dim> <Cmd>projects</Cmd> <Dim>or</Dim> <Cmd>ls</Cmd>
+        <Dim>.</Dim>
+      </div>
+    </div>
   );
 }
 
@@ -196,7 +219,7 @@ function environment(ctx: Ctx): Record<string, string> {
     USER: 'visitor',
     HOME: HOME_PATH,
     PWD: absolutePath(ctx.state.cwd),
-    SHELL: '/bin/mindsh',
+    SHELL: '/bin/ksh',
     TERM: 'xterm-256color',
     EDITOR: 'curiosity',
     LANG: 'en_KE.UTF-8',
@@ -1017,7 +1040,7 @@ export const commands: Command[] = [
   },
   {
     name: 'banner',
-    summary: 'print the welcome banner again',
+    summary: 'print the welcome screen again',
     group: 'system',
     run: () => <Banner />,
   },
@@ -1085,7 +1108,7 @@ export const commands: Command[] = [
   },
   {
     name: 'whoami',
-    summary: 'ask the interface why you are here',
+    summary: 'tell the terminal why you are here',
     group: 'system',
     run: (_args, ctx) => {
       ctx.state.mode = 'whoami';
@@ -1110,14 +1133,14 @@ export const commands: Command[] = [
     summary: 'reveal the machine identity',
     usage: 'uname [-a]',
     group: 'system',
-    run: args => (args.includes('-a') ? 'Linux mind-interface 6.8.0-52-generic x86_64 GNU/Linux' : 'Linux'),
+    run: args => (args.includes('-a') ? 'Linux katheu 6.8.0-52-generic x86_64 GNU/Linux' : 'Linux'),
   },
   {
     name: 'hostname',
     summary: 'print the host name',
     group: 'system',
     hidden: true,
-    run: () => 'mind-interface',
+    run: () => 'katheu',
   },
   {
     name: 'uptime',
@@ -1164,10 +1187,9 @@ export const commands: Command[] = [
     group: 'system',
     run: (_args, ctx) => (
       <div className="fetch">
-        <pre aria-hidden="true">{String.raw` /\_/( o.o )
- > ^ <`}</pre>
+        <pre aria-hidden="true">{' /\\_/\\\n( o.o )\n > ^ <'}</pre>
         <div>
-          <Accent>katheu</Accent>@<Accent>mind-interface</Accent>{'\n'}
+          <Accent>visitor</Accent>@<Accent>katheu</Accent>{'\n'}
           <Dim>---------------------</Dim>{'\n'}
           <Rows
             rows={[
@@ -1175,7 +1197,7 @@ export const commands: Command[] = [
               [<Accent2>Host</Accent2>, 'build-with-purpose'],
               [<Accent2>Kernel</Accent2>, 'curiosity 3.0'],
               [<Accent2>Uptime</Accent2>, uptimeText(ctx)],
-              [<Accent2>Shell</Accent2>, 'mindsh (terminal-of-thoughts)'],
+              [<Accent2>Shell</Accent2>, 'ksh (katheu shell)'],
               [<Accent2>Theme</Accent2>, `${ctx.prefs.theme} · ${FONTS[ctx.prefs.font].label}`],
               [<Accent2>Stack</Accent2>, 'psychology + product + code'],
             ]}
@@ -1404,7 +1426,7 @@ function unknownCommand(name: string): ReactNode {
   ];
   return (
     <>
-      <Warn>mindsh: command not found: {name}</Warn>{'\n'}
+      <Warn>ksh: command not found: {name}</Warn>{'\n'}
       {closest && closest.distance <= 2 ? (
         <>
           <Dim>did you mean</Dim> <Cmd>{closest.candidate}</Cmd><Dim>?</Dim>
