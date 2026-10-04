@@ -138,7 +138,7 @@ pie title Share of code across my repositories
 
 <table>
 <tr>
-<td width="33%" valign="top">
+<td width="50%" valign="top">
 
 ### MoodForecast AI
 
@@ -149,7 +149,20 @@ Weather apps report conditions. This asks what those conditions mean for a perso
 [Live demo](https://moodforecastai-production.up.railway.app) · [Source](https://github.com/KathFK1234/moodforecast_ai)
 
 </td>
-<td width="33%" valign="top">
+<td width="50%" valign="top">
+
+### Murengeti Lab System
+
+A computer lab management system for schools. It replaces scattered spreadsheets with one connected place for students, classes, timetables, attendance, equipment, and reports, and gives each school its own private workspace.
+
+`FastAPI` `SQLAlchemy` `React` `TypeScript` `PostgreSQL`
+
+Built for the school computer lab I lead · source is private
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
 
 ### MindConnect
 
@@ -160,7 +173,7 @@ A mental-health support concept designed around the realities of young people in
 [Source](https://github.com/derick-macharia/mindconnect-platform) · concept work, built with a team
 
 </td>
-<td width="33%" valign="top">
+<td width="50%" valign="top">
 
 ### Chema Backend
 

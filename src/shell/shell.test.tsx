@@ -194,7 +194,11 @@ describe('completion', () => {
 
   it('completes paths relative to the current directory', () => {
     expect(complete('cd pro', []).lines).toEqual(['cd projects/']);
-    expect(complete('cd projects/m', []).labels).toEqual(['projects/mindconnect/', 'projects/moodforecast-ai/']);
+    expect(complete('cd projects/m', []).labels).toEqual([
+      'projects/mindconnect/',
+      'projects/moodforecast-ai/',
+      'projects/murengeti-lab/',
+    ]);
     expect(complete('cat READ', []).lines).toEqual(['cat README.md']);
     expect(complete('cd READ', []).lines).toEqual([]);
     expect(complete('ls ', ['projects']).labels).toContain('chema-backend/');

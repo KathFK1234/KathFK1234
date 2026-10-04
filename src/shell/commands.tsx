@@ -488,6 +488,10 @@ export const commands: Command[] = [
           ]}
         />
         {'\n'}
+        <Accent>Murengeti Lab System</Accent> — a computer lab management system for schools. It replaces scattered
+        spreadsheets with one connected place for students, classes, timetables, attendance, equipment, and reports,
+        and gives each school its own private workspace. <Dim>(source is private)</Dim>
+        {'\n\n'}
         <Accent>MindConnect</Accent> — a digital mental-health concept shaped around youth-centered support,
         low-friction care journeys, and clearer emotional checkpoints in digital experiences.{' '}
         <Link href={LINKS.mindconnect}>source</Link>
@@ -1445,7 +1449,7 @@ function whoamiAnswer(answer: string): ReactNode {
         {'  • practical AI workflows and product thinking\n'}
         {'  • human-centered design informed by psychology\n\n'}
         {'Featured work:\n'}
-        {'  • MoodForecast AI\n  • Chema Backend\n  • MindConnect concept work\n\n'}
+        {'  • MoodForecast AI\n  • Murengeti Lab System\n  • Chema Backend\n  • MindConnect concept work\n\n'}
         Next steps: <Cmd>resume</Cmd> <Cmd>projects</Cmd> <Cmd>contact</Cmd> or <Cmd>sudo hire-me</Cmd> for the direct
         route.
       </>
