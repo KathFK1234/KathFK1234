@@ -133,6 +133,8 @@ Weather apps report conditions. This asks what those conditions mean for a perso
 
 [Live demo](https://moodforecastai-production.up.railway.app) · [Source](https://github.com/KathFK1234/moodforecast_ai)
 
+<br>
+
 </td>
 <td width="50%" valign="top">
 
@@ -143,6 +145,8 @@ A computer lab management system for schools. It replaces scattered spreadsheets
 `FastAPI` `SQLAlchemy` `React` `TypeScript` `PostgreSQL`
 
 Built for the school computer lab I lead · source is private
+
+<br>
 
 </td>
 </tr>
@@ -157,6 +161,8 @@ A mental-health support concept designed around the realities of young people in
 
 [Source](https://github.com/derick-macharia/mindconnect-platform) · concept work, built with a team
 
+<br>
+
 </td>
 <td width="50%" valign="top">
 
@@ -167,6 +173,8 @@ A backend connecting agricultural knowledge, AI assistance, and decision support
 `FastAPI` `PostgreSQL` `Supabase` `Groq`
 
 Built at Chakula Africa · source is private
+
+<br>
 
 </td>
 </tr>
