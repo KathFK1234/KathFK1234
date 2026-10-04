@@ -30,6 +30,12 @@ I care deeply about products that are not just technically sound, but useful, hu
 
 ## Core strengths
 
+### Languages
+
+<!-- languages:start -->
+Python · HTML · C · CSS · JavaScript
+<!-- languages:end -->
+
 ### Backend & systems
 
 - Python
@@ -96,7 +102,7 @@ Technologies: Python · FastAPI · AI · Railway
 
 The interesting part was not only making a forecast. It was asking how an environmental signal should be interpreted by a person whose context, routine, and wellbeing are changing.
 
-Repo: [MoodForecast AI](https://github.com/KathFK1234/moodforecast_ai)
+Repo: [MoodForecast AI](https://github.com/KathFK1234/moodforecast_ai) · Live: [moodforecastai-production.up.railway.app](https://moodforecastai-production.up.railway.app)
 
 ### MindConnect
 
@@ -164,31 +170,42 @@ When I am not building software, I am usually thinking, writing, drawing, learni
 
 ## Explore the CLI portfolio
 
-Open `index.html` locally or visit the deployed page and type `help` into the terminal. The interface is intentionally playful, but the commands point to real work and real contact details.
+**[kathfk1234.github.io/KathFK1234](https://kathfk1234.github.io/KathFK1234/)** — type `help` into the terminal. The interface is intentionally playful, but the commands point to real work and real contact details.
 
 Useful commands include:
 
 - `about`, `experience`, `education`, `volunteer`, `projects`, `skills`, and `contact`
-- `ls`, `cd projects`, `pwd`, `tree`, `find mood`, and `cat`
-- `head README.md`, `grep psychology`, `man cat`, and `echo hello`
+- `ls`, `cd projects/moodforecast-ai`, `pwd`, `tree`, `find mood`, and `cat README.md`
+- `head`, `tail`, `wc`, `grep friction`, `man cat`, and `echo hello $USER`
+- `mood nairobi`, which calls the live MoodForecast AI service
+- `theme`, `font`, and `crt` to change how the terminal looks
 - `fortune`, `neofetch`, `history`, `whoami`, and `coffee`
-- `open github`, `open linkedin`, `open email`, and `hire-me`
+- `open github`, `open linkedin`, `open email`, and `sudo hire-me`
 
-Commands are case-insensitive, `Tab` completes commands and folders, and the arrow keys revisit command history. The simulated file system is deliberately sandboxed: it does not read arbitrary files from the visitor's computer.
+Commands are case-insensitive. `Tab` completes commands and paths, `↑`/`↓` revisit history, `→` accepts the grey suggestion, and `Ctrl+L` clears the screen. Any highlighted command in the output can be clicked or tapped. Add `?cmd=projects` to the URL to open the page with a command already run.
 
-### Local checks
+### How it is built
 
-The page is static and needs no build step. Serve it locally when testing browser behavior:
+Vite + React + TypeScript. The terminal's file system is the real [content/home/](content/home/) folder: add a file there and it appears in `ls`, `cat`, `grep`, `find`, and `tree`.
+
+- A file named `_about` holds the one-line description of the folder it sits in.
+- Any other file starting with `_` shows up as a hidden dotfile (`_secrets` becomes `.secrets`, visible with `ls -a`).
+- Commands live in [src/shell/commands.tsx](src/shell/commands.tsx); `help` and `man` are generated from that list.
 
 ```bash
-python3 -m http.server 8000
+npm install
+npm run dev      # local server with live reload
+npm test         # shell, file system, and completion tests
+npm run build    # type-check and build into dist/
 ```
 
-Then open `http://localhost:8000`. To validate the language updater without changing this README, run:
+Pushing to `main` builds and deploys the site through [.github/workflows/deploy.yml](.github/workflows/deploy.yml). In the repository settings, Pages → Source must be set to **GitHub Actions**.
+
+To refresh the languages list above from the GitHub API:
 
 ```bash
-python3 -m py_compile languages_update_script.py
-python3 languages_update_script.py --help
+python3 languages_update_script.py --dry-run   # preview
+python3 languages_update_script.py             # rewrite the section in this README
 ```
 
 ---

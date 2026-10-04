@@ -3,19 +3,31 @@
 Fetch programming languages from all public GitHub repositories
 and update your README with a curated list.
 
-Usage:
-    python update_readme_languages.py --username <your_github_username> --readme README.md
+The list is written between these two markers in the README:
 
-Or with a GitHub token for higher rate limits:
-    python update_readme_languages.py --username <your_github_username> --token <your_token> --readme README.md
+    <!-- languages:start -->
+    <!-- languages:end -->
+
+Usage:
+    python3 languages_update_script.py --dry-run
+    python3 languages_update_script.py --username <your_github_username> --readme README.md
+
+For higher rate limits, put a token in the GITHUB_TOKEN environment variable
+(preferred, since it stays out of your shell history) or pass --token.
 """
 
-import requests
 import argparse
+import os
+import re
+import sys
 from collections import Counter
 from pathlib import Path
-import re
-from requests import HTTPError, RequestException
+
+import requests
+from requests import RequestException
+
+START_MARKER = "<!-- languages:start -->"
+END_MARKER = "<!-- languages:end -->"
 
 
 class GitHubLanguageFetcher:
@@ -48,9 +60,9 @@ class GitHubLanguageFetcher:
                     url, headers=self.headers, params=params, timeout=20
                 )
                 response.raise_for_status()
-            except (HTTPError, RequestException) as error:
-                print(f"Error fetching repositories: {error}")
-                break
+            except RequestException as error:
+                # A partial list would silently shrink the README, so stop here.
+                raise SystemExit(f"Error fetching repositories: {error}")
 
             repos = response.json()
             if not repos:
@@ -66,7 +78,7 @@ class GitHubLanguageFetcher:
                         langs = lang_response.json()
                         languages.extend(langs.keys())
                         print(f"  ✓ {repo['name']}: {', '.join(langs.keys())}")
-                    except (HTTPError, RequestException) as error:
+                    except RequestException as error:
                         print(f"  Could not read languages for {repo['name']}: {error}")
 
             page += 1
@@ -112,18 +124,26 @@ def update_readme(readme_path, formatted_languages):
     with open(readme_file, "r", encoding="utf-8") as f:
         content = f.read()
 
-    # Pattern to find and replace the Languages line
-    pattern = r"(### \*\*Languages\*\*\n\n)(.+?)(\n\n)"
-    replacement = rf"\1{formatted_languages}\3"
+    # Replace whatever sits between the two markers
+    pattern = re.compile(
+        rf"({re.escape(START_MARKER)}\n).*?(\n{re.escape(END_MARKER)})", re.DOTALL
+    )
 
-    updated_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+    if not pattern.search(content):
+        print("Warning: Could not find the languages markers in README")
+        print("Make sure your README has these two lines:")
+        print(START_MARKER)
+        print(END_MARKER)
+        return False
+
+    # A function replacement keeps names like "C#" or "\\" from being read as regex syntax
+    updated_content = pattern.sub(
+        lambda match: f"{match.group(1)}{formatted_languages}{match.group(2)}", content
+    )
 
     if updated_content == content:
-        print("Warning: Could not find '**Languages**' section in README")
-        print("Make sure your README has a line like:")
-        print("**Languages**")
-        print("<languages_will_be_inserted_here>")
-        return False
+        print(f"✓ {readme_path} is already up to date")
+        return True
 
     with open(readme_file, "w", encoding="utf-8") as f:
         f.write(updated_content)
@@ -136,8 +156,14 @@ def main():
     parser = argparse.ArgumentParser(
         description="Fetch GitHub languages and update your README"
     )
-    parser.add_argument("--username", required=True, help="GitHub username")
-    parser.add_argument("--token", help="GitHub Personal Access Token (optional)")
+    parser.add_argument(
+        "--username", default="KathFK1234", help="GitHub username (default: KathFK1234)"
+    )
+    parser.add_argument(
+        "--token",
+        default=os.environ.get("GITHUB_TOKEN"),
+        help="GitHub Personal Access Token (optional; defaults to $GITHUB_TOKEN)",
+    )
     parser.add_argument(
         "--readme", default="README.md", help="Path to README file (default: README.md)"
     )
@@ -162,7 +188,7 @@ def main():
 
     if not languages:
         print("No languages found. Check your username and try again.")
-        return
+        return 1
 
     print(f"\n✓ Found {len(languages)} language instances across your repositories\n")
 
@@ -178,9 +204,12 @@ def main():
         if update_readme(args.readme, formatted):
             print("✨ Your README is ready!")
         else:
-            print("\n💡 Tip: You can manually add this line to your README:")
-            print(f"\n**Languages**\n{formatted}\n")
+            print("\n💡 Tip: You can manually add these lines to your README:")
+            print(f"\n{START_MARKER}\n{formatted}\n{END_MARKER}\n")
+            return 1
+
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

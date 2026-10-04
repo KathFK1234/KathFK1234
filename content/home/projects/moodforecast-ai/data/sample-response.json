@@ -1,0 +1,18 @@
+{
+  "_note": "Shape of GET /api/wellbeing/{location}. Values are illustrative.",
+  "location": "Nairobi",
+  "weather": {
+    "temp_c": 22.0,
+    "condition": "Partly Cloudy",
+    "humidity": 60.0,
+    "wind_kph": 12.0
+  },
+  "mood_score": 70,
+  "energy_level": "Medium",
+  "risk_level": "Low",
+  "ai_summary": null,
+  "recommendations": [
+    "Consider a brief midday break by a window to maintain light exposure.",
+    "Schedule your most focused work before 2pm — energy typically dips mid-afternoon."
+  ]
+}

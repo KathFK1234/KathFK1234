@@ -1,0 +1,418 @@
+:root {
+  --bg: #0a0e0e;
+  --bg-raised: #0e1414;
+  --fg: #d8e3e0;
+  --fg-dim: #6f8280;
+  --accent: #5eead4;
+  --accent2: #8ca9ff;
+  --warn: #f2a65a;
+  --line: #1c2626;
+  --glow: rgba(94, 234, 212, 0.05);
+  --mono: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+  /* Box-drawing art needs every glyph from one font, so it uses the system one. */
+  --art: ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  --size: 14.5px;
+  color-scheme: dark;
+}
+
+:root[data-theme='amber'] {
+  --bg: #120c02;
+  --bg-raised: #1a1204;
+  --fg: #ffcf8a;
+  --fg-dim: #9a7440;
+  --accent: #ffb000;
+  --accent2: #ffd76a;
+  --warn: #ff7043;
+  --line: #2e2008;
+  --glow: rgba(255, 176, 0, 0.06);
+}
+
+:root[data-theme='matrix'] {
+  --bg: #030a03;
+  --bg-raised: #071207;
+  --fg: #b6f5b6;
+  --fg-dim: #4f8a4f;
+  --accent: #39ff14;
+  --accent2: #9dff7a;
+  --warn: #e6ff5c;
+  --line: #123012;
+  --glow: rgba(57, 255, 20, 0.05);
+}
+
+:root[data-theme='violet'] {
+  --bg: #0f0b1a;
+  --bg-raised: #161026;
+  --fg: #e3dcf5;
+  --fg-dim: #8275a3;
+  --accent: #c4a7ff;
+  --accent2: #7ee0ff;
+  --warn: #ff9ec4;
+  --line: #261d3d;
+  --glow: rgba(196, 167, 255, 0.07);
+}
+
+:root[data-theme='paper'] {
+  --bg: #f5f1e8;
+  --bg-raised: #ebe6da;
+  --fg: #26302e;
+  --fg-dim: #6c7673;
+  --accent: #0f766e;
+  --accent2: #3b4fc4;
+  --warn: #b45309;
+  --line: #d9d2c2;
+  --glow: rgba(15, 118, 110, 0.06);
+  color-scheme: light;
+}
+
+:root[data-font='vt323'] {
+  --size: 19px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 15% 8%, var(--glow), transparent 40%),
+    radial-gradient(circle at 85% 92%, var(--glow), transparent 45%);
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: var(--size);
+  line-height: 1.55;
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ---------- status bar ---------- */
+
+.statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 18px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-raised);
+  font-size: 0.78em;
+  letter-spacing: 0.04em;
+  color: var(--fg-dim);
+  flex-shrink: 0;
+}
+
+.status-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.status-title > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+  animation: pulse 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.navlinks {
+  display: flex;
+  gap: 8px;
+}
+
+.navlinks button,
+.tab-menu button {
+  background: none;
+  border: 1px solid var(--line);
+  color: var(--fg-dim);
+  font: inherit;
+  padding: 3px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.navlinks button:hover,
+.tab-menu button:hover,
+.tab-menu button.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------- terminal ---------- */
+
+.terminal {
+  position: relative;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 22px 28px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+
+.output {
+  margin: 2px 0 14px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  animation: appear 0.16s ease-out;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+}
+
+.prompt-line {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.ps1 {
+  flex-shrink: 0;
+}
+
+.typed {
+  min-width: 0;
+}
+
+.dim {
+  color: var(--fg-dim);
+}
+.accent {
+  color: var(--accent);
+}
+.accent2 {
+  color: var(--accent2);
+}
+.warn {
+  color: var(--warn);
+}
+.ghost {
+  color: var(--fg-dim);
+  opacity: 0.6;
+}
+.match {
+  background: var(--accent);
+  color: var(--bg);
+}
+.md-h {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.title {
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.ascii,
+.fetch pre {
+  margin: 0 0 10px;
+  font-family: var(--art);
+  font-size: 12px;
+  line-height: 1.02;
+  color: var(--accent);
+  text-shadow: 0 0 12px var(--glow);
+  overflow: hidden;
+}
+
+.art {
+  font-family: var(--art);
+}
+
+.fetch pre {
+  font-size: 1.25em;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.fetch {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Two-column listings that stay aligned and wrap cleanly on small screens. */
+.rows {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 2ch;
+  padding-left: 2ch;
+}
+.rows-3 {
+  grid-template-columns: max-content max-content 1fr;
+}
+
+/* A command you can click or tap to run. */
+.cmd {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+  text-align: left;
+}
+.cmd:hover,
+.cmd:focus-visible {
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  outline: none;
+}
+
+.link {
+  color: var(--accent2);
+  text-underline-offset: 2px;
+}
+
+/* ---------- the cursor ---------- */
+
+.cursor {
+  background: var(--accent);
+  color: var(--bg);
+}
+.cursor.blink {
+  animation: blink 1.1s steps(1, end) infinite;
+}
+.cursor.hollow {
+  background: transparent;
+  color: inherit;
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+}
+
+@keyframes blink {
+  50% {
+    background: transparent;
+    color: inherit;
+  }
+}
+
+/* Receives the keystrokes; the visible text is the mirror beside it. */
+.real-input {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+  /* 16px stops iOS zooming the page when the keyboard opens. */
+  font-size: 16px;
+}
+
+.tab-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+/* ---------- optional CRT scanlines ---------- */
+
+:root[data-crt='on'] body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, 0.2) 2px 3px);
+  z-index: 10;
+}
+:root[data-crt='on'] .terminal {
+  text-shadow: 0 0 6px color-mix(in srgb, currentColor 45%, transparent);
+}
+
+/* ---------- fallback shown only if the app has not loaded ---------- */
+
+.fallback {
+  padding: 24px 22px;
+  max-width: 70ch;
+}
+.fallback a {
+  color: var(--accent2);
+}
+
+@media (max-width: 720px) {
+  :root {
+    --size: 13px;
+  }
+  .statusbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 9px 14px;
+  }
+  .navlinks {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .terminal {
+    padding: 14px 14px 24px;
+  }
+  .ps1-host {
+    display: none;
+  }
+  .ascii {
+    font-size: 6.4px;
+  }
+  .rows {
+    padding-left: 1ch;
+    column-gap: 1.5ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor.blink,
+  .dot,
+  .output {
+    animation: none;
+  }
+}
