@@ -524,7 +524,9 @@ export const commands: Command[] = [
       const barWidth = 20;
       return (
         <>
-          <Accent>languages</Accent> <Dim>— share of code across {stack.repos} public repositories</Dim>{'\n'}
+          <Accent>languages</Accent> <Dim>
+            — share of code across {stack.repos} {stack.includesPrivate ? '' : 'public '}repositories
+          </Dim>{'\n'}
           <div className="rows rows-3">
             {stack.languages.map(language => {
               const share = language.bytes / total;
@@ -1511,8 +1513,12 @@ export async function execute(line: string, ctx: Ctx): Promise<void> {
 
   if (ctx.state.mode === 'whoami') {
     ctx.state.mode = null;
-    ctx.print(whoamiAnswer(trimmed));
-    return;
+    // A real command (typed, or clicked in the nav) cancels the question instead of answering it.
+    const first = tokenize(trimmed)[0]?.toLowerCase() ?? '';
+    if (!findCommand(first) || first === 'hire-me') {
+      ctx.print(whoamiAnswer(trimmed));
+      return;
+    }
   }
 
   const expanded = SHORTCUTS[trimmed.toLowerCase()] ?? trimmed;

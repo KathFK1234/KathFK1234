@@ -381,16 +381,6 @@ body {
   text-shadow: 0 0 6px color-mix(in srgb, currentColor 45%, transparent);
 }
 
-/* ---------- fallback shown only if the app has not loaded ---------- */
-
-.fallback {
-  padding: 24px 22px;
-  max-width: 70ch;
-}
-.fallback a {
-  color: var(--accent2);
-}
-
 @media (max-width: 720px) {
   :root {
     --size: 13px;

@@ -1,14 +1,15 @@
 {
   "repos": 21,
+  "includesPrivate": false,
   "languages": [
     {
       "name": "Python",
-      "bytes": 151868,
+      "bytes": 163758,
       "repos": 9
     },
     {
       "name": "TypeScript",
-      "bytes": 82857,
+      "bytes": 86164,
       "repos": 1
     },
     {

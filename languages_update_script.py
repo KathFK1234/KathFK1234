@@ -25,6 +25,10 @@ Usage:
 For higher rate limits, put a token in the GITHUB_TOKEN environment variable
 (preferred, since it stays out of your shell history) or pass --token.
 The scheduled GitHub Actions workflow runs this once a day.
+
+Private repositories are included with --include-private, which needs a token
+that can read them. Only totals leave the script: private repository names are
+never printed or written anywhere.
 """
 
 import argparse
@@ -43,7 +47,9 @@ START_MARKER = "<!-- languages:start -->"
 END_MARKER = "<!-- languages:end -->"
 STACK_START_MARKER = "<!-- stack:start -->"
 STACK_END_MARKER = "<!-- stack:end -->"
-EXCLUDED = ["Shell", "Dockerfile"]  # Exclude non-programming
+# Build and template file types that GitHub counts but that are not languages
+NOT_LANGUAGES = ["Dockerfile", "Makefile", "Mako", "Procfile", "Batchfile"]
+EXCLUDED = ["Shell"] + NOT_LANGUAGES  # Exclude non-programming
 
 CATEGORIES = [
     "Backend",
@@ -191,9 +197,11 @@ def detect_tools(paths, manifests):
 
 
 class GitHubLanguageFetcher:
-    def __init__(self, username, token=None):
+    def __init__(self, username, token=None, include_private=False):
         self.username = username
         self.token = token
+        self.include_private = include_private
+        self.private_count = 0
         self.headers = {}
         self.language_bytes = Counter()
         self.language_repos = Counter()
@@ -209,26 +217,54 @@ class GitHubLanguageFetcher:
         return response
 
     def fetch_repositories(self):
-        """Return every public, non-fork repository the user owns."""
+        """Return every non-fork repository the user owns."""
+        if self.include_private:
+            # Lists the token owner's repositories, private ones included
+            url = "https://api.github.com/user/repos"
+            query = {"affiliation": "owner", "visibility": "all"}
+        else:
+            url = f"https://api.github.com/users/{self.username}/repos"
+            query = {"type": "owner"}
+
         repos = []
         page = 1
         while True:
             try:
                 batch = self._get(
-                    f"https://api.github.com/users/{self.username}/repos",
-                    type="owner",
-                    per_page=100,
-                    page=page,
-                    sort="updated",
+                    url, per_page=100, page=page, sort="updated", **query
                 ).json()
             except RequestException as error:
                 # A partial list would silently shrink the README, so stop here.
-                raise SystemExit(f"Error fetching repositories: {error}")
-            repos.extend(repo for repo in batch if not repo["fork"])
+                status = getattr(error.response, "status_code", "no response")
+                raise SystemExit(f"Error fetching repositories: HTTP {status}")
+            repos.extend(
+                repo
+                for repo in batch
+                if not repo["fork"]
+                and repo["owner"]["login"].lower() == self.username.lower()
+            )
             if len(batch) < 100:
                 break
             page += 1
+        self.private_count = sum(1 for repo in repos if repo["private"])
         return repos
+
+    def fetch_file(self, repo, path):
+        """Return one file's text, or None if it cannot be read."""
+        if repo["private"]:
+            response = requests.get(
+                f"{repo['url']}/contents/{path}",
+                headers={**self.headers, "Accept": "application/vnd.github.raw+json"},
+                params={"ref": repo["default_branch"]},
+                timeout=20,
+            )
+        else:
+            # raw.githubusercontent.com does not count against the API rate limit
+            response = requests.get(
+                f"https://raw.githubusercontent.com/{repo['full_name']}/{repo['default_branch']}/{path}",
+                timeout=20,
+            )
+        return response.text if response.ok else None
 
     def scan_repository(self, repo):
         """Record the languages and known tools used in one repository."""
@@ -247,13 +283,9 @@ class GitHubLanguageFetcher:
 
         manifests = {}
         for path in [p for p in paths if MANIFEST_PATTERN.search(p)][:MAX_MANIFESTS_PER_REPO]:
-            # raw.githubusercontent.com does not count against the API rate limit
-            raw = requests.get(
-                f"https://raw.githubusercontent.com/{repo['full_name']}/{repo['default_branch']}/{path}",
-                timeout=20,
-            )
-            if raw.ok:
-                manifests[path] = raw.text
+            text = self.fetch_file(repo, path)
+            if text is not None:
+                manifests[path] = text
 
         tools = detect_tools(paths, manifests)
         for display, info in tools.items():
@@ -268,17 +300,20 @@ class GitHubLanguageFetcher:
         self.repo_count = len(repos)
 
         for repo in repos:
+            # This output lands in public workflow logs, so private names stay out of it
+            name = "(private repository)" if repo["private"] else repo["name"]
             try:
                 langs, tools = self.scan_repository(repo)
             except RequestException as error:
                 status = getattr(error.response, "status_code", None)
                 if status in (404, 409):  # empty repository
-                    print(f"  - {repo['name']}: empty")
+                    print(f"  - {name}: empty")
                     continue
                 # Losing one repository would drop its tools from the README.
-                raise SystemExit(f"Error reading {repo['name']}: {error}")
+                # The error text contains the URL, so only the status is shown.
+                raise SystemExit(f"Error reading {name}: HTTP {status}")
             summary = ", ".join(list(langs) + sorted(tools))
-            print(f"  ✓ {repo['name']}: {summary}")
+            print(f"  ✓ {name}: {summary}")
 
         return list(self.language_repos.elements())
 
@@ -316,7 +351,7 @@ class GitHubLanguageFetcher:
             key=lambda item: item[1],
             reverse=True,
         )
-        lines = ["```mermaid", "pie title Code in my public repositories (KB)"]
+        lines = ["```mermaid", "pie title Code across my repositories (KB)"]
         lines += [f'    "{lang}" : {size / 1024:.1f}' for lang, size in sizes if size]
         lines.append("```")
         return "\n".join(lines)
@@ -363,9 +398,10 @@ class GitHubLanguageFetcher:
         ]
         for category, names in self.tools_by_category():
             lines.append(f"| **{category}** | {' · '.join(names)} |")
+        scope = "repositories (public and private)" if self.private_count else "public repositories"
         lines += [
             "",
-            f"<sub>Detected automatically from {self.repo_count} public repositories · last changed {updated}</sub>",
+            f"<sub>Detected automatically from {self.repo_count} {scope} · last changed {updated}</sub>",
         ]
         return "\n".join(lines)
 
@@ -374,14 +410,19 @@ class GitHubLanguageFetcher:
         languages = [
             {"name": name, "bytes": size, "repos": self.language_repos[name]}
             for name, size in self.language_bytes.most_common()
-            if name != "Dockerfile"
+            if name not in NOT_LANGUAGES
         ]
         tools = [
             {"name": name, "category": category, "repos": self.tool_repos[name]}
             for category, names in self.tools_by_category()
             for name in names
         ]
-        return {"repos": self.repo_count, "languages": languages, "tools": tools}
+        return {
+            "repos": self.repo_count,
+            "includesPrivate": self.private_count > 0,
+            "languages": languages,
+            "tools": tools,
+        }
 
 
 def replace_between(content, start, end, replacement):
@@ -460,6 +501,11 @@ def main():
         help="Number of top languages to include (default: 12)",
     )
     parser.add_argument(
+        "--include-private",
+        action="store_true",
+        help="Also scan private repositories (needs a token that can read them)",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Show what would be updated without modifying files",
@@ -467,9 +513,13 @@ def main():
 
     args = parser.parse_args()
 
-    fetcher = GitHubLanguageFetcher(args.username, args.token)
+    if args.include_private and not args.token:
+        print("Error: --include-private needs a token (set GITHUB_TOKEN)")
+        return 1
 
-    print("\n🔍 Fetching your public repositories...\n")
+    fetcher = GitHubLanguageFetcher(args.username, args.token, args.include_private)
+
+    print("\n🔍 Fetching your repositories...\n")
     languages = fetcher.fetch_all_languages()
 
     if not languages:

@@ -33,9 +33,16 @@ jobs:
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          # Optional secret: a token that can read private repositories
+          STACK_TOKEN: ${{ secrets.STACK_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
         run: |
           pip install --quiet requests
-          python3 languages_update_script.py --username "${{ github.repository_owner }}"
+          if [ -n "$STACK_TOKEN" ]; then
+            GITHUB_TOKEN="$STACK_TOKEN" python3 languages_update_script.py --username "$OWNER" --include-private
+          else
+            python3 languages_update_script.py --username "$OWNER"
+          fi
 
       # Not on pushes: a push changes this repo's own totals, and committing back
       # every time would leave the local clone permanently one commit behind.

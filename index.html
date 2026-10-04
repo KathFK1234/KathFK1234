@@ -29,7 +29,30 @@
         color: #d8e3e0;
         font-family: ui-monospace, 'Courier New', monospace;
       }
+      /* The fallback only appears if the app has not replaced it after 3 seconds. */
+      .fallback {
+        padding: 24px 22px;
+        max-width: 70ch;
+        opacity: 0;
+        animation: reveal 0s 3s forwards;
+      }
+      .fallback a {
+        color: #8ca9ff;
+      }
+      @keyframes reveal {
+        to {
+          opacity: 1;
+        }
+      }
     </style>
+    <noscript>
+      <style>
+        .fallback {
+          opacity: 1;
+          animation: none;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <div id="root">

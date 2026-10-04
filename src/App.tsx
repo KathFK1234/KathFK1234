@@ -32,6 +32,7 @@ export default function App() {
 
   const prefsRef = useRef(prefs);
   const historyIndex = useRef<number | null>(null);
+  const draft = useRef('');
   const inputRef = useRef<HTMLInputElement>(null);
   const termRef = useRef<HTMLDivElement>(null);
   const lastEcho = useRef<HTMLDivElement>(null);
@@ -127,6 +128,8 @@ export default function App() {
     };
     const onKey = (event: globalThis.KeyboardEvent) => {
       if (event.ctrlKey || event.metaKey || event.altKey) return;
+      // Leave Enter and Space alone on a focused button or link, so they still activate it.
+      if ((event.target as HTMLElement).closest?.('a, button')) return;
       if (document.activeElement !== inputRef.current) focusInput();
     };
     document.addEventListener('click', onClick);
@@ -172,10 +175,14 @@ export default function App() {
       event.preventDefault();
       const { history } = shell;
       if (!history.length) return;
+      // Down with nothing recalled would otherwise wipe what is being typed.
+      if (historyIndex.current === null && key === 'ArrowDown') return;
+      if (historyIndex.current === null) draft.current = value;
       const current = historyIndex.current ?? history.length;
       const next = Math.min(history.length, Math.max(0, current + (key === 'ArrowUp' ? -1 : 1)));
       historyIndex.current = next === history.length ? null : next;
-      setInput(history[next] ?? '');
+      // Stepping back past the newest entry restores the unfinished line.
+      setInput(history[next] ?? draft.current);
     } else if (key === 'ArrowRight' && caret >= value.length && ghost) {
       event.preventDefault();
       setInput(value + ghost);

@@ -137,6 +137,10 @@ describe('commands', () => {
     expect(ctx.state.mode).toBe('whoami');
     expect(await run('1')).toMatch(/hiring profile/);
     expect(ctx.state.mode).toBeNull();
+    // Running a command while the question is open cancels it.
+    await run('whoami');
+    expect(await run('pwd')).toBe('/home/katheu');
+    expect(ctx.state.mode).toBeNull();
   });
 
   it('keeps the legacy two-word commands and is case-insensitive', async () => {

@@ -99,9 +99,9 @@ flowchart TD
 Python · HTML · CSS · C · JavaScript · TypeScript
 
 ```mermaid
-pie title Code in my public repositories (KB)
-    "Python" : 148.3
-    "TypeScript" : 80.9
+pie title Code across my repositories (KB)
+    "Python" : 159.9
+    "TypeScript" : 84.1
     "C" : 62.7
     "HTML" : 59.0
     "CSS" : 32.2
@@ -239,6 +239,8 @@ Pushing to `main` builds and deploys the site through [.github/workflows/deploy.
 - [src/data/stack.json](src/data/stack.json), which the site's `skills` and `stack` commands read.
 
 The daily run commits its changes to `main`, so `git pull` before starting new work.
+
+**Including private repositories.** By default only public repositories are scanned. To count private ones too, create a fine-grained personal access token (GitHub → Settings → Developer settings → Fine-grained tokens) with *All repositories* access and read-only **Contents** and **Metadata** permissions, then save it in this repository under Settings → Secrets and variables → Actions as a secret named `STACK_TOKEN`. Only totals are published — language sizes and tool names — never private repository names, which are also kept out of the workflow logs.
 
 Only tools named in `KNOWN_PACKAGES` / `KNOWN_FILES` at the top of the script are reported; add a line there to teach it a new one. To run it by hand:
 
