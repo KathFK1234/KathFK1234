@@ -413,19 +413,19 @@ class GitHubLanguageFetcher:
         rows = -(-len(entries) // 10)
         per_line = -(-len(entries) // rows)
 
-        # One image per tool, each carrying its name, so hovering shows what it is
-        lines = ['<p align="center">']
-        for index, (icon, name, link) in enumerate(entries):
-            lines.append(
-                f'  <a href="{link}" title="{name}">'
+        # One image per tool, each carrying its name, so hovering shows what it is.
+        # Each row is its own paragraph and icons are separated by spaces, for breathing room.
+        gap = "&nbsp;&nbsp;&nbsp;"
+        lines = []
+        for start in range(0, len(entries), per_line):
+            icons = [
+                f'<a href="{link}" title="{name}">'
                 f'<img src="https://skillicons.dev/icons?i={icon}" width="48" height="48" alt="{name}" title="{name}">'
                 "</a>"
-            )
-            if (index + 1) % per_line == 0 and index + 1 < len(entries):
-                lines.append("  <br>")
+                for icon, name, link in entries[start : start + per_line]
+            ]
+            lines += ['<p align="center">', "  " + gap.join(icons), "</p>", ""]
         lines += [
-            "</p>",
-            "",
             "<br>",
             "",
             "| Found in my repositories | |",
