@@ -1,20 +1,22 @@
 <div align="center">
 
-<a href="https://kathfk1234.github.io/KathFK1234/">
+<a href="https://kathfk1234.github.io/KathFK1234/" target="_blank" rel="noopener noreferrer">
   <img src="./assets/header.svg" alt="Terminal window reading: whoami — Katheu Kilonzo, psychologist, backend engineer, educator" width="840">
 </a>
 
 <br><br>
 
-[![Portfolio](https://img.shields.io/badge/terminal_portfolio-open-0f766e?style=for-the-badge&logo=gnometerminal&logoColor=white)](https://kathfk1234.github.io/KathFK1234/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-connect-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/)
-[![Email](https://img.shields.io/badge/email-say_hello-3b4fc4?style=for-the-badge&logo=gmail&logoColor=white)](mailto:fkatheukilonzo@gmail.com)
+<a href="https://kathfk1234.github.io/KathFK1234/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/terminal_portfolio-open-0f766e?style=for-the-badge&logo=gnometerminal&logoColor=white" alt="Portfolio"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.linkedin.com/in/katheu-kilonzo-1a260422a/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/LinkedIn-connect-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:fkatheukilonzo@gmail.com" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/email-say_hello-3b4fc4?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"></a>
 
 </div>
+
+<br>
 
 I build technology where human behavior, data, cloud infrastructure, and practical engineering meet. Psychology helps me understand the people; engineering lets me build for them.
 
 Right now I am a **School Lead Educator at TechLit Africa**, leading hands-on digital literacy learning. Before that I was a **Backend Developer Intern at Chakula Africa**, building REST APIs and forecasting workflows for agricultural platforms.
+
+<br>
 
 ## Why I build
 
@@ -41,8 +43,10 @@ Right now I am a **School Lead Educator at TechLit Africa**, leading hands-on di
 </tr>
 </table>
 
+<br>
+
 ```mermaid
-flowchart LR
+flowchart TD
     P["Psychology<br/>how people actually behave"] --> F{"Where is<br/>the friction?"}
     F --> S["Systems thinking"]
     S --> B["Backend engineering"]
@@ -53,13 +57,32 @@ flowchart LR
     E --> U
 ```
 
+<br>
+
 ## Toolbox
 
+<!-- stack:start -->
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=python,fastapi,django,postgres,docker,aws,linux,git,github,js,html,css,c,bash,supabase,figma,postman&perline=9" alt="Python, FastAPI, Django, PostgreSQL, Docker, AWS, Linux, Git, GitHub, JavaScript, HTML, CSS, C, Bash, Supabase, Figma, Postman">
+<img src="https://skillicons.dev/icons?i=python,html,css,c,js,ts,bash,fastapi,django,react,vite,postgres,vitest,docker,githubactions,aws,linux,git,github,figma,postman&perline=10" alt="Icons for the languages and tools listed below">
 
 </div>
+
+<br>
+
+| Found in my repositories | |
+| --- | --- |
+| **Languages** | Python · HTML · CSS · C · JavaScript · TypeScript |
+| **Backend** | FastAPI · Pydantic · SQLAlchemy · Django · SQLModel |
+| **Frontend** | React · Vite |
+| **Data & databases** | PostgreSQL |
+| **Testing** | pytest · Vitest |
+| **Infrastructure** | Docker · GitHub Actions · Railway |
+
+<sub>Detected automatically from 21 public repositories · last changed 2026-10-04</sub>
+<!-- stack:end -->
+
+<br>
 
 | Area | What I work with |
 | --- | --- |
@@ -68,6 +91,8 @@ flowchart LR
 | **AI & data** | LLM-powered applications · RAG systems · AI assistants · forecasting · data pipelines · human-AI interaction |
 | **Product & research** | User-centered design · systems thinking · behavioral analysis · research-driven problem solving |
 
+<br>
+
 ### Languages
 
 <!-- languages:start -->
@@ -75,7 +100,7 @@ Python · HTML · CSS · C · JavaScript · TypeScript
 
 ```mermaid
 pie title Code in my public repositories (KB)
-    "Python" : 147.6
+    "Python" : 148.3
     "TypeScript" : 80.9
     "C" : 62.7
     "HTML" : 59.0
@@ -83,6 +108,8 @@ pie title Code in my public repositories (KB)
     "JavaScript" : 13.3
 ```
 <!-- languages:end -->
+
+<br>
 
 ## Featured work
 
@@ -124,11 +151,15 @@ Built at Chakula Africa · source is private
 </tr>
 </table>
 
+<br>
+
 **Research and community**
 
 - **Personality and friendship selection research** — worked in a five-person team, coordinated survey collection from 150+ respondents, and led the analysis.
 - **Millennium Fellowship, Art Therapy Clubhouse** — co-led a team supporting 40+ youth through an art therapy initiative.
 - **Mathematics Olympiad** — placed third regionally; analytical problem-solving was already part of the story.
+
+<br>
 
 ## The path so far
 
@@ -146,6 +177,8 @@ timeline
          : School Lead Educator at TechLit Africa
 ```
 
+<br>
+
 ## On GitHub
 
 <div align="center">
@@ -154,11 +187,15 @@ timeline
 
 </div>
 
+<br>
+
 ## Currently exploring
 
 AI agents and agentic systems · backend architecture at scale · LLM-based products · cloud-native engineering · reliable ETL and forecasting workflows · API security · and the human questions that appear once a technical system reaches real users.
 
 Beyond code, I am usually thinking, writing, drawing, or learning about psychology, creativity, and human connection.
+
+<br>
 
 ## The terminal portfolio
 
@@ -171,6 +208,7 @@ Beyond code, I am usually thinking, writing, drawing, or learning about psycholo
 | `cat README.md` · `grep friction` · `find mood` | read and search them |
 | `mood nairobi` | calls the live MoodForecast AI service |
 | `theme` · `font` · `crt` | change how the terminal looks |
+| `stack` | languages and tools measured across my repositories |
 | `fortune` · `neofetch` · `coffee` · `sudo hire-me` | for the curious |
 
 `Tab` completes commands and paths, `↑`/`↓` revisit history, and any highlighted command can be clicked or tapped. Add `?cmd=projects` to the URL to open the page with a command already run.
@@ -195,14 +233,23 @@ npm run build    # type-check and build into dist/
 
 Pushing to `main` builds and deploys the site through [.github/workflows/deploy.yml](.github/workflows/deploy.yml). In the repository settings, Pages → Source must be set to **GitHub Actions**.
 
-The languages list and chart above come from the GitHub API:
+**Languages and tools update themselves.** Once a day (or on demand from the Actions tab → *Run workflow*), the same workflow runs [languages_update_script.py](languages_update_script.py). It reads every public repository I own — GitHub's language statistics, plus dependency files such as `requirements.txt`, `pyproject.toml` and `package.json` — and rewrites:
+
+- the icon row, tools table, language list and pie chart in this README (between the `stack` and `languages` comment markers), and
+- [src/data/stack.json](src/data/stack.json), which the site's `skills` and `stack` commands read.
+
+The daily run commits its changes to `main`, so `git pull` before starting new work.
+
+Only tools named in `KNOWN_PACKAGES` / `KNOWN_FILES` at the top of the script are reported; add a line there to teach it a new one. To run it by hand:
 
 ```bash
 python3 languages_update_script.py --dry-run   # preview
-python3 languages_update_script.py             # rewrite the section in this README
+python3 languages_update_script.py             # rewrite README and stack.json
 ```
 
 </details>
+
+<br>
 
 ## Let’s build something meaningful
 
@@ -210,9 +257,7 @@ I like working with people who are building thoughtful products, solving difficu
 
 <div align="center">
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Katheu_Kilonzo-0a66c2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/)
-[![Email](https://img.shields.io/badge/email-fkatheukilonzo%40gmail.com-3b4fc4?style=flat-square&logo=gmail&logoColor=white)](mailto:fkatheukilonzo@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-KathFK1234-0f766e?style=flat-square&logo=github&logoColor=white)](https://github.com/KathFK1234)
+<a href="https://www.linkedin.com/in/katheu-kilonzo-1a260422a/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/LinkedIn-Katheu_Kilonzo-0a66c2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:fkatheukilonzo@gmail.com" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/email-fkatheukilonzo%40gmail.com-3b4fc4?style=flat-square&logo=gmail&logoColor=white" alt="Email"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/GitHub-KathFK1234-0f766e?style=flat-square&logo=github&logoColor=white" alt="GitHub"></a>
 
 <br>
 

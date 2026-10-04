@@ -165,6 +165,18 @@ describe('commands', () => {
     expect(await run('echo hi $USER')).toBe('hi visitor');
   });
 
+  it('shows languages and tools from the generated data file', async () => {
+    const { run } = shell();
+    const stack = await run('stack');
+    expect(stack).toMatch(/Python/);
+    expect(stack).toMatch(/\d+%/);
+    expect(stack).toMatch(/FastAPI/);
+    // Hand-written skills stay; anything new from GitHub is appended once.
+    const skills = await run('skills');
+    expect(skills).toMatch(/Python, JavaScript, HTML, CSS, C, Shell/);
+    expect(skills.match(/FastAPI/g)).toHaveLength(1);
+  });
+
   it('tokenizes quoted arguments', () => {
     expect(tokenize(`grep "two words" 'x y' z`)).toEqual(['grep', 'two words', 'x y', 'z']);
   });

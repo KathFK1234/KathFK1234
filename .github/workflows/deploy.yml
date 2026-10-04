@@ -3,10 +3,13 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    # Once a day, pick up languages and tools from new or changed repositories
+    - cron: '17 3 * * *'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -19,6 +22,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Rewrites the marked README sections and src/data/stack.json.
+      # If GitHub's API is unavailable the site still deploys with the last known data.
+      - name: Detect languages and tools across my repositories
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          pip install --quiet requests
+          python3 languages_update_script.py --username "${{ github.repository_owner }}"
+
+      # Not on pushes: a push changes this repo's own totals, and committing back
+      # every time would leave the local clone permanently one commit behind.
+      - name: Commit the update if anything changed
+        if: github.event_name != 'push'
+        run: |
+          git config user.name "Katheu Kilonzo"
+          git config user.email "fkatheukilonzo@gmail.com"
+          git add README.md src/data/stack.json
+          if git diff --cached --quiet; then
+            echo "Nothing new."
+          else
+            git commit -m "Update languages and tools from GitHub"
+            git push
+          fi
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22

@@ -1,4 +1,5 @@
 import { createContext, Fragment, useContext, type ReactNode } from 'react';
+import stack from '../data/stack.json';
 import { FONTS, THEMES, type FontName, type Prefs, type ThemeName } from '../prefs';
 import {
   absolutePath,
@@ -53,6 +54,28 @@ export const LINKS = {
 } as const;
 
 const EMAIL = 'fkatheukilonzo@gmail.com';
+
+/* Skills written by hand. `skills` adds anything new that src/data/stack.json
+   (refreshed from GitHub by languages_update_script.py) has found since. */
+const CORE_SKILLS: [string, string[]][] = [
+  ['languages', ['Python', 'JavaScript', 'HTML', 'CSS', 'C', 'Shell']],
+  ['backend', ['FastAPI', 'Django', 'DRF', 'REST APIs', 'PostgreSQL']],
+  ['cloud', ['AWS', 'Docker', 'Railway', 'Supabase', 'DigitalOcean']],
+  ['ai', ['LLMs', 'RAG', 'intelligent assistants', 'practical automation']],
+  ['tooling', ['Git', 'GitHub', 'Linux', 'Postman', 'Figma', 'Canva']],
+];
+// Names in the data file that are already covered by a hand-written entry above.
+const SAME_AS: Record<string, string> = { 'Django REST Framework': 'DRF' };
+
+function skillRows(): [string, string[]][] {
+  const known = new Set(CORE_SKILLS.flatMap(([, items]) => items.map(item => item.toLowerCase())));
+  const isNew = (name: string) => !known.has((SAME_AS[name] ?? name).toLowerCase());
+  const rows = CORE_SKILLS.map(([label, items]): [string, string[]] => [label, [...items]]);
+  rows[0][1].push(...stack.languages.map(language => language.name).filter(isNew));
+  const tools = stack.tools.map(tool => tool.name).filter(isNew);
+  if (tools.length) rows.push(['also on github', tools]);
+  return rows;
+}
 const MOOD_API = 'https://moodforecastai-production.up.railway.app';
 
 export function createShellState(history: string[] = []): ShellState {
@@ -483,19 +506,59 @@ export const commands: Command[] = [
     run: () => (
       <>
         core stack{'\n\n'}
-        <Rows
-          rows={[
-            ['languages', <Accent2>Python, JavaScript, HTML, CSS, C, Shell</Accent2>],
-            ['backend', <Accent2>FastAPI, Django, DRF, REST APIs, PostgreSQL</Accent2>],
-            ['cloud', <Accent2>AWS, Docker, Railway, Supabase, DigitalOcean</Accent2>],
-            ['ai', <Accent2>LLMs, RAG, intelligent assistants, practical automation</Accent2>],
-            ['tooling', <Accent2>Git, GitHub, Linux, Postman, Figma, Canva</Accent2>],
-          ]}
-        />
+        <Rows rows={skillRows().map(([label, items]) => [label, <Accent2>{items.join(', ')}</Accent2>])} />
         {'\n'}I enjoy building systems that are not only functional but also resilient, understandable, and grounded
-        in user context.
+        in user context.{'\n\n'}
+        <Dim>the measured version, straight from my repositories:</Dim> <Cmd>stack</Cmd>
       </>
     ),
+  },
+  {
+    name: 'stack',
+    summary: 'languages and tools detected across my GitHub repos',
+    group: 'profile',
+    aliases: ['languages'],
+    run: () => {
+      const total = stack.languages.reduce((sum, language) => sum + language.bytes, 0) || 1;
+      const categories = [...new Set(stack.tools.map(tool => tool.category))];
+      const barWidth = 20;
+      return (
+        <>
+          <Accent>languages</Accent> <Dim>— share of code across {stack.repos} public repositories</Dim>{'\n'}
+          <div className="rows rows-3">
+            {stack.languages.map(language => {
+              const share = language.bytes / total;
+              const filled = Math.max(1, Math.round(share * barWidth));
+              return (
+                <Fragment key={language.name}>
+                  <span>{language.name}</span>
+                  <span className="art">
+                    <Accent>{'█'.repeat(filled)}</Accent>
+                    <Dim>{'░'.repeat(barWidth - filled)}</Dim>
+                  </span>
+                  <Dim>{share < 0.01 ? '<1' : Math.round(share * 100)}%</Dim>
+                </Fragment>
+              );
+            })}
+          </div>
+          {'\n'}
+          <Accent>frameworks and tools</Accent> <Dim>— read from each repository’s dependency files</Dim>{'\n'}
+          <Rows
+            rows={categories.map(category => [
+              category.toLowerCase(),
+              <Accent2>
+                {stack.tools
+                  .filter(tool => tool.category === category)
+                  .map(tool => tool.name)
+                  .join(', ')}
+              </Accent2>,
+            ])}
+          />
+          {'\n'}
+          <Dim>refreshed automatically from GitHub · last changed {stack.updated}</Dim>
+        </>
+      );
+    },
   },
   {
     name: 'experience',

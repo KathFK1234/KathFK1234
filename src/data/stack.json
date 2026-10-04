@@ -1,0 +1,108 @@
+{
+  "repos": 21,
+  "languages": [
+    {
+      "name": "Python",
+      "bytes": 151868,
+      "repos": 9
+    },
+    {
+      "name": "TypeScript",
+      "bytes": 82857,
+      "repos": 1
+    },
+    {
+      "name": "C",
+      "bytes": 64234,
+      "repos": 3
+    },
+    {
+      "name": "HTML",
+      "bytes": 60449,
+      "repos": 6
+    },
+    {
+      "name": "CSS",
+      "bytes": 32931,
+      "repos": 4
+    },
+    {
+      "name": "Shell",
+      "bytes": 20777,
+      "repos": 8
+    },
+    {
+      "name": "JavaScript",
+      "bytes": 13579,
+      "repos": 2
+    }
+  ],
+  "tools": [
+    {
+      "name": "FastAPI",
+      "category": "Backend",
+      "repos": 2
+    },
+    {
+      "name": "Pydantic",
+      "category": "Backend",
+      "repos": 2
+    },
+    {
+      "name": "SQLAlchemy",
+      "category": "Backend",
+      "repos": 2
+    },
+    {
+      "name": "Django",
+      "category": "Backend",
+      "repos": 1
+    },
+    {
+      "name": "SQLModel",
+      "category": "Backend",
+      "repos": 1
+    },
+    {
+      "name": "React",
+      "category": "Frontend",
+      "repos": 2
+    },
+    {
+      "name": "Vite",
+      "category": "Frontend",
+      "repos": 2
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "Data & databases",
+      "repos": 1
+    },
+    {
+      "name": "pytest",
+      "category": "Testing",
+      "repos": 1
+    },
+    {
+      "name": "Vitest",
+      "category": "Testing",
+      "repos": 1
+    },
+    {
+      "name": "Docker",
+      "category": "Infrastructure",
+      "repos": 1
+    },
+    {
+      "name": "GitHub Actions",
+      "category": "Infrastructure",
+      "repos": 1
+    },
+    {
+      "name": "Railway",
+      "category": "Infrastructure",
+      "repos": 1
+    }
+  ],
+  "updated": "2026-10-04"
+}
