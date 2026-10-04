@@ -212,7 +212,7 @@ timeline
 
 <div align="center">
 
-<img height="150" src="https://github-readme-stats.vercel.app/api?username=KathFK1234&show_icons=true&hide_rank=true&hide=issues,contribs&include_all_commits=true&hide_border=true&bg_color=0a0e0e&title_color=5eead4&text_color=d8e3e0&icon_color=8ca9ff" alt="GitHub statistics for KathFK1234">
+<img src="./assets/activity.svg" alt="GitHub activity over the past year: contributions, commits, pull requests, repositories, and a contribution calendar" width="840">
 
 </div>
 
@@ -266,6 +266,8 @@ Pushing to `main` builds and deploys the site through [.github/workflows/deploy.
 
 - the icon row, tools table, language list and pie chart in this README (between the `stack` and `languages` comment markers), and
 - [src/data/stack.json](src/data/stack.json), which the site's `skills` and `stack` commands read.
+
+The **On GitHub** card is redrawn by the same daily run: [activity_card_script.py](activity_card_script.py) asks GitHub for the past year of contributions and writes [assets/activity.svg](assets/activity.svg).
 
 The daily run commits its changes to `main`, so `git pull` before starting new work.
 

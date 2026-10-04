@@ -45,12 +45,27 @@ jobs:
             python3 languages_update_script.py --username "$OWNER"
           fi
 
+      # Redraws assets/activity.svg, the "On GitHub" card in the README.
+      - name: Draw the activity card
+        id: activity
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.STACK_TOKEN || github.token }}
+          OWNER: ${{ github.repository_owner }}
+        run: python3 activity_card_script.py --username "$OWNER"
+
       # Without this the failure above is silent and the README quietly goes stale.
       - name: Warn if detection failed
         if: steps.detect.outcome == 'failure'
         run: |
           echo "::warning title=Languages and tools were not updated::The detection step failed, so the README and site kept their last data. If STACK_TOKEN is set, check that it has not expired."
           git checkout -- README.md src/data/stack.json
+
+      - name: Warn if the activity card failed
+        if: steps.activity.outcome == 'failure'
+        run: |
+          echo "::warning title=Activity card was not updated::The card kept its last data. If STACK_TOKEN is set, check that it has not expired."
+          git checkout -- assets/activity.svg
 
       # Not on pushes: a push changes this repo's own totals, and committing back
       # every time would leave the local clone permanently one commit behind.
@@ -59,11 +74,11 @@ jobs:
         run: |
           git config user.name "Katheu Kilonzo"
           git config user.email "fkatheukilonzo@gmail.com"
-          git add README.md src/data/stack.json
+          git add README.md src/data/stack.json assets/activity.svg
           if git diff --cached --quiet; then
             echo "Nothing new."
           else
-            git commit -m "Update languages and tools from GitHub"
+            git commit -m "Update languages, tools and activity from GitHub"
             # main may have moved while this ran
             git pull --rebase
             git push
