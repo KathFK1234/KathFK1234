@@ -64,7 +64,7 @@ flowchart TD
 <!-- stack:start -->
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=python,html,css,c,js,ts,bash,fastapi,django,react,vite,postgres,vitest,docker,githubactions,aws,linux,git,github,figma,postman&perline=10" alt="Icons for the languages and tools listed below">
+<img src="https://skillicons.dev/icons?i=python,html,css,c,js,ts,bash,fastapi,django,react,vite,postgres,vitest,docker,githubactions,aws,linux,git,github,figma,postman&perline=7" alt="Icons for the languages and tools listed below">
 
 </div>
 

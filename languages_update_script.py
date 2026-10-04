@@ -343,11 +343,15 @@ class GitHubLanguageFetcher:
 
     def format_stack_for_readme(self, languages, updated):
         """Format the icon row and the table of detected tools."""
-        icons = ",".join(self.icon_ids(languages))
+        icon_list = self.icon_ids(languages)
+        icons = ",".join(icon_list)
+        # Even rows of at most 10, so the last row is never a lone icon
+        rows = -(-len(icon_list) // 10)
+        per_line = -(-len(icon_list) // rows)
         lines = [
             '<div align="center">',
             "",
-            f'<img src="https://skillicons.dev/icons?i={icons}&perline=10" alt="Icons for the languages and tools listed below">',
+            f'<img src="https://skillicons.dev/icons?i={icons}&perline={per_line}" alt="Icons for the languages and tools listed below">',
             "",
             "</div>",
             "",
