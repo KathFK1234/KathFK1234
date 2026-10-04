@@ -6,9 +6,9 @@
 
 <br><br>
 
-[![Portfolio](https://img.shields.io/badge/terminal_portfolio-open-5eead4?style=for-the-badge&logo=gnometerminal&logoColor=0a0e0e)](https://kathfk1234.github.io/KathFK1234/)
+[![Portfolio](https://img.shields.io/badge/terminal_portfolio-open-0f766e?style=for-the-badge&logo=gnometerminal&logoColor=white)](https://kathfk1234.github.io/KathFK1234/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-connect-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/)
-[![Email](https://img.shields.io/badge/email-say_hello-8ca9ff?style=for-the-badge&logo=gmail&logoColor=0a0e0e)](mailto:fkatheukilonzo@gmail.com)
+[![Email](https://img.shields.io/badge/email-say_hello-3b4fc4?style=for-the-badge&logo=gmail&logoColor=white)](mailto:fkatheukilonzo@gmail.com)
 
 </div>
 
@@ -150,8 +150,7 @@ timeline
 
 <div align="center">
 
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=KathFK1234&show_icons=true&hide_border=true&bg_color=0a0e0e&title_color=5eead4&text_color=d8e3e0&icon_color=8ca9ff" alt="GitHub statistics for KathFK1234">
-<img height="165" src="https://streak-stats.demolab.com?user=KathFK1234&hide_border=true&background=0a0e0e&ring=5eead4&fire=f2a65a&currStreakLabel=5eead4&currStreakNum=d8e3e0&sideNums=d8e3e0&sideLabels=8ca9ff&dates=6f8280&stroke=1c2626" alt="GitHub contribution streak for KathFK1234">
+<img height="150" src="https://github-readme-stats.vercel.app/api?username=KathFK1234&show_icons=true&hide_rank=true&hide=issues,contribs&include_all_commits=true&hide_border=true&bg_color=0a0e0e&title_color=5eead4&text_color=d8e3e0&icon_color=8ca9ff" alt="GitHub statistics for KathFK1234">
 
 </div>
 
@@ -212,8 +211,8 @@ I like working with people who are building thoughtful products, solving difficu
 <div align="center">
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Katheu_Kilonzo-0a66c2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/katheu-kilonzo-1a260422a/)
-[![Email](https://img.shields.io/badge/email-fkatheukilonzo%40gmail.com-8ca9ff?style=flat-square&logo=gmail&logoColor=0a0e0e)](mailto:fkatheukilonzo@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-KathFK1234-5eead4?style=flat-square&logo=github&logoColor=0a0e0e)](https://github.com/KathFK1234)
+[![Email](https://img.shields.io/badge/email-fkatheukilonzo%40gmail.com-3b4fc4?style=flat-square&logo=gmail&logoColor=white)](mailto:fkatheukilonzo@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-KathFK1234-0f766e?style=flat-square&logo=github&logoColor=white)](https://github.com/KathFK1234)
 
 <br>
 
