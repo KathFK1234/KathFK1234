@@ -30,6 +30,7 @@ jobs:
       # Rewrites the marked README sections and src/data/stack.json.
       # If GitHub's API is unavailable the site still deploys with the last known data.
       - name: Detect languages and tools across my repositories
+        id: detect
         continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ github.token }}
@@ -44,6 +45,13 @@ jobs:
             python3 languages_update_script.py --username "$OWNER"
           fi
 
+      # Without this the failure above is silent and the README quietly goes stale.
+      - name: Warn if detection failed
+        if: steps.detect.outcome == 'failure'
+        run: |
+          echo "::warning title=Languages and tools were not updated::The detection step failed, so the README and site kept their last data. If STACK_TOKEN is set, check that it has not expired."
+          git checkout -- README.md src/data/stack.json
+
       # Not on pushes: a push changes this repo's own totals, and committing back
       # every time would leave the local clone permanently one commit behind.
       - name: Commit the update if anything changed
@@ -56,6 +64,8 @@ jobs:
             echo "Nothing new."
           else
             git commit -m "Update languages and tools from GitHub"
+            # main may have moved while this ran
+            git pull --rebase
             git push
           fi
 
