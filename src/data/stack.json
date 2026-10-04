@@ -1,16 +1,21 @@
 {
-  "repos": 21,
-  "includesPrivate": false,
+  "repos": 27,
+  "includesPrivate": true,
   "languages": [
     {
       "name": "Python",
-      "bytes": 165995,
-      "repos": 9
+      "bytes": 407851,
+      "repos": 11
     },
     {
       "name": "TypeScript",
-      "bytes": 87117,
-      "repos": 1
+      "bytes": 291937,
+      "repos": 2
+    },
+    {
+      "name": "HTML",
+      "bytes": 99568,
+      "repos": 10
     },
     {
       "name": "C",
@@ -18,39 +23,39 @@
       "repos": 3
     },
     {
-      "name": "HTML",
-      "bytes": 60946,
-      "repos": 6
-    },
-    {
       "name": "CSS",
-      "bytes": 32759,
-      "repos": 4
+      "bytes": 44508,
+      "repos": 7
     },
     {
       "name": "Shell",
-      "bytes": 20777,
-      "repos": 8
+      "bytes": 21150,
+      "repos": 9
     },
     {
       "name": "JavaScript",
-      "bytes": 13579,
-      "repos": 2
+      "bytes": 19066,
+      "repos": 5
+    },
+    {
+      "name": "Ruby",
+      "bytes": 10306,
+      "repos": 1
     }
   ],
   "tools": [
     {
       "name": "FastAPI",
       "category": "Backend",
-      "repos": 2
-    },
-    {
-      "name": "Pydantic",
-      "category": "Backend",
-      "repos": 2
+      "repos": 3
     },
     {
       "name": "SQLAlchemy",
+      "category": "Backend",
+      "repos": 3
+    },
+    {
+      "name": "Pydantic",
       "category": "Backend",
       "repos": 2
     },
@@ -67,22 +72,22 @@
     {
       "name": "React",
       "category": "Frontend",
-      "repos": 2
+      "repos": 3
     },
     {
       "name": "Vite",
       "category": "Frontend",
-      "repos": 2
+      "repos": 3
     },
     {
       "name": "PostgreSQL",
       "category": "Data & databases",
-      "repos": 1
+      "repos": 2
     },
     {
       "name": "pytest",
       "category": "Testing",
-      "repos": 1
+      "repos": 2
     },
     {
       "name": "Vitest",
@@ -92,15 +97,20 @@
     {
       "name": "Docker",
       "category": "Infrastructure",
-      "repos": 1
+      "repos": 2
     },
     {
       "name": "GitHub Actions",
       "category": "Infrastructure",
-      "repos": 1
+      "repos": 2
     },
     {
       "name": "Railway",
+      "category": "Infrastructure",
+      "repos": 2
+    },
+    {
+      "name": "Docker Compose",
       "category": "Infrastructure",
       "repos": 1
     }

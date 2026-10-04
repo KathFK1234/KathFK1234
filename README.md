@@ -64,7 +64,7 @@ flowchart TD
 <!-- stack:start -->
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=python,html,css,c,js,ts,bash,fastapi,django,react,vite,postgres,vitest,docker,githubactions,aws,linux,git,github,figma,postman&perline=7" alt="Icons for the languages and tools listed below">
+<img src="https://skillicons.dev/icons?i=python,html,css,js,c,ts,ruby,bash,fastapi,django,react,vite,postgres,vitest,docker,githubactions,aws,linux,git,github,figma,postman&perline=8" alt="Icons for the languages and tools listed below">
 
 </div>
 
@@ -72,14 +72,14 @@ flowchart TD
 
 | Found in my repositories | |
 | --- | --- |
-| **Languages** | Python · HTML · CSS · C · JavaScript · TypeScript |
-| **Backend** | FastAPI · Pydantic · SQLAlchemy · Django · SQLModel |
+| **Languages** | Python · HTML · CSS · JavaScript · C · TypeScript · Ruby |
+| **Backend** | FastAPI · SQLAlchemy · Pydantic · Django · SQLModel |
 | **Frontend** | React · Vite |
 | **Data & databases** | PostgreSQL |
 | **Testing** | pytest · Vitest |
-| **Infrastructure** | Docker · GitHub Actions · Railway |
+| **Infrastructure** | Docker · GitHub Actions · Railway · Docker Compose |
 
-<sub>Detected automatically from 21 public repositories · last changed 2026-10-04</sub>
+<sub>Detected automatically from 27 repositories (public and private) · last changed 2026-10-04</sub>
 <!-- stack:end -->
 
 <br>
@@ -96,16 +96,17 @@ flowchart TD
 ### Languages
 
 <!-- languages:start -->
-Python · HTML · CSS · C · JavaScript · TypeScript
+Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 
 ```mermaid
 pie title Code across my repositories (KB)
-    "Python" : 162.1
-    "TypeScript" : 85.1
+    "Python" : 398.3
+    "TypeScript" : 285.1
+    "HTML" : 97.2
     "C" : 62.7
-    "HTML" : 59.5
-    "CSS" : 32.0
-    "JavaScript" : 13.3
+    "CSS" : 43.5
+    "JavaScript" : 18.6
+    "Ruby" : 10.1
 ```
 <!-- languages:end -->
 
