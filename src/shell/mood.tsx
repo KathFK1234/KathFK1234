@@ -874,6 +874,8 @@ async function other(endpoint: Endpoint, words: string[], ctx: Ctx): Promise<Rea
 export async function mood(args: string[], ctx: Ctx): Promise<ReactNode> {
   const session = ctx.state.mood;
   const words = args.filter(Boolean);
+  // "mood in nairobi", "mood for tokyo": the first word is not part of the place.
+  if (words.length > 1 && /^(in|for|at)$/i.test(words[0])) words.shift();
   // Every use starts by asking the service what it offers (once per visit), so
   // suggestions and commands match what is deployed right now.
   if (!words.length) {

@@ -306,6 +306,13 @@ describe('mood', () => {
     expect(calls[0]).toMatch(/^\/api\/wellbeing\/[A-Z]/);
   });
 
+  it('ignores a leading "in" before the place', async () => {
+    const calls = serve({ '/api/wellbeing/nairobi': NAIROBI });
+    const { run } = shell();
+    expect(await run('mood in nairobi')).toMatch(/Nairobi, KE/);
+    expect(calls).toEqual(['/api/wellbeing/nairobi']);
+  });
+
   it('keeps multi-word places together', async () => {
     const calls = serve({ '/api/wellbeing/cape town': { ...NAIROBI, location: 'Cape Town, ZA' } });
     const { run } = shell();
