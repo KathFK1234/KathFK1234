@@ -235,7 +235,9 @@ Beyond code, I am usually thinking, writing, drawing, or learning about psycholo
 | `about` · `projects` · `skills` · `experience` | the short version of this page |
 | `ls` · `cd projects/moodforecast-ai` · `tree` | browse real folders of notes and project write-ups |
 | `cat README.md` · `grep friction` · `find mood` | read and search them |
-| `mood nairobi` | calls the live MoodForecast AI service |
+| `mood nairobi` · `mood week tokyo` · `mood nairobi vs reykjavik` | live readings from the MoodForecast AI service: today's mood score and why, the week ahead, or two places side by side |
+| `mood` · `mood surprise` · `mood api` | places to try, a place picked for you, and everything the service can do right now |
+| `man mood` · `man grep` | a manual for every command, with examples you can click |
 | `theme` · `font` · `crt` | change how the terminal looks |
 | `stack` | languages and tools measured across my repositories |
 | `fortune` · `neofetch` · `coffee` · `sudo hire-me` | for the curious |
@@ -268,6 +270,21 @@ Pushing to `main` builds and deploys the site through [.github/workflows/deploy.
 - [src/data/stack.json](src/data/stack.json), which the site's `skills` and `stack` commands read.
 
 The **On GitHub** card is redrawn by the same daily run: [activity_card_script.py](activity_card_script.py) asks GitHub for the past year of contributions and writes [assets/activity.svg](assets/activity.svg).
+
+**The `mood` command keeps up with MoodForecast AI.** Nothing about that service is written into the terminal by hand more than once:
+
+- Each visit, `mood` first asks the live service what it offers (its OpenAPI description). Every `GET /api/<name>/{location}` endpoint is usable at once as `mood <name> <place>`, and any field a response gains is shown, even before the terminal has a tailored view for it. `mood api` lists what it found.
+- The daily run also executes [mood_sync_script.py](mood_sync_script.py), which reads the endpoints plus the place lists and activities in the [moodforecast_ai](https://github.com/KathFK1234/moodforecast_ai) repository and writes [src/data/mood.json](src/data/mood.json). The terminal uses it for suggestions ("where next?"), Tab completion, and as a fallback when the service does not answer.
+
+To try MoodForecast AI changes that are not merged or deployed yet, run its backend locally and point both halves at it:
+
+```bash
+python3 mood_sync_script.py --source ../moodforecast_ai --api http://localhost:8000   # places, activities, endpoints
+echo 'VITE_MOOD_API=http://localhost:8000' > .env.local                               # the site's live calls
+npm run dev
+```
+
+(`git checkout src/data/mood.json` puts the data file back afterwards.)
 
 The daily run commits its changes to `main`, so `git pull` before starting new work.
 
