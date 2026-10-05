@@ -22,4 +22,14 @@ Responses are cached for 10 minutes. 31 tests: 23 on the scoring engine, 8 on th
   repo: https://github.com/KathFK1234/moodforecast_ai
   live: https://moodforecastai-production.up.railway.app
 
-Type `mood nairobi` in this terminal to call the live service.
+## Try it from here
+
+This terminal calls the live service. It asks the service what it can do each visit, so anything new over there works here too.
+
+  `mood nairobi`                 today's mood score and what is behind it
+  `mood week tokyo`              the next seven days, scored day by day
+  `mood nairobi vs reykjavik`    which of two places is having the better day
+  `mood surprise`                a place picked for you
+  `mood api`                     everything the service offers right now
+
+Any town or city works. Try one you have never been to.

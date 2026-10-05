@@ -1,18 +1,32 @@
 {
-  "_note": "Shape of GET /api/wellbeing/{location}. Values are illustrative.",
-  "location": "Nairobi",
+  "_note": "Shape of GET /api/wellbeing/{location}. Values are illustrative; `mood nairobi` fetches the real ones.",
+  "location": "Nairobi, KE",
   "weather": {
-    "temp_c": 22.0,
-    "condition": "Partly Cloudy",
-    "humidity": 60.0,
-    "wind_kph": 12.0
+    "temp_c": 24.8,
+    "feels_like_c": 26.2,
+    "condition": "Mainly Clear",
+    "humidity": 46.0,
+    "wind_kph": 9.7,
+    "is_day": true
   },
-  "mood_score": 70,
-  "energy_level": "Medium",
-  "risk_level": "Low",
-  "ai_summary": null,
+  "mood_score": 77,
+  "mood_label": "Upbeat",
+  "baseline_score": 65,
+  "factors": [
+    {
+      "label": "Clear skies",
+      "delta": 15
+    },
+    {
+      "label": "Warm air",
+      "delta": -3
+    }
+  ],
+  "energy_level": "High",
+  "risk_level": "Minimal",
+  "ai_summary": "Mainly clear and 25°C in Nairobi, KE. Clear skies helps, while warm air pulls the score down. A good time to take on something demanding.",
   "recommendations": [
-    "Consider a brief midday break by a window to maintain light exposure.",
-    "Schedule your most focused work before 2pm — energy typically dips mid-afternoon."
+    "Call a friend for an outdoor catch-up — a park bench beats a group chat today.",
+    "Tackle your hardest task first, then celebrate with a proper break."
   ]
 }
