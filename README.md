@@ -236,6 +236,7 @@ Beyond code, I am usually thinking, writing, drawing, or learning about psycholo
 | `ls` · `cd projects/moodforecast-ai` · `tree` | browse real folders of notes and project write-ups |
 | `cat README.md` · `grep friction` · `find mood` | read and search them |
 | `mood nairobi` · `mood week tokyo` · `mood nairobi vs reykjavik` | live readings from the MoodForecast AI service: today's mood score and why, the week ahead, or two places side by side |
+| `mood picnic in cape town` · `mood activities mombasa` | whether the weather suits a plan, and what is practical somewhere right now |
 | `mood` · `mood surprise` · `mood api` | places to try, a place picked for you, and everything the service can do right now |
 | `man mood` · `man grep` | a manual for every command, with examples you can click |
 | `theme` · `font` · `crt` | change how the terminal looks |
