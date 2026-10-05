@@ -56,24 +56,33 @@ export const LINKS = {
 const EMAIL = 'fkatheukilonzo@gmail.com';
 
 /* Skills written by hand. `skills` adds anything new that src/data/stack.json
-   (refreshed from GitHub by languages_update_script.py) has found since. */
+   (refreshed from GitHub by languages_update_script.py) has found since, in the
+   row that matches the category `stack` files it under. */
 const CORE_SKILLS: [string, string[]][] = [
   ['languages', ['Python', 'JavaScript', 'HTML', 'CSS', 'C', 'Shell']],
   ['backend', ['FastAPI', 'Django', 'DRF', 'REST APIs', 'PostgreSQL']],
+  ['frontend', ['React', 'Vite']],
   ['cloud', ['AWS', 'Docker', 'Railway', 'Supabase', 'DigitalOcean']],
   ['ai', ['LLMs', 'RAG', 'intelligent assistants', 'practical automation']],
   ['tooling', ['Git', 'GitHub', 'Linux', 'Postman', 'Figma', 'Canva']],
 ];
 // Names in the data file that are already covered by a hand-written entry above.
 const SAME_AS: Record<string, string> = { 'Django REST Framework': 'DRF' };
+// Categories in the data file that go by another name here. Any other category gets a row of its own.
+const SKILL_ROW: Record<string, string> = { 'data & databases': 'backend', infrastructure: 'cloud' };
 
 function skillRows(): [string, string[]][] {
   const known = new Set(CORE_SKILLS.flatMap(([, items]) => items.map(item => item.toLowerCase())));
   const isNew = (name: string) => !known.has((SAME_AS[name] ?? name).toLowerCase());
   const rows = CORE_SKILLS.map(([label, items]): [string, string[]] => [label, [...items]]);
   rows[0][1].push(...stack.languages.map(language => language.name).filter(isNew));
-  const tools = stack.tools.map(tool => tool.name).filter(isNew);
-  if (tools.length) rows.push(['also on github', tools]);
+  for (const tool of stack.tools.filter(tool => isNew(tool.name))) {
+    const category = tool.category.toLowerCase();
+    const label = SKILL_ROW[category] ?? category;
+    let row = rows.find(([name]) => name === label);
+    if (!row) rows.push((row = [label, []]));
+    row[1].push(tool.name);
+  }
   return rows;
 }
 const MOOD_API = 'https://moodforecastai-production.up.railway.app';

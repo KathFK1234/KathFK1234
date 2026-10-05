@@ -179,6 +179,10 @@ describe('commands', () => {
     const skills = await run('skills');
     expect(skills).toMatch(/Python, JavaScript, HTML, CSS, C, Shell/);
     expect(skills.match(/FastAPI/g)).toHaveLength(1);
+    // Detected tools join the row for their category instead of a catch-all.
+    expect(skills).toMatch(/frontend.*React, Vite/);
+    expect(skills).toMatch(/backend.*PostgreSQL.*SQLAlchemy/);
+    expect(skills).not.toMatch(/also on github/);
   });
 
   it('tokenizes quoted arguments', () => {
