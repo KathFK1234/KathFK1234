@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { applyPrefs, loadHistory, loadPrefs, saveHistory, savePrefs, type Prefs } from './prefs';
 import { Prompt, Ps1 } from './Prompt';
-import { Banner, createShellState, execute, RunContext, type Ctx } from './shell/commands';
+import { Banner, createShellState, execute, type Ctx } from './shell/commands';
 import { commonPrefix, complete, ghostFor } from './shell/complete';
 import { displayPath } from './shell/fs';
+import { RunContext } from './shell/ui';
 
 type Entry =
   | { id: number; kind: 'echo'; path: string; question: boolean; text: string }

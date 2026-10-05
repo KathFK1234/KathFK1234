@@ -1,4 +1,4 @@
-import { createContext, Fragment, useContext, type ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import stack from '../data/stack.json';
 import { FONTS, THEMES, type FontName, type Prefs, type ThemeName } from '../prefs';
 import {
@@ -12,6 +12,8 @@ import {
   walk,
   type DirNode,
 } from './fs';
+import { mood } from './mood';
+import { Accent, Accent2, Cmd, Dim, Link, Rows, Warn } from './ui';
 
 export interface ShellState {
   cwd: string[];
@@ -85,51 +87,12 @@ function skillRows(): [string, string[]][] {
   }
   return rows;
 }
-const MOOD_API = 'https://moodforecastai-production.up.railway.app';
 
 export function createShellState(history: string[] = []): ShellState {
   return { cwd: [], prevCwd: [], history, mode: null, startedAt: Date.now() };
 }
 
 /* ---------- rendering helpers ---------- */
-
-/** Lets any command name in the output run itself when clicked or tapped. */
-export const RunContext = createContext<(line: string) => void>(() => {});
-
-export function Cmd({ children, run }: { children: string; run?: string }) {
-  const runLine = useContext(RunContext);
-  return (
-    <button type="button" className="cmd" onClick={() => runLine(run ?? children)}>
-      {children}
-    </button>
-  );
-}
-
-function Link({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <a className="link" href={href} target="_blank" rel="noreferrer">
-      {children}
-    </a>
-  );
-}
-
-function Rows({ rows }: { rows: [ReactNode, ReactNode][] }) {
-  return (
-    <div className="rows">
-      {rows.map(([left, right], index) => (
-        <Fragment key={index}>
-          <span>{left}</span>
-          <span>{right}</span>
-        </Fragment>
-      ))}
-    </div>
-  );
-}
-
-const Accent = ({ children }: { children: ReactNode }) => <span className="accent">{children}</span>;
-const Accent2 = ({ children }: { children: ReactNode }) => <span className="accent2">{children}</span>;
-const Dim = ({ children }: { children: ReactNode }) => <span className="dim">{children}</span>;
-const Warn = ({ children }: { children: ReactNode }) => <span className="warn">{children}</span>;
 
 function linkify(line: string, keyPrefix: string): ReactNode[] {
   return line.split(/(https?:\/\/[^\s)]+|`[^`]+`)/g).map((part, index) => {
@@ -336,70 +299,6 @@ function hireMe(): ReactNode {
       />
     </>
   );
-}
-
-/* ---------- live MoodForecast AI call ---------- */
-
-interface Wellbeing {
-  location: string;
-  weather: { temp_c: number; condition: string; humidity: number; wind_kph: number };
-  mood_score: number;
-  energy_level: string;
-  risk_level: string;
-  ai_summary?: string | null;
-  recommendations: string[];
-}
-
-async function mood(args: string[], ctx: Ctx): Promise<ReactNode> {
-  const location = args.join(' ') || 'Nairobi';
-  ctx.print(<Dim>contacting MoodForecast AI for {location} ...</Dim>);
-
-  try {
-    const response = await fetch(`${MOOD_API}/api/wellbeing/${encodeURIComponent(location)}`, {
-      signal: AbortSignal.timeout(15000),
-    });
-    if (response.ok) {
-      const data = (await response.json()) as Wellbeing;
-      return (
-        <>
-          <Accent>{data.location}</Accent> <Dim>— live from the MoodForecast AI service</Dim>{'\n'}
-          <Rows
-            rows={[
-              ['mood score', <Accent>{data.mood_score}/100</Accent>],
-              ['energy', data.energy_level],
-              ['risk', data.risk_level],
-              ['weather', `${data.weather.condition}, ${data.weather.temp_c}°C, humidity ${data.weather.humidity}%`],
-            ]}
-          />
-          {data.ai_summary ? `\n${data.ai_summary}\n` : null}
-          {data.recommendations.length ? '\n' : null}
-          {data.recommendations.map(item => `  • ${item}\n`)}
-        </>
-      );
-    }
-
-    const health = await fetch(`${MOOD_API}/health`, { signal: AbortSignal.timeout(8000) });
-    if (!health.ok) throw new Error('health check failed');
-    return (
-      <>
-        <Accent>service is up</Accent>, but it could not produce a reading for “{location}”{' '}
-        <Dim>(HTTP {response.status})</Dim>.{'\n'}
-        <Dim>
-          The API is healthy; its upstream weather provider did not answer. Try another city, or see how the score is
-          built:
-        </Dim>{' '}
-        <Cmd>cat ~/projects/moodforecast-ai/data/scoring-rules.md</Cmd>
-      </>
-    );
-  } catch {
-    return (
-      <>
-        <Warn>could not reach the MoodForecast AI service.</Warn>{'\n'}
-        <Dim>It may be asleep or you may be offline. The project notes are still here:</Dim>{' '}
-        <Cmd>cat ~/projects/moodforecast-ai/README.md</Cmd>
-      </>
-    );
-  }
 }
 
 /* ---------- command registry ---------- */
