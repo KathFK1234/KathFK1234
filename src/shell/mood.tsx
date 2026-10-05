@@ -119,25 +119,39 @@ function PlaceCmds({ places, before = 'mood' }: { places: string[]; before?: str
   );
 }
 
-/* Used until the service sends its own questions (the `curiosity` field). */
-const QUESTIONS: ((place: string, here: string) => string)[] = [
-  (place, here) => `Take a guess: is it warmer in ${place} than in ${here}?`,
-  place => `What's the mood like in ${place} today?`,
-  place => `Is it day or night in ${place} right now?`,
-  place => `If you teleported to ${place} right now, what would you need to wear?`,
-  (place, here) => `Which is having the better day, ${here} or ${place}?`,
+interface Nudge {
+  question: string;
+  command: string;
+}
+
+/* Used until the service sends its own questions (the `curiosity` field).
+   `from` is the place just looked up, as the visitor typed it. */
+const NUDGES: ((place: string, here: string, from: string) => Nudge)[] = [
+  (place, here, from) => ({
+    question: `Take a guess: is it warmer in ${place} than in ${here}?`,
+    command: `mood ${from} vs ${place.toLowerCase()}`,
+  }),
+  (place, here, from) => ({
+    question: `Which is having the better day, ${here} or ${place}?`,
+    command: `mood ${from} vs ${place.toLowerCase()}`,
+  }),
+  place => ({ question: `What's the mood like in ${place} today?`, command: `mood ${place.toLowerCase()}` }),
+  place => ({ question: `Is it day or night in ${place} right now?`, command: `mood ${place.toLowerCase()}` }),
+  place => ({
+    question: `If you teleported to ${place} right now, what would you need to wear?`,
+    command: `mood ${place.toLowerCase()}`,
+  }),
+  place => ({ question: `Would this week be kinder in ${place}?`, command: `mood week ${place.toLowerCase()}` }),
 ];
 
 /** Called once per reading, not on every render, so the suggestions stay put on screen. */
 function whereNext(data: Wellbeing, place: string, session: MoodSession): ReactNode {
   const here = data.location.split(',')[0];
-  const questions = shuffled(QUESTIONS);
-  const prompts = data.curiosity?.length
-    ? data.curiosity
-    : elsewhere(session, 2, place, data.location).map((location, index) => ({
-        location,
-        question: questions[index](location, here),
-      }));
+  const from = place.toLowerCase();
+  const makers = shuffled(NUDGES);
+  const nudges: Nudge[] = data.curiosity?.length
+    ? data.curiosity.map(({ question, location }) => ({ question, command: `mood ${location.toLowerCase()}` }))
+    : elsewhere(session, 2, place, data.location).map((other, index) => makers[index](other, here, from));
   return (
     <>
       {'\n'}
@@ -145,17 +159,17 @@ function whereNext(data: Wellbeing, place: string, session: MoodSession): ReactN
         where next?{session.checked > 1 ? ` (${session.checked} places checked so far)` : ''}
       </Dim>
       {'\n'}
-      {prompts.map(prompt => (
-        <span key={prompt.location}>
+      {nudges.map(nudge => (
+        <span key={nudge.command}>
           {'  '}
-          {prompt.question} <Cmd>{`mood ${prompt.location.toLowerCase()}`}</Cmd>
+          {nudge.question} <Cmd>{nudge.command}</Cmd>
           {'\n'}
         </span>
       ))}
       {'  '}
       <Dim>or let me pick:</Dim> <Cmd>mood surprise</Cmd>
       {'\n'}
-      <Dim>more on {here}:</Dim> <Cmd>{`mood week ${place.toLowerCase()}`}</Cmd>
+      <Dim>more on {here}:</Dim> <Cmd>{`mood week ${from}`}</Cmd>
     </>
   );
 }
@@ -203,6 +217,7 @@ function guide(session: MoodSession): ReactNode {
         rows={[
           [<Accent>mood &lt;place&gt;</Accent>, 'the mood score, what is behind it, and what to do with the day'],
           [<Accent>mood week &lt;place&gt;</Accent>, 'the mood outlook for the next seven days'],
+          [<Accent>mood &lt;place&gt; vs &lt;place&gt;</Accent>, 'which of two places is having the better day'],
         ]}
       />
       {'\n'}
@@ -253,8 +268,7 @@ async function reading(place: string, ctx: Ctx): Promise<ReactNode> {
   } catch (error) {
     return problem(error, place, session);
   }
-  if (!session.seen.includes(data.location)) session.checked++;
-  session.seen.push(place, data.location);
+  remember(session, place, data);
 
   const why = factorsLine(data);
   const rows: [ReactNode, ReactNode][] = [
@@ -278,6 +292,82 @@ async function reading(place: string, ctx: Ctx): Promise<ReactNode> {
       {data.recommendations.length ? '\n' : null}
       {data.recommendations.map(item => `  • ${item}\n`)}
       {whereNext(data, place, session)}
+    </>
+  );
+}
+
+/** Counts a place as looked up, so it is not suggested again. */
+function remember(session: MoodSession, place: string, data: { location: string }) {
+  if (!session.seen.includes(data.location)) session.checked++;
+  session.seen.push(place, data.location);
+}
+
+/* ---------- mood <place> vs <place> ---------- */
+
+async function versus(places: [string, string], ctx: Ctx): Promise<ReactNode> {
+  const session = ctx.state.mood;
+  ctx.print(
+    <Dim>
+      asking MoodForecast AI about {places[0]} and {places[1]} ...
+    </Dim>,
+  );
+
+  // Both at once; a place that fails keeps its error so the message can name it.
+  const [a, b] = await Promise.all(
+    places.map(place =>
+      ask<Wellbeing>(`/api/wellbeing/${encodeURIComponent(place)}`).catch((error: unknown) => ({ error })),
+    ),
+  );
+  if ('error' in a) return problem(a.error, places[0], session);
+  if ('error' in b) return problem(b.error, places[1], session);
+  remember(session, places[0], a);
+  remember(session, places[1], b);
+
+  const name = (data: Wellbeing) => data.location.split(',')[0];
+  const gap = Math.abs(a.mood_score - b.mood_score);
+  const [ahead, behind] = a.mood_score >= b.mood_score ? [a, b] : [b, a];
+  const warmer = a.weather.temp_c >= b.weather.temp_c ? a : b;
+  const degrees = Math.round(Math.abs(a.weather.temp_c - b.weather.temp_c));
+  const column = (data: Wellbeing): ReactNode[] => [
+    <Accent>{data.location}</Accent>,
+    <>
+      {data.mood_score}/100{data.mood_label ? ` ${data.mood_label}` : ''}
+    </>,
+    data.energy_level,
+    data.risk_level,
+    `${data.weather.condition}, ${data.weather.temp_c}°C`,
+    data.weather.is_day === false ? 'night' : 'day',
+  ];
+  const left = column(a);
+  const right = column(b);
+
+  return (
+    <>
+      <div className="rows rows-3">
+        {['', 'mood score', 'energy', 'risk', 'weather', 'time'].map((label, index) => (
+          <Fragment key={label}>
+            <Dim>{label}</Dim>
+            <span>{left[index]}</span>
+            <span>{right[index]}</span>
+          </Fragment>
+        ))}
+      </div>
+      {'\n'}
+      {gap ? (
+        <>
+          <Accent>{name(ahead)}</Accent> is having the better day, {gap} {gap === 1 ? 'point' : 'points'} ahead of{' '}
+          {name(behind)}.
+        </>
+      ) : (
+        <>A tie: both sit at {a.mood_score}.</>
+      )}
+      {degrees ? ` ${name(warmer)} is ${degrees}°C warmer.` : ' Same temperature, too.'}
+      {'\n\n'}
+      <Dim>try another pairing:</Dim>{' '}
+      <PlaceCmds
+        places={elsewhere(session, 2, ...places, a.location, b.location)}
+        before={`mood ${places[0].toLowerCase()} vs`}
+      />
     </>
   );
 }
@@ -348,6 +438,22 @@ export async function mood(args: string[], ctx: Ctx): Promise<ReactNode> {
     return (
       <>
         <Warn>mood {first}: which place?</Warn> <PlaceCmds places={elsewhere(session, 3)} before="mood week" />
+      </>
+    );
+  }
+
+  const split = words.findIndex(word => /^(vs\.?|versus)$/i.test(word));
+  if (split >= 0) {
+    const pair: [string, string] = [words.slice(0, split).join(' '), words.slice(split + 1).join(' ')];
+    if (pair[0] && pair[1]) return versus(pair, ctx);
+    const known = pair[0] || pair[1];
+    return (
+      <>
+        <Warn>mood vs: it takes two places.</Warn>{' '}
+        <PlaceCmds
+          places={elsewhere(session, 2, known)}
+          before={known ? `mood ${known.toLowerCase()} vs` : 'mood nairobi vs'}
+        />
       </>
     );
   }

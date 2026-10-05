@@ -247,9 +247,10 @@ describe('mood', () => {
     serve({ '/api/wellbeing/nairobi': NAIROBI });
     const { ctx, run } = shell();
     for (let i = 0; i < 10; i++) {
-      const suggested = (await run('mood nairobi')).split('where next?')[1];
+      const suggested = (await run('mood nairobi')).split('where next?')[1].split('more on')[0];
       expect(suggested).toMatch(/mood [a-z]/);
-      expect(suggested).not.toMatch(/mood nairobi/);
+      // Nairobi may be one side of a comparison, never the place to go next.
+      expect(suggested).not.toMatch(/(mood|week|vs) nairobi(?! vs)/);
     }
     expect(ctx.state.mood.seen).toContain('Nairobi, KE');
   });
@@ -291,6 +292,28 @@ describe('mood', () => {
     expect(out).toMatch(/mood week [a-z]/);
     expect(await run('mood week')).toMatch(/which place\?.*mood week [a-z]/s);
     expect(await run('mood forecast atlantis')).toMatch(/service is up/);
+  });
+
+  it('compares two places', async () => {
+    const tokyo = {
+      ...NAIROBI,
+      location: 'Tokyo, JP',
+      mood_score: 58,
+      mood_label: 'Mellow',
+      weather: { ...NAIROBI.weather, temp_c: 18.1, condition: 'Rain', is_day: false },
+    };
+    const calls = serve({ '/api/wellbeing/nairobi': NAIROBI, '/api/wellbeing/tokyo': tokyo });
+    const { ctx, run } = shell();
+    const out = await run('mood nairobi vs tokyo');
+    expect(calls).toHaveLength(2);
+    expect(out).toMatch(/Nairobi, KE.*Tokyo, JP/s);
+    expect(out).toMatch(/77\/100 Upbeat.*58\/100 Mellow/s);
+    expect(out).toMatch(/Nairobi is having the better day, 19 points ahead of Tokyo\. Nairobi is 6°C warmer\./);
+    expect(out).toMatch(/mood nairobi vs (?!tokyo|nairobi)[a-z]/);
+    expect(ctx.state.mood.checked).toBe(2);
+    expect(await run('mood tokyo vs tokyo')).toMatch(/A tie: both sit at 58\. Same temperature, too\./);
+    expect(await run('mood nairobi vs atlantis')).toMatch(/“atlantis”/);
+    expect(await run('mood nairobi vs')).toMatch(/takes two places.*mood nairobi vs [a-z]/s);
   });
 
   it('explains an unknown place, a failing service and no connection', async () => {
