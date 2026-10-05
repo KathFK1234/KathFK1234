@@ -189,9 +189,18 @@ function endpoints(session: MoodSession): Promise<Endpoint[]> {
     })
     .catch(() => {
       session.known = { endpoints: SYNCED.endpoints, live: false };
+      // Not remembered, so one slow moment does not last the whole visit: the next command asks again.
+      session.endpoints = undefined;
       return SYNCED.endpoints;
     });
   return session.endpoints;
+}
+
+/** The same, but never holding a command up for long: past the wait, go with the last sync. */
+function endpointsSoon(session: MoodSession, wait = 2500): Promise<Endpoint[]> {
+  if (session.known?.live) return Promise.resolve(session.known.endpoints);
+  const fallback = new Promise<Endpoint[]>(resolve => setTimeout(() => resolve(SYNCED.endpoints), wait));
+  return Promise.race([endpoints(session), fallback]);
 }
 
 /** Whether the service has an endpoint, going by its last answer or else the last sync. */
@@ -627,7 +636,7 @@ const VERDICTS: Record<string, (text: string) => ReactNode> = {
 
 async function plan(activity: string, place: string, ctx: Ctx): Promise<ReactNode> {
   const session = ctx.state.mood;
-  if (!(await endpoints(session)).some(endpoint => endpoint.name === 'activity')) {
+  if (!(await endpointsSoon(session)).some(endpoint => endpoint.name === 'activity')) {
     return (
       <>
         <Warn>the live service cannot judge plans yet.</Warn>{' '}
@@ -871,7 +880,7 @@ export async function mood(args: string[], ctx: Ctx): Promise<ReactNode> {
     void endpoints(session);
     return guide(session);
   }
-  const found = await endpoints(session);
+  const found = await endpointsSoon(session);
   if (words.length === 1 && SURPRISE.includes(words[0].toLowerCase())) return reading(elsewhere(session, 1)[0], ctx);
 
   const first = words[0].toLowerCase();
