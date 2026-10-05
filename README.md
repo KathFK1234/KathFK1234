@@ -93,7 +93,9 @@ flowchart TD
 | Area | What I work with |
 | --- | --- |
 | **Backend & systems** | Python · FastAPI · Django · Django REST Framework · PostgreSQL · SQL · authentication and business logic · API design |
+| **Frontend** | React · TypeScript · Vite · HTML · CSS · JavaScript · interfaces that explain themselves |
 | **Cloud & infrastructure** | AWS (Certified Cloud Practitioner) · Docker · Railway · Supabase · DigitalOcean · Linux · Git and GitHub workflows |
+| **Testing & delivery** | pytest · Vitest · GitHub Actions · automated checks before every deploy |
 | **AI & data** | LLM-powered applications · RAG systems · AI assistants · forecasting · data pipelines · human-AI interaction |
 | **Product & research** | User-centered design · systems thinking · behavioral analysis · research-driven problem solving |
 
@@ -127,7 +129,7 @@ pie title Share of code across my repositories
 
 ### MoodForecast AI
 
-Weather apps report conditions. This asks what those conditions mean for a person: live weather becomes a mood score, an energy level, and concrete recommendations.
+Weather apps report conditions. This asks what those conditions mean for a person: live weather becomes a mood score with the reasons behind it, a week-ahead outlook, and a verdict on whether the weather suits your plans.
 
 `Python` `FastAPI` `SQLModel` `Railway`
 
