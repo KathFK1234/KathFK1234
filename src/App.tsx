@@ -8,7 +8,7 @@ import { RunContext } from './shell/ui';
 
 type Entry =
   | { id: number; kind: 'echo'; path: string; question: boolean; text: string }
-  | { id: number; kind: 'out'; node: ReactNode };
+  | { id: number; kind: 'out'; node: ReactNode; from?: number };
 
 interface TabMenu {
   lines: string[];
@@ -62,8 +62,16 @@ export default function App() {
     });
   }, []);
 
-  const print = useCallback((node: ReactNode) => {
-    setEntries(current => [...current, { id: nextId++, kind: 'out', node }]);
+  // Output goes under the command that produced it, even if that command was slow
+  // (a network call) and the visitor has run others since.
+  const printUnder = useCallback((echoId: number, node: ReactNode) => {
+    setEntries(current => {
+      const entry: Entry = { id: nextId++, kind: 'out', node, from: echoId };
+      let at = current.findIndex(other => other.id === echoId);
+      if (at < 0) return [...current, entry];
+      while (at + 1 < current.length && current[at + 1].kind === 'out' && (current[at + 1] as { from?: number }).from === echoId) at++;
+      return [...current.slice(0, at + 1), entry, ...current.slice(at + 1)];
+    });
   }, []);
 
   const run = useCallback(
@@ -90,7 +98,7 @@ export default function App() {
 
       const ctx: Ctx = {
         state: shell,
-        print,
+        print: node => printUnder(echo.id, node),
         clear: () => setEntries([]),
         prefs: prefsRef.current,
         setPrefs,
@@ -100,7 +108,7 @@ export default function App() {
       // cwd and mode live on the mutable shell object; re-render the prompt.
       setEntries(current => [...current]);
     },
-    [print, setInput, setPrefs, shell],
+    [printUnder, setInput, setPrefs, shell],
   );
 
   // After each change, keep the newest command in view: scroll to the bottom,
