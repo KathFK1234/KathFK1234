@@ -54,8 +54,12 @@ export default function App() {
   const setInput = useCallback((next: string) => {
     setValue(next);
     setCaret(next.length);
-    // Keep the hidden input's own caret in step with the mirrored one.
-    requestAnimationFrame(() => inputRef.current?.setSelectionRange(next.length, next.length));
+    // Keep the hidden input's own caret in step with the mirrored one. Measured when the
+    // frame arrives, so a key pressed in between is not left stranded after the caret.
+    requestAnimationFrame(() => {
+      const input = inputRef.current;
+      input?.setSelectionRange(input.value.length, input.value.length);
+    });
   }, []);
 
   const print = useCallback((node: ReactNode) => {
