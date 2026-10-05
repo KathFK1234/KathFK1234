@@ -350,6 +350,9 @@ describe('completion', () => {
     expect(complete('theme a', []).lines).toEqual(['theme amber']);
     expect(complete('man fort', []).lines).toEqual(['man fortune']);
     expect(complete('open li', []).lines).toEqual(['open linkedin']);
+    expect(complete('mood rey', []).lines).toEqual(['mood reykjavik']);
+    expect(complete('mood nairobi v', []).lines).toContain('mood nairobi vs');
+    expect(complete('mood week ki', []).lines).toEqual(['mood week kigali']);
   });
 
   it('finds the shared prefix and a ghost suggestion', () => {

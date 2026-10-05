@@ -12,7 +12,7 @@ import {
   walk,
   type DirNode,
 } from './fs';
-import { createMoodSession, mood, type MoodSession } from './mood';
+import { createMoodSession, mood, MOOD_WORDS, type MoodSession } from './mood';
 import { Accent, Accent2, Cmd, Dim, Link, Rows, Warn } from './ui';
 
 export interface ShellState {
@@ -1205,8 +1205,9 @@ export const commands: Command[] = [
   {
     name: 'mood',
     summary: 'ask the live MoodForecast AI service how a place feels',
-    usage: 'mood <place>',
+    usage: 'mood <place> | week <place> | <place> vs <place>',
     group: 'fun',
+    completes: MOOD_WORDS,
     run: mood,
   },
   {

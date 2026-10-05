@@ -1,0 +1,21 @@
+{
+  "source": {
+    "repo": "KathFK1234/moodforecast_ai",
+    "ref": "default branch",
+    "api": "https://moodforecastai-production.up.railway.app"
+  },
+  "endpoints": [
+    {
+      "name": "forecast",
+      "about": "Get weather forecast for a location.",
+      "params": []
+    },
+    {
+      "name": "wellbeing",
+      "about": "Get mood and wellbeing score for a location.",
+      "params": []
+    }
+  ],
+  "places": {},
+  "activities": []
+}

@@ -1,18 +1,45 @@
 // The `mood` command: live calls to the MoodForecast AI service.
 import { Fragment, type ReactNode } from 'react';
+import synced from '../data/mood.json';
 import type { Ctx } from './commands';
 import { Accent, Cmd, Dim, Rows, Warn } from './ui';
 
 const MOOD_API = 'https://moodforecastai-production.up.railway.app';
 
-/* Places offered when the visitor has not named one, or might like another. */
-const PLACES = [
+/** One `GET /api/<name>/{location}` endpoint of the service. */
+interface Endpoint {
+  name: string;
+  about: string;
+  params: { name: string; required: boolean }[];
+}
+
+/* src/data/mood.json is rewritten from MoodForecast AI by mood_sync_script.py:
+   new endpoints, places and activities over there arrive here without a code change. */
+interface Synced {
+  endpoints: Endpoint[];
+  places: Record<string, string[]>;
+  activities: { name: string; category: string; aliases: string[] }[];
+}
+const SYNCED = synced as unknown as Synced;
+
+/* Places offered when the visitor has not named one, or might like another:
+   these, plus every place MoodForecast AI itself suggests. */
+const STARTER_PLACES = [
   'Nairobi', 'Mombasa', 'Kigali', 'Zanzibar', 'Cape Town', 'Cairo', 'Marrakech', 'Lisbon', 'Reykjavik',
   'Istanbul', 'Mumbai', 'Kathmandu', 'Singapore', 'Tokyo', 'Sydney', 'Honolulu', 'Vancouver', 'Mexico City',
   'Rio de Janeiro', 'Buenos Aires',
 ];
+const PLACES = [...new Set([...STARTER_PLACES, ...Object.values(SYNCED.places).flat()])];
 const SURPRISE = ['surprise', 'random', 'anywhere'];
 const BAR_WIDTH = 20;
+
+/** What Tab offers after `mood`. Places of more than one word are left to the visitor. */
+export const MOOD_WORDS: readonly string[] = [
+  'week',
+  'vs',
+  'surprise',
+  ...PLACES.filter(place => !place.includes(' ')).map(place => place.toLowerCase()),
+];
 
 /** What the visitor has looked up so far, so the suggestions keep moving. */
 export interface MoodSession {

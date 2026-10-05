@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
   schedule:
-    # Once a day, pick up languages and tools from new or changed repositories
+    # Once a day, pick up languages and tools from new or changed repositories,
+    # and anything new in MoodForecast AI for the terminal's mood command
     - cron: '17 3 * * *'
   workflow_dispatch:
 
@@ -54,6 +55,15 @@ jobs:
           OWNER: ${{ github.repository_owner }}
         run: python3 activity_card_script.py --username "$OWNER"
 
+      # Rewrites src/data/mood.json: the endpoints, places and activities the
+      # terminal's mood command knows about.
+      - name: Sync the mood command with MoodForecast AI
+        id: mood
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 mood_sync_script.py
+
       # Without this the failure above is silent and the README quietly goes stale.
       - name: Warn if detection failed
         if: steps.detect.outcome == 'failure'
@@ -67,6 +77,12 @@ jobs:
           echo "::warning title=Activity card was not updated::The card kept its last data. If STACK_TOKEN is set, check that it has not expired."
           git checkout -- assets/activity.svg
 
+      - name: Warn if the mood sync failed
+        if: steps.mood.outcome == 'failure'
+        run: |
+          echo "::warning title=The mood command was not updated::MoodForecast AI or GitHub did not answer, so the terminal kept the endpoints, places and activities it already knew."
+          git checkout -- src/data/mood.json
+
       # Not on pushes: a push changes this repo's own totals, and committing back
       # every time would leave the local clone permanently one commit behind.
       - name: Commit the update if anything changed
@@ -74,11 +90,11 @@ jobs:
         run: |
           git config user.name "Katheu Kilonzo"
           git config user.email "fkatheukilonzo@gmail.com"
-          git add README.md src/data/stack.json assets/activity.svg
+          git add README.md src/data/stack.json src/data/mood.json assets/activity.svg
           if git diff --cached --quiet; then
             echo "Nothing new."
           else
-            git commit -m "Update languages, tools and activity from GitHub"
+            git commit -m "Update languages, tools, activity and the mood command"
             # main may have moved while this ran
             git pull --rebase
             git push
