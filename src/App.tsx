@@ -107,7 +107,14 @@ export default function App() {
     const echo = lastEcho.current;
     const outputHeight = echo ? term.scrollHeight - echo.offsetTop : 0;
     term.scrollTop = echo && outputHeight > term.clientHeight ? echo.offsetTop - 12 : term.scrollHeight;
-  }, [entries, menu]);
+  }, [entries]);
+
+  // Tab suggestions appear under the prompt, so always show the bottom for them,
+  // even when the last output is long and the view was left at its first line.
+  useEffect(() => {
+    const term = termRef.current;
+    if (term && menu) term.scrollTop = term.scrollHeight;
+  }, [menu]);
 
   // Shareable links: ?cmd=projects runs a command on load.
   const ranDeepLink = useRef(false);
