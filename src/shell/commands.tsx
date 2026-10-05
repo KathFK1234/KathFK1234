@@ -498,7 +498,8 @@ export const commands: Command[] = [
         {'\n\n'}
         <Accent>Chema Backend</Accent> — an agricultural and data platform built to connect decision-support,
         operational information, and AI assistance in a way that is practical for real work rather than abstract
-        automation.{'\n\n'}
+        automation. <Dim>(source is private)</Dim>
+        {'\n\n'}
         <Dim>go deeper:</Dim> <Cmd>cd projects</Cmd> <Dim>then</Dim> <Cmd>ls</Cmd> <Dim>or</Dim> <Cmd>tree projects</Cmd>
       </>
     ),
