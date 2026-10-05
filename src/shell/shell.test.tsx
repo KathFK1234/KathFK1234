@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { DEFAULT_PREFS } from '../prefs';
 import { commandNames, commands, createShellState, execute, tokenize, type Ctx } from './commands';
 import { commonPrefix, complete, ghostFor } from './complete';
@@ -77,7 +77,7 @@ describe('commands', () => {
 
   it('runs every argument-free command without throwing', async () => {
     const { run } = shell();
-    for (const name of commandNames().filter(name => name !== 'mood')) {
+    for (const name of commandNames()) {
       const out = await run(name);
       expect(out, name).not.toMatch(/something went wrong/);
     }
@@ -187,6 +187,103 @@ describe('commands', () => {
 
   it('tokenizes quoted arguments', () => {
     expect(tokenize(`grep "two words" 'x y' z`)).toEqual(['grep', 'two words', 'x y', 'z']);
+  });
+});
+
+/** Stands in for the MoodForecast AI service: answers each path from `routes`, 404 otherwise. */
+function serve(routes: Record<string, unknown>) {
+  const calls: string[] = [];
+  vi.stubGlobal('fetch', async (url: string) => {
+    const path = decodeURIComponent(new URL(url).pathname + new URL(url).search);
+    calls.push(path);
+    const route = Object.keys(routes).find(key => key.toLowerCase() === path.toLowerCase());
+    if (!route) return new Response(JSON.stringify({ detail: 'Not Found' }), { status: 404 });
+    const body = routes[route];
+    return new Response(JSON.stringify(body), { status: typeof body === 'string' ? 422 : 200 });
+  });
+  return calls;
+}
+
+const NAIROBI = {
+  location: 'Nairobi, KE',
+  weather: { temp_c: 24.3, feels_like_c: 25.5, condition: 'Mainly Clear', humidity: 48, wind_kph: 9.1, is_day: true },
+  mood_score: 77,
+  mood_label: 'Upbeat',
+  baseline_score: 65,
+  factors: [
+    { label: 'Clear skies', delta: 15 },
+    { label: 'Warm air', delta: -3 },
+  ],
+  energy_level: 'High',
+  risk_level: 'Minimal',
+  ai_summary: 'Mainly clear and 24°C in Nairobi, KE.',
+  recommendations: ['Water the plants.'],
+};
+
+describe('mood', () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  it('asks for a place instead of assuming one', async () => {
+    const calls = serve({});
+    const { run } = shell();
+    const out = await run('mood');
+    expect(out).toMatch(/It needs a place/);
+    expect(out.match(/mood [a-z]/g)!.length).toBeGreaterThanOrEqual(5);
+    expect(calls).toEqual([]);
+  });
+
+  it('shows the score, the reasons behind it and the weather', async () => {
+    serve({ '/api/wellbeing/nairobi': NAIROBI });
+    const { run } = shell();
+    const out = await run('mood nairobi');
+    expect(out).toMatch(/Nairobi, KE/);
+    expect(out).toMatch(/77\/100 Upbeat/);
+    expect(out).toMatch(/baseline 65 · Clear skies \+15 · Warm air −3/);
+    expect(out).toMatch(/Mainly Clear, 24\.3°C, feels like 25\.5°C, humidity 48%, wind 9\.1 km\/h/);
+    expect(out).toMatch(/• Water the plants\./);
+  });
+
+  it('nudges towards places not looked up yet', async () => {
+    serve({ '/api/wellbeing/nairobi': NAIROBI });
+    const { ctx, run } = shell();
+    for (let i = 0; i < 10; i++) {
+      const suggested = (await run('mood nairobi')).split('where next?')[1];
+      expect(suggested).toMatch(/mood [a-z]/);
+      expect(suggested).not.toMatch(/mood nairobi/);
+    }
+    expect(ctx.state.mood.seen).toContain('Nairobi, KE');
+  });
+
+  it("uses the service's own questions when it sends them", async () => {
+    const curiosity = [{ question: 'Feeling the heat? See how chilly Nuuk is right now.', location: 'Nuuk' }];
+    serve({ '/api/wellbeing/nairobi': { ...NAIROBI, curiosity } });
+    const { run } = shell();
+    expect(await run('mood nairobi')).toMatch(/See how chilly Nuuk is right now\. mood nuuk/);
+  });
+
+  it('picks a place for the visitor', async () => {
+    const calls = serve({});
+    const { run } = shell();
+    await run('mood surprise');
+    expect(calls[0]).toMatch(/^\/api\/wellbeing\/[A-Z]/);
+  });
+
+  it('keeps multi-word places together', async () => {
+    const calls = serve({ '/api/wellbeing/cape town': { ...NAIROBI, location: 'Cape Town, ZA' } });
+    const { run } = shell();
+    expect(await run('mood cape town')).toMatch(/Cape Town, ZA/);
+    expect(calls).toEqual(['/api/wellbeing/cape town']);
+  });
+
+  it('explains an unknown place, a failing service and no connection', async () => {
+    serve({ '/api/wellbeing/atlantis': "Location 'atlantis' not found" });
+    const { run } = shell();
+    expect(await run('mood atlantis')).toMatch(/could not find a place called “atlantis”.*mood [a-z]/s);
+    expect(await run('mood nairobi')).toMatch(/service is up.*HTTP 404/s);
+    vi.stubGlobal('fetch', async () => {
+      throw new TypeError('fetch failed');
+    });
+    expect(await run('mood nairobi')).toMatch(/could not reach the MoodForecast AI service/);
   });
 });
 

@@ -12,7 +12,7 @@ import {
   walk,
   type DirNode,
 } from './fs';
-import { mood } from './mood';
+import { createMoodSession, mood, type MoodSession } from './mood';
 import { Accent, Accent2, Cmd, Dim, Link, Rows, Warn } from './ui';
 
 export interface ShellState {
@@ -21,6 +21,7 @@ export interface ShellState {
   history: string[];
   mode: 'whoami' | null;
   startedAt: number;
+  mood: MoodSession;
 }
 
 export interface Ctx {
@@ -89,7 +90,7 @@ function skillRows(): [string, string[]][] {
 }
 
 export function createShellState(history: string[] = []): ShellState {
-  return { cwd: [], prevCwd: [], history, mode: null, startedAt: Date.now() };
+  return { cwd: [], prevCwd: [], history, mode: null, startedAt: Date.now(), mood: createMoodSession() };
 }
 
 /* ---------- rendering helpers ---------- */
@@ -1203,8 +1204,8 @@ export const commands: Command[] = [
   },
   {
     name: 'mood',
-    summary: 'ask the live MoodForecast AI service about a city',
-    usage: 'mood [city]',
+    summary: 'ask the live MoodForecast AI service how a place feels',
+    usage: 'mood <place>',
     group: 'fun',
     run: mood,
   },
@@ -1386,7 +1387,7 @@ function whoamiAnswer(answer: string): ReactNode {
       I like curious people. This should feel a little like a playful system, but it still points to real work.
       {'\n\n'}
       Try any of these: <Cmd>fortune</Cmd> <Cmd>thinking</Cmd> <Cmd>psychology</Cmd> <Cmd>tree</Cmd>{' '}
-      <Cmd>mood nairobi</Cmd> <Cmd>theme</Cmd>{'\n\n'}
+      <Cmd>mood surprise</Cmd> <Cmd>theme</Cmd>{'\n\n'}
       The interface rewards curiosity more than certainty.
     </>
   );
