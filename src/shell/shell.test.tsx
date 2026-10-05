@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { DEFAULT_PREFS } from '../prefs';
 import { commandNames, commands, createShellState, execute, tokenize, type Ctx } from './commands';
 import { commonPrefix, complete, ghostFor } from './complete';
+import { readEndpoints } from './mood';
 import { buildTree, describe as describeNode, displayPath, getNode, resolvePath, root, walk } from './fs';
 
 function shell() {
@@ -190,12 +191,13 @@ describe('commands', () => {
   });
 });
 
-/** Stands in for the MoodForecast AI service: answers each path from `routes`, 404 otherwise. */
+/** Stands in for the MoodForecast AI service: answers each path from `routes`, 404 otherwise.
+ *  Returns the paths asked for, leaving out the look at what the service offers. */
 function serve(routes: Record<string, unknown>) {
   const calls: string[] = [];
   vi.stubGlobal('fetch', async (url: string) => {
     const path = decodeURIComponent(new URL(url).pathname + new URL(url).search);
-    calls.push(path);
+    if (path !== '/openapi.json') calls.push(path);
     const route = Object.keys(routes).find(key => key.toLowerCase() === path.toLowerCase());
     if (!route) return new Response(JSON.stringify({ detail: 'Not Found' }), { status: 404 });
     const body = routes[route];
@@ -314,6 +316,66 @@ describe('mood', () => {
     expect(await run('mood tokyo vs tokyo')).toMatch(/A tie: both sit at 58\. Same temperature, too\./);
     expect(await run('mood nairobi vs atlantis')).toMatch(/“atlantis”/);
     expect(await run('mood nairobi vs')).toMatch(/takes two places.*mood nairobi vs [a-z]/s);
+  });
+
+  it('lists what the service offers and uses endpoints it was never told about', async () => {
+    const location = { name: 'location', in: 'path', required: true };
+    const openapi = {
+      paths: {
+        '/api/wellbeing/{location}': { get: { description: 'Get mood and wellbeing score for a location.\n\nMore.' } },
+        '/api/sleep/{location}': {
+          get: {
+            summary: 'Get Sleep',
+            description: 'How well the night suits sleep.',
+            parameters: [location, { name: 'hours', in: 'query', required: true }],
+          },
+        },
+        '/api/subscribe': { post: {} },
+        '/health': { get: {} },
+      },
+    };
+    expect(readEndpoints(openapi).map(endpoint => endpoint.name)).toEqual(['sleep', 'wellbeing']);
+
+    const sleep = {
+      location: 'Kigali, RW',
+      sleep_score: 81,
+      cool_enough: true,
+      tips: ['Open a window.'],
+      best_window: { from: '22:00', to: '06:00' },
+    };
+    const calls = serve({ '/openapi.json': openapi, '/api/sleep/kigali?hours=8': sleep });
+    const { run } = shell();
+
+    const listed = await run('mood api');
+    expect(listed).toMatch(/what the live service offers right now/);
+    expect(listed).toMatch(/mood &lt;place&gt;.*Get mood and wellbeing score for a location\./s);
+    expect(listed).toMatch(/mood sleep &lt;place&gt; hours=&lt;hours&gt;.*How well the night suits sleep\..*picked up on its own/s);
+    expect(listed).not.toMatch(/subscribe|health/);
+
+    const out = await run('mood sleep kigali hours=8');
+    expect(calls).toEqual(['/api/sleep/kigali?hours=8']);
+    expect(out).toMatch(/Kigali, RW.*sleep score.*81.*cool enough.*yes.*tips.*Open a window\..*best window.*from 22:00 · to 06:00/s);
+    expect(out).toMatch(/mood sleep [a-z]/);
+    expect(await run('mood sleep kigali')).toMatch(/usage: mood sleep &lt;place&gt; hours=&lt;hours&gt;/);
+    // Once the service has been asked, the guide lists the new endpoint too.
+    expect(await run('mood')).toMatch(/mood sleep &lt;place&gt;/);
+  });
+
+  it('shows fields the service has added since', async () => {
+    serve({ '/api/wellbeing/nairobi': { ...NAIROBI, air_quality: 'Good', pollen: { grass: 'low' } } });
+    const { run } = shell();
+    const out = await run('mood nairobi');
+    expect(out).toMatch(/also new from the service:.*air quality.*Good.*pollen.*grass low/s);
+    serve({ '/api/wellbeing/nairobi': NAIROBI });
+    expect(await run('mood nairobi')).not.toMatch(/also new/);
+  });
+
+  it('falls back to the last sync when the service will not say what it offers', async () => {
+    serve({});
+    const { run } = shell();
+    const listed = await run('mood api');
+    expect(listed).toMatch(/did not answer/);
+    expect(listed).toMatch(/mood week &lt;place&gt;/);
   });
 
   it('explains an unknown place, a failing service and no connection', async () => {
