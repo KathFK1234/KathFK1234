@@ -160,6 +160,26 @@ describe('commands', () => {
     expect(await run('tree projects')).toMatch(/\d+ directories, \d+ files/);
   });
 
+  it('handles flags, quotes and things a real shell would do differently', async () => {
+    const { run } = shell();
+    expect(await run('head -n 0 README.md')).toBe('');
+    const dirs = await run('find . -type d');
+    expect(dirs).toMatch(/\.\/projects\/moodforecast-ai\n/);
+    expect(dirs).not.toMatch(/README\.md/);
+    expect(await run('find . -type f -name "*.json"')).toBe('./projects/moodforecast-ai/data/sample-response.json\n');
+    expect(await run('echo "a  b" $USER \'c\'')).toBe('a  b visitor c');
+    expect(await run('open projects')).toMatch(/projects is a directory.*cd projects.*ls projects/s);
+    expect(await run('crt maybe')).toMatch(/either on or off/);
+    expect(await run('ls | wc')).toMatch(/pipes, redirects and chains.*ls/s);
+    expect(await run('ls; pwd')).toMatch(/one command at a time/);
+    expect(await run('cat README.md > x')).toMatch(/pipes, redirects/);
+    // Suggestions only when most of the word matched.
+    expect(await run(';x')).not.toMatch(/did you mean/);
+    expect(await run('!!')).not.toMatch(/did you mean/);
+    expect(await run('projcts')).toMatch(/did you mean projects/);
+    expect(await run('sl')).not.toMatch(/did you mean/);
+  });
+
   it('hides dotfiles unless asked', async () => {
     const { run } = shell();
     expect(await run('ls')).not.toMatch(/\.secrets/);

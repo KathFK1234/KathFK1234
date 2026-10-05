@@ -257,7 +257,10 @@ function lineCount(args: string[]): { count: number; operands: string[] } {
   const operands: string[] = [];
   let count = 10;
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '-n' && args[i + 1]) count = Number(args[++i]) || 10;
+    if (args[i] === '-n' && args[i + 1]) {
+      const asked = Number(args[++i]);
+      count = Number.isInteger(asked) && asked >= 0 ? asked : 10;
+    }
     else if (/^-\d+$/.test(args[i])) count = Number(args[i].slice(1));
     else operands.push(args[i]);
   }
@@ -741,6 +744,7 @@ export const commands: Command[] = [
       }
       const result = readFile('head', ctx.state.cwd, operands[0]);
       if (!isFile(result)) return result;
+      if (!count) return;
       return <FileText name={result.name} text={result.text.split('\n').slice(0, count).join('\n')} />;
     },
   },
@@ -762,6 +766,7 @@ export const commands: Command[] = [
       }
       const result = readFile('tail', ctx.state.cwd, operands[0]);
       if (!isFile(result)) return result;
+      if (!count) return;
       return <FileText name={result.name} text={result.text.replace(/\n$/, '').split('\n').slice(-count).join('\n')} />;
     },
   },
@@ -855,12 +860,19 @@ export const commands: Command[] = [
   {
     name: 'find',
     summary: 'find a file or folder by name',
-    usage: 'find [name]',
+    usage: 'find [name] [-type d|f]',
     group: 'files',
     run: (args, ctx) => {
-      const operands = args.filter(arg => !arg.startsWith('-') && arg !== '.');
+      let kind: 'dir' | 'file' | null = null;
+      const operands: string[] = [];
+      for (let i = 0; i < args.length; i++) {
+        if (args[i] === '-type') kind = { d: 'dir' as const, f: 'file' as const }[args[++i]] ?? null;
+        else if (!args[i].startsWith('-') && args[i] !== '.') operands.push(args[i]);
+      }
       const query = (operands[operands.length - 1] ?? '').replace(/\*/g, '').toLowerCase();
-      const matches = walk(ctx.state.cwd).filter(entry => entry.node.name.toLowerCase().includes(query));
+      const matches = walk(ctx.state.cwd).filter(
+        entry => entry.node.name.toLowerCase().includes(query) && (!kind || entry.node.type === kind),
+      );
       if (!matches.length) return <Dim>find: no paths matched “{query}”.</Dim>;
       return matches.map(({ node, segments }) => (
         <Fragment key={segments.join('/')}>
@@ -947,6 +959,14 @@ export const commands: Command[] = [
       const segments = target ? resolvePath(ctx.state.cwd, args[0]) : null;
       const node = segments && getNode(segments);
       if (node?.type === 'file') return <FileText name={node.name} text={node.content} />;
+      if (node?.type === 'dir') {
+        return (
+          <>
+            <Warn>open: {args[0]} is a directory.</Warn> <Dim>step inside with</Dim> <Cmd>{`cd ${args[0]}`}</Cmd>{' '}
+            <Dim>or look from here with</Dim> <Cmd>{`ls ${args[0]}`}</Cmd>
+          </>
+        );
+      }
       return (
         <>
           <Warn>open: unknown target</Warn>{'\n'}
@@ -1176,7 +1196,15 @@ export const commands: Command[] = [
     group: 'system',
     completes: ['on', 'off'],
     run: (args, ctx) => {
-      const on = args[0] ? args[0].toLowerCase() === 'on' : !ctx.prefs.crt;
+      const asked = args[0]?.toLowerCase();
+      if (asked && asked !== 'on' && asked !== 'off') {
+        return (
+          <>
+            <Warn>crt: it is either on or off.</Warn> <Cmd>crt on</Cmd> <Cmd>crt off</Cmd>
+          </>
+        );
+      }
+      const on = asked ? asked === 'on' : !ctx.prefs.crt;
       ctx.setPrefs({ crt: on });
       return on ? <>scanlines <Accent>on</Accent>. <Dim>please do not degauss the visitor.</Dim></> : <>scanlines <Accent>off</Accent>.</>;
     },
@@ -1228,10 +1256,11 @@ export const commands: Command[] = [
     summary: 'make the terminal repeat you',
     usage: 'echo [text]',
     group: 'system',
-    run: (_args, ctx, rest) => {
-      if (!rest) return 'echo: you said nothing, but somehow it was profound.';
+    run: (args, ctx) => {
+      if (!args.length) return 'echo: you said nothing, but somehow it was profound.';
       const env = environment(ctx);
-      return rest.replace(/^(["'])(.*)\1$/, '$2').replace(/\$([A-Z_]+)/g, (whole, name: string) => env[name] ?? whole);
+      // The arguments arrive with their quotes already taken off, as a shell would hand them over.
+      return args.join(' ').replace(/\$([A-Z_]+)/g, (whole, name: string) => env[name] ?? whole);
     },
   },
   {
@@ -1489,6 +1518,7 @@ const MAN_NOTES: Record<string, string> = {
   top: 'curiosity has been the top process since boot.',
 };
 
+const SHELL_OPERATORS = new Set(['|', '||', '&&', ';', '>', '>>', '<', '&']);
 const SHORTCUTS: Record<string, string> = { ll: 'ls -l', la: 'ls -a', '..': 'cd ..', '~': 'cd ~' };
 
 export function findCommand(name: string): Command | undefined {
@@ -1555,7 +1585,9 @@ function closestCommand(name: string): string | undefined {
   const closest = names
     .map(candidate => ({ candidate, distance: editDistance(name, candidate) }))
     .sort((a, b) => a.distance - b.distance)[0];
-  return closest && closest.distance <= 2 ? closest.candidate : undefined;
+  // A one- or two-character slip is only a slip if most of the word survived it.
+  const near = closest && closest.distance <= 2 && closest.distance <= Math.max(name.length, closest.candidate.length) / 2;
+  return near ? closest.candidate : undefined;
 }
 
 function unknownCommand(name: string): ReactNode {
@@ -1599,6 +1631,16 @@ export async function execute(line: string, ctx: Ctx): Promise<void> {
 
   const expanded = SHORTCUTS[trimmed.toLowerCase()] ?? trimmed;
   const [name, ...args] = tokenize(expanded);
+  if ([name, ...args].some(word => SHELL_OPERATORS.has(word)) || /;$/.test(name)) {
+    ctx.print(
+      <>
+        <Warn>ksh: pipes, redirects and chains are not wired up in this universe.</Warn>{'\n'}
+        <Dim>one command at a time. it is more mindful that way. start with</Dim>{' '}
+        <Cmd>{name.replace(/;$/, '')}</Cmd>
+      </>,
+    );
+    return;
+  }
   const command = findCommand(name.toLowerCase());
   if (!command) {
     ctx.print(unknownCommand(name));
