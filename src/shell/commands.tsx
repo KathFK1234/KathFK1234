@@ -543,7 +543,7 @@ export const commands: Command[] = [
         {'  Software Engineer + School Lead Educator\n'}
         {'  AWS Certified Cloud Practitioner\n'}
         {'  BA Psychology\n'}
-        {'  Python · FastAPI · Django · PostgreSQL · Docker · Git · Linux\n\n'}
+        {'  Python · FastAPI · Django · PostgreSQL · React · TypeScript · Docker · Git · Linux\n\n'}
         {'  '}
         <Link href={LINKS.linkedin}>linkedin profile</Link>
         {'\n  '}
@@ -1542,6 +1542,7 @@ function whoamiAnswer(answer: string): ReactNode {
         {'\n\n'}
         {'Key strengths:\n'}
         {'  • Python, FastAPI, Django, REST APIs\n'}
+        {'  • React and TypeScript frontends\n'}
         {'  • practical AI workflows and product thinking\n'}
         {'  • human-centered design informed by psychology\n\n'}
         {'Featured work:\n'}
