@@ -4,27 +4,27 @@
   "languages": [
     {
       "name": "Python",
-      "bytes": 776244,
+      "bytes": 781287,
       "repos": 11
     },
     {
       "name": "TypeScript",
-      "bytes": 464623,
+      "bytes": 476541,
       "repos": 2
     },
     {
       "name": "HTML",
-      "bytes": 100310,
+      "bytes": 99542,
       "repos": 10
     },
     {
       "name": "JavaScript",
-      "bytes": 83082,
+      "bytes": 82964,
       "repos": 5
     },
     {
       "name": "CSS",
-      "bytes": 82610,
+      "bytes": 82912,
       "repos": 7
     },
     {
@@ -34,7 +34,7 @@
     },
     {
       "name": "Shell",
-      "bytes": 20283,
+      "bytes": 21793,
       "repos": 9
     },
     {
