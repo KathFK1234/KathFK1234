@@ -586,23 +586,22 @@ async function week(place: string, ctx: Ctx): Promise<ReactNode> {
   return (
     <>
       <Accent>{data.location}</Accent> <Dim>— the week ahead, scored day by day</Dim>{'\n'}
-      <div className="rows rows-3">
-        {data.daily.map(day => {
+      <Rows
+        rows={data.daily.map(day => {
           const rain = day.precipitation_chance;
-          return (
-            <Fragment key={day.date}>
-              <span>{dayName(day.date)}</span>
-              <span>
-                <Bar score={day.mood_score} /> {day.mood_score} {day.mood_label}
-              </span>
+          // One cell, so on a narrow screen the details wrap under the bar instead of squeezing beside it.
+          return [
+            dayName(day.date),
+            <>
+              <Bar score={day.mood_score} /> {`${day.mood_score} ${day.mood_label}`.padEnd(11)}{' '}
               <Dim>
                 {day.condition}, {Math.round(day.temp_min_c)}–{Math.round(day.temp_max_c)}°C
                 {rain != null ? `, rain ${Math.round(rain)}%` : ''}
               </Dim>
-            </Fragment>
-          );
+            </>,
+          ];
         })}
-      </div>
+      />
       {'\n'}
       best day: <Accent>{dayName(best.date)}</Accent> ({best.mood_score}, {best.mood_label})
       {today.sunrise && today.sunset ? <Dim>{`  ·  daylight today ${today.sunrise}–${today.sunset}`}</Dim> : null}
