@@ -276,8 +276,9 @@ The **On GitHub** card is redrawn by the same daily run: [activity_card_script.p
 
 **The `mood` command keeps up with MoodForecast AI.** Nothing about that service is written into the terminal by hand more than once:
 
-- Each visit, `mood` first asks the live service what it offers (its OpenAPI description). Every `GET /api/<name>/{location}` endpoint is usable at once as `mood <name> <place>`, and any field a response gains is shown, even before the terminal has a tailored view for it. `mood api` lists what it found.
-- The daily run also executes [mood_sync_script.py](mood_sync_script.py), which reads the endpoints plus the place lists and activities in the [moodforecast_ai](https://github.com/KathFK1234/moodforecast_ai) repository and writes [src/data/mood.json](src/data/mood.json). The terminal uses it for suggestions ("where next?"), Tab completion, and as a fallback when the service does not answer.
+- Each visit, `mood` first asks the live service what it offers (its OpenAPI description). Every `GET /api/<name>/{location}` endpoint is usable at once as `mood <name> <place>`, every other `GET /api/<name>` as `mood <name>`, and any field a response gains is shown, even before the terminal has a tailored view for it. `mood api` lists what it found.
+- What the service says is passed on as it says it: its own error explanations, its questions about other places, its place suggestions when a name is mistyped, and its current list of activities (used for suggestions and Tab completion the same day one is added).
+- The daily run also executes [mood_sync_script.py](mood_sync_script.py), which reads the endpoints plus the place lists and activities in the [moodforecast_ai](https://github.com/KathFK1234/moodforecast_ai) repository and writes [src/data/mood.json](src/data/mood.json). The terminal uses it for suggestions ("where next?"), Tab completion, and as a fallback when the service does not answer. The same run rewrites the endpoint list visitors can read in the terminal (`cat ~/projects/moodforecast-ai/API.md`).
 
 To try MoodForecast AI changes that are not merged or deployed yet, run its backend locally and point both halves at it:
 
@@ -287,7 +288,7 @@ echo 'VITE_MOOD_API=http://localhost:8000' > .env.local                         
 npm run dev
 ```
 
-(`git checkout src/data/mood.json` puts the data file back afterwards.)
+(`git checkout src/data/mood.json content/home/projects/moodforecast-ai/API.md` puts the generated files back afterwards.)
 
 The daily run commits its changes to `main`, so `git pull` before starting new work.
 
