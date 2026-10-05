@@ -6,9 +6,34 @@
   },
   "endpoints": [
     {
+      "name": "activities",
+      "about": "The activities that are practical at a location, local favourites first.",
+      "params": []
+    },
+    {
+      "name": "activity",
+      "about": "Check whether an activity suits a location and its current weather.",
+      "params": [
+        {
+          "name": "activity",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "forecast",
       "about": "Get weather forecast for a location.",
       "params": []
+    },
+    {
+      "name": "random-activity",
+      "about": "Pick a random activity that suits a location and its current weather.",
+      "params": [
+        {
+          "name": "exclude",
+          "required": false
+        }
+      ]
     },
     {
       "name": "wellbeing",
@@ -16,6 +41,401 @@
       "params": []
     }
   ],
-  "places": {},
-  "activities": []
+  "places": {
+    "beach": [
+      "Mombasa",
+      "Zanzibar",
+      "Honolulu",
+      "Phuket",
+      "Rio de Janeiro",
+      "Malé"
+    ],
+    "cold": [
+      "Reykjavik",
+      "Tromsø",
+      "Ushuaia",
+      "Nuuk",
+      "Ulaanbaatar",
+      "Anchorage"
+    ],
+    "dark_sky": [
+      "San Pedro de Atacama",
+      "Windhoek",
+      "Alice Springs",
+      "Marrakech",
+      "Flagstaff",
+      "Lake Tekapo"
+    ],
+    "dry": [
+      "Cairo",
+      "Marrakech",
+      "Windhoek",
+      "Lima",
+      "Phoenix",
+      "Alice Springs"
+    ],
+    "snow": [
+      "Zermatt",
+      "Tromsø",
+      "Sapporo",
+      "Banff",
+      "Queenstown",
+      "Innsbruck"
+    ],
+    "warm": [
+      "Mombasa",
+      "Zanzibar",
+      "Bangkok",
+      "Dubai",
+      "Honolulu",
+      "Cartagena"
+    ],
+    "wet": [
+      "Bergen",
+      "Mumbai",
+      "Singapore",
+      "Bogotá",
+      "Hilo",
+      "Kuala Lumpur"
+    ],
+    "windy": [
+      "Wellington",
+      "Cape Town",
+      "Chicago",
+      "Tarifa",
+      "Punta Arenas",
+      "Edinburgh"
+    ],
+    "world": [
+      "Reykjavik",
+      "Tokyo",
+      "Cape Town",
+      "Rio de Janeiro",
+      "Marrakech",
+      "Sydney",
+      "Vancouver",
+      "Mumbai",
+      "Lisbon",
+      "Kigali",
+      "Buenos Aires",
+      "Singapore",
+      "Cairo",
+      "Zanzibar",
+      "Kathmandu",
+      "Honolulu",
+      "Istanbul",
+      "Mexico City"
+    ]
+  },
+  "activities": [
+    {
+      "name": "running",
+      "category": "active",
+      "aliases": [
+        "run",
+        "running",
+        "jog",
+        "jogging"
+      ]
+    },
+    {
+      "name": "a walk",
+      "category": "active",
+      "aliases": [
+        "walk",
+        "walking",
+        "stroll"
+      ]
+    },
+    {
+      "name": "cycling",
+      "category": "active",
+      "aliases": [
+        "cycle",
+        "cycling",
+        "bike",
+        "biking"
+      ]
+    },
+    {
+      "name": "hiking",
+      "category": "active",
+      "aliases": [
+        "hike",
+        "hiking",
+        "trek",
+        "trekking"
+      ]
+    },
+    {
+      "name": "football",
+      "category": "active",
+      "aliases": [
+        "football",
+        "soccer"
+      ]
+    },
+    {
+      "name": "basketball",
+      "category": "active",
+      "aliases": [
+        "basketball",
+        "hoops"
+      ]
+    },
+    {
+      "name": "tennis",
+      "category": "active",
+      "aliases": [
+        "tennis",
+        "padel"
+      ]
+    },
+    {
+      "name": "cricket",
+      "category": "active",
+      "aliases": [
+        "cricket"
+      ]
+    },
+    {
+      "name": "baseball",
+      "category": "active",
+      "aliases": [
+        "baseball",
+        "softball"
+      ]
+    },
+    {
+      "name": "rugby",
+      "category": "active",
+      "aliases": [
+        "rugby"
+      ]
+    },
+    {
+      "name": "golf",
+      "category": "leisure",
+      "aliases": [
+        "golf"
+      ]
+    },
+    {
+      "name": "a picnic",
+      "category": "leisure",
+      "aliases": [
+        "picnic"
+      ]
+    },
+    {
+      "name": "a barbecue",
+      "category": "leisure",
+      "aliases": [
+        "barbecue",
+        "bbq",
+        "braai",
+        "nyama choma",
+        "asado",
+        "cookout",
+        "grill"
+      ]
+    },
+    {
+      "name": "gardening",
+      "category": "leisure",
+      "aliases": [
+        "garden",
+        "gardening",
+        "planting"
+      ]
+    },
+    {
+      "name": "photography",
+      "category": "leisure",
+      "aliases": [
+        "photo",
+        "photos",
+        "photography",
+        "photograph"
+      ]
+    },
+    {
+      "name": "fishing",
+      "category": "leisure",
+      "aliases": [
+        "fish",
+        "fishing"
+      ]
+    },
+    {
+      "name": "camping",
+      "category": "leisure",
+      "aliases": [
+        "camp",
+        "camping"
+      ]
+    },
+    {
+      "name": "swimming",
+      "category": "water",
+      "aliases": [
+        "swim",
+        "swimming",
+        "pool"
+      ]
+    },
+    {
+      "name": "a beach day",
+      "category": "water",
+      "aliases": [
+        "beach",
+        "seaside",
+        "sunbathe",
+        "sunbathing"
+      ]
+    },
+    {
+      "name": "surfing",
+      "category": "water",
+      "aliases": [
+        "surf",
+        "surfing",
+        "bodyboard",
+        "bodyboarding"
+      ]
+    },
+    {
+      "name": "snorkelling",
+      "category": "water",
+      "aliases": [
+        "snorkel",
+        "snorkelling",
+        "snorkeling",
+        "scuba",
+        "diving"
+      ]
+    },
+    {
+      "name": "snow sports",
+      "category": "snow",
+      "aliases": [
+        "ski",
+        "skiing",
+        "snowboard",
+        "snowboarding",
+        "sled",
+        "sledding",
+        "snowman",
+        "snowball"
+      ]
+    },
+    {
+      "name": "stargazing",
+      "category": "sky",
+      "aliases": [
+        "stargaze",
+        "stargazing",
+        "stars",
+        "astronomy",
+        "telescope",
+        "moon"
+      ]
+    },
+    {
+      "name": "kite flying",
+      "category": "wind",
+      "aliases": [
+        "kite",
+        "kites"
+      ]
+    },
+    {
+      "name": "sailing",
+      "category": "wind",
+      "aliases": [
+        "sail",
+        "sailing",
+        "windsurf",
+        "windsurfing",
+        "kitesurf",
+        "kitesurfing"
+      ]
+    },
+    {
+      "name": "reading",
+      "category": "indoor",
+      "aliases": [
+        "read",
+        "reading",
+        "book"
+      ]
+    },
+    {
+      "name": "a movie",
+      "category": "indoor",
+      "aliases": [
+        "movie",
+        "movies",
+        "film",
+        "cinema",
+        "series"
+      ]
+    },
+    {
+      "name": "cooking",
+      "category": "indoor",
+      "aliases": [
+        "cook",
+        "cooking",
+        "bake",
+        "baking"
+      ]
+    },
+    {
+      "name": "games",
+      "category": "indoor",
+      "aliases": [
+        "board game",
+        "board games",
+        "puzzle",
+        "cards",
+        "video game",
+        "gaming"
+      ]
+    },
+    {
+      "name": "an indoor workout",
+      "category": "indoor",
+      "aliases": [
+        "yoga",
+        "gym",
+        "workout",
+        "dance",
+        "dancing",
+        "pilates"
+      ]
+    },
+    {
+      "name": "an indoor outing",
+      "category": "indoor",
+      "aliases": [
+        "museum",
+        "gallery",
+        "library",
+        "shopping",
+        "mall",
+        "cafe",
+        "café",
+        "coffee"
+      ]
+    },
+    {
+      "name": "a nap",
+      "category": "indoor",
+      "aliases": [
+        "nap",
+        "sleep"
+      ]
+    }
+  ]
 }
