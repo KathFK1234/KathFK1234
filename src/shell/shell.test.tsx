@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { DEFAULT_PREFS } from '../prefs';
-import { commandNames, commands, createShellState, execute, tokenize, type Ctx } from './commands';
+import { commandNames, commands, createShellState, EXAMPLES, execute, tokenize, type Ctx } from './commands';
 import { commonPrefix, complete, ghostFor } from './complete';
 import { readEndpoints } from './mood';
 import { buildTree, describe as describeNode, displayPath, getNode, resolvePath, root, walk } from './fs';
@@ -84,6 +84,40 @@ describe('commands', () => {
     }
   });
 
+  it('answers every listed command with something, even with no arguments', async () => {
+    serve({});
+    // Clicking a name in `help` runs it bare, so none of them may come back empty.
+    for (const command of commands.filter(command => !command.hidden && command.name !== 'clear')) {
+      const { run } = shell();
+      expect((await run(command.name)).trim(), command.name).not.toBe('');
+    }
+    vi.unstubAllGlobals();
+  });
+
+  it('has a manual with working examples for every command', async () => {
+    serve({});
+    const { run } = shell();
+    expect(await run('man')).toMatch(/What manual page do you want\?.*man [a-z]+.*man man.*help/s);
+    expect(await run('man grpe')).toMatch(/No manual entry for grpe.*did you mean man grep\?/s);
+    expect(await run('man zzzzzz')).not.toMatch(/did you mean/);
+    expect(await run('man grep')).toMatch(/GREP\(1\).*NAME.*SYNOPSIS.*EXAMPLES.*grep psychology.*NOTES.*SEE ALSO.*man find/s);
+    expect(await run('man languages')).toMatch(/STACK\(1\).*ALIASES\s+languages/s);
+
+    for (const name of Object.keys(EXAMPLES)) expect(commandNames(), name).toContain(name);
+    const broken = /something went wrong|command not found|No such file|missing|unknown|usage:|No manual entry/;
+    for (const [name, examples] of Object.entries(EXAMPLES)) {
+      const manual = await run(`man ${name}`);
+      for (const example of examples) {
+        expect(manual, name).toContain(example.replace(/"/g, '&quot;'));
+        // Each from home, as a visitor clicking it would usually be.
+        const fresh = shell();
+        if (example === 'cd -' || example === 'cd ..') await fresh.run('cd projects');
+        expect(await fresh.run(example), example).not.toMatch(broken);
+      }
+    }
+    vi.unstubAllGlobals();
+  });
+
   it('navigates with cd and reports the right place', async () => {
     const { ctx, run } = shell();
     await run('cd projects/moodforecast-ai');
@@ -95,6 +129,7 @@ describe('commands', () => {
     expect(ctx.state.cwd).toEqual(['projects', 'moodforecast-ai']);
     await run('cd');
     expect(ctx.state.cwd).toEqual([]);
+    expect(await run('cd')).toMatch(/home, sweet home.*cd projects/s);
     expect(await run('cd ..')).toMatch(/already at home/);
   });
 

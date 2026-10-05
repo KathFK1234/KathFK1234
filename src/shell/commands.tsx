@@ -651,6 +651,21 @@ export const commands: Command[] = [
       const { state } = ctx;
       const target = args[0] ?? '~';
 
+      if (!args.length && state.cwd.length === 0) {
+        return (
+          <>
+            <Dim>home, sweet home. somewhere to go:</Dim>{' '}
+            {listDir(getNode([]) as DirNode)
+              .filter(node => node.type === 'dir')
+              .map(node => (
+                <Fragment key={node.name}>
+                  <Cmd>{`cd ${node.name}`}</Cmd>{' '}
+                </Fragment>
+              ))}
+          </>
+        );
+      }
+
       if (target === '-') {
         [state.cwd, state.prevCwd] = [state.prevCwd, state.cwd];
         return <Dim>{displayPath(state.cwd)}</Dim>;
@@ -737,7 +752,14 @@ export const commands: Command[] = [
     completes: 'paths',
     run: (args, ctx) => {
       const { count, operands } = lineCount(args);
-      if (!operands.length) return <Warn>tail: missing file operand</Warn>;
+      if (!operands.length) {
+        return (
+          <>
+            <Warn>tail: missing file operand</Warn>{'\n'}
+            <Dim>try</Dim> <Cmd>tail ~/contact.txt</Cmd>
+          </>
+        );
+      }
       const result = readFile('tail', ctx.state.cwd, operands[0]);
       if (!isFile(result)) return result;
       return <FileText name={result.name} text={result.text.replace(/\n$/, '').split('\n').slice(-count).join('\n')} />;
@@ -750,7 +772,14 @@ export const commands: Command[] = [
     group: 'files',
     completes: 'paths',
     run: (args, ctx) => {
-      if (!args.length) return <Warn>wc: missing file operand</Warn>;
+      if (!args.length) {
+        return (
+          <>
+            <Warn>wc: missing file operand</Warn>{'\n'}
+            <Dim>counting nothing gives nothing. try</Dim> <Cmd>wc ~/README.md</Cmd>
+          </>
+        );
+      }
       const result = readFile('wc', ctx.state.cwd, args[0]);
       if (!isFile(result)) return result;
       const lines = result.text.split('\n').length - 1;
@@ -959,22 +988,61 @@ export const commands: Command[] = [
   {
     name: 'man',
     summary: 'read the manual for a command',
-    usage: 'man command',
+    usage: 'man <command>',
     group: 'system',
     completes: 'commands',
     run: args => {
       const name = (args[0] ?? '').toLowerCase();
-      const command = findCommand(name);
-      if (!command) {
+      if (!name) {
+        const picks = commands
+          .filter(command => !command.hidden && EXAMPLES[command.name])
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 4);
         return (
           <>
-            <Warn>No manual entry for {name || 'nothing'}.</Warn>{'\n'}
-            <Dim>The documentation team is currently staring thoughtfully at the ceiling.</Dim>
+            What manual page do you want?{'\n'}
+            <Dim>every command has one, and every example in it can be clicked. a few to start with:</Dim>{'\n'}
+            {'  '}
+            {picks.map(command => (
+              <Fragment key={command.name}>
+                <Cmd>{`man ${command.name}`}</Cmd>{' '}
+              </Fragment>
+            ))}
+            <Cmd>man man</Cmd>
+            {'\n'}
+            <Dim>or see everything there is a manual for:</Dim> <Cmd>help</Cmd>
           </>
         );
       }
+
+      const command = findCommand(name);
+      if (!command) {
+        const closest = closestCommand(name);
+        return (
+          <>
+            <Warn>No manual entry for {name}.</Warn>{'\n'}
+            <Dim>The documentation team is currently staring thoughtfully at the ceiling.</Dim>
+            {closest ? (
+              <>
+                {'\n'}
+                <Dim>did you mean</Dim> <Cmd>{`man ${closest}`}</Cmd>
+                <Dim>?</Dim>
+              </>
+            ) : null}
+          </>
+        );
+      }
+
+      // Its neighbours in `help`, so one manual leads to the next.
+      const group = commands.filter(other => other.group === command.group && !other.hidden);
+      const at = group.findIndex(other => other.name === command.name);
+      const seeAlso = [1, 2, 3]
+        .map(step => group[(at + step) % group.length])
+        .filter((other, index, all) => other && other.name !== command.name && all.indexOf(other) === index);
+      const note = MAN_NOTES[command.name];
       return (
         <>
+          <Dim>{`${command.name.toUpperCase()}(1)        Katheu Shell Manual`}</Dim>{'\n\n'}
           <Accent>NAME</Accent>{'\n'}
           {`    ${command.name} — ${command.summary}\n\n`}
           <Accent>SYNOPSIS</Accent>{'\n'}
@@ -984,6 +1052,34 @@ export const commands: Command[] = [
               {'\n'}
               <Accent>ALIASES</Accent>{'\n'}
               {`    ${command.aliases.join(', ')}\n`}
+            </>
+          ) : null}
+          {'\n'}
+          <Accent>EXAMPLES</Accent> <Dim>(click one to run it)</Dim>{'\n'}
+          {(EXAMPLES[command.name] ?? [command.name]).map(example => (
+            <Fragment key={example}>
+              {'    '}
+              <Cmd>{example}</Cmd>
+              {'\n'}
+            </Fragment>
+          ))}
+          {note ? (
+            <>
+              {'\n'}
+              <Accent>NOTES</Accent>{'\n'}
+              {`    ${note}\n`}
+            </>
+          ) : null}
+          {seeAlso.length ? (
+            <>
+              {'\n'}
+              <Accent>SEE ALSO</Accent>{'\n'}
+              {'    '}
+              {seeAlso.map(other => (
+                <Fragment key={other.name}>
+                  <Cmd>{`man ${other.name}`}</Cmd>{' '}
+                </Fragment>
+              ))}
             </>
           ) : null}
         </>
@@ -1156,8 +1252,15 @@ export const commands: Command[] = [
     hidden: true,
     completes: 'commands',
     run: args => {
-      const command = findCommand((args[0] ?? '').toLowerCase());
-      return command ? `/usr/bin/${command.name}` : <Warn>which: no {args[0] ?? 'command'} in PATH</Warn>;
+      if (!args.length) {
+        return (
+          <>
+            <Warn>which: which what?</Warn> <Dim>try</Dim> <Cmd>which mood</Cmd>
+          </>
+        );
+      }
+      const command = findCommand(args[0].toLowerCase());
+      return command ? `/usr/bin/${command.name}` : <Warn>which: no {args[0]} in PATH</Warn>;
     },
   },
   {
@@ -1334,6 +1437,49 @@ export const commands: Command[] = [
   ),
 ];
 
+/* Shown by `man`, each one clickable. A test runs every line, so they stay true. */
+export const EXAMPLES: Record<string, string[]> = {
+  ls: ['ls -l', 'ls -a', 'ls projects'],
+  cd: ['cd projects', 'cd projects/moodforecast-ai', 'cd ..', 'cd -'],
+  cat: ['cat README.md', 'cat contact.txt', 'cat projects/moodforecast-ai/README.md'],
+  head: ['head README.md', 'head -n 3 contact.txt'],
+  tail: ['tail contact.txt', 'tail -n 2 README.md'],
+  wc: ['wc README.md'],
+  grep: ['grep psychology', 'grep friction notes'],
+  find: ['find mood', 'find . -name "*.py"'],
+  tree: ['tree projects', 'tree -L 1'],
+  open: ['open github', 'open linkedin', 'open moodforecast'],
+  man: ['man mood', 'man grep', 'man man'],
+  history: ['history', 'history -c'],
+  theme: ['theme', 'theme amber', 'theme matrix', 'theme paper'],
+  font: ['font', 'font vt323', 'font jetbrains'],
+  crt: ['crt on', 'crt off'],
+  uname: ['uname', 'uname -a'],
+  echo: ['echo hello $USER'],
+  which: ['which mood'],
+  mood: ['mood', 'mood nairobi', 'mood week tokyo', 'mood nairobi vs reykjavik', 'mood surprise', 'mood api'],
+  git: ['git status', 'git log'],
+  sudo: ['sudo hire-me'],
+  ping: ['ping katheu'],
+};
+
+const MAN_NOTES: Record<string, string> = {
+  man: 'the manual for the manual. it is manuals all the way down.',
+  cd: 'you cannot leave home. this is a feature, and also a metaphor.',
+  cat: 'run it with no file at all. go on.',
+  grep: 'searches what the files say, not just what they are called. that is find.',
+  mood: 'the numbers are real: every reading is a live call to a service I built. try a place you have never been.',
+  sudo: 'there is exactly one thing you are allowed to do as root here.',
+  coffee: 'known issue. will not fix.',
+  vim: 'no visitor has ever needed the exit instructions.',
+  exit: 'see also: closing the tab. but why would you.',
+  fortune: 'run it twice. it rarely repeats itself; neither should a good engineer.',
+  history: 'your own trail through this place. ↑ and ↓ walk it too.',
+  theme: 'paper is the only one that works in direct sunlight.',
+  whoami: 'answers with a question, like a psychologist would.',
+  top: 'curiosity has been the top process since boot.',
+};
+
 const SHORTCUTS: Record<string, string> = { ll: 'ls -l', la: 'ls -a', '..': 'cd ..', '~': 'cd ~' };
 
 export function findCommand(name: string): Command | undefined {
@@ -1394,11 +1540,17 @@ function whoamiAnswer(answer: string): ReactNode {
   );
 }
 
-function unknownCommand(name: string): ReactNode {
+/** The command or alias within two edits of what was typed, for "did you mean". */
+function closestCommand(name: string): string | undefined {
   const names = commands.flatMap(command => [command.name, ...(command.aliases ?? [])]);
   const closest = names
     .map(candidate => ({ candidate, distance: editDistance(name, candidate) }))
     .sort((a, b) => a.distance - b.distance)[0];
+  return closest && closest.distance <= 2 ? closest.candidate : undefined;
+}
+
+function unknownCommand(name: string): ReactNode {
+  const closest = closestCommand(name);
   const hints = [
     'this interface rewards curiosity more than precision.',
     'even good explorers need a map sometimes.',
@@ -1407,9 +1559,9 @@ function unknownCommand(name: string): ReactNode {
   return (
     <>
       <Warn>ksh: command not found: {name}</Warn>{'\n'}
-      {closest && closest.distance <= 2 ? (
+      {closest ? (
         <>
-          <Dim>did you mean</Dim> <Cmd>{closest.candidate}</Cmd><Dim>?</Dim>
+          <Dim>did you mean</Dim> <Cmd>{closest}</Cmd><Dim>?</Dim>
         </>
       ) : (
         <>
