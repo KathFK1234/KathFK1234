@@ -256,7 +256,9 @@ function serve(routes: Record<string, unknown>) {
     const route = Object.keys(routes).find(key => key.toLowerCase() === path.toLowerCase());
     if (!route) return new Response(JSON.stringify({ detail: 'Not Found' }), { status: 404 });
     const body = routes[route];
-    return new Response(JSON.stringify(body), { status: typeof body === 'string' ? 422 : 200 });
+    // A string stands for the service turning the request down with that explanation.
+    if (typeof body === 'string') return new Response(JSON.stringify({ detail: body }), { status: 422 });
+    return new Response(JSON.stringify(body));
   });
   return calls;
 }
@@ -504,7 +506,78 @@ describe('mood', () => {
     expect(listed).toMatch(/also: a nap/);
     expect(listed).toMatch(/cannot choose\? mood random-activity nairobi/);
 
-    expect(await run('mood tides mombasa')).toMatch(/mombasa — tides.*• high 06:10\s+• low 12:20.*mood tides [a-z]/s);
+    expect(await run('mood tides mombasa')).toMatch(/mombasa — tides.*high 06:10, low 12:20.*mood tides [a-z]/s);
+  });
+
+  it('uses endpoints that are not about one place', async () => {
+    const openapi = {
+      paths: {
+        '/api/wellbeing/{location}': { get: {} },
+        '/api/activity/{location}': { get: {} },
+        '/api/activities/{location}': { get: {} },
+        '/api/activities': { get: { description: 'Names of the activities the advisor knows.' } },
+        '/api/locations': { get: { description: 'Suggest locations.', parameters: [{ name: 'q', in: 'query', required: true }] } },
+      },
+    };
+    expect(readEndpoints(openapi).map(endpoint => `${endpoint.name}:${endpoint.place}`)).toEqual([
+      'activities:false',
+      'activities:true',
+      'activity:true',
+      'locations:false',
+      'wellbeing:true',
+    ]);
+    const places = [
+      { name: 'Nairobi', country: 'Kenya', label: 'Nairobi, Nairobi County, Kenya' },
+      { name: 'Nairo', country: 'Japan', label: 'Nairo, Hokkaido, Japan' },
+    ];
+    const calls = serve({
+      '/openapi.json': openapi,
+      '/api/activities': ['running', 'a picnic', 'underwater chess', 'zorbing'],
+      '/api/activities/nairobi': [{ name: 'running', prompt: 'Go for a run' }],
+      '/api/locations?q=nai': places,
+      '/api/wellbeing/nairobi': NAIROBI,
+    });
+    const { ctx, run } = shell();
+
+    const listed = await run('mood api');
+    expect(listed).toMatch(/mood activitiesNames of the activities the advisor knows\. \(picked up on its own\)/);
+    expect(listed).toMatch(/mood locations &lt;q&gt;/);
+
+    expect(await run('mood activities')).toMatch(/running, a picnic, underwater chess, zorbing.*ask about any of them: mood /s);
+    expect(await run('mood activities nairobi')).toMatch(/Go for a run.*mood running in nairobi/s);
+    expect(await run('mood locations nai')).toMatch(/mood Nairobi, Kenya\s+mood Nairo, Japan/);
+    expect(await run('mood locations')).toMatch(/usage: mood locations &lt;q&gt;/);
+    expect(calls).toContain('/api/locations?q=nai');
+
+    // Activities the service has added since the last sync are suggested and completed too.
+    expect(ctx.state.mood.plans).toEqual(expect.arrayContaining(['underwater chess', 'zorbing']));
+    expect(complete('mood zor', []).lines).toEqual(['mood zorbing']);
+  });
+
+  it("passes on the service's own explanations and suggests places like the one typed", async () => {
+    const openapi = {
+      paths: {
+        '/api/wellbeing/{location}': { get: {} },
+        '/api/forecast/{location}': { get: {} },
+        '/api/locations': { get: { parameters: [{ name: 'q', in: 'query', required: true }] } },
+      },
+    };
+    serve({
+      '/openapi.json': openapi,
+      '/api/wellbeing/nairobbi': "We couldn't find 'nairobbi'. Check the spelling, or add the country.",
+      '/api/locations?q=nair': [{ name: 'Nairobi', country: 'Kenya' }],
+    });
+    const { run } = shell();
+    const out = await run('mood nairobbi');
+    expect(out).toMatch(/We couldn&#x27;t find &#x27;nairobbi&#x27;\. Check the spelling, or add the country\./);
+    expect(out).toMatch(/did you mean: mood Nairobi, Kenya\s+or head somewhere else: mood [a-z]/);
+
+    vi.stubGlobal('fetch', async (url: string) =>
+      url.endsWith('/openapi.json')
+        ? new Response(JSON.stringify(openapi))
+        : new Response(JSON.stringify({ detail: 'The weather service is taking too long to answer.' }), { status: 504 }),
+    );
+    expect(await run('mood week tokyo')).toMatch(/service is up.*HTTP 504.*The weather service is taking too long to answer\./s);
   });
 
   it('says so when the service cannot judge plans yet', async () => {
@@ -535,7 +608,7 @@ describe('mood', () => {
   it('explains an unknown place, a failing service and no connection', async () => {
     serve({ '/api/wellbeing/atlantis': "Location 'atlantis' not found" });
     const { run } = shell();
-    expect(await run('mood atlantis')).toMatch(/could not find a place called “atlantis”.*mood [a-z]/s);
+    expect(await run('mood atlantis')).toMatch(/Location &#x27;atlantis&#x27; not found.*head somewhere else: mood [a-z]/s);
     expect(await run('mood nairobi')).toMatch(/service is up.*HTTP 404/s);
     vi.stubGlobal('fetch', async () => {
       throw new TypeError('fetch failed');

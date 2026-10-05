@@ -7,9 +7,11 @@ import { Accent, Accent2, Cmd, Dim, Link, Rows, Warn } from './ui';
 // Set VITE_MOOD_API (in .env.local) to try a backend running on your own machine.
 const MOOD_API: string = import.meta.env.VITE_MOOD_API || 'https://moodforecastai-production.up.railway.app';
 
-/** One `GET /api/<name>/{location}` endpoint of the service. */
+/** One GET endpoint of the service: `/api/<name>/{location}`, or `/api/<name>` when `place` is false. */
 interface Endpoint {
   name: string;
+  /** False for an endpoint that is not about one location. Missing means true. */
+  place?: boolean;
   about: string;
   params: { name: string; required: boolean }[];
 }
@@ -45,16 +47,17 @@ const STARTER_PLACES = [
 const PLACES = [...new Set([...STARTER_PLACES, ...Object.values(SYNCED.places).flat()])];
 const SURPRISE = ['surprise', 'random', 'anywhere'];
 const BAR_WIDTH = 20;
+const isPlace = (endpoint: Endpoint) => endpoint.place !== false;
 
 /** What Tab offers after `mood`. Places of more than one word are left to the visitor. */
-export const MOOD_WORDS: readonly string[] = [
+export const MOOD_WORDS: string[] = [
   'week',
   'vs',
   'surprise',
   'api',
   'in',
   ...PLANS.filter(plan => !plan.includes(' ')),
-  ...SYNCED.endpoints.map(endpoint => endpoint.name).filter(name => !(name in BUILT_IN)),
+  ...new Set(SYNCED.endpoints.map(endpoint => endpoint.name).filter(name => !(name in BUILT_IN) || name === 'activities')),
   ...PLACES.filter(place => !place.includes(' ')).map(place => place.toLowerCase()),
 ];
 
@@ -68,6 +71,8 @@ export interface MoodSession {
   endpoints?: Promise<Endpoint[]>;
   /** The answer to that, once it is in; `live` is false if the service did not say. */
   known?: { endpoints: Endpoint[]; live: boolean };
+  /** Activities the service says it knows, asked for once it is clear it can list them. */
+  plans?: string[];
 }
 
 export function createMoodSession(): MoodSession {
@@ -149,9 +154,9 @@ async function ask<T>(path: string, timeout = 15000): Promise<T> {
 
 /* ---------- finding out what the service can do ---------- */
 
-const LOCATION_ENDPOINT = /^\/api\/([a-z][a-z0-9_-]*)\/\{location\}$/;
+const ENDPOINT = /^\/api\/([a-z][a-z0-9_-]*)(\/\{location\})?$/;
 
-/** The per-location endpoints in an OpenAPI document. Mirrors read_endpoints in mood_sync_script.py. */
+/** The GET endpoints under /api in an OpenAPI document. Mirrors read_endpoints in mood_sync_script.py. */
 export function readEndpoints(doc: unknown): Endpoint[] {
   type Operation = {
     summary?: string;
@@ -161,18 +166,19 @@ export function readEndpoints(doc: unknown): Endpoint[] {
   const paths = (doc as { paths?: Record<string, { get?: Operation }> } | null)?.paths ?? {};
   const found: Endpoint[] = [];
   for (const [path, operations] of Object.entries(paths)) {
-    const name = LOCATION_ENDPOINT.exec(path)?.[1];
+    const match = ENDPOINT.exec(path);
     const operation = operations?.get;
-    if (!name || !operation) continue;
+    if (!match || !operation) continue;
     found.push({
-      name,
+      name: match[1],
+      place: Boolean(match[2]),
       about: (operation.description || operation.summary || '').trim().split('\n')[0],
       params: (operation.parameters ?? [])
         .filter(param => param.in === 'query')
         .map(param => ({ name: param.name, required: Boolean(param.required) })),
     });
   }
-  return found.sort((a, b) => a.name.localeCompare(b.name));
+  return found.sort((a, b) => a.name.localeCompare(b.name) || Number(isPlace(a)) - Number(isPlace(b)));
 }
 
 /**
@@ -185,6 +191,7 @@ function endpoints(session: MoodSession): Promise<Endpoint[]> {
     .then(found => {
       if (!found.length) throw new Error('no endpoints listed');
       session.known = { endpoints: found, live: true };
+      learnPlans(session, found);
       return found;
     })
     .catch(() => {
@@ -196,6 +203,31 @@ function endpoints(session: MoodSession): Promise<Endpoint[]> {
   return session.endpoints;
 }
 
+/**
+ * If the service can list its activities, ask it, so a new one is suggested and
+ * Tab-completed the same day it ships. Runs alongside whatever the visitor asked for.
+ */
+function learnPlans(session: MoodSession, found: Endpoint[]): void {
+  if (session.plans || !found.some(endpoint => endpoint.name === 'activities' && !isPlace(endpoint))) return;
+  void ask<unknown>('/api/activities', 8000)
+    .then(names => {
+      if (!Array.isArray(names)) return;
+      const known = new Set(SYNCED.activities.map(activity => activity.name));
+      // A name the last sync has not seen yet is used as it is, minus its article ("a picnic").
+      const fresh = names
+        .filter((name): name is string => typeof name === 'string' && !known.has(name))
+        .map(name => name.replace(/^an? /, ''));
+      session.plans = [...new Set([...PLANS, ...fresh])];
+      for (const word of fresh) if (!word.includes(' ') && !MOOD_WORDS.includes(word)) MOOD_WORDS.push(word);
+    })
+    .catch(() => {});
+}
+
+/** Plans to suggest: the last sync's, plus anything the service has added since. */
+function plans(session: MoodSession): string[] {
+  return session.plans ?? PLANS;
+}
+
 /** The same, but never holding a command up for long: past the wait, go with the last sync. */
 function endpointsSoon(session: MoodSession, wait = 2500): Promise<Endpoint[]> {
   if (session.known?.live) return Promise.resolve(session.known.endpoints);
@@ -204,12 +236,20 @@ function endpointsSoon(session: MoodSession, wait = 2500): Promise<Endpoint[]> {
 }
 
 /** Whether the service has an endpoint, going by its last answer or else the last sync. */
-function offers(session: MoodSession, name: string): boolean {
-  return (session.known?.endpoints ?? SYNCED.endpoints).some(endpoint => endpoint.name === name);
+function offers(session: MoodSession, name: string, place = true): boolean {
+  return (session.known?.endpoints ?? SYNCED.endpoints).some(
+    endpoint => endpoint.name === name && isPlace(endpoint) === place,
+  );
 }
 
 function usage(endpoint: Endpoint): string {
-  const params = endpoint.params.filter(param => param.required).map(param => ` ${param.name}=<${param.name}>`);
+  const required = endpoint.params.filter(param => param.required);
+  if (!isPlace(endpoint)) {
+    // With one thing to ask for, it can simply be typed: `mood locations nai`.
+    const params = required.length === 1 ? ` <${required[0].name}>` : required.map(param => ` ${param.name}=<${param.name}>`).join('');
+    return `mood ${endpoint.name}${params}`;
+  }
+  const params = required.map(param => ` ${param.name}=<${param.name}>`);
   return BUILT_IN[endpoint.name] ?? `mood ${endpoint.name} <place>${params.join('')}`;
 }
 
@@ -299,7 +339,7 @@ function whereNext(data: Wellbeing, place: string, session: MoodSession): ReactN
       {offers(session, 'activity') ? (
         <>
           {' '}
-          <Dim>or ask about a plan:</Dim> <Cmd>{`mood ${shuffled(PLANS)[0]} in ${from}`}</Cmd>
+          <Dim>or ask about a plan:</Dim> <Cmd>{`mood ${shuffled(plans(session))[0]} in ${from}`}</Cmd>
         </>
       ) : null}
     </>
@@ -391,7 +431,9 @@ function factorsLine(data: Wellbeing): string {
 }
 
 function guide(session: MoodSession): ReactNode {
-  const extra = (session.known?.endpoints ?? SYNCED.endpoints).filter(endpoint => !(endpoint.name in BUILT_IN));
+  const extra = (session.known?.endpoints ?? SYNCED.endpoints).filter(
+    endpoint => isPlace(endpoint) && !(endpoint.name in BUILT_IN),
+  );
   return (
     <>
       <Accent>mood</Accent> asks the live MoodForecast AI service how the weather feels somewhere.{'\n'}
@@ -409,7 +451,7 @@ function guide(session: MoodSession): ReactNode {
             ? [
                 [
                   <Accent>mood &lt;activity&gt; in &lt;place&gt;</Accent>,
-                  `whether the weather suits a plan: ${shuffled(PLANS).slice(0, 3).join(', ')}, ...`,
+                  `whether the weather suits a plan: ${shuffled(plans(session)).slice(0, 3).join(', ')}, ...`,
                 ] as [ReactNode, ReactNode],
               ]
             : []),
@@ -426,12 +468,43 @@ function guide(session: MoodSession): ReactNode {
   );
 }
 
-function problem(error: unknown, place: string, session: MoodSession): ReactNode {
+/** Places the service knows that start the way `typed` does, for "did you mean". */
+async function lookalikes(typed: string, session: MoodSession): Promise<string[]> {
+  if (!offers(session, 'locations', false)) return [];
+  type Suggestion = { name?: string; country?: string };
+  // The whole of what was typed first; failing that, how it starts, which survives a slip near the end.
+  for (const start of [typed, typed.slice(0, 4)]) {
+    if (start.length < 2) continue;
+    const found = await ask<Suggestion[]>(`/api/locations?${new URLSearchParams({ q: start })}`, 6000).catch(() => []);
+    const names = (Array.isArray(found) ? found : [])
+      .filter(place => typeof place?.name === 'string')
+      .map(place => (place.country ? `${place.name}, ${place.country}` : String(place.name)));
+    if (names.length) return [...new Set(names)].slice(0, 3);
+  }
+  return [];
+}
+
+/** What to say when the service gave no reading. Its own explanation is used whenever it sent one. */
+async function problem(error: unknown, place: string, session: MoodSession): Promise<ReactNode> {
   if (error instanceof NoReading && error.status === 422) {
+    const close = await lookalikes(place, session);
     return (
       <>
-        <Warn>the service could not find a place called “{place}”.</Warn>{'\n'}
-        <Dim>check the spelling, or head somewhere else:</Dim> <PlaceCmds places={elsewhere(session, 3)} />
+        <Warn>{error.detail || `the service could not find a place called “${place}”.`}</Warn>
+        {'\n'}
+        {close.length ? (
+          <>
+            <Dim>did you mean:</Dim>{' '}
+            {close.map(name => (
+              <span key={name}>
+                <Cmd>{`mood ${name}`}</Cmd>{' '}
+              </span>
+            ))}
+            {'\n'}
+          </>
+        ) : null}
+        <Dim>{close.length ? 'or head somewhere else:' : 'head somewhere else:'}</Dim>{' '}
+        <PlaceCmds places={elsewhere(session, 3)} />
       </>
     );
   }
@@ -440,8 +513,8 @@ function problem(error: unknown, place: string, session: MoodSession): ReactNode
       <>
         <Accent>service is up</Accent>, but it could not produce a reading for “{place}”{' '}
         <Dim>(HTTP {error.status})</Dim>.{'\n'}
-        <Dim>Its upstream weather provider did not answer. Try another place:</Dim>{' '}
-        <PlaceCmds places={elsewhere(session, 3, place)} />
+        {error.detail && error.detail !== 'Not Found' ? `${error.detail}\n` : null}
+        <Dim>Try another place:</Dim> <PlaceCmds places={elsewhere(session, 3, place)} />
         {'\n'}
         <Dim>or see how the score is built:</Dim> <Cmd>cat ~/projects/moodforecast-ai/data/scoring-rules.md</Cmd>
       </>
@@ -636,7 +709,7 @@ const VERDICTS: Record<string, (text: string) => ReactNode> = {
 
 async function plan(activity: string, place: string, ctx: Ctx): Promise<ReactNode> {
   const session = ctx.state.mood;
-  if (!(await endpointsSoon(session)).some(endpoint => endpoint.name === 'activity')) {
+  if (!(await endpointsSoon(session)).some(endpoint => endpoint.name === 'activity' && isPlace(endpoint))) {
     return (
       <>
         <Warn>the live service cannot judge plans yet.</Warn>{' '}
@@ -687,7 +760,7 @@ function adviceView(data: ActivityAdvice, place: string, asked: string, session:
         <>
           {'\n'}
           <Dim>plans it knows well:</Dim>{' '}
-          {shuffled(PLANS)
+          {shuffled(plans(session))
             .slice(0, 4)
             .map(known => (
               <span key={known}>
@@ -769,15 +842,102 @@ async function ideas(place: string, ctx: Ctx): Promise<ReactNode> {
   );
 }
 
-/** Any response that is a list rather than a set of fields. */
+/** One item of a list, in a line: its own label if it has one, otherwise all of it. */
+function itemLine(item: unknown): string {
+  const named = item as { label?: unknown; name?: unknown } | null;
+  if (typeof named?.label === 'string') return named.label;
+  if (typeof named?.name === 'string') return named.name;
+  return plain(item);
+}
+
+/** Any response that is a list rather than a set of fields. `place` is empty when it is not about one. */
 function listView(data: unknown, place: string, name: string, session: MoodSession): ReactNode {
   const items = Array.isArray(data) ? data : [data];
+  const short = items.every(item => typeof item === 'string' && item.length <= 24);
   return (
     <>
-      <Accent>{place}</Accent> <Dim>— {name}, live from the MoodForecast AI service</Dim>
+      <Accent>{place || name}</Accent>{' '}
+      <Dim>
+        — {place ? `${name}, ` : ''}live from the MoodForecast AI service
+      </Dim>
       {'\n'}
-      {items.length ? items.map(item => `  • ${plain(item)}\n`) : <Dim>{'  nothing to list.\n'}</Dim>}
-      <Dim>and elsewhere?</Dim> <PlaceCmds places={elsewhere(session, 2, place)} before={`mood ${name}`} />
+      {!items.length ? <Dim>{'  nothing to list.\n'}</Dim> : null}
+      {short ? `  ${items.join(', ')}\n` : items.map(item => `  • ${itemLine(item)}\n`)}
+      {place ? (
+        <>
+          <Dim>and elsewhere?</Dim> <PlaceCmds places={elsewhere(session, 2, place)} before={`mood ${name}`} />
+        </>
+      ) : null}
+    </>
+  );
+}
+
+/** `mood <name> [words | key=value ...]` for an endpoint that is not about one place. */
+async function generalEndpoint(endpoint: Endpoint, words: string[], ctx: Ctx): Promise<ReactNode> {
+  const session = ctx.state.mood;
+  const query = new URLSearchParams();
+  const loose: string[] = [];
+  for (const word of words) {
+    const [key, ...value] = word.split('=');
+    if (value.length && endpoint.params.some(param => param.name === key)) query.set(key, value.join('='));
+    else loose.push(word);
+  }
+  // Words with no name go to the one thing the endpoint asks for.
+  const target = endpoint.params.find(param => param.required && !query.has(param.name)) ?? endpoint.params[0];
+  if (loose.length && target && !query.has(target.name)) query.set(target.name, loose.join(' '));
+  if (endpoint.params.some(param => param.required && !query.has(param.name))) {
+    return (
+      <>
+        <Warn>usage: {usage(endpoint)}</Warn>
+        {endpoint.about ? `\n${endpoint.about}` : null}
+      </>
+    );
+  }
+
+  ctx.print(<Dim>asking MoodForecast AI for {endpoint.name} ...</Dim>);
+  let data: unknown;
+  try {
+    data = await ask<unknown>(`/api/${endpoint.name}${query.size ? `?${query}` : ''}`);
+  } catch (error) {
+    return problem(error, loose.join(' ') || endpoint.name, session);
+  }
+
+  const items = Array.isArray(data) ? data : null;
+  // Places: each one can be looked up.
+  if (items?.length && items.every(item => typeof item?.name === 'string' && 'country' in item)) {
+    const names = [...new Set(items.map(item => (item.country ? `${item.name}, ${item.country}` : `${item.name}`)))];
+    return (
+      <>
+        <Accent>{endpoint.name}</Accent> <Dim>— live from the MoodForecast AI service. click one for its mood</Dim>
+        {'\n'}
+        {names.map(name => (
+          <span key={name}>
+            {'  '}
+            <Cmd>{`mood ${name}`}</Cmd>
+            {'\n'}
+          </span>
+        ))}
+      </>
+    );
+  }
+  if (items || data === null || typeof data !== 'object') {
+    return (
+      <>
+        {listView(data, '', endpoint.name, session)}
+        {endpoint.name === 'activities' && offers(session, 'activity') ? (
+          <>
+            <Dim>ask about any of them:</Dim>{' '}
+            <Cmd>{`mood ${shuffled(plans(session))[0]} in ${elsewhere(session, 1)[0].toLowerCase()}`}</Cmd>
+          </>
+        ) : null}
+      </>
+    );
+  }
+  return (
+    <>
+      <Accent>{endpoint.name}</Accent> <Dim>— live from the MoodForecast AI service</Dim>
+      {'\n'}
+      <Rows rows={fieldRows(data)} />
     </>
   );
 }
@@ -796,10 +956,11 @@ async function api(session: MoodSession): Promise<ReactNode> {
       </Dim>
       {'\n'}
       <Rows
-        rows={found.map(endpoint => [
+        rows={found.map((endpoint): [ReactNode, ReactNode] => [
           <Accent>{usage(endpoint)}</Accent>,
           <>
-            {endpoint.about} <Dim>{endpoint.name in BUILT_IN ? '' : '(picked up on its own)'}</Dim>
+            {endpoint.about}{' '}
+            <Dim>{isPlace(endpoint) && endpoint.name in BUILT_IN ? '' : '(picked up on its own)'}</Dim>
           </>,
         ])}
       />
@@ -890,11 +1051,16 @@ export async function mood(args: string[], ctx: Ctx): Promise<ReactNode> {
   if (words.length === 1 && (first === 'api' || first === 'features')) return api(session);
 
   if (rest) {
-    const endpoint = found.find(candidate => candidate.name === first);
+    const endpoint = found.find(candidate => candidate.name === first && isPlace(candidate));
     if (endpoint?.name === 'wellbeing') return reading(rest, ctx);
     if (endpoint?.name === 'activity') return <Warn>usage: {BUILT_IN.activity}</Warn>;
     if (endpoint?.name === 'activities') return ideas(rest, ctx);
     if (endpoint && !(endpoint.name in BUILT_IN)) return other(endpoint, words.slice(1), ctx);
+  }
+  // Endpoints that are not about one place: `mood activities`, `mood locations nai`.
+  const general = found.find(candidate => candidate.name === first && !isPlace(candidate));
+  if (general && (!rest || !found.some(candidate => candidate.name === first && isPlace(candidate)))) {
+    return generalEndpoint(general, words.slice(1), ctx);
   }
 
   // "picnic in cape town", "can i go for a run in kigali"
