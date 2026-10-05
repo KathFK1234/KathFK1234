@@ -109,12 +109,12 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 49.1%" : 740.0
-    "TypeScript · 29.3%" : 441.6
-    "HTML · 6.4%" : 96.9
-    "CSS · 5.2%" : 79.0
-    "JavaScript · 5.1%" : 76.5
-    "C · 4.2%" : 62.7
+    "Python · 49.1%" : 758.1
+    "TypeScript · 29.4%" : 453.7
+    "HTML · 6.3%" : 98.0
+    "JavaScript · 5.3%" : 81.1
+    "CSS · 5.2%" : 80.7
+    "C · 4.1%" : 62.7
     "Ruby · 0.7%" : 10.1
 ```
 <!-- languages:end -->
