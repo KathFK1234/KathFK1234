@@ -1205,7 +1205,7 @@ export const commands: Command[] = [
   {
     name: 'mood',
     summary: 'ask the live MoodForecast AI service how a place feels',
-    usage: 'mood <place> | week <place> | <place> vs <place>',
+    usage: 'mood <place> | week <place> | <place> vs <place> | <activity> in <place> | api',
     group: 'fun',
     completes: MOOD_WORDS,
     run: mood,

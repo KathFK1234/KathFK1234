@@ -361,6 +361,59 @@ describe('mood', () => {
     expect(await run('mood')).toMatch(/mood sleep &lt;place&gt;/);
   });
 
+  it('judges a plan once the service can', async () => {
+    const advice = {
+      location: 'Mombasa, KE',
+      weather: NAIROBI.weather,
+      activity: 'swimming',
+      recognised: true,
+      verdict: 'go',
+      headline: 'Green light for swimming. Enjoy!',
+      reasons: ['Mainly clear and 24°C — good conditions for getting in the water.'],
+      suggestion: null,
+      curiosity: { question: 'Curious how swimming is looking elsewhere? Compare with:', places: ['Zanzibar', 'Malé'] },
+    };
+    const openapi = { paths: { '/api/activity/{location}': { get: {} }, '/api/wellbeing/{location}': { get: {} } } };
+    const calls = serve({
+      '/openapi.json': openapi,
+      '/api/activity/mombasa?activity=swim': advice,
+      '/api/activity/mombasa?activity=can+i+juggle': {
+        ...advice,
+        activity: 'time outdoors',
+        recognised: false,
+        verdict: 'skip',
+        suggestion: 'Try a museum.',
+        curiosity: null,
+      },
+      '/api/wellbeing/mombasa': NAIROBI,
+    });
+    const { run } = shell();
+
+    const out = await run('mood swim in mombasa');
+    expect(calls).toEqual(['/api/activity/mombasa?activity=swim']);
+    expect(out).toMatch(/Mombasa, KE — swimming/);
+    expect(out).toMatch(/go: Green light for swimming\. Enjoy!/);
+    expect(out).toMatch(/• Mainly clear and 24°C/);
+    expect(out).toMatch(/Compare with: mood swim in zanzibar.*mood swim in malé/s);
+    expect(out).not.toMatch(/plans it knows well/);
+
+    const unknown = await run('mood can i juggle in mombasa');
+    expect(unknown).toMatch(/skip:.*Try a museum\..*plans it knows well: mood [a-z]+ in mombasa/s);
+    expect(unknown).toMatch(/mood can i juggle in (?!mombasa)[a-z]/);
+
+    expect(await run('mood')).toMatch(/mood &lt;activity&gt; in &lt;place&gt;/);
+    expect(await run('mood mombasa')).toMatch(/or ask about a plan: mood [a-z]+ in mombasa/);
+    expect(await run('mood activity mombasa')).toMatch(/usage: mood &lt;activity&gt; in &lt;place&gt;/);
+  });
+
+  it('says so when the service cannot judge plans yet', async () => {
+    const calls = serve({ '/openapi.json': { paths: { '/api/wellbeing/{location}': { get: {} } } } });
+    const { run } = shell();
+    expect(await run('mood picnic in cape town')).toMatch(/cannot judge plans yet.*mood cape town/s);
+    expect(calls).toEqual([]);
+    expect(await run('mood')).not.toMatch(/in &lt;place&gt;/);
+  });
+
   it('shows fields the service has added since', async () => {
     serve({ '/api/wellbeing/nairobi': { ...NAIROBI, air_quality: 'Good', pollen: { grass: 'low' } } });
     const { run } = shell();
@@ -414,7 +467,7 @@ describe('completion', () => {
     expect(complete('open li', []).lines).toEqual(['open linkedin']);
     expect(complete('mood rey', []).lines).toEqual(['mood reykjavik']);
     expect(complete('mood nairobi v', []).lines).toContain('mood nairobi vs');
-    expect(complete('mood week ki', []).lines).toEqual(['mood week kigali']);
+    expect(complete('mood week kig', []).lines).toEqual(['mood week kigali']);
   });
 
   it('finds the shared prefix and a ghost suggestion', () => {
