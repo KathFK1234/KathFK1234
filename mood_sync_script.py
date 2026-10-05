@@ -6,10 +6,14 @@ Reads two things and writes them to src/data/mood.json:
 
   what the live service can do   its OpenAPI document. Every
                                  GET /api/<name>/{location} endpoint becomes
-                                 `mood <name> <place>` in the terminal.
+                                 `mood <name> <place>` in the terminal, and
+                                 every GET /api/<name> becomes `mood <name>`.
   the words it knows             the place lists (*_PLACES) and the ACTIVITIES
                                  table in the repository's backend/app/services,
                                  used for suggestions and Tab completion.
+
+It also rewrites content/home/projects/moodforecast-ai/API.md, the list of
+endpoints a visitor can read in the terminal, from the same OpenAPI document.
 
 Nothing here is specific to today's endpoints or lists: add an endpoint, a
 place or an activity to MoodForecast AI and it shows up in the terminal after
@@ -40,33 +44,69 @@ from requests import RequestException
 DEFAULT_REPO = "KathFK1234/moodforecast_ai"
 DEFAULT_API = "https://moodforecastai-production.up.railway.app"
 SERVICES_DIR = "backend/app/services"
-# /api/wellbeing/{location} -> wellbeing
-LOCATION_ENDPOINT = re.compile(r"^/api/([a-z][a-z0-9_-]*)/\{location\}$")
+# /api/wellbeing/{location} -> wellbeing, about a place; /api/activities -> activities, not about one
+ENDPOINT = re.compile(r"^/api/([a-z][a-z0-9_-]*)(/\{location\})?$")
+API_NOTES = "content/home/projects/moodforecast-ai/API.md"
 TIMEOUT = 30
 
 
-def read_endpoints(api: str) -> list[dict]:
-    """List the service's per-location endpoints from its OpenAPI document."""
+def first_line(operation: dict) -> str:
+    """What an endpoint does, in the first line of its description."""
+    about = (operation.get("description") or operation.get("summary") or "").strip()
+    return about.splitlines()[0] if about else ""
+
+
+def read_openapi(api: str) -> dict:
+    """Fetch the service's OpenAPI document."""
     response = requests.get(f"{api.rstrip('/')}/openapi.json", timeout=TIMEOUT)
     response.raise_for_status()
+    return response.json()
 
+
+def read_endpoints(document: dict) -> list[dict]:
+    """List the GET endpoints under /api, noting which are about one location."""
     endpoints = []
-    for path, operations in response.json().get("paths", {}).items():
-        match = LOCATION_ENDPOINT.match(path)
+    for path, operations in document.get("paths", {}).items():
+        match = ENDPOINT.match(path)
         operation = operations.get("get")
         if not match or not operation:
             continue
-        about = (operation.get("description") or operation.get("summary") or "").strip()
         endpoints.append({
             "name": match.group(1),
-            "about": about.splitlines()[0] if about else "",
+            "place": bool(match.group(2)),
+            "about": first_line(operation),
             "params": [
                 {"name": param["name"], "required": bool(param.get("required"))}
                 for param in operation.get("parameters", [])
                 if param.get("in") == "query"
             ],
         })
-    return sorted(endpoints, key=lambda endpoint: endpoint["name"])
+    return sorted(endpoints, key=lambda endpoint: (endpoint["name"], endpoint["place"]))
+
+
+def format_api_notes(document: dict) -> str:
+    """Write the endpoint list shown in the terminal's project notes."""
+    rows = []
+    for path, operations in document.get("paths", {}).items():
+        for method, operation in operations.items():
+            if method in ("get", "post", "put", "patch", "delete"):
+                rows.append((method.upper(), path, first_line(operation)))
+    rows.sort(key=lambda row: (row[1], row[0]))
+    width = max((len(path) for _, path, _ in rows), default=0)
+
+    lines = [
+        "# API — everything the live MoodForecast AI service offers",
+        "",
+        "Written by a script from the service's own description of itself, so this list keeps up when an endpoint is added or changed.",
+        "",
+    ]
+    lines += [f"  {method:<5} {path:<{width}}  {about}".rstrip() for method, path, about in rows]
+    lines += [
+        "",
+        "From this terminal, `mood api` asks the service the same question live, and every GET endpoint above can be tried with `mood`.",
+        "",
+    ]
+    return "\n".join(lines)
 
 
 def local_sources(checkout: str) -> dict[str, str]:
@@ -189,6 +229,11 @@ def main():
         help="Path to the website data file (default: src/data/mood.json)",
     )
     parser.add_argument(
+        "--notes",
+        default=API_NOTES,
+        help=f"Path to the endpoint list shown in the terminal (default: {API_NOTES})",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Show what would be written without modifying files",
@@ -196,7 +241,8 @@ def main():
     args = parser.parse_args()
 
     try:
-        endpoints = read_endpoints(args.api)
+        document = read_openapi(args.api)
+        endpoints = read_endpoints(document)
         if args.source:
             sources = local_sources(args.source)
         else:
@@ -219,22 +265,26 @@ def main():
     }
     text = json.dumps(data, indent=2, ensure_ascii=False) + "\n"
 
-    print(f"Endpoints:  {', '.join(endpoint['name'] for endpoint in endpoints) or 'none'}")
+    notes = format_api_notes(document)
+
+    shown = [endpoint["name"] + ("" if endpoint["place"] else " (no place)") for endpoint in endpoints]
+    print(f"Endpoints:  {', '.join(shown) or 'none'}")
     print(f"Places:     {sum(len(names) for names in places.values())} in {len(places)} lists")
     print(f"Activities: {len(activities)}")
 
     if args.dry_run:
         print("\nDry run - would write:\n")
         print(text)
+        print(notes)
         return
 
-    path = Path(args.data)
-    if path.exists() and path.read_text(encoding="utf-8") == text:
-        print(f"{path} is already up to date.")
-        return
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
-    print(f"Wrote {path}")
+    for path, content in ((Path(args.data), text), (Path(args.notes), notes)):
+        if path.exists() and path.read_text(encoding="utf-8") == content:
+            print(f"{path} is already up to date.")
+            continue
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content, encoding="utf-8")
+        print(f"Wrote {path}")
 
 
 if __name__ == "__main__":

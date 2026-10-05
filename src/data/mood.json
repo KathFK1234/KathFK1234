@@ -7,11 +7,19 @@
   "endpoints": [
     {
       "name": "activities",
+      "place": false,
+      "about": "Names of the activities the advisor knows, e.g. for a subscription form.",
+      "params": []
+    },
+    {
+      "name": "activities",
+      "place": true,
       "about": "The activities that are practical at a location, local favourites first.",
       "params": []
     },
     {
       "name": "activity",
+      "place": true,
       "about": "Check whether an activity suits a location and its current weather.",
       "params": [
         {
@@ -22,11 +30,24 @@
     },
     {
       "name": "forecast",
+      "place": true,
       "about": "Get weather forecast for a location.",
       "params": []
     },
     {
+      "name": "locations",
+      "place": false,
+      "about": "Suggest locations matching the start of a place name.",
+      "params": [
+        {
+          "name": "q",
+          "required": true
+        }
+      ]
+    },
+    {
       "name": "random-activity",
+      "place": true,
       "about": "Pick a random activity that suits a location and its current weather.",
       "params": [
         {
@@ -37,6 +58,7 @@
     },
     {
       "name": "wellbeing",
+      "place": true,
       "about": "Get mood and wellbeing score for a location.",
       "params": []
     }

@@ -11,14 +11,9 @@ Weather apps report conditions. They rarely say what those conditions mean for a
 
 ## API
 
-  GET  /api/wellbeing/{location}         mood score, the factors behind it, energy, risk, ideas
-  GET  /api/forecast/{location}          current conditions + 7 days, each with a mood outlook
-  GET  /api/activity/{location}          does the weather suit this activity? go, maybe or skip
-  GET  /api/activities/{location}        what is practical there, local favourites first
-  GET  /api/random-activity/{location}   one suggestion that suits the place right now
-  GET  /api/locations?q=                 place names as you type
-  POST /api/subscribe                    a daily email about a location
-  GET  /health                           deploy probe
+The endpoint list is in `API.md`, next to this file. It is rewritten from the service's own description every day, so it does not go stale:
+
+  `cat ~/projects/moodforecast-ai/API.md`
 
 Weather is cached for 10 minutes. The scoring engine, the activity advisor, the daily alerts and the endpoints are all covered by tests.
 

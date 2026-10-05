@@ -55,8 +55,9 @@ jobs:
           OWNER: ${{ github.repository_owner }}
         run: python3 activity_card_script.py --username "$OWNER"
 
-      # Rewrites src/data/mood.json: the endpoints, places and activities the
-      # terminal's mood command knows about.
+      # Rewrites src/data/mood.json (the endpoints, places and activities the
+      # terminal's mood command knows about) and the endpoint list in the
+      # terminal's notes on the project.
       - name: Sync the mood command with MoodForecast AI
         id: mood
         continue-on-error: true
@@ -81,7 +82,7 @@ jobs:
         if: steps.mood.outcome == 'failure'
         run: |
           echo "::warning title=The mood command was not updated::MoodForecast AI or GitHub did not answer, so the terminal kept the endpoints, places and activities it already knew."
-          git checkout -- src/data/mood.json
+          git checkout -- src/data/mood.json content/home/projects/moodforecast-ai/API.md
 
       # Not on pushes: a push changes this repo's own totals, and committing back
       # every time would leave the local clone permanently one commit behind.
@@ -90,7 +91,7 @@ jobs:
         run: |
           git config user.name "Katheu Kilonzo"
           git config user.email "fkatheukilonzo@gmail.com"
-          git add README.md src/data/stack.json src/data/mood.json assets/activity.svg
+          git add README.md src/data/stack.json src/data/mood.json content/home/projects/moodforecast-ai/API.md assets/activity.svg
           if git diff --cached --quiet; then
             echo "Nothing new."
           else
