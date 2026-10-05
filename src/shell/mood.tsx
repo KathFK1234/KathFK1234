@@ -1,5 +1,5 @@
 // The `mood` command: live calls to the MoodForecast AI service.
-import type { ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import type { Ctx } from './commands';
 import { Accent, Cmd, Dim, Rows, Warn } from './ui';
 
@@ -49,6 +49,23 @@ interface Wellbeing {
   curiosity?: { question: string; location: string }[];
 }
 
+interface Day {
+  date: string;
+  condition: string;
+  temp_max_c: number;
+  temp_min_c: number;
+  precipitation_chance?: number | null;
+  sunrise?: string | null;
+  sunset?: string | null;
+  mood_score: number;
+  mood_label: string;
+}
+
+interface Forecast {
+  location: string;
+  daily: Day[];
+}
+
 /* ---------- talking to the service ---------- */
 
 /** The service answered, but not with a reading. */
@@ -90,12 +107,12 @@ function elsewhere(session: MoodSession, count: number, ...avoid: string[]): str
   return shuffled(fresh.length >= count ? fresh : allowed).slice(0, count);
 }
 
-function PlaceCmds({ places }: { places: string[] }) {
+function PlaceCmds({ places, before = 'mood' }: { places: string[]; before?: string }) {
   return (
     <>
       {places.map(place => (
         <span key={place}>
-          <Cmd>{`mood ${place.toLowerCase()}`}</Cmd>{' '}
+          <Cmd>{`${before} ${place.toLowerCase()}`}</Cmd>{' '}
         </span>
       ))}
     </>
@@ -137,6 +154,8 @@ function whereNext(data: Wellbeing, place: string, session: MoodSession): ReactN
       ))}
       {'  '}
       <Dim>or let me pick:</Dim> <Cmd>mood surprise</Cmd>
+      {'\n'}
+      <Dim>more on {here}:</Dim> <Cmd>{`mood week ${place.toLowerCase()}`}</Cmd>
     </>
   );
 }
@@ -180,7 +199,12 @@ function guide(session: MoodSession): ReactNode {
       <PlaceCmds places={elsewhere(session, 4)} />
       <Cmd>mood surprise</Cmd>
       {'\n\n'}
-      <Rows rows={[[<Accent>mood &lt;place&gt;</Accent>, 'the mood score, what is behind it, and what to do with the day']]} />
+      <Rows
+        rows={[
+          [<Accent>mood &lt;place&gt;</Accent>, 'the mood score, what is behind it, and what to do with the day'],
+          [<Accent>mood week &lt;place&gt;</Accent>, 'the mood outlook for the next seven days'],
+        ]}
+      />
       {'\n'}
       <Dim>any town or city works, not just the ones above.</Dim>
     </>
@@ -258,10 +282,74 @@ async function reading(place: string, ctx: Ctx): Promise<ReactNode> {
   );
 }
 
+/* ---------- mood week <place> ---------- */
+
+/** "Mon 5 Oct" */
+function dayName(date: string): string {
+  const day = new Date(`${date}T12:00:00`);
+  if (Number.isNaN(day.getTime())) return date;
+  return day.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }).replace(',', '');
+}
+
+async function week(place: string, ctx: Ctx): Promise<ReactNode> {
+  const session = ctx.state.mood;
+  ctx.print(<Dim>asking MoodForecast AI about the week ahead in {place} ...</Dim>);
+
+  let data: Forecast;
+  try {
+    data = await ask<Forecast>(`/api/forecast/${encodeURIComponent(place)}`);
+  } catch (error) {
+    return problem(error, place, session);
+  }
+  if (!data.daily.length) return <Warn>the service has no forecast for {data.location} right now.</Warn>;
+
+  const best = data.daily.reduce((top, day) => (day.mood_score > top.mood_score ? day : top));
+  const today = data.daily[0];
+  return (
+    <>
+      <Accent>{data.location}</Accent> <Dim>— the week ahead, scored day by day</Dim>{'\n'}
+      <div className="rows rows-3">
+        {data.daily.map(day => {
+          const rain = day.precipitation_chance;
+          return (
+            <Fragment key={day.date}>
+              <span>{dayName(day.date)}</span>
+              <span>
+                <Bar score={day.mood_score} /> {day.mood_score} {day.mood_label}
+              </span>
+              <Dim>
+                {day.condition}, {Math.round(day.temp_min_c)}–{Math.round(day.temp_max_c)}°C
+                {rain != null ? `, rain ${Math.round(rain)}%` : ''}
+              </Dim>
+            </Fragment>
+          );
+        })}
+      </div>
+      {'\n'}
+      best day: <Accent>{dayName(best.date)}</Accent> ({best.mood_score}, {best.mood_label})
+      {today.sunrise && today.sunset ? <Dim>{`  ·  daylight today ${today.sunrise}–${today.sunset}`}</Dim> : null}
+      {'\n\n'}
+      <Dim>how is the week shaping up elsewhere?</Dim>{' '}
+      <PlaceCmds places={elsewhere(session, 2, place, data.location)} before="mood week" />
+    </>
+  );
+}
+
 export async function mood(args: string[], ctx: Ctx): Promise<ReactNode> {
   const session = ctx.state.mood;
   const words = args.filter(Boolean);
   if (!words.length) return guide(session);
   if (words.length === 1 && SURPRISE.includes(words[0].toLowerCase())) return reading(elsewhere(session, 1)[0], ctx);
+
+  const first = words[0].toLowerCase();
+  const rest = words.slice(1).join(' ');
+  if (first === 'week' || first === 'forecast') {
+    if (rest) return week(rest, ctx);
+    return (
+      <>
+        <Warn>mood {first}: which place?</Warn> <PlaceCmds places={elsewhere(session, 3)} before="mood week" />
+      </>
+    );
+  }
   return reading(words.join(' '), ctx);
 }

@@ -275,6 +275,24 @@ describe('mood', () => {
     expect(calls).toEqual(['/api/wellbeing/cape town']);
   });
 
+  it('scores the week ahead day by day', async () => {
+    const day = { condition: 'Rain Showers', temp_max_c: 24.5, temp_min_c: 16, sunrise: '06:17', sunset: '18:24' };
+    const daily = [
+      { ...day, date: '2026-10-05', precipitation_chance: 53, mood_score: 65, mood_label: 'Steady' },
+      { ...day, date: '2026-10-06', condition: 'Clear', precipitation_chance: null, mood_score: 80, mood_label: 'Upbeat' },
+    ];
+    serve({ '/api/forecast/nairobi': { location: 'Nairobi, KE', daily } });
+    const { run } = shell();
+    const out = await run('mood week nairobi');
+    expect(out).toMatch(/Mon 5 Oct.*65 Steady.*Rain Showers, 16–25°C, rain 53%/s);
+    expect(out).toMatch(/Tue 6 Oct.*80 Upbeat.*Clear, 16–25°C(?!, rain)/s);
+    expect(out).toMatch(/best day: Tue 6 Oct \(80, Upbeat\)/);
+    expect(out).toMatch(/daylight today 06:17–18:24/);
+    expect(out).toMatch(/mood week [a-z]/);
+    expect(await run('mood week')).toMatch(/which place\?.*mood week [a-z]/s);
+    expect(await run('mood forecast atlantis')).toMatch(/service is up/);
+  });
+
   it('explains an unknown place, a failing service and no connection', async () => {
     serve({ '/api/wellbeing/atlantis': "Location 'atlantis' not found" });
     const { run } = shell();
