@@ -433,12 +433,51 @@ describe('mood', () => {
     expect(out).not.toMatch(/plans it knows well/);
 
     const unknown = await run('mood can i juggle in mombasa');
-    expect(unknown).toMatch(/skip:.*Try a museum\..*plans it knows well: mood [a-z]+ in mombasa/s);
+    expect(unknown).toMatch(/skip:.*Try a museum\..*plans it knows well: mood [a-z ]+ in mombasa/s);
     expect(unknown).toMatch(/mood can i juggle in (?!mombasa)[a-z]/);
 
     expect(await run('mood')).toMatch(/mood &lt;activity&gt; in &lt;place&gt;/);
-    expect(await run('mood mombasa')).toMatch(/or ask about a plan: mood [a-z]+ in mombasa/);
+    expect(await run('mood mombasa')).toMatch(/or ask about a plan: mood [a-z ]+ in mombasa/);
     expect(await run('mood activity mombasa')).toMatch(/usage: mood &lt;activity&gt; in &lt;place&gt;/);
+  });
+
+  it('presents new endpoints by the shape of their answer', async () => {
+    const pick = {
+      location: 'Nairobi, KE',
+      weather: NAIROBI.weather,
+      activity: 'rugby',
+      verdict: 'skip',
+      headline: "Today's pick for Nairobi: rugby.",
+      reasons: ['Touch rugby counts.'],
+      curiosity: { question: 'Compare with:', places: ['Lisbon'] },
+    };
+    const names = ['running', 'a walk', 'cycling', 'hiking', 'football', 'tennis', 'golf', 'a picnic', 'fishing'];
+    const list = [...names, 'camping', 'swimming', 'reading', 'a nap'].map(name => ({ name, prompt: `Try ${name}` }));
+    const paths = ['activities', 'activity', 'random-activity', 'tides', 'wellbeing'].map(name => [
+      `/api/${name}/{location}`,
+      { get: {} },
+    ]);
+    serve({
+      '/openapi.json': { paths: Object.fromEntries(paths) },
+      '/api/random-activity/nairobi': pick,
+      '/api/activities/nairobi': list,
+      '/api/tides/mombasa': ['high 06:10', 'low 12:20'],
+    });
+    const { run } = shell();
+
+    // A verdict on an activity looks the same whichever endpoint sent it.
+    const picked = await run('mood random-activity nairobi');
+    expect(picked).toMatch(/Nairobi, KE — rugby\s+skip: Today&#x27;s pick for Nairobi: rugby\./);
+    expect(picked).toMatch(/Compare with: mood rugby in lisbon/);
+    expect(picked).toMatch(/not feeling it\? mood random-activity nairobi/);
+    expect(picked).toMatch(/what does suit Nairobi right now: mood activities nairobi/);
+
+    const listed = await run('mood activities nairobi');
+    expect(listed).toMatch(/Try running.*mood running in nairobi.*Try reading.*mood reading in nairobi/s);
+    expect(listed).toMatch(/also: a nap/);
+    expect(listed).toMatch(/cannot choose\? mood random-activity nairobi/);
+
+    expect(await run('mood tides mombasa')).toMatch(/mombasa — tides.*• high 06:10\s+• low 12:20.*mood tides [a-z]/s);
   });
 
   it('says so when the service cannot judge plans yet', async () => {

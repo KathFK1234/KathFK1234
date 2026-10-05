@@ -29,6 +29,7 @@ const BUILT_IN: Record<string, string> = {
   wellbeing: 'mood <place>',
   forecast: 'mood week <place>',
   activity: 'mood <activity> in <place>',
+  activities: 'mood activities <place>',
 };
 /* Plans to suggest; the activities MoodForecast AI recognises take over once the sync has them. */
 const STARTER_PLANS = ['run', 'picnic', 'swim', 'hike', 'stargazing', 'barbecue', 'kite'];
@@ -403,6 +404,9 @@ function guide(session: MoodSession): ReactNode {
                 ] as [ReactNode, ReactNode],
               ]
             : []),
+          ...(offers(session, 'activities')
+            ? [[<Accent>mood activities &lt;place&gt;</Accent>, 'what is practical there right now'] as [ReactNode, ReactNode]]
+            : []),
           ...extra.map((endpoint): [ReactNode, ReactNode] => [<Accent>{usage(endpoint)}</Accent>, endpoint.about]),
           [<Accent>mood api</Accent>, 'everything the service can do right now'],
         ]}
@@ -646,8 +650,13 @@ async function plan(activity: string, place: string, ctx: Ctx): Promise<ReactNod
   } catch (error) {
     return problem(error, place, session);
   }
-  remember(session, place, data);
+  return adviceView(data, place, activity, session);
+}
 
+/** A verdict on one activity. `asked` is how to ask about the same activity somewhere else. */
+function adviceView(data: ActivityAdvice, place: string, asked: string, session: MoodSession, again?: string): ReactNode {
+  remember(session, place, data);
+  const activity = asked;
   const others = data.curiosity?.places?.length
     ? data.curiosity.places
     : elsewhere(session, 3, place, data.location);
@@ -678,6 +687,88 @@ async function plan(activity: string, place: string, ctx: Ctx): Promise<ReactNod
             ))}
         </>
       ) : null}
+      {again ? (
+        <>
+          {'\n'}
+          <Dim>not feeling it?</Dim> <Cmd>{again}</Cmd>
+        </>
+      ) : null}
+      {data.verdict === 'skip' && offers(session, 'activities') ? (
+        <>
+          {'\n'}
+          <Dim>what does suit {data.location.split(',')[0]} right now:</Dim>{' '}
+          <Cmd>{`mood activities ${place.toLowerCase()}`}</Cmd>
+        </>
+      ) : null}
+    </>
+  );
+}
+
+/** True for any response shaped like a verdict on an activity, whichever endpoint sent it. */
+function isAdvice(data: unknown): data is ActivityAdvice {
+  const advice = data as Partial<ActivityAdvice> | null;
+  return (
+    typeof advice?.location === 'string' &&
+    typeof advice.activity === 'string' &&
+    typeof advice.verdict === 'string' &&
+    typeof advice.headline === 'string' &&
+    Array.isArray(advice.reasons) &&
+    typeof advice.weather?.condition === 'string'
+  );
+}
+
+/* ---------- mood activities <place> ---------- */
+
+const IDEAS_SHOWN = 12;
+
+async function ideas(place: string, ctx: Ctx): Promise<ReactNode> {
+  const session = ctx.state.mood;
+  ctx.print(<Dim>asking MoodForecast AI what there is to do in {place} ...</Dim>);
+
+  let data: unknown;
+  try {
+    data = await ask<unknown>(`/api/activities/${encodeURIComponent(place)}`);
+  } catch (error) {
+    return problem(error, place, session);
+  }
+  const all = (Array.isArray(data) ? data : []).filter(
+    (item): item is { name: string; prompt?: string } => typeof item?.name === 'string',
+  );
+  if (!all.length) return listView(data, place, 'activities', session);
+
+  const from = place.toLowerCase();
+  const shown = all.slice(0, IDEAS_SHOWN);
+  const more = all.slice(IDEAS_SHOWN).map(item => item.name);
+  return (
+    <>
+      <Accent>{place}</Accent> <Dim>— what is practical there, local favourites first. click one for a verdict</Dim>
+      {'\n'}
+      <Rows rows={shown.map(item => [item.prompt ?? item.name, <Cmd>{`mood ${item.name} in ${from}`}</Cmd>])} />
+      {more.length ? (
+        <>
+          {'\n'}
+          <Dim>also: {more.join(', ')}</Dim>
+        </>
+      ) : null}
+      {offers(session, 'random-activity') ? (
+        <>
+          {'\n'}
+          <Dim>cannot choose?</Dim> <Cmd>{`mood random-activity ${from}`}</Cmd>
+        </>
+      ) : null}
+    </>
+  );
+}
+
+/** Any response that is a list rather than a set of fields. */
+function listView(data: unknown, place: string, name: string, session: MoodSession): ReactNode {
+  const items = Array.isArray(data) ? data : [data];
+  return (
+    <>
+      <Accent>{place}</Accent> <Dim>— {name}, live from the MoodForecast AI service</Dim>
+      {'\n'}
+      {items.length ? items.map(item => `  • ${plain(item)}\n`) : <Dim>{'  nothing to list.\n'}</Dim>}
+      <Dim>and elsewhere?</Dim> <PlaceCmds places={elsewhere(session, 2, place)} before={`mood ${name}`} />
     </>
   );
 }
@@ -745,6 +836,13 @@ async function other(endpoint: Endpoint, words: string[], ctx: Ctx): Promise<Rea
   } catch (error) {
     return problem(error, place, session);
   }
+  // Presented by what the answer looks like, so a new endpoint with a familiar shape needs no work here.
+  if (Array.isArray(data) || data === null || typeof data !== 'object') {
+    return listView(data, place, endpoint.name, session);
+  }
+  if (isAdvice(data)) {
+    return adviceView(data, place, data.activity, session, `mood ${endpoint.name} ${place.toLowerCase()}`);
+  }
   if (typeof data.location === 'string') remember(session, place, { location: data.location });
 
   return (
@@ -784,6 +882,7 @@ export async function mood(args: string[], ctx: Ctx): Promise<ReactNode> {
     const endpoint = found.find(candidate => candidate.name === first);
     if (endpoint?.name === 'wellbeing') return reading(rest, ctx);
     if (endpoint?.name === 'activity') return <Warn>usage: {BUILT_IN.activity}</Warn>;
+    if (endpoint?.name === 'activities') return ideas(rest, ctx);
     if (endpoint && !(endpoint.name in BUILT_IN)) return other(endpoint, words.slice(1), ctx);
   }
 
