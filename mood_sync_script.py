@@ -17,7 +17,7 @@ endpoints a visitor can read in the terminal, from the same OpenAPI document.
 
 Nothing here is specific to today's endpoints or lists: add an endpoint, a
 place or an activity to MoodForecast AI and it shows up in the terminal after
-the next run. The scheduled GitHub Actions workflow runs this once a day.
+the next run. The scheduled GitHub Actions workflow runs this every three hours.
 
 Usage:
     python3 mood_sync_script.py --dry-run

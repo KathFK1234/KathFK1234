@@ -2,8 +2,9 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  110 commits · first 2026-09-20 · latest 2026-10-06
+  111 commits · first 2026-09-20 · latest 2026-10-06
 
+  2026-10-06  Report a week at a time, Saturday to Friday, with sections that fold away
   2026-10-06  Put a project's Edit and Delete buttons beside its name, and make the pencil easier to see
   2026-10-06  Bring the Inventory page's buttons together and give the tag and the problem the room
   2026-10-06  Keep each page's buttons level with its title, clear of the description
@@ -15,6 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-10-06  Choose several students for a project, and edit an entry in a pop-up
   2026-10-06  Let the server handle project teams, further files, and a project's repository folder
   2026-10-06  Edit a student from wherever their name appears
-  2026-10-06  Keep student names with educators, even when typed into notes
 
 From anywhere in this terminal, `updates` shows the same for every project.

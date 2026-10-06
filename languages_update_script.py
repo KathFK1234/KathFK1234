@@ -24,7 +24,7 @@ Usage:
 
 For higher rate limits, put a token in the GITHUB_TOKEN environment variable
 (preferred, since it stays out of your shell history) or pass --token.
-The scheduled GitHub Actions workflow runs this once a day.
+The scheduled GitHub Actions workflow runs this every three hours.
 
 Private repositories are included with --include-private, which needs a token
 that can read them. Only totals leave the script: private repository names are

@@ -18,7 +18,7 @@ For every project in PROJECTS below, reads the repository's history and writes:
 Nothing here is specific to today's commits: push to a project and it shows up
 after the next run. Whether a repository is public or private is read each time
 too, so a project's link appears or turns into "source is private" on its own.
-The scheduled GitHub Actions workflow runs this once a day.
+The scheduled GitHub Actions workflow runs this every three hours.
 
 A private repository's commit messages are only published if its entry says
 "share": True. Otherwise only its dates and commit count leave the script.
@@ -279,7 +279,7 @@ def format_lately(entries: list[dict]) -> str:
     for entry in rows:
         what = cell(entry["recent"][0]["subject"]) if entry["recent"] else f"private work · {entry['commits']} commits so far"
         lines.append(f"| {entry['name']} | {entry['updated']} | {what} |")
-    lines += ["", "<sub>Read from each project's repository once a day.</sub>"]
+    lines += ["", "<sub>Read from each project's repository every three hours.</sub>"]
     return "\n".join(lines)
 
 
@@ -348,7 +348,7 @@ def check(reader, reviewed: dict, quiet: bool) -> None:
         if len(new) > CHECK_SHOWN:
             print(f"      ... and {len(new) - CHECK_SHOWN} more")
     print(
-        "The dated lists (CHANGELOG.md, the README's Lately table, `updates`) refresh themselves once a day. "
+        "The dated lists (CHANGELOG.md, the README's Lately table, `updates`) refresh themselves every three hours. "
         "The prose does not: the project's README.md there, its card in the profile README, and the `projects` command. "
         "After revising them, run: python3 projects_sync_script.py --mark-reviewed"
     )

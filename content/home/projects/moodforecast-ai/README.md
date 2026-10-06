@@ -11,7 +11,7 @@ Weather apps report conditions. They rarely say what those conditions mean for a
 
 ## API
 
-The endpoint list is in `API.md`, next to this file. It is rewritten from the service's own description every day, so it does not go stale:
+The endpoint list is in `API.md`, next to this file. It is rewritten from the service's own description every three hours, so it does not go stale:
 
   `cat ~/projects/moodforecast-ai/API.md`
 

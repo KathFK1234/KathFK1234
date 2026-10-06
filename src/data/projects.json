@@ -128,8 +128,12 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-06",
-      "commits": 110,
+      "commits": 111,
       "recent": [
+        {
+          "date": "2026-10-06",
+          "subject": "Report a week at a time, Saturday to Friday, with sections that fold away"
+        },
         {
           "date": "2026-10-06",
           "subject": "Put a project's Edit and Delete buttons beside its name, and make the pencil easier to see"
@@ -173,10 +177,6 @@
         {
           "date": "2026-10-06",
           "subject": "Edit a student from wherever their name appears"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Keep student names with educators, even when typed into notes"
         }
       ]
     },

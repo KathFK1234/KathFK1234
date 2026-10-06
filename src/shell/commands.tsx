@@ -493,7 +493,7 @@ export const commands: Command[] = [
               {'\n'}
             </Fragment>
           ))}
-          <Dim>read from each repository once a day. one project in full:</Dim>{' '}
+          <Dim>read from each repository every three hours. one project in full:</Dim>{' '}
           <Cmd>{`updates ${shown[0].folder}`}</Cmd>
         </>
       );
