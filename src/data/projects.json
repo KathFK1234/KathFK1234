@@ -1,0 +1,187 @@
+{
+  "projects": [
+    {
+      "name": "Healing Hive",
+      "folder": "healing-hive",
+      "private": false,
+      "url": "https://github.com/KathFK1234/Healing-Hive",
+      "team": false,
+      "started": "2026-10-06",
+      "updated": "2026-10-06",
+      "commits": 10,
+      "recent": [
+        {
+          "date": "2026-10-06",
+          "subject": "Add seed script and API tests"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Add admin endpoints and wire up the app"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Add the AI companion"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Add nuggets and events"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Add mood check-ins, journal and reminders"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Add professionals directory, applications and session booking"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Add sign up, sign in and profile endpoints"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Add server core: validated config, errors, auth and validation middleware"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Set up the repo as a server + client workspace"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Initial commit"
+        }
+      ]
+    },
+    {
+      "name": "MoodForecast AI",
+      "folder": "moodforecast-ai",
+      "private": false,
+      "url": "https://github.com/KathFK1234/moodforecast_ai",
+      "team": false,
+      "started": "2026-06-05",
+      "updated": "2026-10-05",
+      "commits": 116,
+      "recent": [
+        {
+          "date": "2026-10-05",
+          "subject": "Stop place lookups failing a search when the geocoder is slow"
+        },
+        {
+          "date": "2026-10-05",
+          "subject": "Ride out brief Open-Meteo slowness instead of failing the search"
+        },
+        {
+          "date": "2026-10-05",
+          "subject": "Send each confirmation and unsubscribe link at most once per ten minutes"
+        },
+        {
+          "date": "2026-10-05",
+          "subject": "Keep the details of unexpected errors out of responses"
+        },
+        {
+          "date": "2026-10-05",
+          "subject": "Make run_tests.sh work without an activated venv and cover new endpoints"
+        },
+        {
+          "date": "2026-10-05",
+          "subject": "Remove the language field from the subscribe form"
+        },
+        {
+          "date": "2026-10-05",
+          "subject": "Give plain-language errors when the weather service is slow or down"
+        },
+        {
+          "date": "2026-10-05",
+          "subject": "Keep random picks quiet in the small hours"
+        },
+        {
+          "date": "2026-10-05",
+          "subject": "Stop suggesting a fan and a cool shower in cold, humid weather"
+        },
+        {
+          "date": "2026-10-05",
+          "subject": "Clarify the risk badge and show when an activity answer is loading"
+        },
+        {
+          "date": "2026-10-05",
+          "subject": "Show place names in English"
+        },
+        {
+          "date": "2026-10-05",
+          "subject": "Name the place in the tab title and address, and support Back"
+        }
+      ]
+    },
+    {
+      "name": "Murengeti Lab System",
+      "folder": "murengeti-lab",
+      "private": true,
+      "url": null,
+      "team": false,
+      "started": "2026-09-20",
+      "updated": "2026-10-06",
+      "commits": 105,
+      "recent": []
+    },
+    {
+      "name": "MindConnect",
+      "folder": "mindconnect",
+      "private": false,
+      "url": "https://github.com/KathFK1234/mindconnect",
+      "team": true,
+      "started": "2025-06-05",
+      "updated": "2025-09-25",
+      "commits": 25,
+      "recent": [
+        {
+          "date": "2025-09-22",
+          "subject": "Recovered HTML file and code"
+        },
+        {
+          "date": "2025-09-22",
+          "subject": "Removed unused CSS file"
+        },
+        {
+          "date": "2025-09-22",
+          "subject": "Removed empty directory for order"
+        },
+        {
+          "date": "2025-09-22",
+          "subject": "Added the basic functionality for the Chatbot UI"
+        },
+        {
+          "date": "2025-09-18",
+          "subject": "Update: integrated AuthContext and dynamic user greeting"
+        },
+        {
+          "date": "2025-09-17",
+          "subject": "Revert \"Build landing page and dashboard layout with shared components\""
+        },
+        {
+          "date": "2025-09-17",
+          "subject": "Build landing page and dashboard layout with shared components"
+        },
+        {
+          "date": "2025-09-12",
+          "subject": "Organized feature branch files"
+        },
+        {
+          "date": "2025-09-12",
+          "subject": "Added the chatbot UI branch and reach base dependencies"
+        },
+        {
+          "date": "2025-08-14",
+          "subject": "Added AI therapist backend"
+        },
+        {
+          "date": "2025-08-13",
+          "subject": "added events, nuggets and reminders"
+        },
+        {
+          "date": "2025-08-12",
+          "subject": "adde the therapist account, and all session logic"
+        }
+      ]
+    }
+  ]
+}
