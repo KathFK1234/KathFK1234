@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Vitest |
 | **Infrastructure** | Docker · GitHub Actions · Railway · Docker Compose |
 
-<sub>Detected automatically from 28 repositories (public and private) · last changed 2026-10-05</sub>
+<sub>Detected automatically from 28 repositories (public and private) · last changed 2026-10-06</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,12 +109,12 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 48.9%" : 763.0
-    "TypeScript · 29.8%" : 465.4
-    "HTML · 6.2%" : 97.2
-    "JavaScript · 5.2%" : 81.0
-    "CSS · 5.2%" : 81.0
-    "C · 4.0%" : 62.7
+    "Python · 50.0%" : 807.6
+    "TypeScript · 29.5%" : 476.4
+    "HTML · 6.0%" : 97.2
+    "JavaScript · 5.0%" : 81.0
+    "CSS · 5.0%" : 81.0
+    "C · 3.9%" : 62.7
     "Ruby · 0.6%" : 10.1
 ```
 <!-- languages:end -->
