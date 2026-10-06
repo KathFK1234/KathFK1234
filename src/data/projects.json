@@ -8,8 +8,12 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-06",
-      "commits": 23,
+      "commits": 24,
       "recent": [
+        {
+          "date": "2026-10-06",
+          "subject": "Link MindConnect to the team's repository, now that the fork is gone"
+        },
         {
           "date": "2026-10-06",
           "subject": "Write the README: setup, structure, what is not built yet"
@@ -53,10 +57,6 @@
         {
           "date": "2026-10-06",
           "subject": "Add the API client, formatting helpers and UI components"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Set up the web app: Vite, Tailwind and the design tokens"
         }
       ]
     },
@@ -184,7 +184,7 @@
       "name": "MindConnect",
       "folder": "mindconnect",
       "private": false,
-      "url": "https://github.com/KathFK1234/mindconnect",
+      "url": "https://github.com/derick-macharia/mindconnect-platform",
       "team": true,
       "started": "2025-06-05",
       "updated": "2025-09-25",
