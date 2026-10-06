@@ -190,10 +190,10 @@ Built at Chakula Africa · source is private
 | Project | Last change | What changed |
 | --- | --- | --- |
 | Healing Hive | 2026-10-06 | Write the README: setup, structure, what is not built yet |
-| Murengeti Lab System | 2026-10-06 | Put a project's Edit and Delete buttons beside its name, and make the pencil easier to see |
+| Murengeti Lab System | 2026-10-06 | Report a week at a time, Saturday to Friday, with sections that fold away |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
-<sub>Read from each project's repository once a day.</sub>
+<sub>Read from each project's repository every three hours.</sub>
 <!-- projects:end -->
 
 <br>
@@ -228,7 +228,7 @@ timeline
 
 <div align="center">
 
-<img src="./assets/activity.svg" alt="GitHub activity over the past year: contributions, commits, pull requests, repositories, and a contribution calendar" width="840">
+<a href="https://github.com/KathFK1234"><img src="https://kathfk1234.github.io/KathFK1234/activity.svg" alt="GitHub activity over the past year: contributions, commits, pull requests, repositories, and a contribution calendar" width="840"></a>
 
 </div>
 
@@ -282,20 +282,20 @@ npm run build    # type-check and build into dist/
 
 Pushing to `main` builds and deploys the site through [.github/workflows/deploy.yml](.github/workflows/deploy.yml). In the repository settings, Pages → Source must be set to **GitHub Actions**.
 
-**Languages and tools update themselves.** Once a day (or on demand from the Actions tab → *Run workflow*), the same workflow runs [languages_update_script.py](languages_update_script.py). It reads every public repository I own — GitHub's language statistics, plus dependency files such as `requirements.txt`, `pyproject.toml` and `package.json` — and rewrites:
+**Languages and tools update themselves.** Every three hours (or on demand from the Actions tab → *Run workflow*), the same workflow runs [languages_update_script.py](languages_update_script.py). It reads every public repository I own — GitHub's language statistics, plus dependency files such as `requirements.txt`, `pyproject.toml` and `package.json` — and rewrites:
 
 - the icon row, tools table, language list and pie chart in this README (between the `stack` and `languages` comment markers), and
 - [src/data/stack.json](src/data/stack.json), which the site's `skills` and `stack` commands read.
 
-The **On GitHub** card is redrawn by the same daily run: [activity_card_script.py](activity_card_script.py) asks GitHub for the past year of contributions and writes [assets/activity.svg](assets/activity.svg).
+The **On GitHub** card is the contribution calendar from my profile page, in this site's colours: [activity_card_script.py](activity_card_script.py) asks GitHub for the past year and uses the same days, the same counts and GitHub's own shade for each day. It is drawn on every run of the workflow, each push included, and published with the site instead of being committed, so the README always shows the newest one. GitHub caches images for a few minutes, so a fresh contribution can take a little while to appear.
 
 **The `mood` command keeps up with MoodForecast AI.** Nothing about that service is written into the terminal by hand more than once:
 
 - Each visit, `mood` first asks the live service what it offers (its OpenAPI description). Every `GET /api/<name>/{location}` endpoint is usable at once as `mood <name> <place>`, every other `GET /api/<name>` as `mood <name>`, and any field a response gains is shown, even before the terminal has a tailored view for it. `mood api` lists what it found.
 - What the service says is passed on as it says it: its own error explanations, its questions about other places, its place suggestions when a name is mistyped, and its current list of activities (used for suggestions and Tab completion the same day one is added).
-- The daily run also executes [mood_sync_script.py](mood_sync_script.py), which reads the endpoints plus the place lists and activities in the [moodforecast_ai](https://github.com/KathFK1234/moodforecast_ai) repository and writes [src/data/mood.json](src/data/mood.json). The terminal uses it for suggestions ("where next?"), Tab completion, and as a fallback when the service does not answer. The same run rewrites the endpoint list visitors can read in the terminal (`cat ~/projects/moodforecast-ai/API.md`).
+- The scheduled run also executes [mood_sync_script.py](mood_sync_script.py), which reads the endpoints plus the place lists and activities in the [moodforecast_ai](https://github.com/KathFK1234/moodforecast_ai) repository and writes [src/data/mood.json](src/data/mood.json). The terminal uses it for suggestions ("where next?"), Tab completion, and as a fallback when the service does not answer. The same run rewrites the endpoint list visitors can read in the terminal (`cat ~/projects/moodforecast-ai/API.md`).
 
-**Project write-ups keep up with the projects.** The same daily run executes [projects_sync_script.py](projects_sync_script.py), which reads the history of every project listed at the top of that script and rewrites:
+**Project write-ups keep up with the projects.** The same scheduled run executes [projects_sync_script.py](projects_sync_script.py), which reads the history of every project listed at the top of that script and rewrites:
 
 - the **Lately** table under *Featured work* (between the `projects` comment markers), and each project's source link, which turns into "source is private" on its own if a repository is made private,
 - [src/data/projects.json](src/data/projects.json), which the terminal's `updates` and `projects` commands read, and
@@ -303,7 +303,7 @@ The **On GitHub** card is redrawn by the same daily run: [activity_card_script.p
 
 A private repository's commit messages stay out of all three unless its entry in the script says `"share": True`; otherwise only its dates and commit count are shown.
 
-Dates and commit lists look after themselves; the paragraphs I wrote about a project do not. So the script also records the commit each write-up was last revised at ([projects_reviewed.json](projects_reviewed.json)) and reports what has changed since. The daily run posts that as a notice on the workflow, and on my own machine the same check runs against the local clones, where it also sees work that is not pushed yet:
+Dates and commit lists look after themselves; the paragraphs I wrote about a project do not. So the script also records the commit each write-up was last revised at ([projects_reviewed.json](projects_reviewed.json)) and reports what has changed since. The scheduled run posts that as a notice on the workflow, and on my own machine the same check runs against the local clones, where it also sees work that is not pushed yet:
 
 ```bash
 python3 projects_sync_script.py --check              # ask GitHub (GITHUB_TOKEN needed for private projects)
@@ -323,7 +323,7 @@ npm run dev
 
 (`git checkout src/data/mood.json content/home/projects/moodforecast-ai/API.md` puts the generated files back afterwards.)
 
-The daily run commits its changes to `main`, so `git pull` before starting new work.
+The scheduled run commits its changes to `main`, so `git pull` before starting new work.
 
 **Including private repositories.** By default only public repositories are scanned. To count private ones too, create a fine-grained personal access token (GitHub → Settings → Developer settings → Fine-grained tokens) with *All repositories* access and read-only **Contents** and **Metadata** permissions, then save it in this repository under Settings → Secrets and variables → Actions as a secret named `STACK_TOKEN`. Only totals are published — language sizes and tool names — never private repository names, which are also kept out of the workflow logs.
 
