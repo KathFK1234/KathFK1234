@@ -3,9 +3,14 @@
 Draw the "On GitHub" card in the README from live GitHub data.
 
 It asks GitHub for the last year of contributions and writes
-assets/activity.svg: four headline numbers and a contribution calendar,
-styled like the terminal header. The scheduled workflow runs this once a
-day, so the card follows the account without any manual editing.
+public/activity.svg: four headline numbers and a contribution calendar,
+styled like the terminal header. The calendar is the one on the profile
+page: the same days, the same counts, and the same five shades, because
+GitHub decides each day's shade and this only picks the colours.
+
+The card is published with the site, not committed, so every run of the
+workflow (each push, and every few hours) replaces it and the README shows
+the newest one.
 
 Usage:
     GITHUB_TOKEN=<token> python3 activity_card_script.py
@@ -35,7 +40,7 @@ query($login: String!) {
       restrictedContributionsCount
       contributionCalendar {
         totalContributions
-        weeks { contributionDays { contributionCount date } }
+        weeks { contributionDays { contributionCount contributionLevel date } }
       }
     }
   }
@@ -47,8 +52,18 @@ HEIGHT = 300
 CELL = 10
 STEP = 13  # cell plus gap
 GRID_TOP = 172
-# Contributions in a day -> colour, from "none" up to "a lot"
-LEVELS = [(0, "#131c1c"), (1, "#134e48"), (3, "#1f8f82"), (6, "#3cc9b5"), (10, "#5eead4")]
+# GitHub's own shade for a day -> colour. GitHub works the levels out from the
+# account's busiest days, so a fixed "10 or more is the brightest" would not
+# match the profile page.
+LEVELS = {
+    "NONE": "#131c1c",
+    "FIRST_QUARTILE": "#134e48",
+    "SECOND_QUARTILE": "#1f8f82",
+    "THIRD_QUARTILE": "#3cc9b5",
+    "FOURTH_QUARTILE": "#5eead4",
+}
+# Rows labelled down the left side, as on the profile page (row 0 is Sunday)
+DAY_LABELS = {1: "Mon", 3: "Wed", 5: "Fri"}
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 
@@ -64,14 +79,6 @@ def fetch_activity(username, token):
     if payload.get("errors") or not payload.get("data", {}).get("user"):
         raise SystemExit(f"GitHub could not answer: {payload.get('errors', 'user not found')}")
     return payload["data"]["user"]
-
-
-def colour_for(count):
-    colour = LEVELS[0][1]
-    for threshold, value in LEVELS:
-        if count >= threshold:
-            colour = value
-    return colour
 
 
 def render(user):
@@ -108,8 +115,13 @@ def render(user):
             noun = "contribution" if count == 1 else "contributions"
             cells.append(
                 f'<rect x="{x}" y="{GRID_TOP + row * STEP}" width="{CELL}" height="{CELL}" rx="2" '
-                f'fill="{colour_for(count)}"><title>{day["date"]}: {count} {noun}</title></rect>'
+                f'fill="{LEVELS.get(day["contributionLevel"], LEVELS["NONE"])}"><title>{day["date"]}: {count} {noun}</title></rect>'
             )
+
+    labels += [
+        f'<text x="{grid_left - 8}" y="{GRID_TOP + row * STEP + 9}" text-anchor="end" class="dim small">{name}</text>'
+        for row, name in DAY_LABELS.items()
+    ]
 
     tile_width = (WIDTH - 56) // len(tiles)
     tile_svg = []
@@ -123,7 +135,7 @@ def render(user):
     legend = [f'<text x="{legend_x}" y="{legend_y + 9}" class="dim small">less</text>']
     legend += [
         f'<rect x="{legend_x + 38 + i * STEP}" y="{legend_y}" width="{CELL}" height="{CELL}" rx="2" fill="{colour}"/>'
-        for i, (_, colour) in enumerate(LEVELS)
+        for i, colour in enumerate(LEVELS.values())
     ]
     legend.append(f'<text x="{legend_x + 44 + len(LEVELS) * STEP}" y="{legend_y + 9}" class="dim small">more</text>')
 
@@ -156,7 +168,7 @@ def main():
         default=os.environ.get("GITHUB_TOKEN"),
         help="GitHub token (defaults to $GITHUB_TOKEN)",
     )
-    parser.add_argument("--output", default="assets/activity.svg", help="Where to write the card")
+    parser.add_argument("--output", default="public/activity.svg", help="Where to write the card")
     parser.add_argument("--dry-run", action="store_true", help="Fetch and report, but write nothing")
     args = parser.parse_args()
 

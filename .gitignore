@@ -1,5 +1,7 @@
 node_modules/
 dist/
+# Drawn by activity_card_script.py on every deploy; see .github/workflows/deploy.yml
+public/activity.svg
 *.local
 .env
 .env.*

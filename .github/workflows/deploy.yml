@@ -4,10 +4,10 @@ on:
   push:
     branches: [main]
   schedule:
-    # Once a day, pick up languages and tools from new or changed repositories,
-    # anything new in MoodForecast AI for the terminal's mood command,
-    # and the latest work on each project the portfolio describes
-    - cron: '17 3 * * *'
+    # Every three hours: redraw the "On GitHub" card, and pick up languages and
+    # tools from new or changed repositories, anything new in MoodForecast AI
+    # for the terminal's mood command, and the latest work on each project
+    - cron: '17 */3 * * *'
   workflow_dispatch:
 
 permissions:
@@ -47,7 +47,9 @@ jobs:
             python3 languages_update_script.py --username "$OWNER"
           fi
 
-      # Redraws assets/activity.svg, the "On GitHub" card in the README.
+      # Draws public/activity.svg, the "On GitHub" card in the README. It is
+      # published with the site and never committed, so it is redrawn on every
+      # run, pushes included, and the README always shows the newest one.
       - name: Draw the activity card
         id: activity
         continue-on-error: true
@@ -101,7 +103,8 @@ jobs:
         if: steps.activity.outcome == 'failure'
         run: |
           echo "::warning title=Activity card was not updated::The card kept its last data. If STACK_TOKEN is set, check that it has not expired."
-          git checkout -- assets/activity.svg
+          # Publish the card that is live now, so the README's image does not break
+          curl -fsS "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/activity.svg" -o public/activity.svg || true
 
       - name: Warn if the mood sync failed
         if: steps.mood.outcome == 'failure'
@@ -121,11 +124,11 @@ jobs:
         run: |
           git config user.name "Katheu Kilonzo"
           git config user.email "fkatheukilonzo@gmail.com"
-          git add README.md src/data/stack.json src/data/mood.json src/data/projects.json content/home/projects/moodforecast-ai/API.md content/home/projects/*/CHANGELOG.md assets/activity.svg
+          git add README.md src/data/stack.json src/data/mood.json src/data/projects.json content/home/projects/moodforecast-ai/API.md content/home/projects/*/CHANGELOG.md
           if git diff --cached --quiet; then
             echo "Nothing new."
           else
-            git commit -m "Update languages, tools, activity, the mood command and project updates"
+            git commit -m "Update languages, tools, the mood command and project updates"
             # main may have moved while this ran
             git pull --rebase
             git push
