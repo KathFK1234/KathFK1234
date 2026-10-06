@@ -429,7 +429,8 @@ export const commands: Command[] = [
         <Accent>Healing Hive</Accent> — mental-health support for young people in Kenya: therapy and peer
         counselling with vetted professionals, private check-ins and journaling, and an AI companion whose crisis
         reply never depends on the AI being up. It began in 2025 as MindConnect, built with a team (
-        <Link href={LINKS.mindconnect}>v1</Link>); in October 2026 I kept building it on my own as v2.{' '}
+        <Link href={LINKS.mindconnect}>v1</Link>); in October 2026 I kept building it on my own as v2: a tested API
+        and a twenty-page web app.{' '}
         {sourceOf('healing-hive')} · <Cmd>cat projects/healing-hive/what-changed.md</Cmd>
         {'\n\n'}
         <Accent>Chema Backend</Accent> — an agricultural and data platform built to connect decision-support,

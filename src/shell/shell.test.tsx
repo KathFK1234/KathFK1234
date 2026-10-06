@@ -639,7 +639,7 @@ describe('updates', () => {
     const hive = projectData.projects.find(project => project.folder === 'healing-hive')!;
     // run() strips tags, so a link reads as the bare word and the note keeps its brackets
     const note = hive.url ? 'source' : '(source is private)';
-    expect(await run('projects')).toContain(`as v2. ${note} ·`);
+    expect(await run('projects')).toContain(`web app. ${note} ·`);
   });
 });
 
