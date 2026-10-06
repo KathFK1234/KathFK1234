@@ -14,6 +14,10 @@ For every project in PROJECTS below, reads the repository's history and writes:
                                                  project's source link between
                                                  <!-- source:<folder>:start --> and
                                                  <!-- source:<folder>:end -->
+                                                 (keep those inside a <span>: a line
+                                                 that opens with a comment is raw
+                                                 HTML to GitHub, and its links show
+                                                 as plain text)
 
 Nothing here is specific to today's commits: push to a project and it shows up
 after the next run. Whether a repository is public or private is read each time

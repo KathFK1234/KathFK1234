@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  24 commits · first 2026-10-06 · latest 2026-10-06
+  48 commits · first 2026-10-06 · latest 2026-10-06
 
-  2026-10-06  Link MindConnect to the team's repository, now that the fork is gone
-  2026-10-06  Write the README: setup, structure, what is not built yet
-  2026-10-06  Wire up the router
-  2026-10-06  Add the admin page
-  2026-10-06  Add settings, the professional application and My practice
-  2026-10-06  Add nuggets, events and reminders pages
-  2026-10-06  Add the AI companion and journal pages
-  2026-10-06  Add the home dashboard and mood check-ins
-  2026-10-06  Add the support directory, booking and My sessions
-  2026-10-06  Add the public pages: landing, sign in, sign up, help and professionals
-  2026-10-06  Add sign-in state, page layouts and route guards
-  2026-10-06  Add the API client, formatting helpers and UI components
+  2026-10-06  Admin: show institutions properly; route the new pages
+  2026-10-06  Add the institution dashboard
+  2026-10-06  Practice page: Google Calendar, institution invitations and joining sessions
+  2026-10-06  Add joining a session and rating it afterwards
+  2026-10-06  Add ratings: stars on the directory and profiles, and rating a session
+  2026-10-06  Add forgot-password and reset-password pages
+  2026-10-06  Add a separate sign-up for professionals
+  2026-10-06  Simplify the landing and home pages
+  2026-10-06  Show crisis line hours, 24-hour lines first
+  2026-10-06  Give each kind of account its own home and a short, grouped menu
+  2026-10-06  Redesign: calmer, flatter and roomier
+  2026-10-06  Seed sample accounts so every page has content in development
 
 From anywhere in this terminal, `updates` shows the same for every project.

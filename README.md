@@ -161,7 +161,7 @@ Mental-health support for young people in Kenya: therapy and peer counselling wi
 
 `Node.js` `Express` `MongoDB` `React` `Tailwind CSS`
 
-<!-- source:healing-hive:start -->[Source](https://github.com/KathFK1234/Healing-Hive)<!-- source:healing-hive:end --> · v2: API and web app built, payments and SMS still to come · [v1, built with a team](https://github.com/derick-macharia/mindconnect-platform)
+<span><!-- source:healing-hive:start -->[Source](https://github.com/KathFK1234/Healing-Hive)<!-- source:healing-hive:end --></span> · [v1, built with a team](https://github.com/derick-macharia/mindconnect-platform)
 
 <br>
 
@@ -189,8 +189,8 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-06 | Link MindConnect to the team's repository, now that the fork is gone |
-| Murengeti Lab System | 2026-10-06 | Report a week at a time, Saturday to Friday, with sections that fold away |
+| Healing Hive | 2026-10-06 | Admin: show institutions properly; route the new pages |
+| Murengeti Lab System | 2026-10-06 | Lay the report's sections out in even rows |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
 <sub>Read from each project's repository every three hours.</sub>
