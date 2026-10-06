@@ -189,7 +189,7 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-06 | Write the README: setup, structure, what is not built yet |
+| Healing Hive | 2026-10-06 | Link MindConnect to the team's repository, now that the fork is gone |
 | Murengeti Lab System | 2026-10-06 | Report a week at a time, Saturday to Friday, with sections that fold away |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 

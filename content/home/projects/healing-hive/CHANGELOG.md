@@ -2,8 +2,9 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  23 commits · first 2026-10-06 · latest 2026-10-06
+  24 commits · first 2026-10-06 · latest 2026-10-06
 
+  2026-10-06  Link MindConnect to the team's repository, now that the fork is gone
   2026-10-06  Write the README: setup, structure, what is not built yet
   2026-10-06  Wire up the router
   2026-10-06  Add the admin page
@@ -15,6 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-10-06  Add the public pages: landing, sign in, sign up, help and professionals
   2026-10-06  Add sign-in state, page layouts and route guards
   2026-10-06  Add the API client, formatting helpers and UI components
-  2026-10-06  Set up the web app: Vite, Tailwind and the design tokens
 
 From anywhere in this terminal, `updates` shows the same for every project.
