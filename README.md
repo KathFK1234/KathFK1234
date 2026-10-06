@@ -155,13 +155,13 @@ Built for the school computer lab I lead · source is private
 <tr>
 <td width="50%" valign="top">
 
-### MindConnect
+### Healing Hive
 
-A mental-health support concept designed around the realities of young people in Kenya: accessible, empathetic, and clear about the next step.
+Mental-health support for young people in Kenya: therapy and peer counselling with vetted professionals, private check-ins and journaling, and an AI companion whose crisis reply never depends on the AI being up. It began in 2025 as MindConnect, built with a team; in October 2026 I kept building it on my own as v2.
 
-`Figma` `MongoDB` `Express` `Node.js`
+`Node.js` `Express` `MongoDB` `React` `Tailwind CSS`
 
-[Source](https://github.com/derick-macharia/mindconnect-platform) · concept work, built with a team
+<!-- source:healing-hive:start -->[Source](https://github.com/KathFK1234/Healing-Hive)<!-- source:healing-hive:end --> · v2, in progress · [v1, built with a team](https://github.com/derick-macharia/mindconnect-platform)
 
 <br>
 
@@ -181,6 +181,20 @@ Built at Chakula Africa · source is private
 </td>
 </tr>
 </table>
+
+<br>
+
+<!-- projects:start -->
+**Lately**
+
+| Project | Last change | What changed |
+| --- | --- | --- |
+| Healing Hive | 2026-10-06 | Add seed script and API tests |
+| Murengeti Lab System | 2026-10-06 | private work · 105 commits so far |
+| MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
+
+<sub>Read from each project's repository once a day.</sub>
+<!-- projects:end -->
 
 <br>
 
@@ -243,6 +257,7 @@ Beyond code, I am usually thinking, writing, drawing, or learning about psycholo
 | `man mood` · `man grep` | a manual for every command, with examples you can click |
 | `theme` · `font` · `crt` | change how the terminal looks |
 | `stack` | languages and tools measured across my repositories |
+| `updates` · `updates healing-hive` | the latest work on each project, read from its repository |
 | `fortune` · `neofetch` · `coffee` · `sudo hire-me` | for the curious |
 
 `Tab` completes commands and paths, `↑`/`↓` revisit history, and any highlighted command can be clicked or tapped. Add `?cmd=projects` to the URL to open the page with a command already run.
@@ -279,6 +294,24 @@ The **On GitHub** card is redrawn by the same daily run: [activity_card_script.p
 - Each visit, `mood` first asks the live service what it offers (its OpenAPI description). Every `GET /api/<name>/{location}` endpoint is usable at once as `mood <name> <place>`, every other `GET /api/<name>` as `mood <name>`, and any field a response gains is shown, even before the terminal has a tailored view for it. `mood api` lists what it found.
 - What the service says is passed on as it says it: its own error explanations, its questions about other places, its place suggestions when a name is mistyped, and its current list of activities (used for suggestions and Tab completion the same day one is added).
 - The daily run also executes [mood_sync_script.py](mood_sync_script.py), which reads the endpoints plus the place lists and activities in the [moodforecast_ai](https://github.com/KathFK1234/moodforecast_ai) repository and writes [src/data/mood.json](src/data/mood.json). The terminal uses it for suggestions ("where next?"), Tab completion, and as a fallback when the service does not answer. The same run rewrites the endpoint list visitors can read in the terminal (`cat ~/projects/moodforecast-ai/API.md`).
+
+**Project write-ups keep up with the projects.** The same daily run executes [projects_sync_script.py](projects_sync_script.py), which reads the history of every project listed at the top of that script and rewrites:
+
+- the **Lately** table under *Featured work* (between the `projects` comment markers), and each project's source link, which turns into "source is private" on its own if a repository is made private,
+- [src/data/projects.json](src/data/projects.json), which the terminal's `updates` and `projects` commands read, and
+- a `CHANGELOG.md` in each project's folder under [content/home/projects/](content/home/projects/), readable in the terminal with `cat`.
+
+A private repository's commit messages stay out of all three unless its entry in the script says `"share": True`; otherwise only its dates and commit count are shown.
+
+Dates and commit lists look after themselves; the paragraphs I wrote about a project do not. So the script also records the commit each write-up was last revised at ([projects_reviewed.json](projects_reviewed.json)) and reports what has changed since. The daily run posts that as a notice on the workflow, and on my own machine the same check runs against the local clones, where it also sees work that is not pushed yet:
+
+```bash
+python3 projects_sync_script.py --check              # ask GitHub (GITHUB_TOKEN needed for private projects)
+python3 projects_sync_script.py --check --local ..   # ask the clones next to this one
+python3 projects_sync_script.py --mark-reviewed      # after revising the write-ups
+```
+
+To add a project, add a line to `PROJECTS` in the script and a folder for it under `content/home/projects/`.
 
 To try MoodForecast AI changes that are not merged or deployed yet, run its backend locally and point both halves at it:
 
