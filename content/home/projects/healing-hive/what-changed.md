@@ -6,7 +6,7 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
 
   roles            v1 carried the role inside the sign-in token. v2 reads it from the database on every request, so approving or removing a professional takes effect at once.
   becoming a pro   v2 has one way in: apply, and an admin approves. Therapists must give a licence number.
-  sign-in          a wrong password and an unknown email get the same answer, so the form cannot be used to find out who has an account. Repeated attempts are slowed down.
+  sign-in          a wrong password and an unknown email get the same answer, so the form cannot be used to find out who has an account. Repeated failed attempts are slowed down; successful ones are not counted, because a campus or a mobile network can put many people behind one address.
   passwords        never returned by the API, and not read from the database unless a query asks for them.
   secrets          settings are checked when the server starts. A missing or weak one stops it there, not on some later request.
 
@@ -31,6 +31,18 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   tests            20 API tests against an in-memory database, each named for the promise it keeps.
   seed data        one command fills a local database with sample people and content.
 
-## Still to do
+## The web app
 
-The web app is being rebuilt on top of this API. Payments and SMS reminders come after.
+  v1               a landing page, a dashboard, and a chatbot screen.
+  v2               twenty pages covering every feature above, for three kinds of people: someone looking for support, a professional running their practice, and an admin reviewing applications and content.
+  get help now     a button on every page, signed in or not.
+  themes           light and dark, from one set of colour tokens.
+
+## Not built yet
+
+  payments         sessions record a price and a payment status; nothing is charged yet (M-Pesa and card).
+  reminders        saved and shown in the app; sending them by SMS or email comes later.
+  calls            a session records how the two people want to meet; there is no built-in call room.
+  also             institution dashboards, password reset by email, ratings and reviews.
+
+Before real people use it: every crisis number re-verified, and the AI companion's instructions reviewed by a qualified clinician.

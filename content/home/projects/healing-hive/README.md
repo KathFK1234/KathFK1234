@@ -21,6 +21,16 @@ v1 answered "can this exist?". v2 asks the harder question: what does a person i
   AI companion      a listener with stated limits, and a crisis reply that never depends on the AI being up
   crisis contacts   Kenyan helplines, one tap away, kept in the web app so they work when the server does not
 
+## The web app
+
+Twenty pages on top of that API, in three groups:
+
+  anyone             landing, help, the support directory and each professional's profile, nuggets, events
+  signed in          home, check-ins, journal, AI companion, my sessions, reminders, settings, apply as a professional
+  by role            My practice for approved professionals; the admin page for reviewing applications and nuggets
+
+A "Get help now" button is on every page, signed in or not. Light and dark themes share one set of colour tokens, and each page loads on first visit, so a slow connection only pays for the screen it opens.
+
 ## Stack
 
   Node.js · Express · MongoDB (Mongoose) · Zod · JWT
@@ -28,7 +38,7 @@ v1 answered "can this exist?". v2 asks the harder question: what does a person i
 
 ## Read next
 
-  what-changed.md   what v2 does differently from v1, and why
+  what-changed.md   what v2 does differently from v1, why, and what is not built yet
   safety.md         the decisions a mental-health product cannot get wrong
   CHANGELOG.md      the latest work, written from the repository itself
   ../mindconnect/   v1, and the product thinking both versions rest on
