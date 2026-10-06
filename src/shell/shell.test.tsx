@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import projectData from '../data/projects.json';
 import { DEFAULT_PREFS } from '../prefs';
 import { commandNames, commands, createShellState, EXAMPLES, execute, tokenize, type Ctx } from './commands';
 import { commonPrefix, complete, ghostFor } from './complete';
@@ -617,6 +618,31 @@ describe('mood', () => {
   });
 });
 
+describe('updates', () => {
+  it('lists the latest work on every project, or one in full', async () => {
+    const { run } = shell();
+    const all = await run('updates');
+    for (const project of projectData.projects) expect(all).toContain(project.name);
+    expect(await run('updates healing hive')).toMatch(/Healing Hive/);
+    expect(await run('updates healing hive')).not.toMatch(/MoodForecast AI/);
+    expect(await run('changelog nothing-like-this')).toMatch(/no project called.*updates healing-hive/s);
+  });
+
+  it('gives every project a folder with a changelog in the terminal', () => {
+    for (const project of projectData.projects) {
+      expect(getNode(['projects', project.folder, 'CHANGELOG.md']), project.folder).not.toBeNull();
+    }
+  });
+
+  it('links a project only while its source is public', async () => {
+    const { run } = shell();
+    const hive = projectData.projects.find(project => project.folder === 'healing-hive')!;
+    // run() strips tags, so a link reads as the bare word and the note keeps its brackets
+    const note = hive.url ? 'source' : '(source is private)';
+    expect(await run('projects')).toContain(`as v2. ${note} ·`);
+  });
+});
+
 describe('completion', () => {
   it('completes command names', () => {
     expect(complete('proj', []).lines).toEqual(['projects ']);
@@ -625,6 +651,7 @@ describe('completion', () => {
 
   it('completes paths relative to the current directory', () => {
     expect(complete('cd pro', []).lines).toEqual(['cd projects/']);
+    expect(complete('cd projects/h', []).lines).toEqual(['cd projects/healing-hive/']);
     expect(complete('cd projects/m', []).labels).toEqual([
       'projects/mindconnect/',
       'projects/moodforecast-ai/',

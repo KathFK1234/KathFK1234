@@ -1,4 +1,5 @@
 import { Fragment, type ReactNode } from 'react';
+import projectData from '../data/projects.json';
 import stack from '../data/stack.json';
 import { FONTS, THEMES, type FontName, type Prefs, type ThemeName } from '../prefs';
 import {
@@ -57,6 +58,27 @@ export const LINKS = {
 } as const;
 
 const EMAIL = 'fkatheukilonzo@gmail.com';
+
+/* src/data/projects.json is rewritten from each project's repository by
+   projects_sync_script.py: its latest commits, and whether its source is public. */
+interface ProjectEntry {
+  name: string;
+  folder: string;
+  private: boolean;
+  url: string | null;
+  team: boolean;
+  started: string;
+  updated: string;
+  commits: number;
+  recent: { date: string; subject: string }[];
+}
+const PROJECTS: ProjectEntry[] = projectData.projects;
+
+/** A link to a project's source, or a note that it is private, whichever is true today. */
+function sourceOf(folder: string): ReactNode {
+  const project = PROJECTS.find(entry => entry.folder === folder);
+  return project?.url ? <Link href={project.url}>source</Link> : <Dim>(source is private)</Dim>;
+}
 
 /* Skills written by hand. `skills` adds anything new that src/data/stack.json
    (refreshed from GitHub by languages_update_script.py) has found since, in the
@@ -404,17 +426,77 @@ export const commands: Command[] = [
         spreadsheets with one connected place for students, classes, timetables, attendance, equipment, and reports,
         and gives each school its own private workspace. <Dim>(source is private)</Dim>
         {'\n\n'}
-        <Accent>MindConnect</Accent> — a digital mental-health concept shaped around youth-centered support,
-        low-friction care journeys, and clearer emotional checkpoints in digital experiences.{' '}
-        <Link href={LINKS.mindconnect}>source</Link>
+        <Accent>Healing Hive</Accent> — mental-health support for young people in Kenya: therapy and peer
+        counselling with vetted professionals, private check-ins and journaling, and an AI companion whose crisis
+        reply never depends on the AI being up. It began in 2025 as MindConnect, built with a team (
+        <Link href={LINKS.mindconnect}>v1</Link>); in October 2026 I kept building it on my own as v2.{' '}
+        {sourceOf('healing-hive')} · <Cmd>cat projects/healing-hive/what-changed.md</Cmd>
         {'\n\n'}
         <Accent>Chema Backend</Accent> — an agricultural and data platform built to connect decision-support,
         operational information, and AI assistance in a way that is practical for real work rather than abstract
         automation. <Dim>(source is private)</Dim>
         {'\n\n'}
         <Dim>go deeper:</Dim> <Cmd>cd projects</Cmd> <Dim>then</Dim> <Cmd>ls</Cmd> <Dim>or</Dim> <Cmd>tree projects</Cmd>
+        {'\n'}
+        <Dim>what changed lately:</Dim> <Cmd>updates</Cmd>
       </>
     ),
+  },
+  {
+    name: 'updates',
+    summary: 'the latest work on each project, read from its repository',
+    group: 'profile',
+    usage: 'updates [project]',
+    aliases: ['changelog'],
+    completes: PROJECTS.map(project => project.folder),
+    run: args => {
+      const wanted = args.join(' ').toLowerCase();
+      const matches = (project: ProjectEntry) =>
+        project.folder.includes(wanted.replace(/\s+/g, '-')) || project.name.toLowerCase().includes(wanted);
+      const shown = [...PROJECTS].filter(matches).sort((a, b) => b.updated.localeCompare(a.updated));
+      if (!shown.length) {
+        return (
+          <>
+            <Warn>updates: no project called “{args.join(' ')}”</Warn>
+            {'\n'}
+            <Dim>try:</Dim>{' '}
+            {PROJECTS.map(project => (
+              <Fragment key={project.folder}>
+                <Cmd>{`updates ${project.folder}`}</Cmd>{' '}
+              </Fragment>
+            ))}
+          </>
+        );
+      }
+      // One project asked for by name gets its full list; the overview keeps each one short
+      const limit = wanted ? Infinity : 3;
+      return (
+        <>
+          {shown.map(project => (
+            <Fragment key={project.folder}>
+              <Accent>{project.name}</Accent>{' '}
+              <Dim>
+                — {project.commits} commits · latest {project.updated}
+                {project.team ? ' · built with a team' : ''}
+              </Dim>
+              {'\n'}
+              {project.recent.length ? (
+                <Rows
+                  rows={project.recent
+                    .slice(0, limit)
+                    .map(commit => [<Dim>{commit.date}</Dim>, commit.subject] as [ReactNode, ReactNode])}
+                />
+              ) : (
+                <Dim>{'  the source is private, so only the dates are shown\n'}</Dim>
+              )}
+              {'\n'}
+            </Fragment>
+          ))}
+          <Dim>read from each repository once a day. one project in full:</Dim>{' '}
+          <Cmd>{`updates ${shown[0].folder}`}</Cmd>
+        </>
+      );
+    },
   },
   {
     name: 'skills',
@@ -1479,6 +1561,7 @@ export const EXAMPLES: Record<string, string[]> = {
   tree: ['tree projects', 'tree -L 1'],
   open: ['open github', 'open linkedin', 'open moodforecast'],
   man: ['man mood', 'man grep', 'man man'],
+  updates: ['updates', 'updates healing-hive', 'updates moodforecast-ai'],
   history: ['history', 'history -c'],
   theme: ['theme', 'theme amber', 'theme matrix', 'theme paper'],
   font: ['font', 'font vt323', 'font jetbrains'],
@@ -1546,7 +1629,7 @@ function whoamiAnswer(answer: string): ReactNode {
         {'  • practical AI workflows and product thinking\n'}
         {'  • human-centered design informed by psychology\n\n'}
         {'Featured work:\n'}
-        {'  • MoodForecast AI\n  • Murengeti Lab System\n  • Chema Backend\n  • MindConnect concept work\n\n'}
+        {'  • MoodForecast AI\n  • Murengeti Lab System\n  • Healing Hive\n  • Chema Backend\n\n'}
         Next steps: <Cmd>resume</Cmd> <Cmd>projects</Cmd> <Cmd>contact</Cmd> or <Cmd>sudo hire-me</Cmd> for the direct
         route.
       </>
