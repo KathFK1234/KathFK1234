@@ -63,15 +63,15 @@ flowchart TD
 
 <!-- stack:start -->
 <p align="center">
-  <a href="https://github.com/KathFK1234?tab=repositories&language=python" title="Python"><img src="https://skillicons.dev/icons?i=python" width="48" height="48" alt="Python" title="Python"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=html" title="HTML"><img src="https://skillicons.dev/icons?i=html" width="48" height="48" alt="HTML" title="HTML"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=css" title="CSS"><img src="https://skillicons.dev/icons?i=css" width="48" height="48" alt="CSS" title="CSS"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=javascript" title="JavaScript"><img src="https://skillicons.dev/icons?i=js" width="48" height="48" alt="JavaScript" title="JavaScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=c" title="C"><img src="https://skillicons.dev/icons?i=c" width="48" height="48" alt="C" title="C"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=typescript" title="TypeScript"><img src="https://skillicons.dev/icons?i=ts" width="48" height="48" alt="TypeScript" title="TypeScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=ruby" title="Ruby"><img src="https://skillicons.dev/icons?i=ruby" width="48" height="48" alt="Ruby" title="Ruby"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=shell" title="Shell"><img src="https://skillicons.dev/icons?i=bash" width="48" height="48" alt="Shell" title="Shell"></a>
+  <a href="https://github.com/KathFK1234?tab=repositories&language=python" title="Python"><img src="https://skillicons.dev/icons?i=python" width="48" height="48" alt="Python" title="Python"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=html" title="HTML"><img src="https://skillicons.dev/icons?i=html" width="48" height="48" alt="HTML" title="HTML"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=css" title="CSS"><img src="https://skillicons.dev/icons?i=css" width="48" height="48" alt="CSS" title="CSS"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=javascript" title="JavaScript"><img src="https://skillicons.dev/icons?i=js" width="48" height="48" alt="JavaScript" title="JavaScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=c" title="C"><img src="https://skillicons.dev/icons?i=c" width="48" height="48" alt="C" title="C"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=typescript" title="TypeScript"><img src="https://skillicons.dev/icons?i=ts" width="48" height="48" alt="TypeScript" title="TypeScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=ruby" title="Ruby"><img src="https://skillicons.dev/icons?i=ruby" width="48" height="48" alt="Ruby" title="Ruby"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=shell" title="Shell"><img src="https://skillicons.dev/icons?i=bash" width="48" height="48" alt="Shell" title="Shell"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="FastAPI"><img src="https://skillicons.dev/icons?i=fastapi" width="48" height="48" alt="FastAPI" title="FastAPI"></a>
 </p>
 
 <p align="center">
-  <a href="#toolbox" title="FastAPI"><img src="https://skillicons.dev/icons?i=fastapi" width="48" height="48" alt="FastAPI" title="FastAPI"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Django"><img src="https://skillicons.dev/icons?i=django" width="48" height="48" alt="Django" title="Django"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="React"><img src="https://skillicons.dev/icons?i=react" width="48" height="48" alt="React" title="React"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Vite"><img src="https://skillicons.dev/icons?i=vite" width="48" height="48" alt="Vite" title="Vite"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="PostgreSQL"><img src="https://skillicons.dev/icons?i=postgres" width="48" height="48" alt="PostgreSQL" title="PostgreSQL"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Vitest"><img src="https://skillicons.dev/icons?i=vitest" width="48" height="48" alt="Vitest" title="Vitest"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Docker"><img src="https://skillicons.dev/icons?i=docker" width="48" height="48" alt="Docker" title="Docker"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="GitHub Actions"><img src="https://skillicons.dev/icons?i=githubactions" width="48" height="48" alt="GitHub Actions" title="GitHub Actions"></a>
+  <a href="#toolbox" title="Django"><img src="https://skillicons.dev/icons?i=django" width="48" height="48" alt="Django" title="Django"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Express"><img src="https://skillicons.dev/icons?i=express" width="48" height="48" alt="Express" title="Express"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="React"><img src="https://skillicons.dev/icons?i=react" width="48" height="48" alt="React" title="React"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Vite"><img src="https://skillicons.dev/icons?i=vite" width="48" height="48" alt="Vite" title="Vite"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Tailwind CSS"><img src="https://skillicons.dev/icons?i=tailwind" width="48" height="48" alt="Tailwind CSS" title="Tailwind CSS"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="PostgreSQL"><img src="https://skillicons.dev/icons?i=postgres" width="48" height="48" alt="PostgreSQL" title="PostgreSQL"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="MongoDB"><img src="https://skillicons.dev/icons?i=mongodb" width="48" height="48" alt="MongoDB" title="MongoDB"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Vitest"><img src="https://skillicons.dev/icons?i=vitest" width="48" height="48" alt="Vitest" title="Vitest"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Docker"><img src="https://skillicons.dev/icons?i=docker" width="48" height="48" alt="Docker" title="Docker"></a>
 </p>
 
 <p align="center">
-  <a href="#toolbox" title="AWS"><img src="https://skillicons.dev/icons?i=aws" width="48" height="48" alt="AWS" title="AWS"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Linux"><img src="https://skillicons.dev/icons?i=linux" width="48" height="48" alt="Linux" title="Linux"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Git"><img src="https://skillicons.dev/icons?i=git" width="48" height="48" alt="Git" title="Git"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="GitHub"><img src="https://skillicons.dev/icons?i=github" width="48" height="48" alt="GitHub" title="GitHub"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Figma"><img src="https://skillicons.dev/icons?i=figma" width="48" height="48" alt="Figma" title="Figma"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Postman"><img src="https://skillicons.dev/icons?i=postman" width="48" height="48" alt="Postman" title="Postman"></a>
+  <a href="#toolbox" title="GitHub Actions"><img src="https://skillicons.dev/icons?i=githubactions" width="48" height="48" alt="GitHub Actions" title="GitHub Actions"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="AWS"><img src="https://skillicons.dev/icons?i=aws" width="48" height="48" alt="AWS" title="AWS"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Linux"><img src="https://skillicons.dev/icons?i=linux" width="48" height="48" alt="Linux" title="Linux"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Git"><img src="https://skillicons.dev/icons?i=git" width="48" height="48" alt="Git" title="Git"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="GitHub"><img src="https://skillicons.dev/icons?i=github" width="48" height="48" alt="GitHub" title="GitHub"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Figma"><img src="https://skillicons.dev/icons?i=figma" width="48" height="48" alt="Figma" title="Figma"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="Postman"><img src="https://skillicons.dev/icons?i=postman" width="48" height="48" alt="Postman" title="Postman"></a>
 </p>
 
 <br>
@@ -79,13 +79,13 @@ flowchart TD
 | Found in my repositories | |
 | --- | --- |
 | **Languages** | Python · HTML · CSS · JavaScript · C · TypeScript · Ruby |
-| **Backend** | FastAPI · SQLAlchemy · Pydantic · Django · SQLModel |
-| **Frontend** | React · Vite |
-| **Data & databases** | PostgreSQL |
+| **Backend** | FastAPI · SQLAlchemy · Pydantic · Django · Express · SQLModel |
+| **Frontend** | React · Vite · Tailwind CSS |
+| **Data & databases** | PostgreSQL · MongoDB |
 | **Testing** | pytest · Vitest |
 | **Infrastructure** | Docker · GitHub Actions · Railway · Docker Compose |
 
-<sub>Detected automatically from 28 repositories (public and private) · last changed 2026-10-06</sub>
+<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-06</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,13 +109,13 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 50.0%" : 807.6
-    "TypeScript · 29.5%" : 476.4
-    "HTML · 6.0%" : 97.2
-    "JavaScript · 5.0%" : 81.0
-    "CSS · 5.0%" : 81.0
-    "C · 3.9%" : 62.7
-    "Ruby · 0.6%" : 10.1
+    "Python · 40.0%" : 905.4
+    "TypeScript · 23.1%" : 522.5
+    "JavaScript · 20.4%" : 460.8
+    "CSS · 8.9%" : 201.5
+    "HTML · 4.3%" : 98.1
+    "C · 2.8%" : 62.7
+    "Ruby · 0.4%" : 10.1
 ```
 <!-- languages:end -->
 
@@ -189,8 +189,8 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-06 | Admin: show institutions properly; route the new pages |
-| Murengeti Lab System | 2026-10-06 | Lay the report's sections out in even rows |
+| Healing Hive | 2026-10-06 | Update the README for one-command setup and the new features |
+| Murengeti Lab System | 2026-10-06 | Add asset types that say whether students use them and what to record |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
 <sub>Read from each project's repository every three hours.</sub>

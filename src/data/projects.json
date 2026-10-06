@@ -8,8 +8,16 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-06",
-      "commits": 48,
+      "commits": 50,
       "recent": [
+        {
+          "date": "2026-10-06",
+          "subject": "Update the README for one-command setup and the new features"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Lighter text weights on the remaining pages"
+        },
         {
           "date": "2026-10-06",
           "subject": "Admin: show institutions properly; route the new pages"
@@ -49,14 +57,6 @@
         {
           "date": "2026-10-06",
           "subject": "Give each kind of account its own home and a short, grouped menu"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Redesign: calmer, flatter and roomier"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Seed sample accounts so every page has content in development"
         }
       ]
     },
@@ -128,8 +128,20 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-06",
-      "commits": 114,
+      "commits": 117,
       "recent": [
+        {
+          "date": "2026-10-06",
+          "subject": "Add asset types that say whether students use them and what to record"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Let the server describe kinds of equipment: whether students use them, and what to record"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Carry edits to a project through to its folders in the repository"
+        },
         {
           "date": "2026-10-06",
           "subject": "Lay the report's sections out in even rows"
@@ -165,18 +177,6 @@
         {
           "date": "2026-10-06",
           "subject": "Keep a separate sign-in for each browser tab"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Lay the project card out properly on a phone"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Reuse database connections between requests"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Show which project files are in the repository, and send them one at a time or all at once"
         }
       ]
     },

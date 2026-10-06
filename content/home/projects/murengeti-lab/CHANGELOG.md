@@ -2,8 +2,11 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  114 commits · first 2026-09-20 · latest 2026-10-06
+  117 commits · first 2026-09-20 · latest 2026-10-06
 
+  2026-10-06  Add asset types that say whether students use them and what to record
+  2026-10-06  Let the server describe kinds of equipment: whether students use them, and what to record
+  2026-10-06  Carry edits to a project through to its folders in the repository
   2026-10-06  Lay the report's sections out in even rows
   2026-10-06  Label a project entry's button Edit student(s)
   2026-10-06  Run target weeks from Saturday to Friday
@@ -13,8 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-10-06  Keep each page's buttons level with its title, clear of the description
   2026-10-06  Show the touch typing tick only on the touch typing curriculum
   2026-10-06  Keep a separate sign-in for each browser tab
-  2026-10-06  Lay the project card out properly on a phone
-  2026-10-06  Reuse database connections between requests
-  2026-10-06  Show which project files are in the repository, and send them one at a time or all at once
 
 From anywhere in this terminal, `updates` shows the same for every project.
