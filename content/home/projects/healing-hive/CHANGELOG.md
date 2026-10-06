@@ -2,17 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  10 commits · first 2026-10-06 · latest 2026-10-06
+  23 commits · first 2026-10-06 · latest 2026-10-06
 
-  2026-10-06  Add seed script and API tests
-  2026-10-06  Add admin endpoints and wire up the app
-  2026-10-06  Add the AI companion
-  2026-10-06  Add nuggets and events
-  2026-10-06  Add mood check-ins, journal and reminders
-  2026-10-06  Add professionals directory, applications and session booking
-  2026-10-06  Add sign up, sign in and profile endpoints
-  2026-10-06  Add server core: validated config, errors, auth and validation middleware
-  2026-10-06  Set up the repo as a server + client workspace
-  2026-10-06  Initial commit
+  2026-10-06  Write the README: setup, structure, what is not built yet
+  2026-10-06  Wire up the router
+  2026-10-06  Add the admin page
+  2026-10-06  Add settings, the professional application and My practice
+  2026-10-06  Add nuggets, events and reminders pages
+  2026-10-06  Add the AI companion and journal pages
+  2026-10-06  Add the home dashboard and mood check-ins
+  2026-10-06  Add the support directory, booking and My sessions
+  2026-10-06  Add the public pages: landing, sign in, sign up, help and professionals
+  2026-10-06  Add sign-in state, page layouts and route guards
+  2026-10-06  Add the API client, formatting helpers and UI components
+  2026-10-06  Set up the web app: Vite, Tailwind and the design tokens
 
 From anywhere in this terminal, `updates` shows the same for every project.

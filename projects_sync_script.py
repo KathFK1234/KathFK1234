@@ -57,7 +57,7 @@ from pathlib import Path
 PROJECTS = [
     {"name": "Healing Hive", "repo": "KathFK1234/Healing-Hive", "folder": "healing-hive", "share": True},
     {"name": "MoodForecast AI", "repo": "KathFK1234/moodforecast_ai", "folder": "moodforecast-ai"},
-    {"name": "Murengeti Lab System", "repo": "KathFK1234/murengeti_sys", "folder": "murengeti-lab"},
+    {"name": "Murengeti Lab System", "repo": "KathFK1234/murengeti_sys", "folder": "murengeti-lab", "share": True},
     {"name": "MindConnect", "repo": "KathFK1234/mindconnect", "folder": "mindconnect", "team": True},
 ]
 

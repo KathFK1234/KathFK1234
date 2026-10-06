@@ -8,47 +8,55 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-06",
-      "commits": 10,
+      "commits": 23,
       "recent": [
         {
           "date": "2026-10-06",
-          "subject": "Add seed script and API tests"
+          "subject": "Write the README: setup, structure, what is not built yet"
         },
         {
           "date": "2026-10-06",
-          "subject": "Add admin endpoints and wire up the app"
+          "subject": "Wire up the router"
         },
         {
           "date": "2026-10-06",
-          "subject": "Add the AI companion"
+          "subject": "Add the admin page"
         },
         {
           "date": "2026-10-06",
-          "subject": "Add nuggets and events"
+          "subject": "Add settings, the professional application and My practice"
         },
         {
           "date": "2026-10-06",
-          "subject": "Add mood check-ins, journal and reminders"
+          "subject": "Add nuggets, events and reminders pages"
         },
         {
           "date": "2026-10-06",
-          "subject": "Add professionals directory, applications and session booking"
+          "subject": "Add the AI companion and journal pages"
         },
         {
           "date": "2026-10-06",
-          "subject": "Add sign up, sign in and profile endpoints"
+          "subject": "Add the home dashboard and mood check-ins"
         },
         {
           "date": "2026-10-06",
-          "subject": "Add server core: validated config, errors, auth and validation middleware"
+          "subject": "Add the support directory, booking and My sessions"
         },
         {
           "date": "2026-10-06",
-          "subject": "Set up the repo as a server + client workspace"
+          "subject": "Add the public pages: landing, sign in, sign up, help and professionals"
         },
         {
           "date": "2026-10-06",
-          "subject": "Initial commit"
+          "subject": "Add sign-in state, page layouts and route guards"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Add the API client, formatting helpers and UI components"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Set up the web app: Vite, Tailwind and the design tokens"
         }
       ]
     },
@@ -120,8 +128,57 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-06",
-      "commits": 105,
-      "recent": []
+      "commits": 110,
+      "recent": [
+        {
+          "date": "2026-10-06",
+          "subject": "Put a project's Edit and Delete buttons beside its name, and make the pencil easier to see"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Bring the Inventory page's buttons together and give the tag and the problem the room"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Keep each page's buttons level with its title, clear of the description"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Show the touch typing tick only on the touch typing curriculum"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Keep a separate sign-in for each browser tab"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Lay the project card out properly on a phone"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Reuse database connections between requests"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Show which project files are in the repository, and send them one at a time or all at once"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Choose several students for a project, and edit an entry in a pop-up"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Let the server handle project teams, further files, and a project's repository folder"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Edit a student from wherever their name appears"
+        },
+        {
+          "date": "2026-10-06",
+          "subject": "Keep student names with educators, even when typed into notes"
+        }
+      ]
     },
     {
       "name": "MindConnect",
