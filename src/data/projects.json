@@ -127,56 +127,56 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-06",
-      "commits": 117,
+      "updated": "2026-10-07",
+      "commits": 129,
       "recent": [
         {
-          "date": "2026-10-06",
-          "subject": "Add asset types that say whether students use them and what to record"
+          "date": "2026-10-07",
+          "subject": "Add a Back4App check to the command line and write up switching to it"
         },
         {
-          "date": "2026-10-06",
-          "subject": "Let the server describe kinds of equipment: whether students use them, and what to record"
+          "date": "2026-10-07",
+          "subject": "Keep Inventory's Edit type button and the rotation's tags whole on a phone"
         },
         {
-          "date": "2026-10-06",
-          "subject": "Carry edits to a project through to its folders in the repository"
+          "date": "2026-10-07",
+          "subject": "Put the phone navigation away when the profile or a page is chosen from it"
         },
         {
-          "date": "2026-10-06",
-          "subject": "Lay the report's sections out in even rows"
+          "date": "2026-10-07",
+          "subject": "Hide the API pages in production, cap import files, and check profile fields"
         },
         {
-          "date": "2026-10-06",
-          "subject": "Label a project entry's button Edit student(s)"
+          "date": "2026-10-07",
+          "subject": "Keep a production server closed when its sign-in variables are missing"
         },
         {
-          "date": "2026-10-06",
-          "subject": "Run target weeks from Saturday to Friday"
+          "date": "2026-10-07",
+          "subject": "Limit sign-in attempts, sign-ups, and emails sent on request"
         },
         {
-          "date": "2026-10-06",
-          "subject": "Report a week at a time, Saturday to Friday, with sections that fold away"
+          "date": "2026-10-07",
+          "subject": "Let a timetable slot be deleted after lessons were recorded from it"
         },
         {
-          "date": "2026-10-06",
-          "subject": "Put a project's Edit and Delete buttons beside its name, and make the pencil easier to see"
+          "date": "2026-10-07",
+          "subject": "Send Back4App the password in the request body and close the session it opens"
         },
         {
-          "date": "2026-10-06",
-          "subject": "Bring the Inventory page's buttons together and give the tag and the problem the room"
+          "date": "2026-10-07",
+          "subject": "Bring the built-in account's Back4App test in line with the new rule"
         },
         {
-          "date": "2026-10-06",
-          "subject": "Keep each page's buttons level with its title, clear of the description"
+          "date": "2026-10-07",
+          "subject": "Let only the built-in account's own Back4App user sign in as it"
         },
         {
-          "date": "2026-10-06",
-          "subject": "Show the touch typing tick only on the touch typing curriculum"
+          "date": "2026-10-07",
+          "subject": "Check the account again on every signed-in request"
         },
         {
-          "date": "2026-10-06",
-          "subject": "Keep a separate sign-in for each browser tab"
+          "date": "2026-10-07",
+          "subject": "Stop the ticket between password and emailed code from working as a session"
         }
       ]
     },

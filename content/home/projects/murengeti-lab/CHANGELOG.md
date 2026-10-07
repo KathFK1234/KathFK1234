@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  117 commits · first 2026-09-20 · latest 2026-10-06
+  129 commits · first 2026-09-20 · latest 2026-10-07
 
-  2026-10-06  Add asset types that say whether students use them and what to record
-  2026-10-06  Let the server describe kinds of equipment: whether students use them, and what to record
-  2026-10-06  Carry edits to a project through to its folders in the repository
-  2026-10-06  Lay the report's sections out in even rows
-  2026-10-06  Label a project entry's button Edit student(s)
-  2026-10-06  Run target weeks from Saturday to Friday
-  2026-10-06  Report a week at a time, Saturday to Friday, with sections that fold away
-  2026-10-06  Put a project's Edit and Delete buttons beside its name, and make the pencil easier to see
-  2026-10-06  Bring the Inventory page's buttons together and give the tag and the problem the room
-  2026-10-06  Keep each page's buttons level with its title, clear of the description
-  2026-10-06  Show the touch typing tick only on the touch typing curriculum
-  2026-10-06  Keep a separate sign-in for each browser tab
+  2026-10-07  Add a Back4App check to the command line and write up switching to it
+  2026-10-07  Keep Inventory's Edit type button and the rotation's tags whole on a phone
+  2026-10-07  Put the phone navigation away when the profile or a page is chosen from it
+  2026-10-07  Hide the API pages in production, cap import files, and check profile fields
+  2026-10-07  Keep a production server closed when its sign-in variables are missing
+  2026-10-07  Limit sign-in attempts, sign-ups, and emails sent on request
+  2026-10-07  Let a timetable slot be deleted after lessons were recorded from it
+  2026-10-07  Send Back4App the password in the request body and close the session it opens
+  2026-10-07  Bring the built-in account's Back4App test in line with the new rule
+  2026-10-07  Let only the built-in account's own Back4App user sign in as it
+  2026-10-07  Check the account again on every signed-in request
+  2026-10-07  Stop the ticket between password and emailed code from working as a session
 
 From anywhere in this terminal, `updates` shows the same for every project.

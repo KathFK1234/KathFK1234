@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Vitest |
 | **Infrastructure** | Docker · GitHub Actions · Railway · Docker Compose |
 
-<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-06</sub>
+<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-07</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,12 +109,12 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 40.0%" : 905.4
-    "TypeScript · 23.1%" : 522.5
-    "JavaScript · 20.4%" : 460.8
-    "CSS · 8.9%" : 201.5
+    "Python · 40.6%" : 928.2
+    "TypeScript · 22.9%" : 523.4
+    "JavaScript · 20.2%" : 460.8
+    "CSS · 8.8%" : 202.1
     "HTML · 4.3%" : 98.1
-    "C · 2.8%" : 62.7
+    "C · 2.7%" : 62.7
     "Ruby · 0.4%" : 10.1
 ```
 <!-- languages:end -->
@@ -189,8 +189,8 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
+| Murengeti Lab System | 2026-10-07 | Add a Back4App check to the command line and write up switching to it |
 | Healing Hive | 2026-10-06 | Update the README for one-command setup and the new features |
-| Murengeti Lab System | 2026-10-06 | Add asset types that say whether students use them and what to record |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
 <sub>Read from each project's repository every three hours.</sub>
