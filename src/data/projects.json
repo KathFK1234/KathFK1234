@@ -127,56 +127,56 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-07",
-      "commits": 129,
+      "updated": "2026-10-08",
+      "commits": 151,
       "recent": [
         {
-          "date": "2026-10-07",
-          "subject": "Add a Back4App check to the command line and write up switching to it"
+          "date": "2026-10-08",
+          "subject": "Record the decisions behind sessions, group targets, uploads, and the closed original school"
         },
         {
-          "date": "2026-10-07",
-          "subject": "Keep Inventory's Edit type button and the rotation's tags whole on a phone"
+          "date": "2026-10-08",
+          "subject": "Line up the Uploads columns, keep its colours in dark mode, and date uploads by the school's day"
         },
         {
-          "date": "2026-10-07",
-          "subject": "Put the phone navigation away when the profile or a page is chosen from it"
+          "date": "2026-10-08",
+          "subject": "Do not keep a sign-in waiting on old Back4App sessions"
         },
         {
-          "date": "2026-10-07",
-          "subject": "Hide the API pages in production, cap import files, and check profile fields"
+          "date": "2026-10-08",
+          "subject": "Let an import go ahead when its copy cannot be kept"
         },
         {
-          "date": "2026-10-07",
-          "subject": "Keep a production server closed when its sign-in variables are missing"
+          "date": "2026-10-08",
+          "subject": "Go straight to the sign-in page at sign-out, and three smaller interface fixes"
         },
         {
-          "date": "2026-10-07",
-          "subject": "Limit sign-in attempts, sign-ups, and emails sent on request"
+          "date": "2026-10-08",
+          "subject": "Sign an account out everywhere else when its password changes"
         },
         {
-          "date": "2026-10-07",
-          "subject": "Let a timetable slot be deleted after lessons were recorded from it"
+          "date": "2026-10-08",
+          "subject": "Say in the import preview when a file's timetable will be left out"
         },
         {
-          "date": "2026-10-07",
-          "subject": "Send Back4App the password in the request body and close the session it opens"
+          "date": "2026-10-08",
+          "subject": "Keep an address confirmed when its account first reaches Back4App"
         },
         {
-          "date": "2026-10-07",
-          "subject": "Bring the built-in account's Back4App test in line with the new rule"
+          "date": "2026-10-08",
+          "subject": "Count towards a school's target only what each group had of its own target"
         },
         {
-          "date": "2026-10-07",
-          "subject": "Let only the built-in account's own Back4App user sign in as it"
+          "date": "2026-10-08",
+          "subject": "Hold each school to its newest 100 imported files"
         },
         {
-          "date": "2026-10-07",
-          "subject": "Check the account again on every signed-in request"
+          "date": "2026-10-08",
+          "subject": "Download an equipment photo whatever script its asset tag is written in"
         },
         {
-          "date": "2026-10-07",
-          "subject": "Stop the ticket between password and emailed code from working as a session"
+          "date": "2026-10-08",
+          "subject": "Describe the Uploads page, group targets, and the other new behaviour in the README"
         }
       ]
     },

@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Vitest |
 | **Infrastructure** | Docker · GitHub Actions · Railway · Docker Compose |
 
-<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-07</sub>
+<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-08</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,12 +109,12 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 40.6%" : 928.2
-    "TypeScript · 22.9%" : 523.4
-    "JavaScript · 20.2%" : 460.8
-    "CSS · 8.8%" : 202.1
-    "HTML · 4.3%" : 98.1
-    "C · 2.7%" : 62.7
+    "Python · 41.9%" : 1013.5
+    "TypeScript · 23.0%" : 557.1
+    "JavaScript · 19.0%" : 460.8
+    "CSS · 9.0%" : 217.8
+    "HTML · 4.1%" : 98.1
+    "C · 2.6%" : 62.7
     "Ruby · 0.4%" : 10.1
 ```
 <!-- languages:end -->
@@ -189,7 +189,7 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Murengeti Lab System | 2026-10-07 | Add a Back4App check to the command line and write up switching to it |
+| Murengeti Lab System | 2026-10-08 | Record the decisions behind sessions, group targets, uploads, and the closed original school |
 | Healing Hive | 2026-10-06 | Update the README for one-command setup and the new features |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
