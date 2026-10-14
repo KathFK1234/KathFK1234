@@ -640,7 +640,7 @@ describe('updates', () => {
     // run() strips tags, so a link reads as the bare word and the note keeps its brackets
     const note = (folder: string) =>
       projectData.projects.find(project => project.folder === folder)!.url ? 'source' : '(source is private)';
-    expect(output).toContain(`web app. ${note('healing-hive')} ·`);
+    expect(output).toContain(`and admins. ${note('healing-hive')} ·`);
     expect(output).toContain(`private workspace. ${note('murengeti-lab')}\n`);
   });
 

@@ -16,25 +16,27 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   double booking   the database refuses a second booking for the same slot. Two people tapping at the same moment: exactly one succeeds.
   who sees what    only the two people in a session can see or change it. A professional's private notes are never sent to the client.
   price            saved at the time of booking, so a later rate change does not rewrite history.
+  meeting          a confirmed session gets a link: Google Meet when the professional has connected their calendar, otherwise their own link, otherwise a private Jitsi room. Both people are emailed when a session is requested, confirmed or cancelled.
+  ratings          only the client of a completed session can rate it, and only once. Reviews are shown without names.
 
 ## Care
 
-  AI companion     v1 had the code for an AI chat, not yet connected. v2 connects it, tells it what it is not (a therapist, a doctor, a human), and lets a person wipe the conversation.
-  crisis           a message that sounds like crisis always gets help contacts back, in English or Swahili, whether or not the AI answers.
+  AI companion     v1 had the code for an AI chat, not yet connected. v2 connects it to Claude, tells it what it is not (a therapist, a doctor, a human), and lets a person wipe the conversation.
+  crisis           a message that sounds like crisis always gets help contacts back, in English or Swahili, whether or not the AI answers. Every number was checked against its organisation's own details, and the lines that answer at any hour come first, with their hours shown.
   check-ins        new in v2: a mood score short enough to finish when tired.
-  privacy          journals, check-ins and AI conversations belong to their owner. The admin dashboard gets counts, nothing else.
+  privacy          journals, check-ins and AI conversations belong to their owner. The admin dashboard gets counts, nothing else, and so does an institution about its own team.
 
 ## Engineering
 
   structure        one folder per feature (auth, sessions, journal ...) with a versioned API, where v1 had one folder per file type.
   validation       every request is checked before it reaches a handler, and errors come back in one shape.
-  tests            20 API tests against an in-memory database, each named for the promise it keeps.
-  seed data        one command fills a local database with sample people and content.
+  tests            29 API tests against an in-memory database, each named for the promise it keeps.
+  local setup      `npm run dev` starts a database, the API and the web app together, and fills them with sample accounts for every kind of person. Email, Google Calendar and the AI companion are optional, and the app works without them.
 
 ## The web app
 
   v1               a landing page, a dashboard, and a chatbot screen.
-  v2               twenty pages covering every feature above, for three kinds of people: someone looking for support, a professional running their practice, and an admin reviewing applications and content.
+  v2               twenty-four pages covering every feature above, for four kinds of people: someone looking for support, a professional running their practice, an institution with professionals on its team, and an admin reviewing applications and content. Each has its own home and a short menu.
   get help now     a button on every page, signed in or not.
   themes           light and dark, from one set of colour tokens.
 
@@ -42,7 +44,7 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
 
   payments         sessions record a price and a payment status; nothing is charged yet (M-Pesa and card).
   reminders        saved and shown in the app; sending them by SMS or email comes later.
-  calls            a session records how the two people want to meet; there is no built-in call room.
-  also             institution dashboards, password reset by email, ratings and reviews.
+  calls            sessions happen on Google Meet, the professional's own link, or Jitsi; there is no built-in call room.
+  email changes    changing an email address, and confirming one at sign-up.
 
-Before real people use it: every crisis number re-verified, and the AI companion's instructions reviewed by a qualified clinician.
+Before real people use it: the AI companion's instructions reviewed by a qualified clinician, Google's verification so every professional can connect a calendar, and the crisis numbers checked again before each release.

@@ -142,9 +142,9 @@ Weather apps report conditions. This asks what those conditions mean for a perso
 
 ### Murengeti Lab System
 
-A computer lab management system for schools. It replaces scattered spreadsheets with one connected place for students, classes, timetables, attendance, equipment, and reports, and gives each school its own private workspace.
+A computer lab management system for schools. It replaces scattered spreadsheets with one connected place for students, classes, timetables, attendance, equipment, weekly targets, and reports, and gives each school its own private workspace.
 
-`FastAPI` `SQLAlchemy` `React` `TypeScript` `PostgreSQL`
+`FastAPI` `SQLAlchemy` `React` `TypeScript` `PostgreSQL` `Back4App`
 
 Built for the school computer lab I lead · source is private
 
@@ -157,9 +157,9 @@ Built for the school computer lab I lead · source is private
 
 ### Healing Hive
 
-Mental-health support for young people in Kenya: therapy and peer counselling with vetted professionals, private check-ins and journaling, and an AI companion whose crisis reply never depends on the AI being up. It began in 2025 as MindConnect, built with a team; in October 2026 I kept building it on my own as v2.
+Mental-health support for young people in Kenya: therapy and peer counselling with vetted professionals, sessions booked around their calendars, private check-ins and journaling, and an AI companion whose crisis reply never depends on the AI being up. It began in 2025 as MindConnect, built with a team; in October 2026 I kept building it on my own as v2.
 
-`Node.js` `Express` `MongoDB` `React` `Tailwind CSS`
+`Node.js` `Express` `MongoDB` `React` `Tailwind CSS` `Claude API`
 
 <span><!-- source:healing-hive:start -->[Source](https://github.com/KathFK1234/Healing-Hive)<!-- source:healing-hive:end --></span> · [v1, built with a team](https://github.com/derick-macharia/mindconnect-platform)
 

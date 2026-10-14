@@ -4,6 +4,7 @@ Most software can fail politely. This one has a few moments where it cannot fail
 
 1. Help never depends on a third party being up.
    If a message sounds like crisis and the AI provider is slow, down, or switched off, the person still gets a caring reply and the helplines. The crisis contacts also live inside the web app, so the help page works when the server does not.
+   The lines that answer at any hour come first, and every line shows its hours. A number that only answers on weekdays is no help at two in the morning.
 
 2. Screen broadly.
    The first check for crisis language is deliberately wide, in English and Swahili. Showing helplines to someone who did not need them costs little. Missing someone who did is the cost that matters.
@@ -12,7 +13,7 @@ Most software can fail politely. This one has a few moments where it cannot fail
    Not a therapist, not a doctor, not a human. It never diagnoses or advises on medication, and it points to a person when a person is needed.
 
 4. Private means private from us too.
-   Admins see counts. There is no route into anyone's journal, check-ins, or AI conversation, and a person can clear their conversation whenever they like.
+   Admins see counts. An institution sees its own team's sessions and ratings, never a client's name or notes. There is no route into anyone's journal, check-ins, or AI conversation, and a person can clear their conversation whenever they like.
 
 5. A professional is someone we checked.
    Nobody appears in the directory until an admin has approved their application.
