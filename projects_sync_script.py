@@ -80,6 +80,10 @@ class Unavailable(Exception):
     """A repository could not be read; its last known data is kept."""
 
 
+class NoClone(Unavailable):
+    """With --local, a project that has no clone on this machine."""
+
+
 def day(stamp: str) -> str:
     """An ISO timestamp as a UTC date, so GitHub and a local clone agree."""
     return datetime.fromisoformat(stamp.replace("Z", "+00:00")).astimezone(timezone.utc).date().isoformat()
@@ -185,7 +189,7 @@ class Local:
     def clone(self, project: dict) -> Path:
         clone = self.clones.get(project["repo"].lower())
         if not clone:
-            raise Unavailable("no clone found")
+            raise NoClone("no clone found")
         return clone
 
     def read(self, project: dict) -> dict:
@@ -318,11 +322,16 @@ def update_readme(content: str, entries: list[dict]) -> str:
 
 def check(reader, reviewed: dict, quiet: bool) -> None:
     behind = []
+    unchecked = []
     for project in PROJECTS:
         mark = reviewed.get(project["folder"])
         try:
             found = reader.since(project, mark["sha"]) if mark else {"never": True}
-        except Unavailable:
+        except Unavailable as e:
+            # Said out loud, so a missing or expired token does not read as "up to date".
+            # A project simply not cloned here is only mentioned when asked in full.
+            if not (quiet and isinstance(e, NoClone)):
+                unchecked.append((project, str(e)))
             continue
 
         notes = []
@@ -339,23 +348,26 @@ def check(reader, reviewed: dict, quiet: bool) -> None:
         if notes:
             behind.append((project, notes, found.get("new", [])))
 
-    if not behind:
-        if not quiet:
-            print("Every project write-up is up to date with its repository.")
-        return
-
-    print("Portfolio check: these projects have changed since their write-up on the personal site (KathFK1234) was last revised.")
-    for project, notes, new in behind:
-        print(f"  {project['name']} ({CONTENT}/{project['folder']}/): {', '.join(notes)}")
-        for line in new[:CHECK_SHOWN]:
-            print(f"      {line}")
-        if len(new) > CHECK_SHOWN:
-            print(f"      ... and {len(new) - CHECK_SHOWN} more")
-    print(
-        "The dated lists (CHANGELOG.md, the README's Lately table, `updates`) refresh themselves every three hours. "
-        "The prose does not: the project's README.md there, its card in the profile README, and the `projects` command. "
-        "After revising them, run: python3 projects_sync_script.py --mark-reviewed"
-    )
+    if behind:
+        print("Portfolio check: these projects have changed since their write-up on the personal site (KathFK1234) was last revised.")
+        for project, notes, new in behind:
+            print(f"  {project['name']} ({CONTENT}/{project['folder']}/): {', '.join(notes)}")
+            for line in new[:CHECK_SHOWN]:
+                print(f"      {line}")
+            if len(new) > CHECK_SHOWN:
+                print(f"      ... and {len(new) - CHECK_SHOWN} more")
+        print(
+            "The dated lists (CHANGELOG.md, the README's Lately table, `updates`) refresh themselves every three hours. "
+            "The prose does not: the project's README.md there, its card in the profile README, and the `projects` command. "
+            "After revising them, run: python3 projects_sync_script.py --mark-reviewed"
+        )
+    if unchecked:
+        print("Could not check these projects, so they may be behind too:")
+        for project, reason in unchecked:
+            print(f"  {project['name']} ({project['repo']}): {reason}")
+        print("A private repository needs a token that can read it, in GITHUB_TOKEN; or check the clones with --local ..")
+    elif not behind and not quiet:
+        print("Every project write-up is up to date with its repository.")
 
 
 def mark_reviewed(reader, reviewed: dict, folders: list[str]) -> None:
