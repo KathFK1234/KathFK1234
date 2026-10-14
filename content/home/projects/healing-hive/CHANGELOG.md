@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  50 commits · first 2026-10-06 · latest 2026-10-06
+  58 commits · first 2026-10-06 · latest 2026-10-14
 
+  2026-10-14  Add Read more to long journal entries
+  2026-10-14  Let reminders be edited
+  2026-10-14  Confirm every delete and cancel in the app's own dialog
+  2026-10-14  Ask before a stray tap or Escape throws away unsaved writing
+  2026-10-14  Stop buttons being pressed again while they are saving
+  2026-10-14  Show past unanswered requests as "Not confirmed in time"
+  2026-10-14  Keep a started session and its Join button on the home page
+  2026-10-14  Keep status badges from squeezing card text on phones
   2026-10-06  Update the README for one-command setup and the new features
   2026-10-06  Lighter text weights on the remaining pages
   2026-10-06  Admin: show institutions properly; route the new pages
   2026-10-06  Add the institution dashboard
-  2026-10-06  Practice page: Google Calendar, institution invitations and joining sessions
-  2026-10-06  Add joining a session and rating it afterwards
-  2026-10-06  Add ratings: stars on the directory and profiles, and rating a session
-  2026-10-06  Add forgot-password and reset-password pages
-  2026-10-06  Add a separate sign-up for professionals
-  2026-10-06  Simplify the landing and home pages
-  2026-10-06  Show crisis line hours, 24-hour lines first
-  2026-10-06  Give each kind of account its own home and a short, grouped menu
 
 From anywhere in this terminal, `updates` shows the same for every project.

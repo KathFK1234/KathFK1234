@@ -7,9 +7,41 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-10-06",
-      "commits": 50,
+      "updated": "2026-10-14",
+      "commits": 58,
       "recent": [
+        {
+          "date": "2026-10-14",
+          "subject": "Add Read more to long journal entries"
+        },
+        {
+          "date": "2026-10-14",
+          "subject": "Let reminders be edited"
+        },
+        {
+          "date": "2026-10-14",
+          "subject": "Confirm every delete and cancel in the app's own dialog"
+        },
+        {
+          "date": "2026-10-14",
+          "subject": "Ask before a stray tap or Escape throws away unsaved writing"
+        },
+        {
+          "date": "2026-10-14",
+          "subject": "Stop buttons being pressed again while they are saving"
+        },
+        {
+          "date": "2026-10-14",
+          "subject": "Show past unanswered requests as \"Not confirmed in time\""
+        },
+        {
+          "date": "2026-10-14",
+          "subject": "Keep a started session and its Join button on the home page"
+        },
+        {
+          "date": "2026-10-14",
+          "subject": "Keep status badges from squeezing card text on phones"
+        },
         {
           "date": "2026-10-06",
           "subject": "Update the README for one-command setup and the new features"
@@ -25,38 +57,6 @@
         {
           "date": "2026-10-06",
           "subject": "Add the institution dashboard"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Practice page: Google Calendar, institution invitations and joining sessions"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Add joining a session and rating it afterwards"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Add ratings: stars on the directory and profiles, and rating a session"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Add forgot-password and reset-password pages"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Add a separate sign-up for professionals"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Simplify the landing and home pages"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Show crisis line hours, 24-hour lines first"
-        },
-        {
-          "date": "2026-10-06",
-          "subject": "Give each kind of account its own home and a short, grouped menu"
         }
       ]
     },
@@ -127,9 +127,25 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-08",
-      "commits": 151,
+      "updated": "2026-10-14",
+      "commits": 155,
       "recent": [
+        {
+          "date": "2026-10-14",
+          "subject": "Write CSV exports so a spreadsheet never runs a typed name, note, or issue as a formula"
+        },
+        {
+          "date": "2026-10-14",
+          "subject": "Record every sign-in, so signing out and a new password end sessions without Back4App too"
+        },
+        {
+          "date": "2026-10-14",
+          "subject": "Ask for sign-in on any deployed server, even one whose sign-in variables are not set yet"
+        },
+        {
+          "date": "2026-10-14",
+          "subject": "Refuse a lesson or timetable slot that ends before it starts"
+        },
         {
           "date": "2026-10-08",
           "subject": "Record the decisions behind sessions, group targets, uploads, and the closed original school"
@@ -161,22 +177,6 @@
         {
           "date": "2026-10-08",
           "subject": "Keep an address confirmed when its account first reaches Back4App"
-        },
-        {
-          "date": "2026-10-08",
-          "subject": "Count towards a school's target only what each group had of its own target"
-        },
-        {
-          "date": "2026-10-08",
-          "subject": "Hold each school to its newest 100 imported files"
-        },
-        {
-          "date": "2026-10-08",
-          "subject": "Download an equipment photo whatever script its asset tag is written in"
-        },
-        {
-          "date": "2026-10-08",
-          "subject": "Describe the Uploads page, group targets, and the other new behaviour in the README"
         }
       ]
     },
