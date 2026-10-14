@@ -10,10 +10,8 @@ on:
     - cron: '17 */3 * * *'
   workflow_dispatch:
 
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+# Each job is given only what it uses, below
+permissions: {}
 
 concurrency:
   group: pages
@@ -22,6 +20,10 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # To commit the refreshed data. This job runs npm and pip installs, so it
+    # gets nothing that can publish the site.
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v7
 
@@ -148,6 +150,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    # Only this job publishes, and it runs nothing but the official deploy action
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
