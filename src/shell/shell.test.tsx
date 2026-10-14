@@ -636,10 +636,38 @@ describe('updates', () => {
 
   it('links a project only while its source is public', async () => {
     const { run } = shell();
-    const hive = projectData.projects.find(project => project.folder === 'healing-hive')!;
+    const output = await run('projects');
     // run() strips tags, so a link reads as the bare word and the note keeps its brackets
-    const note = hive.url ? 'source' : '(source is private)';
-    expect(await run('projects')).toContain(`web app. ${note} ·`);
+    const note = (folder: string) =>
+      projectData.projects.find(project => project.folder === folder)!.url ? 'source' : '(source is private)';
+    expect(output).toContain(`web app. ${note('healing-hive')} ·`);
+    expect(output).toContain(`private workspace. ${note('murengeti-lab')}\n`);
+  });
+
+  it('follows a project whose source turns public', async () => {
+    vi.resetModules();
+    vi.doMock('../data/projects.json', async importOriginal => {
+      const { projects } = (await importOriginal()) as typeof projectData;
+      return {
+        default: {
+          projects: projects.map(project => ({ ...project, private: false, url: `https://github.com/x/${project.folder}` })),
+        },
+      };
+    });
+    const fresh = await import('./commands');
+    const printed: ReactNode[] = [];
+    await fresh.execute('projects', {
+      state: fresh.createShellState(),
+      print: node => printed.push(node),
+      clear: () => {},
+      prefs: DEFAULT_PREFS,
+      setPrefs: () => {},
+    });
+    const html = renderToStaticMarkup(<>{printed}</>);
+    expect(html).toContain('href="https://github.com/x/murengeti-lab"');
+    expect(html).toContain('href="https://github.com/x/healing-hive"');
+    vi.doUnmock('../data/projects.json');
+    vi.resetModules();
   });
 });
 

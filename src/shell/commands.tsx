@@ -424,7 +424,7 @@ export const commands: Command[] = [
         {'\n'}
         <Accent>Murengeti Lab System</Accent> — a computer lab management system for schools. It replaces scattered
         spreadsheets with one connected place for students, classes, timetables, attendance, equipment, and reports,
-        and gives each school its own private workspace. <Dim>(source is private)</Dim>
+        and gives each school its own private workspace. {sourceOf('murengeti-lab')}
         {'\n\n'}
         <Accent>Healing Hive</Accent> — mental-health support for young people in Kenya: therapy and peer
         counselling with vetted professionals, private check-ins and journaling, and an AI companion whose crisis
