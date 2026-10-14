@@ -26,6 +26,10 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Keep the write token off disk while npm and pip install packages;
+          # only the commit step below is given it
+          persist-credentials: false
 
       - uses: actions/setup-python@v7
         with:
@@ -123,6 +127,8 @@ jobs:
       # every time would leave the local clone permanently one commit behind.
       - name: Commit the update if anything changed
         if: github.event_name != 'push'
+        env:
+          REMOTE: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
         run: |
           git config user.name "Katheu Kilonzo"
           git config user.email "fkatheukilonzo@gmail.com"
@@ -132,8 +138,8 @@ jobs:
           else
             git commit -m "Update languages, tools, the mood command and project updates"
             # main may have moved while this ran
-            git pull --rebase
-            git push
+            git pull --rebase "$REMOTE" main
+            git push "$REMOTE" HEAD:main
           fi
 
       - uses: actions/setup-node@v7
