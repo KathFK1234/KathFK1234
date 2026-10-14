@@ -2,8 +2,9 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  173 commits · first 2026-09-20 · latest 2026-10-14
+  174 commits · first 2026-09-20 · latest 2026-10-14
 
+  2026-10-14  Keep the local working notes (context.md) out of the repository
   2026-10-14  Say a list refresh failed after an import on its own, never as a failed import
   2026-10-14  Let a turned-away application give up its name to a school with a similar one
   2026-10-14  Accept any PNG, JPEG, WebP, or GIF avatar, so an avatar saved earlier never blocks a profile save
@@ -15,6 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-10-14  Invite educators to the projects repository with read access only
   2026-10-14  Phone: shorten the top-bar date, put summary cards two to a row, list rotation ticks one per line
   2026-10-14  Never repeat a typed password in an error, print a secret from the settings, or log a statement's values
-  2026-10-14  Make Delete an outlined button the size of Edit, and line a lesson's buttons up
 
 From anywhere in this terminal, `updates` shows the same for every project.

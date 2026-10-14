@@ -189,8 +189,8 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-14 | Let the Journal's privacy line wrap like text on phones |
-| Murengeti Lab System | 2026-10-14 | Say a list refresh failed after an import on its own, never as a failed import |
+| Healing Hive | 2026-10-14 | Keep the local context.md notes out of the repository |
+| Murengeti Lab System | 2026-10-14 | Keep the local working notes (context.md) out of the repository |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
 <sub>Read from each project's repository every three hours.</sub>

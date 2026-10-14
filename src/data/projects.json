@@ -8,8 +8,12 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-14",
-      "commits": 85,
+      "commits": 86,
       "recent": [
+        {
+          "date": "2026-10-14",
+          "subject": "Keep the local context.md notes out of the repository"
+        },
         {
           "date": "2026-10-14",
           "subject": "Let the Journal's privacy line wrap like text on phones"
@@ -53,10 +57,6 @@
         {
           "date": "2026-10-14",
           "subject": "Cancel a removed professional's upcoming sessions and tell clients"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Keep events under Upcoming until they have ended"
         }
       ]
     },
@@ -128,8 +128,12 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-14",
-      "commits": 173,
+      "commits": 174,
       "recent": [
+        {
+          "date": "2026-10-14",
+          "subject": "Keep the local working notes (context.md) out of the repository"
+        },
         {
           "date": "2026-10-14",
           "subject": "Say a list refresh failed after an import on its own, never as a failed import"
@@ -173,10 +177,6 @@
         {
           "date": "2026-10-14",
           "subject": "Never repeat a typed password in an error, print a secret from the settings, or log a statement's values"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Make Delete an outlined button the size of Edit, and line a lesson's buttons up"
         }
       ]
     },

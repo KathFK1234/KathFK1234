@@ -2,8 +2,9 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  85 commits · first 2026-10-06 · latest 2026-10-14
+  86 commits · first 2026-10-06 · latest 2026-10-14
 
+  2026-10-14  Keep the local context.md notes out of the repository
   2026-10-14  Let the Journal's privacy line wrap like text on phones
   2026-10-14  Make toasts work when the app is opened over plain http
   2026-10-14  Show a failed cancel's error once, in its dialog
@@ -15,6 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-10-14  Refuse new events that start in the past
   2026-10-14  Only let clients cancel a session before it starts
   2026-10-14  Cancel a removed professional's upcoming sessions and tell clients
-  2026-10-14  Keep events under Upcoming until they have ended
 
 From anywhere in this terminal, `updates` shows the same for every project.
