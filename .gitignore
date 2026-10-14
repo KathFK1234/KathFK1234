@@ -8,3 +8,5 @@ public/activity.svg
 __pycache__/
 *.pyc
 .DS_Store
+# Local notes on where work has reached; never pushed
+context.md
