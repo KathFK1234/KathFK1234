@@ -154,6 +154,8 @@ describe('commands', () => {
     expect((await run('head -n 1 README.md')).trim().split('\n')).toHaveLength(1);
     expect((await run('tail -2 contact.txt')).trim()).toMatch(/Email is the fastest route/);
     expect(await run('wc contact.txt')).toMatch(/contact\.txt$/);
+    expect(await run('head -n')).toMatch(/option requires an argument -- n/);
+    expect(await run('tail README.md -n')).toMatch(/option requires an argument -- n/);
   });
 
   it('searches real file contents and names', async () => {

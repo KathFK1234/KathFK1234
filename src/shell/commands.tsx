@@ -275,18 +275,32 @@ function isFile(result: ReturnType<typeof readFile>): result is { name: string; 
   return typeof result === 'object' && result !== null && 'text' in result;
 }
 
-function lineCount(args: string[]): { count: number; operands: string[] } {
+/** `-n 5` or `-5`. `missing` is set when `-n` comes last, with no number after it. */
+function lineCount(args: string[]): { count: number; operands: string[]; missing: boolean } {
   const operands: string[] = [];
   let count = 10;
+  let missing = false;
   for (let i = 0; i < args.length; i++) {
-    if (args[i] === '-n' && args[i + 1]) {
-      const asked = Number(args[++i]);
-      count = Number.isInteger(asked) && asked >= 0 ? asked : 10;
+    if (args[i] === '-n') {
+      if (i + 1 >= args.length) missing = true;
+      else {
+        const asked = Number(args[++i]);
+        count = Number.isInteger(asked) && asked >= 0 ? asked : 10;
+      }
     }
     else if (/^-\d+$/.test(args[i])) count = Number(args[i].slice(1));
     else operands.push(args[i]);
   }
-  return { count, operands };
+  return { count, operands, missing };
+}
+
+function missingCount(command: string, example: string): ReactNode {
+  return (
+    <>
+      <Warn>{command}: option requires an argument -- n</Warn>{'\n'}
+      <Dim>say how many lines:</Dim> <Cmd>{example}</Cmd>
+    </>
+  );
 }
 
 const FORTUNES = [
@@ -817,7 +831,8 @@ export const commands: Command[] = [
     group: 'files',
     completes: 'paths',
     run: (args, ctx) => {
-      const { count, operands } = lineCount(args);
+      const { count, operands, missing } = lineCount(args);
+      if (missing) return missingCount('head', 'head -n 3 README.md');
       if (!operands.length) {
         return (
           <>
@@ -839,7 +854,8 @@ export const commands: Command[] = [
     group: 'files',
     completes: 'paths',
     run: (args, ctx) => {
-      const { count, operands } = lineCount(args);
+      const { count, operands, missing } = lineCount(args);
+      if (missing) return missingCount('tail', 'tail -n 3 contact.txt');
       if (!operands.length) {
         return (
           <>
