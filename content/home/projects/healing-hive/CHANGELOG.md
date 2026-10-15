@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  91 commits · first 2026-10-06 · latest 2026-10-15
+  102 commits · first 2026-10-06 · latest 2026-10-15
 
+  2026-10-15  Mention the admin's people search in the README
+  2026-10-15  Refuse to confirm a request after its time has passed
+  2026-10-15  Let admins search everyone and page through people and nuggets
+  2026-10-15  Say what to fix instead of showing raw validation messages
+  2026-10-15  Keep the booking page to the width of a phone screen
+  2026-10-15  Stop "Keep editing" from saving the writing and closing the dialog
+  2026-10-15  Show when Register and Publish are working, and hold them until done
+  2026-10-15  Add Railway settings for the API and explain how the app is deployed
+  2026-10-15  Pin the Pages workflow to Ubuntu 24.04
+  2026-10-15  Test every push and publish the web app to GitHub Pages
+  2026-10-15  Let the web app run from a sub-path such as GitHub Pages' /Healing-Hive/
   2026-10-15  Show loading and error states for the next session on Home
-  2026-10-15  Show reminders in full on phones instead of cutting them off
-  2026-10-15  Greet people by name, not by their title, on Home
-  2026-10-15  Make signing in with an unknown email as slow as a wrong password
-  2026-10-15  Cancel a removed professional's session that is under way
-  2026-10-14  Keep the local context.md notes out of the repository
-  2026-10-14  Let the Journal's privacy line wrap like text on phones
-  2026-10-14  Make toasts work when the app is opened over plain http
-  2026-10-14  Show a failed cancel's error once, in its dialog
-  2026-10-14  Only say "Happening now" on the Upcoming tab
-  2026-10-14  Say "Remove from the directory" when removing a professional
-  2026-10-14  Turn today's nugget over at midnight in Kenya
 
 From anywhere in this terminal, `updates` shows the same for every project.

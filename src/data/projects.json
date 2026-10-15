@@ -8,55 +8,55 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-15",
-      "commits": 91,
+      "commits": 102,
       "recent": [
         {
           "date": "2026-10-15",
+          "subject": "Mention the admin's people search in the README"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Refuse to confirm a request after its time has passed"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Let admins search everyone and page through people and nuggets"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Say what to fix instead of showing raw validation messages"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Keep the booking page to the width of a phone screen"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Stop \"Keep editing\" from saving the writing and closing the dialog"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Show when Register and Publish are working, and hold them until done"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Add Railway settings for the API and explain how the app is deployed"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Pin the Pages workflow to Ubuntu 24.04"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Test every push and publish the web app to GitHub Pages"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Let the web app run from a sub-path such as GitHub Pages' /Healing-Hive/"
+        },
+        {
+          "date": "2026-10-15",
           "subject": "Show loading and error states for the next session on Home"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Show reminders in full on phones instead of cutting them off"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Greet people by name, not by their title, on Home"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Make signing in with an unknown email as slow as a wrong password"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Cancel a removed professional's session that is under way"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Keep the local context.md notes out of the repository"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Let the Journal's privacy line wrap like text on phones"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Make toasts work when the app is opened over plain http"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Show a failed cancel's error once, in its dialog"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Only say \"Happening now\" on the Upcoming tab"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Say \"Remove from the directory\" when removing a professional"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Turn today's nugget over at midnight in Kenya"
         }
       ]
     },
@@ -128,8 +128,40 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-15",
-      "commits": 180,
+      "commits": 188,
       "recent": [
+        {
+          "date": "2026-10-15",
+          "subject": "Count per-address limits by the address nginx saw, which a client cannot set"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Check the frontend's nginx config in CI, in the image the Dockerfile uses"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Show lesson and timetable times as stored, so a lesson can be recorded before 08:00"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Describe the loading and failed-load states in the README"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Remove the notifications bell, which only ever opened an empty dialog"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Let the superadmin and warehouse pages try a failed load again, and show nothing they could not load"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Stop pages from claiming what a failed load could not tell, and let Uploads and Reports try again"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Say a list is loading instead of showing its empty state, and show only the chosen day's lessons"
+        },
         {
           "date": "2026-10-15",
           "subject": "Drop a page load's answer once the page, date, or session it was asked for has changed"
@@ -145,38 +177,6 @@
         {
           "date": "2026-10-15",
           "subject": "Keep a list as it was when it cannot be read again after a save, and say the change is saved"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Drop the CI step that ran npm install again after make check had built the frontend"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Remove the empty domain package and describe the three layers the backend actually has"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Keep the local working notes (context.md) out of the repository"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Say a list refresh failed after an import on its own, never as a failed import"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Let a turned-away application give up its name to a school with a similar one"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Accept any PNG, JPEG, WebP, or GIF avatar, so an avatar saved earlier never blocks a profile save"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Check a lesson's times only when they change, so one saved out of order can still be completed"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Describe the new security behaviour in the README and architecture notes"
         }
       ]
     },

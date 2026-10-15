@@ -4,22 +4,22 @@
   "languages": [
     {
       "name": "Python",
-      "bytes": 1062508,
+      "bytes": 1068411,
       "repos": 11
     },
     {
       "name": "TypeScript",
-      "bytes": 580375,
+      "bytes": 586977,
       "repos": 2
     },
     {
       "name": "JavaScript",
-      "bytes": 508635,
+      "bytes": 516334,
       "repos": 6
     },
     {
       "name": "CSS",
-      "bytes": 226964,
+      "bytes": 226663,
       "repos": 9
     },
     {
@@ -110,17 +110,17 @@
       "repos": 1
     },
     {
-      "name": "Docker",
-      "category": "Infrastructure",
-      "repos": 2
-    },
-    {
       "name": "GitHub Actions",
       "category": "Infrastructure",
-      "repos": 2
+      "repos": 3
     },
     {
       "name": "Railway",
+      "category": "Infrastructure",
+      "repos": 3
+    },
+    {
+      "name": "Docker",
       "category": "Infrastructure",
       "repos": 2
     },
