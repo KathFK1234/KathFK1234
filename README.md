@@ -282,7 +282,7 @@ npm run build    # type-check and build into dist/
 
 Pushing to `main` builds and deploys the site through [.github/workflows/deploy.yml](.github/workflows/deploy.yml). In the repository settings, Pages → Source must be set to **GitHub Actions**.
 
-**Languages and tools update themselves.** Every three hours (or on demand from the Actions tab → *Run workflow*), the same workflow runs [languages_update_script.py](languages_update_script.py). It reads every public repository I own — GitHub's language statistics, plus dependency files such as `requirements.txt`, `pyproject.toml` and `package.json` — and rewrites:
+**Languages and tools update themselves.** Every three hours (or on demand from the Actions tab → *Run workflow*), the same workflow runs [languages_update_script.py](languages_update_script.py). It reads every repository I own (the public ones, and the private ones too once the `STACK_TOKEN` secret described below is set, as it is here) — GitHub's language statistics, plus dependency files such as `requirements.txt`, `pyproject.toml` and `package.json` — and rewrites:
 
 - the icon row, tools table, language list and pie chart in this README (between the `stack` and `languages` comment markers), and
 - [src/data/stack.json](src/data/stack.json), which the site's `skills` and `stack` commands read.
