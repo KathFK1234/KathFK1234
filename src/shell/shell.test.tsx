@@ -18,12 +18,16 @@ function shell() {
     prefs: { ...DEFAULT_PREFS },
     setPrefs: next => Object.assign(ctx.prefs, next),
   };
-  const run = async (line: string) => {
+  const markup = async (line: string) => {
     printed.length = 0;
     await execute(line, ctx);
-    return renderToStaticMarkup(<>{printed}</>).replace(/<[^>]+>/g, '');
+    return renderToStaticMarkup(<>{printed}</>);
   };
-  return { ctx, run, cleared: () => cleared };
+  const run = async (line: string) => (await markup(line)).replace(/<[^>]+>/g, '');
+  // Only what the terminal prints as a warning, so a word in a synced commit subject is never taken for an error.
+  const warnings = async (line: string) =>
+    [...(await markup(line)).matchAll(/<span class="warn">(.*?)<\/span>/g)].map(match => match[1].replace(/<[^>]+>/g, '')).join('\n');
+  return { ctx, run, warnings, cleared: () => cleared };
 }
 
 describe('file system', () => {
@@ -113,7 +117,7 @@ describe('commands', () => {
         // Each from home, as a visitor clicking it would usually be.
         const fresh = shell();
         if (example === 'cd -' || example === 'cd ..') await fresh.run('cd projects');
-        expect(await fresh.run(example), example).not.toMatch(broken);
+        expect(await fresh.warnings(example), example).not.toMatch(broken);
       }
     }
     vi.unstubAllGlobals();
