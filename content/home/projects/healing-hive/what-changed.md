@@ -6,8 +6,11 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
 
   roles            v1 carried the role inside the sign-in token. v2 reads it from the database on every request, so approving or removing a professional takes effect at once.
   becoming a pro   v2 has one way in: apply, and an admin approves. Therapists must give a licence number.
-  sign-in          a wrong password and an unknown email get the same answer, so the form cannot be used to find out who has an account. Repeated failed attempts are slowed down; successful ones are not counted, because a campus or a mobile network can put many people behind one address.
-  passwords        never returned by the API, and not read from the database unless a query asks for them.
+  sign-in          a wrong password and an unknown email get the same answer in the same time, so the form cannot be used to find out who has an account. Repeated failed attempts are slowed down; successful ones are not counted, because a campus or a mobile network can put many people behind one address.
+  passwords        never returned by the API, and not read from the database unless a query asks for them. Changing or resetting one signs out every other device.
+  sign-up          one connection can only create so many accounts.
+  responses        internal fields stay out of what the API sends, and meeting and event links must be http or https.
+  web app          served with a Content-Security-Policy.
   secrets          settings are checked when the server starts. A missing or weak one stops it there, not on some later request.
 
 ## Booking
@@ -18,6 +21,8 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   price            saved at the time of booking, so a later rate change does not rewrite history.
   meeting          a confirmed session gets a link: Google Meet when the professional has connected their calendar, otherwise their own link, otherwise a private Jitsi room. Both people are emailed when a session is requested, confirmed or cancelled.
   ratings          only the client of a completed session can rate it, and only once. Reviews are shown without names.
+  cancelling       a client can cancel up to the moment a session starts. A professional removed from the directory has every upcoming session cancelled, and one under way ended, and each client is told.
+  events           a new event cannot start in the past, and stays under Upcoming until it has ended.
 
 ## Care
 
@@ -30,7 +35,7 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
 
   structure        one folder per feature (auth, sessions, journal ...) with a versioned API, where v1 had one folder per file type.
   validation       every request is checked before it reaches a handler, and errors come back in one shape.
-  tests            29 API tests against an in-memory database, each named for the promise it keeps.
+  tests            41 API tests against an in-memory database, each named for the promise it keeps.
   local setup      `npm run dev` starts a database, the API and the web app together, and fills them with sample accounts for every kind of person. Email, Google Calendar and the AI companion are optional, and the app works without them.
 
 ## The web app

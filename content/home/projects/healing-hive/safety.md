@@ -16,7 +16,7 @@ Most software can fail politely. This one has a few moments where it cannot fail
    Admins see counts. An institution sees its own team's sessions and ratings, never a client's name or notes. There is no route into anyone's journal, check-ins, or AI conversation, and a person can clear their conversation whenever they like.
 
 5. A professional is someone we checked.
-   Nobody appears in the directory until an admin has approved their application.
+   Nobody appears in the directory until an admin has approved their application. Removing someone cancels their upcoming sessions and tells each client, so nobody waits for a session that will not happen.
 
 The helpline numbers are re-checked before every release. A wrong number is worse than none.
 
