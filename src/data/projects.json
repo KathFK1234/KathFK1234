@@ -8,8 +8,16 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-15",
-      "commits": 89,
+      "commits": 91,
       "recent": [
+        {
+          "date": "2026-10-15",
+          "subject": "Show loading and error states for the next session on Home"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Show reminders in full on phones instead of cutting them off"
+        },
         {
           "date": "2026-10-15",
           "subject": "Greet people by name, not by their title, on Home"
@@ -49,14 +57,6 @@
         {
           "date": "2026-10-14",
           "subject": "Turn today's nugget over at midnight in Kenya"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Keep the directory's search box in step with the address"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Fall back to an open day when the chosen one fills up"
         }
       ]
     },
@@ -128,8 +128,12 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-15",
-      "commits": 179,
+      "commits": 180,
       "recent": [
+        {
+          "date": "2026-10-15",
+          "subject": "Drop a page load's answer once the page, date, or session it was asked for has changed"
+        },
         {
           "date": "2026-10-15",
           "subject": "Say when the attendance list or the other educators could not be loaded, with Try again, instead of calling them empty"
@@ -173,10 +177,6 @@
         {
           "date": "2026-10-14",
           "subject": "Describe the new security behaviour in the README and architecture notes"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Dark mode: tint the icon tiles and darken the attendance list's lines"
         }
       ]
     },

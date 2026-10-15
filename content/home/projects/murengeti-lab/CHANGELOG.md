@@ -2,8 +2,9 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  179 commits · first 2026-09-20 · latest 2026-10-15
+  180 commits · first 2026-09-20 · latest 2026-10-15
 
+  2026-10-15  Drop a page load's answer once the page, date, or session it was asked for has changed
   2026-10-15  Say when the attendance list or the other educators could not be loaded, with Try again, instead of calling them empty
   2026-10-15  Say above the page when its records could not be loaded, with a Try again button, instead of showing an empty list
   2026-10-15  Keep a list as it was when it cannot be read again after a save, and say the change is saved
@@ -15,6 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-10-14  Accept any PNG, JPEG, WebP, or GIF avatar, so an avatar saved earlier never blocks a profile save
   2026-10-14  Check a lesson's times only when they change, so one saved out of order can still be completed
   2026-10-14  Describe the new security behaviour in the README and architecture notes
-  2026-10-14  Dark mode: tint the icon tiles and darken the attendance list's lines
 
 From anywhere in this terminal, `updates` shows the same for every project.
