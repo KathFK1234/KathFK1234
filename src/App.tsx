@@ -148,8 +148,10 @@ export default function App() {
     };
     const onKey = (event: globalThis.KeyboardEvent) => {
       if (event.ctrlKey || event.metaKey || event.altKey) return;
-      // Leave Enter and Space alone on a focused button or link, so they still activate it.
-      if ((event.target as HTMLElement).closest?.('a, button')) return;
+      // Leave Enter, Space and Tab alone on a focused button or link, so they still activate it
+      // or move on. Any other key, typed after clicking one, belongs in the prompt.
+      const onControl = (event.target as HTMLElement).closest?.('a, button');
+      if (onControl && (event.key === 'Enter' || event.key === ' ' || event.key === 'Tab')) return;
       if (document.activeElement !== inputRef.current) focusInput();
     };
     document.addEventListener('click', onClick);
