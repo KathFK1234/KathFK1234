@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Vitest |
 | **Infrastructure** | Docker · GitHub Actions · Railway · Docker Compose |
 
-<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-14</sub>
+<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-15</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,11 +109,11 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 41.8%" : 1037.6
-    "TypeScript · 22.5%" : 559.6
-    "JavaScript · 19.9%" : 493.2
-    "CSS · 8.9%" : 221.0
-    "HTML · 4.0%" : 98.1
+    "Python · 41.6%" : 1037.6
+    "TypeScript · 22.7%" : 565.2
+    "JavaScript · 19.9%" : 495.9
+    "CSS · 8.9%" : 221.6
+    "HTML · 3.9%" : 98.1
     "C · 2.5%" : 62.7
     "Ruby · 0.4%" : 10.1
 ```
@@ -189,8 +189,8 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-14 | Keep the local context.md notes out of the repository |
-| Murengeti Lab System | 2026-10-14 | Keep the local working notes (context.md) out of the repository |
+| Healing Hive | 2026-10-15 | Greet people by name, not by their title, on Home |
+| Murengeti Lab System | 2026-10-15 | Say when the attendance list or the other educators could not be loaded, with Try again, instead of calling them empty |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
 <sub>Read from each project's repository every three hours.</sub>

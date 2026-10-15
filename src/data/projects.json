@@ -7,9 +7,21 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-10-14",
-      "commits": 86,
+      "updated": "2026-10-15",
+      "commits": 89,
       "recent": [
+        {
+          "date": "2026-10-15",
+          "subject": "Greet people by name, not by their title, on Home"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Make signing in with an unknown email as slow as a wrong password"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Cancel a removed professional's session that is under way"
+        },
         {
           "date": "2026-10-14",
           "subject": "Keep the local context.md notes out of the repository"
@@ -45,18 +57,6 @@
         {
           "date": "2026-10-14",
           "subject": "Fall back to an open day when the chosen one fills up"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Refuse new events that start in the past"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Only let clients cancel a session before it starts"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Cancel a removed professional's upcoming sessions and tell clients"
         }
       ]
     },
@@ -127,9 +127,29 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-14",
-      "commits": 174,
+      "updated": "2026-10-15",
+      "commits": 179,
       "recent": [
+        {
+          "date": "2026-10-15",
+          "subject": "Say when the attendance list or the other educators could not be loaded, with Try again, instead of calling them empty"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Say above the page when its records could not be loaded, with a Try again button, instead of showing an empty list"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Keep a list as it was when it cannot be read again after a save, and say the change is saved"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Drop the CI step that ran npm install again after make check had built the frontend"
+        },
+        {
+          "date": "2026-10-15",
+          "subject": "Remove the empty domain package and describe the three layers the backend actually has"
+        },
         {
           "date": "2026-10-14",
           "subject": "Keep the local working notes (context.md) out of the repository"
@@ -157,26 +177,6 @@
         {
           "date": "2026-10-14",
           "subject": "Dark mode: tint the icon tiles and darken the attendance list's lines"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Load every page of students, not just the first thousand"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Refuse a school name that would share another school's folder in the projects repository"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Invite educators to the projects repository with read access only"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Phone: shorten the top-bar date, put summary cards two to a row, list rotation ticks one per line"
-        },
-        {
-          "date": "2026-10-14",
-          "subject": "Never repeat a typed password in an error, print a secret from the settings, or log a statement's values"
         }
       ]
     },
