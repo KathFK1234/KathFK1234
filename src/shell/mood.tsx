@@ -801,6 +801,11 @@ function isAdvice(data: unknown): data is ActivityAdvice {
 
 /* ---------- mood activities <place> ---------- */
 
+/** A place as typed, for a heading when the service's answer does not name it: `cape town` -> `Cape Town`. */
+function titled(place: string): string {
+  return place.replace(/(^|[\s-])(\p{L})/gu, (_, before: string, letter: string) => before + letter.toUpperCase());
+}
+
 const IDEAS_SHOWN = 12;
 
 async function ideas(place: string, ctx: Ctx): Promise<ReactNode> {
@@ -823,7 +828,7 @@ async function ideas(place: string, ctx: Ctx): Promise<ReactNode> {
   const more = all.slice(IDEAS_SHOWN).map(item => item.name);
   return (
     <>
-      <Accent>{place}</Accent> <Dim>— what is practical there, local favourites first. click one for a verdict</Dim>
+      <Accent>{titled(place)}</Accent> <Dim>— what is practical there, local favourites first. click one for a verdict</Dim>
       {'\n'}
       <Rows rows={shown.map(item => [item.prompt ?? item.name, <Cmd>{`mood ${item.name} in ${from}`}</Cmd>])} />
       {more.length ? (
@@ -856,7 +861,7 @@ function listView(data: unknown, place: string, name: string, session: MoodSessi
   const short = items.every(item => typeof item === 'string' && item.length <= 24);
   return (
     <>
-      <Accent>{place || name}</Accent>{' '}
+      <Accent>{place ? titled(place) : name}</Accent>{' '}
       <Dim>
         — {place ? `${name}, ` : ''}live from the MoodForecast AI service
       </Dim>

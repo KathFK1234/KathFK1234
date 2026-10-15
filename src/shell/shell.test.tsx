@@ -534,7 +534,7 @@ describe('mood', () => {
     expect(listed).toMatch(/also: a nap/);
     expect(listed).toMatch(/cannot choose\? mood random-activity nairobi/);
 
-    expect(await run('mood tides mombasa')).toMatch(/mombasa — tides.*high 06:10, low 12:20.*mood tides [a-z]/s);
+    expect(await run('mood tides mombasa')).toMatch(/Mombasa — tides.*high 06:10, low 12:20.*mood tides [a-z]/s);
   });
 
   it('uses endpoints that are not about one place', async () => {
@@ -572,7 +572,7 @@ describe('mood', () => {
     expect(listed).toMatch(/mood locations &lt;q&gt;/);
 
     expect(await run('mood activities')).toMatch(/running, a picnic, underwater chess, zorbing.*ask about any of them: mood /s);
-    expect(await run('mood activities nairobi')).toMatch(/Go for a run.*mood running in nairobi/s);
+    expect(await run('mood activities nairobi')).toMatch(/\.\.\.Nairobi — what is practical.*Go for a run.*mood running in nairobi/s);
     expect(await run('mood locations nai')).toMatch(/mood Nairobi, Kenya\s+mood Nairo, Japan/);
     expect(await run('mood locations')).toMatch(/usage: mood locations &lt;q&gt;/);
     expect(calls).toContain('/api/locations?q=nai');
