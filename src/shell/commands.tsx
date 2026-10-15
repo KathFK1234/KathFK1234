@@ -1031,7 +1031,7 @@ export const commands: Command[] = [
     completes: Object.keys(LINKS),
     run: (args, ctx) => {
       const target = (args[0] ?? '').toLowerCase();
-      if (target in LINKS) {
+      if (Object.hasOwn(LINKS, target)) {
         const url = LINKS[target as keyof typeof LINKS];
         if (typeof window !== 'undefined') window.open(url, '_blank', 'noopener,noreferrer');
         return (
@@ -1231,7 +1231,7 @@ export const commands: Command[] = [
     completes: Object.keys(THEMES),
     run: (args, ctx) => {
       const name = (args[0] ?? '').toLowerCase();
-      if (name in THEMES) {
+      if (Object.hasOwn(THEMES, name)) {
         ctx.setPrefs({ theme: name as ThemeName });
         return <>theme set to <Accent>{name}</Accent>. <Dim>it will be remembered on this device.</Dim></>;
       }
@@ -1256,7 +1256,7 @@ export const commands: Command[] = [
     completes: Object.keys(FONTS),
     run: (args, ctx) => {
       const name = (args[0] ?? '').toLowerCase();
-      if (name in FONTS) {
+      if (Object.hasOwn(FONTS, name)) {
         ctx.setPrefs({ font: name as FontName });
         return <>font set to <Accent>{FONTS[name as FontName].label}</Accent>.</>;
       }

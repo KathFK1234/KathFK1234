@@ -49,8 +49,8 @@ function write(key: string, value: unknown): void {
 export function loadPrefs(): Prefs {
   const saved = read<Partial<Prefs>>(PREFS_KEY) ?? {};
   return {
-    theme: saved.theme && saved.theme in THEMES ? saved.theme : DEFAULT_PREFS.theme,
-    font: saved.font && saved.font in FONTS ? saved.font : DEFAULT_PREFS.font,
+    theme: saved.theme && Object.hasOwn(THEMES, saved.theme) ? saved.theme : DEFAULT_PREFS.theme,
+    font: saved.font && Object.hasOwn(FONTS, saved.font) ? saved.font : DEFAULT_PREFS.font,
     crt: saved.crt === true,
   };
 }

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import projectData from '../data/projects.json';
-import { DEFAULT_PREFS } from '../prefs';
+import { DEFAULT_PREFS, loadPrefs } from '../prefs';
 import { commandNames, commands, createShellState, EXAMPLES, execute, tokenize, type Ctx } from './commands';
 import { commonPrefix, complete, ghostFor } from './complete';
 import { readEndpoints } from './mood';
@@ -224,6 +224,27 @@ describe('commands', () => {
     await run('clear');
     expect(cleared()).toBe(1);
     expect(await run('echo hi $USER')).toBe('hi visitor');
+  });
+
+  it('takes only its own themes, fonts and links, never built-in object names', async () => {
+    const { ctx, run } = shell();
+    const open = vi.fn();
+    vi.stubGlobal('window', { open });
+    for (const name of ['constructor', 'toString', '__proto__']) {
+      expect(await run(`theme ${name}`)).toMatch(/unknown theme/);
+      expect(await run(`font ${name}`)).toMatch(/unknown font/);
+      expect(await run(`open ${name}`)).toMatch(/unknown target/);
+    }
+    expect(ctx.prefs).toEqual(DEFAULT_PREFS);
+    expect(open).not.toHaveBeenCalled();
+    vi.unstubAllGlobals();
+  });
+
+  it('forgets a saved theme or font that is not one of its own', () => {
+    const saved = JSON.stringify({ theme: 'constructor', font: 'toString', crt: true });
+    vi.stubGlobal('localStorage', { getItem: () => saved });
+    expect(loadPrefs()).toEqual({ ...DEFAULT_PREFS, crt: true });
+    vi.unstubAllGlobals();
   });
 
   it('shows languages and tools from the generated data file', async () => {
