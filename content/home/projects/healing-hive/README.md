@@ -13,7 +13,7 @@ v1 answered "can this exist?". v2 asks the harder question: what does a person i
 
   accounts          sign up, sign in, profile, password reset by email; nobody can give themselves a role
   professionals     therapists and peer counsellors sign up on their own form, an admin approves, then they appear in the directory
-  booking           weekly hours become open slots, minus anything already in a connected Google Calendar; a slot can be held by one person only
+  booking           weekly hours become open slots, minus anything already in a connected Google Calendar; a slot can be held by one person only, and a request can be confirmed only while its time is still ahead
   sessions          each confirmed session gets a meeting link (Google Meet, the professional's own link, or a private Jitsi room), and both sides are emailed
   ratings           only the client of a completed session can rate it, once; reviews are public without names
   institutions      a clinic or organisation with counsellors on staff invites verified professionals, who must accept, and sees sessions, ratings and value per professional, never client names
@@ -30,12 +30,12 @@ Twenty-four pages on top of that API, in four groups:
 
   anyone             landing, help, the support directory and each professional's profile, nuggets, events, sign-up for professionals, password reset
   signed in          home, check-ins, journal, AI companion, my sessions, reminders, settings, apply as a professional
-  by role            My practice for professionals, with Google Calendar; the institution dashboard; the admin page for applications, institutions and nuggets
+  by role            My practice for professionals, with Google Calendar; the institution dashboard; the admin page for applications, institutions and nuggets, with a search of everyone who has signed up
   each account       its own home and a short menu grouped for what that kind of person came to do
 
-A "Get help now" button is on every page, signed in or not, with the hours each line answers. Light and dark themes share one set of colour tokens, and each page loads on first visit, so a slow connection only pays for the screen it opens.
+A "Get help now" button is on every page, signed in or not, with the hours each line answers. Light and dark themes share one set of colour tokens, and each page loads on first visit, so a slow connection only pays for the screen it opens. Pages fit a phone's width, Register and Publish show when they are working and cannot be sent twice, and forms say what to fix instead of showing raw validation messages.
 
-Locally, `npm install` and `npm run dev` start a database, the API and the web app together, with sample accounts so every page has something in it. Email, Google Calendar and the AI companion switch on when their settings are filled in, and the app still works without them.
+Locally, `npm install` and `npm run dev` start a database, the API and the web app together, with sample accounts so every page has something in it. Email, Google Calendar and the AI companion switch on when their settings are filled in, and the app still works without them. Every push runs the API tests and the lint, and the repository is set up to publish the web app on GitHub Pages and the API on Railway.
 
 ## Stack
 
