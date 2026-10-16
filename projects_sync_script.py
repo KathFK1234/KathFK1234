@@ -273,7 +273,14 @@ def format_changelog(entry: dict) -> str:
 
 
 def cell(text: str) -> str:
-    return text.replace("|", "\\|")
+    """A commit subject as a table cell. GitHub strips anything shaped like an HTML tag,
+    so `<`, `>` and `&` are escaped, except inside `code`, where they already show as typed."""
+    parts = re.split(r"(`[^`]+`)", text)
+    escaped = (
+        part if part.startswith("`") else part.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+        for part in parts
+    )
+    return "".join(escaped).replace("|", "\\|")
 
 
 def format_lately(entries: list[dict]) -> str:
