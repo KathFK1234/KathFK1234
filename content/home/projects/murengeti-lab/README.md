@@ -21,13 +21,15 @@ A school that does not run to a timetable can switch it off. The dashboard then 
 
 Importing a class list is two steps: preview, then confirm. The preview shows exactly which students, classes, and timetable slots would be created, and any warnings, before anything is written. Running the same import twice does not create duplicates.
 
-A page that cannot load its records says so above the page, with a Try again button. An empty list there would look like lost data.
+A list says it is loading until its records arrive, never "nothing here yet" before it knows. A page that cannot load its records says so above the page, with a Try again button, and shows nothing it could not load. An empty list there would look like lost data.
+
+Times are kept as they are typed, so a lesson can be recorded before 08:00. A "4:30" in an imported file still becomes 16:30.
 
 ## Signing in
 
 Back4App confirms who each person is: their password, their email address, and a forgotten-password link. This system keeps the roles and the schools. If Back4App cannot be reached, the password it last accepted still works, so a lesson is never held up by a sign-in.
 
-Repeated wrong passwords make an account wait, links are sent at most once a minute, and every request checks the account again, so someone removed is signed out at once. Changing a password signs the account out everywhere else. Guesses at the current password, the setup key and emailed codes are limited too, a refused request never repeats a typed password, and the server never writes out a password or key.
+Repeated wrong passwords make an account wait, links are sent at most once a minute, and every request checks the account again, so someone removed is signed out at once. Changing a password signs the account out everywhere else. Guesses at the current password, the setup key and emailed codes are limited too, counted by the address the site's own server saw, which a client cannot fake. A refused request never repeats a typed password, and the server never writes out a password or key.
 
 ## Stack
 
