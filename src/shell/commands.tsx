@@ -444,8 +444,8 @@ export const commands: Command[] = [
         counselling with vetted professionals, sessions booked around their calendars, private check-ins and
         journaling, and an AI companion whose crisis reply never depends on the AI being up. It began in 2025 as
         MindConnect, built with a team (<Link href={LINKS.mindconnect}>v1</Link>); in October 2026 I kept building it
-        on my own as v2: a tested API and a twenty-four-page web app, for clients, professionals, institutions, and
-        admins.{' '}
+        on my own as v2: an API tested on every push and a twenty-four-page web app, for clients, professionals,
+        institutions, and admins.{' '}
         {sourceOf('healing-hive')} · <Cmd>cat projects/healing-hive/what-changed.md</Cmd>
         {'\n\n'}
         <Accent>Chema Backend</Accent> — an agricultural and data platform built to connect decision-support,
