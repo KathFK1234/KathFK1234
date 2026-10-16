@@ -1069,7 +1069,7 @@ export const commands: Command[] = [
       }
       return (
         <>
-          <Warn>open: unknown target</Warn>{'\n'}
+          <Warn>{args[0] ? `open: no link or file called “${args[0]}”` : 'open: say what to open'}</Warn>{'\n'}
           <Dim>try</Dim>{' '}
           {Object.keys(LINKS).map(name => (
             <Fragment key={name}><Cmd>{`open ${name}`}</Cmd> </Fragment>

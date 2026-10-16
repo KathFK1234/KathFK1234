@@ -182,6 +182,7 @@ describe('commands', () => {
     expect(await run('find . -type f -name "*.json"')).toBe('./projects/moodforecast-ai/data/sample-response.json\n');
     expect(await run('echo "a  b" $USER \'c\'')).toBe('a  b visitor c');
     expect(await run('open projects')).toMatch(/projects is a directory.*cd projects.*ls projects/s);
+    expect(await run('open')).toMatch(/say what to open.*open github/s);
     expect(await run('crt maybe')).toMatch(/either on or off/);
     expect(await run('ls | wc')).toMatch(/pipes, redirects and chains.*ls/s);
     expect(await run('ls; pwd')).toMatch(/one command at a time/);
@@ -245,7 +246,7 @@ describe('commands', () => {
     for (const name of ['constructor', 'toString', '__proto__']) {
       expect(await run(`theme ${name}`)).toMatch(/unknown theme/);
       expect(await run(`font ${name}`)).toMatch(/unknown font/);
-      expect(await run(`open ${name}`)).toMatch(/unknown target/);
+      expect(await run(`open ${name}`)).toMatch(new RegExp(`no link or file called “${name}”`));
     }
     expect(ctx.prefs).toEqual(DEFAULT_PREFS);
     expect(open).not.toHaveBeenCalled();
