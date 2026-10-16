@@ -8,8 +8,36 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-16",
-      "commits": 106,
+      "commits": 113,
       "recent": [
+        {
+          "date": "2026-10-16",
+          "subject": "Show why the sessions could not load on Home, like every other error state"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Say why Google Calendar was not connected: cancelled, not set up, link expired, not approved, refused by Google, or not saved"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Say in the README's Railway steps to leave Root Directory empty, how to reference Railway's MongoDB, and how to check the deploy"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Keep the GitHub token out of .git/config in the Pages workflow"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Ask for Node 22.13 or later in the 22 line, so Railway runs the Node version CI tests"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Update dependencies to their latest releases within the existing ranges"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Update concurrently to 10.0.6, which brings shell-quote 1.12.0 without its critical advisory"
+        },
         {
           "date": "2026-10-16",
           "subject": "Say the server could not be found when the API address points at a web page"
@@ -29,34 +57,6 @@
         {
           "date": "2026-10-15",
           "subject": "Mention the admin's people search in the README"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Refuse to confirm a request after its time has passed"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Let admins search everyone and page through people and nuggets"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Say what to fix instead of showing raw validation messages"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Keep the booking page to the width of a phone screen"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Stop \"Keep editing\" from saving the writing and closing the dialog"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Show when Register and Publish are working, and hold them until done"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Add Railway settings for the API and explain how the app is deployed"
         }
       ]
     },
@@ -128,8 +128,32 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-16",
-      "commits": 191,
+      "commits": 197,
       "recent": [
+        {
+          "date": "2026-10-16",
+          "subject": "Build the frontend in CI on Node 24, as the image does, and ask for Node 22 or newer instead of the end-of-life 18"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Take over a Back4App user by its email only for an account whose address is confirmed here, so signing up with someone else's email cannot reset their Back4App password"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Build the frontend on Node 24 and serve it from nginx 1.30, both still supported, and check the config in the same nginx"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Move CI to actions/checkout v7 and actions/setup-python v7, off the deprecated Node 20 runtime"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Update Vite to 6.4.4 and source-map-js to 1.2.2, so npm audit reports no vulnerabilities"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Allow cryptography 50, so installs no longer get a 46.x release with seven known advisories"
+        },
         {
           "date": "2026-10-16",
           "subject": "Count on the People page only the sign-ins that hold a Back4App session, and say they are this server's"
@@ -153,30 +177,6 @@
         {
           "date": "2026-10-15",
           "subject": "Show lesson and timetable times as stored, so a lesson can be recorded before 08:00"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Describe the loading and failed-load states in the README"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Remove the notifications bell, which only ever opened an empty dialog"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Let the superadmin and warehouse pages try a failed load again, and show nothing they could not load"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Stop pages from claiming what a failed load could not tell, and let Uploads and Reports try again"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Say a list is loading instead of showing its empty state, and show only the chosen day's lessons"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Drop a page load's answer once the page, date, or session it was asked for has changed"
         }
       ]
     },
