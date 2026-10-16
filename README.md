@@ -110,9 +110,9 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
     "Python · 41.5%" : 1043.8
-    "TypeScript · 22.8%" : 573.2
+    "TypeScript · 22.8%" : 573.6
     "JavaScript · 20.1%" : 504.2
-    "CSS · 8.8%" : 221.4
+    "CSS · 8.8%" : 221.5
     "HTML · 3.9%" : 98.1
     "C · 2.5%" : 62.7
     "Ruby · 0.4%" : 10.1
