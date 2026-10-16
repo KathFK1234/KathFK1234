@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import projectData from '../data/projects.json';
 import { DEFAULT_PREFS, loadPrefs } from '../prefs';
 import { commandNames, commands, createShellState, EXAMPLES, execute, tokenize, type Ctx } from './commands';
@@ -29,6 +29,12 @@ function shell() {
     [...(await markup(line)).matchAll(/<span class="warn">(.*?)<\/span>/g)].map(match => match[1].replace(/<[^>]+>/g, '')).join('\n');
   return { ctx, run, warnings, cleared: () => cleared };
 }
+
+// No test reaches the live service: one that does not say what the service answers gets 404s.
+beforeEach(() => {
+  serve({});
+});
+afterEach(() => vi.unstubAllGlobals());
 
 describe('file system', () => {
   it('loads the content folder, including directory descriptions', () => {
