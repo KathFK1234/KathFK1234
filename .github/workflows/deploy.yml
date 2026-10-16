@@ -46,7 +46,8 @@ jobs:
           STACK_TOKEN: ${{ secrets.STACK_TOKEN }}
           OWNER: ${{ github.repository_owner }}
         run: |
-          pip install --quiet requests
+          # Exactly the pinned files: these steps hold a token that can push
+          pip install --quiet --require-hashes -r requirements.txt
           if [ -n "$STACK_TOKEN" ]; then
             GITHUB_TOKEN="$STACK_TOKEN" python3 languages_update_script.py --username "$OWNER" --include-private
           else
