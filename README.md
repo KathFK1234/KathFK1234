@@ -109,10 +109,10 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 41.5%" : 1043.8
-    "TypeScript · 22.8%" : 573.6
-    "JavaScript · 20.1%" : 504.2
-    "CSS · 8.8%" : 221.5
+    "Python · 41.6%" : 1052.4
+    "TypeScript · 22.7%" : 573.9
+    "JavaScript · 20.2%" : 511.8
+    "CSS · 8.8%" : 221.6
     "HTML · 3.9%" : 98.1
     "C · 2.5%" : 62.7
     "Ruby · 0.4%" : 10.1
@@ -189,11 +189,11 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-15 | Mention the admin's people search in the README |
-| Murengeti Lab System | 2026-10-15 | Count per-address limits by the address nginx saw, which a client cannot set |
+| Healing Hive | 2026-10-16 | Say the server could not be found when the API address points at a web page |
+| Murengeti Lab System | 2026-10-16 | Count on the People page only the sign-ins that hold a Back4App session, and say they are this server's |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
-<sub>Read from each project's repository every three hours.</sub>
+<sub>Read from each project's repository every hour.</sub>
 <!-- projects:end -->
 
 <br>

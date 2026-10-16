@@ -7,9 +7,25 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-10-15",
-      "commits": 102,
+      "updated": "2026-10-16",
+      "commits": 106,
       "recent": [
+        {
+          "date": "2026-10-16",
+          "subject": "Say the server could not be found when the API address points at a web page"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Say why a page could not open instead of leaving a blank screen"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Name what is duplicated or invalid in API errors, and give unexpected ones a reference"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Say why a request failed instead of \"Something went wrong\""
+        },
         {
           "date": "2026-10-15",
           "subject": "Mention the admin's people search in the README"
@@ -41,22 +57,6 @@
         {
           "date": "2026-10-15",
           "subject": "Add Railway settings for the API and explain how the app is deployed"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Pin the Pages workflow to Ubuntu 24.04"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Test every push and publish the web app to GitHub Pages"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Let the web app run from a sub-path such as GitHub Pages' /Healing-Hive/"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Show loading and error states for the next session on Home"
         }
       ]
     },
@@ -127,9 +127,21 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-15",
-      "commits": 188,
+      "updated": "2026-10-16",
+      "commits": 191,
       "recent": [
+        {
+          "date": "2026-10-16",
+          "subject": "Count on the People page only the sign-ins that hold a Back4App session, and say they are this server's"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Show on the People page why an account could not be added to Back4App, instead of promising it at the next sign-in"
+        },
+        {
+          "date": "2026-10-16",
+          "subject": "Take over the Back4App user that already has an account's email under another username, so that account's sign-ins reach Back4App"
+        },
         {
           "date": "2026-10-15",
           "subject": "Count per-address limits by the address nginx saw, which a client cannot set"
@@ -165,18 +177,6 @@
         {
           "date": "2026-10-15",
           "subject": "Drop a page load's answer once the page, date, or session it was asked for has changed"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Say when the attendance list or the other educators could not be loaded, with Try again, instead of calling them empty"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Say above the page when its records could not be loaded, with a Try again button, instead of showing an empty list"
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Keep a list as it was when it cannot be read again after a save, and say the change is saved"
         }
       ]
     },
