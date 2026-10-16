@@ -53,6 +53,11 @@ describe('file system', () => {
     }
   });
 
+  it('leaves out files the repository ignores', () => {
+    const ignored = walk([]).filter(({ node }) => /^__pycache__$|\.pyc$|\.local$/.test(node.name));
+    expect(ignored.map(({ segments }) => segments.join('/'))).toEqual([]);
+  });
+
   it('resolves relative, absolute, home and parent paths', () => {
     expect(resolvePath([], 'projects/moodforecast-ai')).toEqual(['projects', 'moodforecast-ai']);
     expect(resolvePath(['projects'], '../notes')).toEqual(['notes']);

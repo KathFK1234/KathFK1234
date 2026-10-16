@@ -53,7 +53,14 @@ export function buildTree(files: Record<string, string>, prefix: string): DirNod
   return root;
 }
 
-const contentFiles = import.meta.glob('/content/home/**/*', {
+// The glob does not read .gitignore, so the ignored names that can turn up in
+// content/ are left out here; otherwise a local build would bundle them.
+const contentFiles = import.meta.glob([
+  '/content/home/**/*',
+  '!**/__pycache__/**',
+  '!**/*.pyc',
+  '!**/*.local',
+], {
   query: '?raw',
   import: 'default',
   eager: true,
