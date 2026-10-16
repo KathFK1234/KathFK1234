@@ -4,10 +4,13 @@ on:
   push:
     branches: [main]
   schedule:
-    # Every three hours: redraw the "On GitHub" card, and pick up languages and
+    # Every hour: redraw the "On GitHub" card, and pick up languages and
     # tools from new or changed repositories, anything new in MoodForecast AI
-    # for the terminal's mood command, and the latest work on each project
-    - cron: '17 */3 * * *'
+    # for the terminal's mood command, and the latest work on each project.
+    # Hourly because GitHub drops many scheduled runs: at three-hourly, most
+    # were skipped and new commits waited up to a day. A run commits only
+    # when something changed.
+    - cron: '17 * * * *'
   workflow_dispatch:
 
 # Each job is given only what it uses, below
