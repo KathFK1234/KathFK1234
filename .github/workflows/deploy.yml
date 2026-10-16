@@ -103,8 +103,17 @@ jobs:
         run: |
           behind="$(python3 projects_sync_script.py --check --quiet)"
           if [ -n "$behind" ]; then
+            # The commit subjects in it come from other repositories, MindConnect's from a
+            # team. The runner reads any line starting with "::" as a command, even indented,
+            # so none of them are read while it prints.
+            stop="$(openssl rand -hex 16)"
+            echo "::stop-commands::$stop"
             echo "$behind"
-            echo "::notice title=Project write-ups to revise::${behind//$'\n'/%0A}"
+            echo "::$stop::"
+            # The notice's text is decoded, so escape it the way the runner expects
+            notice="${behind//'%'/%25}"
+            notice="${notice//$'\r'/%0D}"
+            echo "::notice title=Project write-ups to revise::${notice//$'\n'/%0A}"
           fi
 
       - name: Warn if the activity card failed
