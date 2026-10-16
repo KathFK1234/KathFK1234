@@ -391,9 +391,13 @@ body {
     gap: 8px;
     padding: 9px 14px;
   }
+  /* Wraps rather than scrolls: a hidden scrollbar left a button cut off with no sign there was more. */
   .navlinks {
-    overflow-x: auto;
-    scrollbar-width: none;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .navlinks button {
+    padding: 3px 8px;
   }
   .terminal {
     padding: 14px 14px 24px;
