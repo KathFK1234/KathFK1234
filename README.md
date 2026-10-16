@@ -278,6 +278,7 @@ npm install
 npm run dev      # local server with live reload
 npm test         # shell, file system, and completion tests
 npm run build    # type-check and build into dist/
+pip install -r requirements.txt   # for the Python scripts below: the same pinned versions the workflow uses
 ```
 
 Pushing to `main` builds and deploys the site through [.github/workflows/deploy.yml](.github/workflows/deploy.yml). In the repository settings, Pages → Source must be set to **GitHub Actions**.
