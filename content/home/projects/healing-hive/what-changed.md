@@ -22,7 +22,7 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   meeting          a confirmed session gets a link: Google Meet when the professional has connected their calendar, otherwise their own link, otherwise a private Jitsi room. Both people are emailed when a session is requested, confirmed or cancelled.
   ratings          only the client of a completed session can rate it, and only once. Reviews are shown without names.
   cancelling       a client can cancel up to the moment a session starts. A professional removed from the directory has every upcoming session cancelled, and one under way ended, and each client is told.
-  events           a new event cannot start in the past, and stays under Upcoming until it has ended.
+  events           a new event cannot start in the past or be moved there, and stays under Upcoming until it has ended. Deleting one emails everyone registered, and its host when an admin removes it.
 
 ## Care
 
@@ -35,7 +35,7 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
 
   structure        one folder per feature (auth, sessions, journal ...) with a versioned API, where v1 had one folder per file type.
   validation       every request is checked before it reaches a handler, and errors come back in one shape.
-  tests            53 API tests against an in-memory database, each named for the promise it keeps.
+  tests            56 API tests against an in-memory database, each named for the promise it keeps.
   local setup      `npm run dev` starts a database, the API and the web app together, and fills them with sample accounts for every kind of person. Email, Google Calendar and the AI companion are optional, and the app works without them.
 
 ## The web app
