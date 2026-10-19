@@ -65,6 +65,9 @@ export function applyPrefs(prefs: Prefs): void {
   el.dataset.font = prefs.font;
   el.dataset.crt = prefs.crt ? 'on' : 'off';
   el.style.setProperty('--mono', `${FONTS[prefs.font].stack}, ui-monospace, 'Courier New', monospace`);
+  // A phone's browser bar takes this colour, so it should match the theme's page, paper included.
+  const bg = getComputedStyle(el).getPropertyValue('--bg').trim();
+  if (bg) document.querySelector('meta[name="theme-color"]')?.setAttribute('content', bg);
 }
 
 export function loadHistory(): string[] {
