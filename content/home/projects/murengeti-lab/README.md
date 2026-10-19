@@ -12,6 +12,7 @@ I lead a school computer lab, and running it meant juggling spreadsheets: one fo
   weekly targets           set group by group; each educator sees their week against them
   uploads                  every file a school has uploaded, in one list, previewed without downloading
   projects repository      students' work, filed by year, school and term in one private repository; educators can read it, not change it
+  notifications            a bell for what is waiting: accounts to approve for the superadmin, open equipment issues for educators and the warehouse admin
 
 Each school gets its own private workspace, run by its educator. It was first built for one lab and can now host more than one school. A superadmin approves accounts and sets targets but never sees a student's name in the app (the projects repository, where each student's work sits in a folder under their name, is the one exception); a warehouse admin sees only the equipment. Each school's work goes in a repository folder no later school is given, so a new school with a removed school's name cannot see it.
 
