@@ -40,7 +40,7 @@ Locally, `npm install` and `npm run dev` start a database, the API and the web a
 ## Stack
 
   Node.js · Express · MongoDB (Mongoose) · Zod · JWT · Nodemailer
-  React · Vite · Tailwind CSS
+  React · Vite · Tailwind CSS 4
   Claude API · Google Calendar and Meet
 
 ## Read next
