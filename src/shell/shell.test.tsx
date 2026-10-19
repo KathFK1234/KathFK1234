@@ -149,10 +149,12 @@ describe('commands', () => {
     expect(await run('cd ..')).toMatch(/already at home/);
   });
 
-  it('refuses to cd into files or missing paths', async () => {
+  it('refuses to cd or tree into files or missing paths', async () => {
     const { ctx, run } = shell();
     expect(await run('cd README.md')).toMatch(/Not a directory/);
     expect(await run('cd nowhere')).toMatch(/No such file or directory/);
+    expect(await run('tree README.md')).toMatch(/Not a directory/);
+    expect(await run('tree nowhere')).toMatch(/No such file or directory/);
     expect(ctx.state.cwd).toEqual([]);
   });
 

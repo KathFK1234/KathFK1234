@@ -999,7 +999,8 @@ export const commands: Command[] = [
       const target = operands[0] ?? '.';
       const base = resolvePath(ctx.state.cwd, target);
       const baseNode = base && getNode(base);
-      if (!baseNode || baseNode.type !== 'dir') return <Warn>tree: {target}: Not a directory</Warn>;
+      if (!baseNode) return <Warn>tree: {target}: No such file or directory</Warn>;
+      if (baseNode.type !== 'dir') return <Warn>tree: {target}: Not a directory</Warn>;
 
       const lines: ReactNode[] = [];
       let dirs = 0;
