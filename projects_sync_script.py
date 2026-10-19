@@ -364,7 +364,7 @@ def check(reader, reviewed: dict, quiet: bool) -> None:
             if len(new) > CHECK_SHOWN:
                 print(f"      ... and {len(new) - CHECK_SHOWN} more")
         print(
-            "The dated lists (CHANGELOG.md, the README's Lately table, `updates`) refresh themselves every three hours. "
+            "The dated lists (CHANGELOG.md, the README's Lately table, `updates`) refresh themselves on every scheduled run. "
             "The prose does not: the project's README.md there, its card in the profile README, and the `projects` command. "
             "After revising them, run: python3 projects_sync_script.py --mark-reviewed"
         )
