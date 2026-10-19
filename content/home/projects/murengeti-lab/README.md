@@ -31,6 +31,8 @@ Back4App confirms who each person is: their password, their email address, and a
 
 Repeated wrong passwords make an account wait, links are sent at most once a minute, and every request checks the account again, so someone removed is signed out at once. Changing a password signs the account out everywhere else. Guesses at the current password, the setup key and emailed codes are limited too, counted by the address the site's own server saw, which a client cannot fake. A refused request never repeats a typed password, and the server never writes out a password or key.
 
+Every account is copied to Back4App. If Back4App already has a user with the same email under another name, the account takes that user over only once its address is confirmed here, so typing someone else's email at sign-up never resets their Back4App password. The superadmin's People page says why an account is not in Back4App yet (no email address, for one), and how many of this server's sign-ins hold a Back4App session.
+
 ## Stack
 
   FastAPI · SQLAlchemy · Alembic · PostgreSQL · Back4App
