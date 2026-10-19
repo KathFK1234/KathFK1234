@@ -8,8 +8,12 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-19",
-      "commits": 126,
+      "commits": 127,
       "recent": [
+        {
+          "date": "2026-10-19",
+          "subject": "Refresh the directory after booking, cancelling or rating a session"
+        },
         {
           "date": "2026-10-19",
           "subject": "Offer only the directory's own specialties and languages as filters"
@@ -53,10 +57,6 @@
         {
           "date": "2026-10-19",
           "subject": "Read Railway's MONGO_URL, and name missing settings plainly at startup"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Say in one line why the pre-deploy seed could not reach the database"
         }
       ]
     },
@@ -128,8 +128,48 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-19",
-      "commits": 215,
+      "commits": 225,
       "recent": [
+        {
+          "date": "2026-10-19",
+          "subject": "Tell browsers to reach the site over HTTPS only, for a year"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Test that the migrations build the database the models describe, and align the three columns that had drifted"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Test the GitHub and GitLab clients' requests and how they read the answers, with the network faked"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Check the mail server's certificate, and never send the SMTP password to a server that does not offer encryption"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Suggest the term the school is in for a project not yet sent, instead of always Term 1"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Record the notifications design in the architecture notes, and say who the system is for now"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Bring the README's Projects section, repository layout, and Contributing up to date"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Fall back to IPv4 when the backend cannot bind IPv6 at all, not only when it cannot make an IPv6 socket"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Give CI's token read access only, whatever the repository's default"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Remove three superadmin pages' error state that nothing set, and unused names in two tests; the build now refuses unused code"
+        },
         {
           "date": "2026-10-19",
           "subject": "Check each role's notifications bell in the smoke test: its count, reading on opening, an item opening its page, and a failed load"
@@ -137,46 +177,6 @@
         {
           "date": "2026-10-19",
           "subject": "Read the notifications that arrive while the bell is open, including the first load when it is opened early"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Bring back the notifications bell, with the items the server works out and a count of the unread ones"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Work out notifications from the records: accounts waiting for the superadmin, open equipment issues for educators and the warehouse admin"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Look the backend's address up again every 10 seconds in nginx, so a backend on Railway's private network stays reachable after it is redeployed"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Serve the backend on IPv4 and IPv6 at once, so Railway can reach it on its private network as well as through its public proxy"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Give the live frontend and backend URLs in the README, with what to check after a deploy"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Refuse to downgrade below 0035 while a deleted school's folder is recorded or a school's folder is numbered, instead of forgetting them"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Refuse in the database a second school given a folder another school holds, so two schools added at the same moment cannot share one"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Check a turned-down school's name and choose its folder afresh when the superadmin adds it again, so it cannot share another school's folder"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Hide empty states under the failed-load banner without :has, so older browsers hide them too"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Show a project's repository folder only once the server has given it, instead of a guess from the school's name"
         }
       ]
     },

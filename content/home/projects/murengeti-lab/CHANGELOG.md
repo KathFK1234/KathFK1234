@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  215 commits · first 2026-09-20 · latest 2026-10-19
+  225 commits · first 2026-09-20 · latest 2026-10-19
 
+  2026-10-19  Tell browsers to reach the site over HTTPS only, for a year
+  2026-10-19  Test that the migrations build the database the models describe, and align the three columns that had drifted
+  2026-10-19  Test the GitHub and GitLab clients' requests and how they read the answers, with the network faked
+  2026-10-19  Check the mail server's certificate, and never send the SMTP password to a server that does not offer encryption
+  2026-10-19  Suggest the term the school is in for a project not yet sent, instead of always Term 1
+  2026-10-19  Record the notifications design in the architecture notes, and say who the system is for now
+  2026-10-19  Bring the README's Projects section, repository layout, and Contributing up to date
+  2026-10-19  Fall back to IPv4 when the backend cannot bind IPv6 at all, not only when it cannot make an IPv6 socket
+  2026-10-19  Give CI's token read access only, whatever the repository's default
+  2026-10-19  Remove three superadmin pages' error state that nothing set, and unused names in two tests; the build now refuses unused code
   2026-10-19  Check each role's notifications bell in the smoke test: its count, reading on opening, an item opening its page, and a failed load
   2026-10-19  Read the notifications that arrive while the bell is open, including the first load when it is opened early
-  2026-10-19  Bring back the notifications bell, with the items the server works out and a count of the unread ones
-  2026-10-19  Work out notifications from the records: accounts waiting for the superadmin, open equipment issues for educators and the warehouse admin
-  2026-10-19  Look the backend's address up again every 10 seconds in nginx, so a backend on Railway's private network stays reachable after it is redeployed
-  2026-10-19  Serve the backend on IPv4 and IPv6 at once, so Railway can reach it on its private network as well as through its public proxy
-  2026-10-19  Give the live frontend and backend URLs in the README, with what to check after a deploy
-  2026-10-19  Refuse to downgrade below 0035 while a deleted school's folder is recorded or a school's folder is numbered, instead of forgetting them
-  2026-10-19  Refuse in the database a second school given a folder another school holds, so two schools added at the same moment cannot share one
-  2026-10-19  Check a turned-down school's name and choose its folder afresh when the superadmin adds it again, so it cannot share another school's folder
-  2026-10-19  Hide empty states under the failed-load banner without :has, so older browsers hide them too
-  2026-10-19  Show a project's repository folder only once the server has given it, instead of a guess from the school's name
 
 From anywhere in this terminal, `updates` shows the same for every project.

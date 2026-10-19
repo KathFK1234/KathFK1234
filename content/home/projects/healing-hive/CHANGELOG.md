@@ -2,8 +2,9 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  126 commits · first 2026-10-06 · latest 2026-10-19
+  127 commits · first 2026-10-06 · latest 2026-10-19
 
+  2026-10-19  Refresh the directory after booking, cancelling or rating a session
   2026-10-19  Offer only the directory's own specialties and languages as filters
   2026-10-19  Say in the README and .env.example that ADMIN_PASSWORD needs 12 characters
   2026-10-19  Check in a test that both copies of the crisis contacts stay the same
@@ -15,6 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-10-19  Answer the directory within 3 seconds when a Google Calendar is slow
   2026-10-19  Email the people registered for an event when it is deleted
   2026-10-19  Read Railway's MONGO_URL, and name missing settings plainly at startup
-  2026-10-19  Say in one line why the pre-deploy seed could not reach the database
 
 From anywhere in this terminal, `updates` shows the same for every project.

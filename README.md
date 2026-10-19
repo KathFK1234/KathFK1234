@@ -109,11 +109,11 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 41.7%" : 1088.9
-    "TypeScript · 22.2%" : 580.5
-    "JavaScript · 20.8%" : 544.2
+    "Python · 41.9%" : 1100.6
+    "TypeScript · 22.1%" : 580.5
+    "JavaScript · 20.8%" : 544.5
     "CSS · 8.7%" : 227.5
-    "HTML · 3.8%" : 98.1
+    "HTML · 3.7%" : 98.1
     "C · 2.4%" : 62.7
     "Ruby · 0.4%" : 10.1
 ```
@@ -189,8 +189,8 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-19 | Offer only the directory's own specialties and languages as filters |
-| Murengeti Lab System | 2026-10-19 | Check each role's notifications bell in the smoke test: its count, reading on opening, an item opening its page, and a failed load |
+| Healing Hive | 2026-10-19 | Refresh the directory after booking, cancelling or rating a session |
+| Murengeti Lab System | 2026-10-19 | Tell browsers to reach the site over HTTPS only, for a year |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
 <sub>Read from each project's repository several times a day.</sub>
