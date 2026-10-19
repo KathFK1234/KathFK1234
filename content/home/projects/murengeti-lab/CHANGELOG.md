@@ -2,8 +2,10 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  211 commits · first 2026-09-20 · latest 2026-10-19
+  213 commits · first 2026-09-20 · latest 2026-10-19
 
+  2026-10-19  Bring back the notifications bell, with the items the server works out and a count of the unread ones
+  2026-10-19  Work out notifications from the records: accounts waiting for the superadmin, open equipment issues for educators and the warehouse admin
   2026-10-19  Look the backend's address up again every 10 seconds in nginx, so a backend on Railway's private network stays reachable after it is redeployed
   2026-10-19  Serve the backend on IPv4 and IPv6 at once, so Railway can reach it on its private network as well as through its public proxy
   2026-10-19  Give the live frontend and backend URLs in the README, with what to check after a deploy
@@ -14,7 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-10-19  Show a project's repository folder only once the server has given it, instead of a guess from the school's name
   2026-10-19  Give each school a projects-repository folder that no later school gets, so a new school with a deleted school's name cannot see, replace, or delete its work
   2026-10-19  Describe the frontend smoke test in the architecture notes, next to the backend tests
-  2026-10-19  Check in the smoke test that a failed account load shows the banner and comes back on Try again
-  2026-10-19  Stop showing on People why an account could not be added to Back4App once the server no longer uses Back4App
 
 From anywhere in this terminal, `updates` shows the same for every project.

@@ -8,8 +8,20 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-19",
-      "commits": 122,
+      "commits": 125,
       "recent": [
+        {
+          "date": "2026-10-19",
+          "subject": "Say in the README and .env.example that ADMIN_PASSWORD needs 12 characters"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Check in a test that both copies of the crisis contacts stay the same"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Update dependencies within their allowed ranges"
+        },
         {
           "date": "2026-10-19",
           "subject": "Move the web app to Tailwind CSS 4, looking exactly as before"
@@ -45,18 +57,6 @@
         {
           "date": "2026-10-19",
           "subject": "Leave Google Calendar busy times out of the directory's \"Next free\" time"
-        },
-        {
-          "date": "2026-10-16",
-          "subject": "Show why the sessions could not load on Home, like every other error state"
-        },
-        {
-          "date": "2026-10-16",
-          "subject": "Say why Google Calendar was not connected: cancelled, not set up, link expired, not approved, refused by Google, or not saved"
-        },
-        {
-          "date": "2026-10-16",
-          "subject": "Say in the README's Railway steps to leave Root Directory empty, how to reference Railway's MongoDB, and how to check the deploy"
         }
       ]
     },
@@ -128,8 +128,16 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-19",
-      "commits": 211,
+      "commits": 213,
       "recent": [
+        {
+          "date": "2026-10-19",
+          "subject": "Bring back the notifications bell, with the items the server works out and a count of the unread ones"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Work out notifications from the records: accounts waiting for the superadmin, open equipment issues for educators and the warehouse admin"
+        },
         {
           "date": "2026-10-19",
           "subject": "Look the backend's address up again every 10 seconds in nginx, so a backend on Railway's private network stays reachable after it is redeployed"
@@ -169,14 +177,6 @@
         {
           "date": "2026-10-19",
           "subject": "Describe the frontend smoke test in the architecture notes, next to the backend tests"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Check in the smoke test that a failed account load shows the banner and comes back on Try again"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Stop showing on People why an account could not be added to Back4App once the server no longer uses Back4App"
         }
       ]
     },
