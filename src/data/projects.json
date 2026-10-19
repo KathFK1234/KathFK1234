@@ -7,9 +7,45 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-10-16",
-      "commits": 113,
+      "updated": "2026-10-19",
+      "commits": 122,
       "recent": [
+        {
+          "date": "2026-10-19",
+          "subject": "Move the web app to Tailwind CSS 4, looking exactly as before"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Hide responsive buttons with max-sm:hidden, and drop classes that never applied"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Refuse to move an event to a time that has passed"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Tell the host when an admin deletes their event, and word the email for an event under way"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Answer the directory within 3 seconds when a Google Calendar is slow"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Email the people registered for an event when it is deleted"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Read Railway's MONGO_URL, and name missing settings plainly at startup"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Say in one line why the pre-deploy seed could not reach the database"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Leave Google Calendar busy times out of the directory's \"Next free\" time"
+        },
         {
           "date": "2026-10-16",
           "subject": "Show why the sessions could not load on Home, like every other error state"
@@ -21,42 +57,6 @@
         {
           "date": "2026-10-16",
           "subject": "Say in the README's Railway steps to leave Root Directory empty, how to reference Railway's MongoDB, and how to check the deploy"
-        },
-        {
-          "date": "2026-10-16",
-          "subject": "Keep the GitHub token out of .git/config in the Pages workflow"
-        },
-        {
-          "date": "2026-10-16",
-          "subject": "Ask for Node 22.13 or later in the 22 line, so Railway runs the Node version CI tests"
-        },
-        {
-          "date": "2026-10-16",
-          "subject": "Update dependencies to their latest releases within the existing ranges"
-        },
-        {
-          "date": "2026-10-16",
-          "subject": "Update concurrently to 10.0.6, which brings shell-quote 1.12.0 without its critical advisory"
-        },
-        {
-          "date": "2026-10-16",
-          "subject": "Say the server could not be found when the API address points at a web page"
-        },
-        {
-          "date": "2026-10-16",
-          "subject": "Say why a page could not open instead of leaving a blank screen"
-        },
-        {
-          "date": "2026-10-16",
-          "subject": "Name what is duplicated or invalid in API errors, and give unexpected ones a reference"
-        },
-        {
-          "date": "2026-10-16",
-          "subject": "Say why a request failed instead of \"Something went wrong\""
-        },
-        {
-          "date": "2026-10-15",
-          "subject": "Mention the admin's people search in the README"
         }
       ]
     },
@@ -127,56 +127,56 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-16",
-      "commits": 197,
+      "updated": "2026-10-19",
+      "commits": 211,
       "recent": [
         {
-          "date": "2026-10-16",
-          "subject": "Build the frontend in CI on Node 24, as the image does, and ask for Node 22 or newer instead of the end-of-life 18"
+          "date": "2026-10-19",
+          "subject": "Look the backend's address up again every 10 seconds in nginx, so a backend on Railway's private network stays reachable after it is redeployed"
         },
         {
-          "date": "2026-10-16",
-          "subject": "Take over a Back4App user by its email only for an account whose address is confirmed here, so signing up with someone else's email cannot reset their Back4App password"
+          "date": "2026-10-19",
+          "subject": "Serve the backend on IPv4 and IPv6 at once, so Railway can reach it on its private network as well as through its public proxy"
         },
         {
-          "date": "2026-10-16",
-          "subject": "Build the frontend on Node 24 and serve it from nginx 1.30, both still supported, and check the config in the same nginx"
+          "date": "2026-10-19",
+          "subject": "Give the live frontend and backend URLs in the README, with what to check after a deploy"
         },
         {
-          "date": "2026-10-16",
-          "subject": "Move CI to actions/checkout v7 and actions/setup-python v7, off the deprecated Node 20 runtime"
+          "date": "2026-10-19",
+          "subject": "Refuse to downgrade below 0035 while a deleted school's folder is recorded or a school's folder is numbered, instead of forgetting them"
         },
         {
-          "date": "2026-10-16",
-          "subject": "Update Vite to 6.4.4 and source-map-js to 1.2.2, so npm audit reports no vulnerabilities"
+          "date": "2026-10-19",
+          "subject": "Refuse in the database a second school given a folder another school holds, so two schools added at the same moment cannot share one"
         },
         {
-          "date": "2026-10-16",
-          "subject": "Allow cryptography 50, so installs no longer get a 46.x release with seven known advisories"
+          "date": "2026-10-19",
+          "subject": "Check a turned-down school's name and choose its folder afresh when the superadmin adds it again, so it cannot share another school's folder"
         },
         {
-          "date": "2026-10-16",
-          "subject": "Count on the People page only the sign-ins that hold a Back4App session, and say they are this server's"
+          "date": "2026-10-19",
+          "subject": "Hide empty states under the failed-load banner without :has, so older browsers hide them too"
         },
         {
-          "date": "2026-10-16",
-          "subject": "Show on the People page why an account could not be added to Back4App, instead of promising it at the next sign-in"
+          "date": "2026-10-19",
+          "subject": "Show a project's repository folder only once the server has given it, instead of a guess from the school's name"
         },
         {
-          "date": "2026-10-16",
-          "subject": "Take over the Back4App user that already has an account's email under another username, so that account's sign-ins reach Back4App"
+          "date": "2026-10-19",
+          "subject": "Give each school a projects-repository folder that no later school gets, so a new school with a deleted school's name cannot see, replace, or delete its work"
         },
         {
-          "date": "2026-10-15",
-          "subject": "Count per-address limits by the address nginx saw, which a client cannot set"
+          "date": "2026-10-19",
+          "subject": "Describe the frontend smoke test in the architecture notes, next to the backend tests"
         },
         {
-          "date": "2026-10-15",
-          "subject": "Check the frontend's nginx config in CI, in the image the Dockerfile uses"
+          "date": "2026-10-19",
+          "subject": "Check in the smoke test that a failed account load shows the banner and comes back on Try again"
         },
         {
-          "date": "2026-10-15",
-          "subject": "Show lesson and timetable times as stored, so a lesson can be recorded before 08:00"
+          "date": "2026-10-19",
+          "subject": "Stop showing on People why an account could not be added to Back4App once the server no longer uses Back4App"
         }
       ]
     },

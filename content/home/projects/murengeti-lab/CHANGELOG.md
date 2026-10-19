@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  197 commits · first 2026-09-20 · latest 2026-10-16
+  211 commits · first 2026-09-20 · latest 2026-10-19
 
-  2026-10-16  Build the frontend in CI on Node 24, as the image does, and ask for Node 22 or newer instead of the end-of-life 18
-  2026-10-16  Take over a Back4App user by its email only for an account whose address is confirmed here, so signing up with someone else's email cannot reset their Back4App password
-  2026-10-16  Build the frontend on Node 24 and serve it from nginx 1.30, both still supported, and check the config in the same nginx
-  2026-10-16  Move CI to actions/checkout v7 and actions/setup-python v7, off the deprecated Node 20 runtime
-  2026-10-16  Update Vite to 6.4.4 and source-map-js to 1.2.2, so npm audit reports no vulnerabilities
-  2026-10-16  Allow cryptography 50, so installs no longer get a 46.x release with seven known advisories
-  2026-10-16  Count on the People page only the sign-ins that hold a Back4App session, and say they are this server's
-  2026-10-16  Show on the People page why an account could not be added to Back4App, instead of promising it at the next sign-in
-  2026-10-16  Take over the Back4App user that already has an account's email under another username, so that account's sign-ins reach Back4App
-  2026-10-15  Count per-address limits by the address nginx saw, which a client cannot set
-  2026-10-15  Check the frontend's nginx config in CI, in the image the Dockerfile uses
-  2026-10-15  Show lesson and timetable times as stored, so a lesson can be recorded before 08:00
+  2026-10-19  Look the backend's address up again every 10 seconds in nginx, so a backend on Railway's private network stays reachable after it is redeployed
+  2026-10-19  Serve the backend on IPv4 and IPv6 at once, so Railway can reach it on its private network as well as through its public proxy
+  2026-10-19  Give the live frontend and backend URLs in the README, with what to check after a deploy
+  2026-10-19  Refuse to downgrade below 0035 while a deleted school's folder is recorded or a school's folder is numbered, instead of forgetting them
+  2026-10-19  Refuse in the database a second school given a folder another school holds, so two schools added at the same moment cannot share one
+  2026-10-19  Check a turned-down school's name and choose its folder afresh when the superadmin adds it again, so it cannot share another school's folder
+  2026-10-19  Hide empty states under the failed-load banner without :has, so older browsers hide them too
+  2026-10-19  Show a project's repository folder only once the server has given it, instead of a guess from the school's name
+  2026-10-19  Give each school a projects-repository folder that no later school gets, so a new school with a deleted school's name cannot see, replace, or delete its work
+  2026-10-19  Describe the frontend smoke test in the architecture notes, next to the backend tests
+  2026-10-19  Check in the smoke test that a failed account load shows the banner and comes back on Try again
+  2026-10-19  Stop showing on People why an account could not be added to Back4App once the server no longer uses Back4App
 
 From anywhere in this terminal, `updates` shows the same for every project.
