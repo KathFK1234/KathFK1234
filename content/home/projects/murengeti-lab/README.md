@@ -13,7 +13,7 @@ I lead a school computer lab, and running it meant juggling spreadsheets: one fo
   uploads                  every file a school has uploaded, in one list, previewed without downloading
   projects repository      students' work, filed by year, school and term in one private repository; educators can read it, not change it
 
-Each school gets its own private workspace, run by its educator. It was first built for one lab and can now host more than one school. A superadmin approves accounts and sets targets but never sees a student's name in the app (the projects repository, where each student's work sits in a folder under their name, is the one exception); a warehouse admin sees only the equipment.
+Each school gets its own private workspace, run by its educator. It was first built for one lab and can now host more than one school. A superadmin approves accounts and sets targets but never sees a student's name in the app (the projects repository, where each student's work sits in a folder under their name, is the one exception); a warehouse admin sees only the equipment. Each school's work goes in a repository folder no later school is given, so a new school with a removed school's name cannot see it.
 
 A school that does not run to a timetable can switch it off. The dashboard then shows the week's lessons against the target instead of the day's classes.
 
@@ -21,7 +21,7 @@ A school that does not run to a timetable can switch it off. The dashboard then 
 
 Importing a class list is two steps: preview, then confirm. The preview shows exactly which students, classes, and timetable slots would be created, and any warnings, before anything is written. Running the same import twice does not create duplicates.
 
-A list says it is loading until its records arrive, never "nothing here yet" before it knows. A page that cannot load its records says so above the page, with a Try again button, and shows nothing it could not load. An empty list there would look like lost data.
+A list says it is loading until its records arrive, never "nothing here yet" before it knows. A page that cannot load its records says so above the page, with a Try again button, and shows nothing it could not load. An empty list there would look like lost data. The sign-up page does the same when it cannot read which roles are open, rather than offering every role, and CI checks every page this way in Chrome for each role.
 
 Times are kept as they are typed, so a lesson can be recorded before 08:00. A "4:30" in an imported file still becomes 16:30.
 
