@@ -2,8 +2,10 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  213 commits · first 2026-09-20 · latest 2026-10-19
+  215 commits · first 2026-09-20 · latest 2026-10-19
 
+  2026-10-19  Check each role's notifications bell in the smoke test: its count, reading on opening, an item opening its page, and a failed load
+  2026-10-19  Read the notifications that arrive while the bell is open, including the first load when it is opened early
   2026-10-19  Bring back the notifications bell, with the items the server works out and a count of the unread ones
   2026-10-19  Work out notifications from the records: accounts waiting for the superadmin, open equipment issues for educators and the warehouse admin
   2026-10-19  Look the backend's address up again every 10 seconds in nginx, so a backend on Railway's private network stays reachable after it is redeployed
@@ -14,7 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-10-19  Check a turned-down school's name and choose its folder afresh when the superadmin adds it again, so it cannot share another school's folder
   2026-10-19  Hide empty states under the failed-load banner without :has, so older browsers hide them too
   2026-10-19  Show a project's repository folder only once the server has given it, instead of a guess from the school's name
-  2026-10-19  Give each school a projects-repository folder that no later school gets, so a new school with a deleted school's name cannot see, replace, or delete its work
-  2026-10-19  Describe the frontend smoke test in the architecture notes, next to the backend tests
 
 From anywhere in this terminal, `updates` shows the same for every project.

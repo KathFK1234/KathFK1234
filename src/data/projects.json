@@ -8,8 +8,12 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-19",
-      "commits": 125,
+      "commits": 126,
       "recent": [
+        {
+          "date": "2026-10-19",
+          "subject": "Offer only the directory's own specialties and languages as filters"
+        },
         {
           "date": "2026-10-19",
           "subject": "Say in the README and .env.example that ADMIN_PASSWORD needs 12 characters"
@@ -53,10 +57,6 @@
         {
           "date": "2026-10-19",
           "subject": "Say in one line why the pre-deploy seed could not reach the database"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Leave Google Calendar busy times out of the directory's \"Next free\" time"
         }
       ]
     },
@@ -128,8 +128,16 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-19",
-      "commits": 213,
+      "commits": 215,
       "recent": [
+        {
+          "date": "2026-10-19",
+          "subject": "Check each role's notifications bell in the smoke test: its count, reading on opening, an item opening its page, and a failed load"
+        },
+        {
+          "date": "2026-10-19",
+          "subject": "Read the notifications that arrive while the bell is open, including the first load when it is opened early"
+        },
         {
           "date": "2026-10-19",
           "subject": "Bring back the notifications bell, with the items the server works out and a count of the unread ones"
@@ -169,14 +177,6 @@
         {
           "date": "2026-10-19",
           "subject": "Show a project's repository folder only once the server has given it, instead of a guess from the school's name"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Give each school a projects-repository folder that no later school gets, so a new school with a deleted school's name cannot see, replace, or delete its work"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Describe the frontend smoke test in the architecture notes, next to the backend tests"
         }
       ]
     },

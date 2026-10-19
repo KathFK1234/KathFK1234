@@ -110,8 +110,8 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
     "Python · 41.7%" : 1088.9
-    "TypeScript · 22.3%" : 580.3
-    "JavaScript · 20.7%" : 540.5
+    "TypeScript · 22.2%" : 580.5
+    "JavaScript · 20.8%" : 544.2
     "CSS · 8.7%" : 227.5
     "HTML · 3.8%" : 98.1
     "C · 2.4%" : 62.7
@@ -189,8 +189,8 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-19 | Say in the README and .env.example that ADMIN_PASSWORD needs 12 characters |
-| Murengeti Lab System | 2026-10-19 | Bring back the notifications bell, with the items the server works out and a count of the unread ones |
+| Healing Hive | 2026-10-19 | Offer only the directory's own specialties and languages as filters |
+| Murengeti Lab System | 2026-10-19 | Check each role's notifications bell in the smoke test: its count, reading on opening, an item opening its page, and a failed load |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
 <sub>Read from each project's repository several times a day.</sub>
