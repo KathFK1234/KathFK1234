@@ -193,7 +193,7 @@ Built at Chakula Africa · source is private
 | Murengeti Lab System | 2026-10-16 | Build the frontend in CI on Node 24, as the image does, and ask for Node 22 or newer instead of the end-of-life 18 |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
-<sub>Read from each project's repository every hour.</sub>
+<sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->
 
 <br>
@@ -283,7 +283,7 @@ pip install -r requirements.txt   # for the Python scripts below: the same pinne
 
 Pushing to `main` builds and deploys the site through [.github/workflows/deploy.yml](.github/workflows/deploy.yml). In the repository settings, Pages → Source must be set to **GitHub Actions**.
 
-**Languages and tools update themselves.** Every hour (or on demand from the Actions tab → *Run workflow*), the same workflow runs [languages_update_script.py](languages_update_script.py). It reads every repository I own (the public ones, and the private ones too once the `STACK_TOKEN` secret described below is set, as it is here) — GitHub's language statistics, plus dependency files such as `requirements.txt`, `pyproject.toml` and `package.json` — and rewrites:
+**Languages and tools update themselves.** Several times a day (or on demand from the Actions tab → *Run workflow*), the same workflow runs [languages_update_script.py](languages_update_script.py). It reads every repository I own (the public ones, and the private ones too once the `STACK_TOKEN` secret described below is set, as it is here) — GitHub's language statistics, plus dependency files such as `requirements.txt`, `pyproject.toml` and `package.json` — and rewrites:
 
 - the icon row, tools table, language list and pie chart in this README (between the `stack` and `languages` comment markers), and
 - [src/data/stack.json](src/data/stack.json), which the site's `skills` and `stack` commands read.

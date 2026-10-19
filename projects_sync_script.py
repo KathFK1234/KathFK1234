@@ -294,7 +294,7 @@ def format_lately(entries: list[dict]) -> str:
     for entry in rows:
         what = cell(entry["recent"][0]["subject"]) if entry["recent"] else f"private work · {entry['commits']} commits so far"
         lines.append(f"| {entry['name']} | {entry['updated']} | {what} |")
-    lines += ["", "<sub>Read from each project's repository every hour.</sub>"]
+    lines += ["", "<sub>Read from each project's repository several times a day.</sub>"]
     return "\n".join(lines)
 
 
