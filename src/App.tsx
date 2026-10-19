@@ -246,6 +246,8 @@ export default function App() {
   return (
     <RunContext.Provider value={run}>
       <header className="statusbar">
+        {/* For screen readers, which navigate by headings; the status bar already shows the name. */}
+        <h1 className="visually-hidden">Katheu Kilonzo — terminal portfolio</h1>
         <div className="status-title">
           <span className="dot" />
           <span>
