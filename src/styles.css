@@ -407,10 +407,13 @@ body {
   /* Wraps rather than scrolls: a hidden scrollbar left a button cut off with no sign there was more. */
   .navlinks {
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 4px;
   }
+  /* 44px tall, a comfortable thumb; the six share the row so they stay on one line down to 360px. */
   .navlinks button {
-    padding: 3px 8px;
+    flex: 1 1 auto;
+    min-height: 44px;
+    padding: 0 4px;
   }
   .terminal {
     padding: 14px 14px 24px;
@@ -424,6 +427,14 @@ body {
   .rows {
     padding-left: 1ch;
     column-gap: 1.5ch;
+  }
+}
+
+/* Too narrow for six in a row: two even rows of three, rather than one button stretched alone. */
+@media (max-width: 359px) {
+  .navlinks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
