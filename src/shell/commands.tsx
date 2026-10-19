@@ -1100,7 +1100,7 @@ export const commands: Command[] = [
           </Fragment>
         ))}
         <Dim>
-          Tab completes commands and paths · ↑ ↓ walk history · → accepts a suggestion · Ctrl+L clears · click any
+          Tab completes commands and paths · Shift+Tab leaves the prompt · ↑ ↓ walk history · → accepts a suggestion · Ctrl+L clears · click any
           highlighted command to run it · man &lt;command&gt; for details
         </Dim>
       </>

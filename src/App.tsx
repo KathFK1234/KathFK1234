@@ -147,7 +147,8 @@ export default function App() {
       focusInput();
     };
     const onKey = (event: globalThis.KeyboardEvent) => {
-      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      // A bare Shift is on its way to Shift+Tab, which must not be pulled back into the prompt.
+      if (event.ctrlKey || event.metaKey || event.altKey || event.key === 'Shift') return;
       // Leave Enter, Space and Tab alone on a focused button or link, so they still activate it
       // or move on. Any other key, typed after clicking one, belongs in the prompt.
       const onControl = (event.target as HTMLElement).closest?.('a, button');
@@ -184,6 +185,11 @@ export default function App() {
     const { key } = event;
 
     if (key === 'Tab') {
+      // Shift+Tab is the browser's, so the keyboard can always leave the prompt for the links and buttons.
+      if (event.shiftKey) {
+        setMenu(null);
+        return;
+      }
       event.preventDefault();
       onTab();
       return;

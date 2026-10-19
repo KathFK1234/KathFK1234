@@ -260,7 +260,7 @@ Beyond code, I am usually thinking, writing, drawing, or learning about psycholo
 | `updates` · `updates healing-hive` | the latest work on each project, read from its repository |
 | `fortune` · `neofetch` · `coffee` · `sudo hire-me` | for the curious |
 
-`Tab` completes commands and paths, `↑`/`↓` revisit history, and any highlighted command can be clicked or tapped. Add `?cmd=projects` to the URL to open the page with a command already run.
+`Tab` completes commands and paths, `Shift`+`Tab` leaves the prompt for the links and buttons, `↑`/`↓` revisit history, and any highlighted command can be clicked or tapped. Add `?cmd=projects` to the URL to open the page with a command already run.
 
 <details>
 <summary><b>How it is built, and how to run it</b></summary>
