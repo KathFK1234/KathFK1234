@@ -40,6 +40,6 @@ Every account is copied to Back4App. If Back4App already has a user with the sam
   React · TypeScript · Vite
   deployed on Railway
 
-160 backend tests run on every push to main, and a smoke test opens every page in Chrome for each role.
+161 backend tests run on every push to main, and a smoke test opens every page in Chrome for each role.
 
 The source is private, so this folder holds notes, not code.
