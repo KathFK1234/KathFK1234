@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  225 commits · first 2026-09-20 · latest 2026-10-19
+  234 commits · first 2026-09-20 · latest 2026-10-20
 
+  2026-10-20  Bring the README's layout, commands and CI description up to date with the dependency lock and audit
+  2026-10-20  Test that constraints.txt pins every package pyproject.toml asks for, within its range
+  2026-10-20  Audit the pinned backend and frontend versions for known vulnerabilities in CI on every push
+  2026-10-20  Install the backend's exact tested versions everywhere from constraints.txt, so a new release reaches production only when it is let in
+  2026-10-20  Install httpx2 for the tests, the client Starlette's test client now asks for instead of httpx
+  2026-10-20  Say in the README and architecture notes that opening the bell reads only what it has shown
+  2026-10-20  Mark as read only the notifications the bell has shown when it is opened, so one that came after its last load stays unread
+  2026-10-20  Read a school's student names for the warehouse bell only when one of its issues is listed, not every school's on each refresh
+  2026-10-20  Close the mail server connection when its greeting or STARTTLS fails, such as a certificate that does not verify
   2026-10-19  Tell browsers to reach the site over HTTPS only, for a year
   2026-10-19  Test that the migrations build the database the models describe, and align the three columns that had drifted
   2026-10-19  Test the GitHub and GitLab clients' requests and how they read the answers, with the network faked
-  2026-10-19  Check the mail server's certificate, and never send the SMTP password to a server that does not offer encryption
-  2026-10-19  Suggest the term the school is in for a project not yet sent, instead of always Term 1
-  2026-10-19  Record the notifications design in the architecture notes, and say who the system is for now
-  2026-10-19  Bring the README's Projects section, repository layout, and Contributing up to date
-  2026-10-19  Fall back to IPv4 when the backend cannot bind IPv6 at all, not only when it cannot make an IPv6 socket
-  2026-10-19  Give CI's token read access only, whatever the repository's default
-  2026-10-19  Remove three superadmin pages' error state that nothing set, and unused names in two tests; the build now refuses unused code
-  2026-10-19  Check each role's notifications bell in the smoke test: its count, reading on opening, an item opening its page, and a failed load
-  2026-10-19  Read the notifications that arrive while the bell is open, including the first load when it is opened early
 
 From anywhere in this terminal, `updates` shows the same for every project.

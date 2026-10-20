@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
-<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-19</sub>
+<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-20</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,10 +109,10 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 41.9%" : 1100.6
-    "TypeScript · 22.1%" : 580.5
-    "JavaScript · 20.8%" : 544.5
-    "CSS · 8.7%" : 227.5
+    "Python · 42.0%" : 1108.0
+    "TypeScript · 22.0%" : 580.8
+    "JavaScript · 20.9%" : 552.8
+    "CSS · 8.6%" : 227.5
     "HTML · 3.7%" : 98.1
     "C · 2.4%" : 62.7
     "Ruby · 0.4%" : 10.1
@@ -189,8 +189,8 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-19 | Refresh the directory after booking, cancelling or rating a session |
-| Murengeti Lab System | 2026-10-19 | Tell browsers to reach the site over HTTPS only, for a year |
+| Healing Hive | 2026-10-20 | Say where each page size is kept in step, and stop exporting it |
+| Murengeti Lab System | 2026-10-20 | Bring the README's layout, commands and CI description up to date with the dependency lock and audit |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
 <sub>Read from each project's repository several times a day.</sub>

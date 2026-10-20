@@ -7,9 +7,33 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-10-19",
-      "commits": 127,
+      "updated": "2026-10-20",
+      "commits": 133,
       "recent": [
+        {
+          "date": "2026-10-20",
+          "subject": "Say where each page size is kept in step, and stop exporting it"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Let professionals page back through every completed session and its notes"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Make the Google token tamper test change the token every time"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Let the whole journal be read back, a page of 50 at a time"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Say in the README how to check that the pre-deploy seed ran on Railway"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Update @tanstack/react-query to 5.104.5 within its range"
+        },
         {
           "date": "2026-10-19",
           "subject": "Refresh the directory after booking, cancelling or rating a session"
@@ -33,30 +57,6 @@
         {
           "date": "2026-10-19",
           "subject": "Move the web app to Tailwind CSS 4, looking exactly as before"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Hide responsive buttons with max-sm:hidden, and drop classes that never applied"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Refuse to move an event to a time that has passed"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Tell the host when an admin deletes their event, and word the email for an event under way"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Answer the directory within 3 seconds when a Google Calendar is slow"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Email the people registered for an event when it is deleted"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Read Railway's MONGO_URL, and name missing settings plainly at startup"
         }
       ]
     },
@@ -127,9 +127,45 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-19",
-      "commits": 225,
+      "updated": "2026-10-20",
+      "commits": 234,
       "recent": [
+        {
+          "date": "2026-10-20",
+          "subject": "Bring the README's layout, commands and CI description up to date with the dependency lock and audit"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Test that constraints.txt pins every package pyproject.toml asks for, within its range"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Audit the pinned backend and frontend versions for known vulnerabilities in CI on every push"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Install the backend's exact tested versions everywhere from constraints.txt, so a new release reaches production only when it is let in"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Install httpx2 for the tests, the client Starlette's test client now asks for instead of httpx"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Say in the README and architecture notes that opening the bell reads only what it has shown"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Mark as read only the notifications the bell has shown when it is opened, so one that came after its last load stays unread"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Read a school's student names for the warehouse bell only when one of its issues is listed, not every school's on each refresh"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Close the mail server connection when its greeting or STARTTLS fails, such as a certificate that does not verify"
+        },
         {
           "date": "2026-10-19",
           "subject": "Tell browsers to reach the site over HTTPS only, for a year"
@@ -141,42 +177,6 @@
         {
           "date": "2026-10-19",
           "subject": "Test the GitHub and GitLab clients' requests and how they read the answers, with the network faked"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Check the mail server's certificate, and never send the SMTP password to a server that does not offer encryption"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Suggest the term the school is in for a project not yet sent, instead of always Term 1"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Record the notifications design in the architecture notes, and say who the system is for now"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Bring the README's Projects section, repository layout, and Contributing up to date"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Fall back to IPv4 when the backend cannot bind IPv6 at all, not only when it cannot make an IPv6 socket"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Give CI's token read access only, whatever the repository's default"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Remove three superadmin pages' error state that nothing set, and unused names in two tests; the build now refuses unused code"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Check each role's notifications bell in the smoke test: its count, reading on opening, an item opening its page, and a failed load"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Read the notifications that arrive while the bell is open, including the first load when it is opened early"
         }
       ]
     },
