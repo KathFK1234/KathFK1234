@@ -35,7 +35,7 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
 
   structure        one folder per feature (auth, sessions, journal ...) with a versioned API, where v1 had one folder per file type.
   validation       every request is checked before it reaches a handler, and errors come back in one shape.
-  tests            59 API tests against an in-memory database, each named for the promise it keeps.
+  tests            61 API tests against an in-memory database, each named for the promise it keeps.
   local setup      `npm run dev` starts a database, the API and the web app together, and fills them with sample accounts for every kind of person. Email, Google Calendar and the AI companion are optional, and the app works without them.
 
 ## The web app
