@@ -30,7 +30,7 @@ Twenty-four pages on top of that API, in four groups:
 
   anyone             landing, help, the support directory and each professional's profile, nuggets, events, sign-up for professionals, password reset
   signed in          home, check-ins, journal, AI companion, my sessions, reminders, settings, apply as a professional
-  by role            My practice for professionals, with Google Calendar; the institution dashboard; the admin page for applications, institutions and nuggets, with a search of everyone who has signed up
+  by role            My practice for professionals, with Google Calendar and every completed session's notes, a page at a time; the institution dashboard; the admin page for applications, institutions and nuggets, with a search of everyone who has signed up
   each account       its own home and a short menu grouped for what that kind of person came to do
 
 A "Get help now" button is on every page, signed in or not, with the hours each line answers. Light and dark themes share one set of colour tokens, and each page loads on first visit, so a slow connection only pays for the screen it opens. Pages fit a phone's width, Register and Publish show when they are working and cannot be sent twice, and forms say what to fix instead of showing raw validation messages. When something fails, the app says what: the server not responding, the server not found, the device offline, or a page that could not download, which keeps the crisis numbers on screen. Connecting Google Calendar says why it did not connect: cancelled, not set up, a link that expired, not approved, refused by Google, or not saved.
