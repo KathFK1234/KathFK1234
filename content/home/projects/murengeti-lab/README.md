@@ -30,7 +30,7 @@ Times are kept as they are typed, so a lesson can be recorded before 08:00. A "4
 
 Back4App confirms who each person is: their password, their email address, and a forgotten-password link. This system keeps the roles and the schools. If Back4App cannot be reached, the password it last accepted still works, so a lesson is never held up by a sign-in.
 
-Repeated wrong passwords make an account wait, links are sent at most once a minute, and every request checks the account again, so someone removed is signed out at once. Changing a password signs the account out everywhere else. Guesses at the current password, the setup key and emailed codes are limited too, counted by the address the site's own server saw, which a client cannot fake. A refused request never repeats a typed password, and the server never writes out a password or key. Mail goes out only to a mail server whose certificate checks out, and never with its password over an unencrypted line; browsers are told to reach the site over HTTPS only.
+Repeated wrong passwords make an account wait, links are sent at most once a minute, and every request checks the account again, so someone removed is signed out at once. Changing a password signs the account out everywhere else. Guesses at the current password, the setup key and emailed codes are limited too, counted by the address the site's own server saw, which a client cannot fake, because the backend can be reached only through that server. A refused request never repeats a typed password, and the server never writes out a password or key. Mail goes out only to a mail server whose certificate checks out, and never with its password over an unencrypted line; browsers are told to reach the site over HTTPS only.
 
 Every account is copied to Back4App. If Back4App already has a user with the same email under another name, the account takes that user over only once its address is confirmed here, so typing someone else's email at sign-up never resets their Back4App password. The superadmin's People page says why an account is not in Back4App yet (no email address, for one), and how many of this server's sign-ins hold a Back4App session.
 
@@ -38,7 +38,7 @@ Every account is copied to Back4App. If Back4App already has a user with the sam
 
   FastAPI · SQLAlchemy · Alembic · PostgreSQL · Back4App
   React · TypeScript · Vite
-  deployed on Railway
+  deployed on Railway, where only the site has a public address; the backend is reached on Railway's private network, through the site's own server
 
 162 backend tests run on every push to main, and a smoke test opens every page in Chrome for each role. The backend installs the exact versions it was tested with, from a lock, everywhere it runs, and every push checks the pinned backend and frontend versions for known vulnerabilities.
 
