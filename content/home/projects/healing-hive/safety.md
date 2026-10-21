@@ -13,7 +13,7 @@ Most software can fail politely. This one has a few moments where it cannot fail
    Not a therapist, not a doctor, not a human. It never diagnoses or advises on medication, and it points to a person when a person is needed.
 
 4. Private means private from us too.
-   Admins see counts. An institution sees its own team's sessions and ratings, never a client's name or notes. There is no route into anyone's journal, check-ins, or AI conversation, and a person can clear their conversation whenever they like.
+   Admins see counts. An institution sees session numbers only for professionals who accepted its invitation, never a client's name or notes. There is no route into anyone's journal, check-ins, or AI conversation, and a person can clear their conversation whenever they like.
 
 5. A professional is someone we checked.
    Nobody appears in the directory until an admin has approved their application. Removing someone cancels their upcoming sessions and tells each client, and a deleted event emails everyone registered for it, so nobody waits for something that will not happen.
