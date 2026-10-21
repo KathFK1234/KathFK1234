@@ -40,6 +40,8 @@ Every account is copied to Back4App. If Back4App already has a user with the sam
   React · TypeScript · Vite
   deployed on Railway, where only the site has a public address; the backend is reached on Railway's private network, through the site's own server
 
+The site is built for browsers as old as Chrome 87, Edge 88, Firefox 78 and Safari 14, because lab computers are often old: Chrome on Windows 7 and 8.1 stopped at 109.
+
 162 backend tests run on every push to main, and a smoke test opens every page in Chrome for each role. The backend installs the exact versions it was tested with, from a lock, everywhere it runs, and every push checks the pinned backend and frontend versions for known vulnerabilities.
 
 The source is private, so this folder holds notes, not code.
