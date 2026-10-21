@@ -8,8 +8,28 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-20",
-      "commits": 133,
+      "commits": 138,
       "recent": [
+        {
+          "date": "2026-10-20",
+          "subject": "Count an institution's invited members from the same list as its other totals"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Say in the README what institutions see and how many requests can wait"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Limit how many booking requests one person can have waiting"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Only show an institution numbers for professionals who accepted its invitation"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Update lucide-react to 1.60.0"
+        },
         {
           "date": "2026-10-20",
           "subject": "Say where each page size is kept in step, and stop exporting it"
@@ -37,26 +57,6 @@
         {
           "date": "2026-10-19",
           "subject": "Refresh the directory after booking, cancelling or rating a session"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Offer only the directory's own specialties and languages as filters"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Say in the README and .env.example that ADMIN_PASSWORD needs 12 characters"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Check in a test that both copies of the crisis contacts stay the same"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Update dependencies within their allowed ranges"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Move the web app to Tailwind CSS 4, looking exactly as before"
         }
       ]
     },
@@ -127,9 +127,49 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-20",
-      "commits": 234,
+      "updated": "2026-10-21",
+      "commits": 244,
       "recent": [
+        {
+          "date": "2026-10-21",
+          "subject": "Record in the architecture notes which browsers the frontend is built for, and why"
+        },
+        {
+          "date": "2026-10-21",
+          "subject": "Ask for Node 22.12 or newer, the oldest 22 that Vite 8 runs on"
+        },
+        {
+          "date": "2026-10-21",
+          "subject": "Upgrade Vite 6 to 8 and @vitejs/plugin-react 4 to 6, keeping the browsers Vite 6 built for"
+        },
+        {
+          "date": "2026-10-21",
+          "subject": "Give BACKEND_URL's real default in the README, and say it is the backend's private address on Railway"
+        },
+        {
+          "date": "2026-10-21",
+          "subject": "Sign the tests' tokens with a 32-byte-plus key, and fail the tests if a shorter one comes back"
+        },
+        {
+          "date": "2026-10-21",
+          "subject": "Give alembic.ini a path_separator, so Alembic stops warning about its deprecated fallback"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Log the address and port the backend listens on, which uvicorn leaves out when it is handed a socket"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Describe the private backend in the architecture notes and give .env.example a private BACKEND_URL"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Name the frontend's /api/health as the after-deploy check, and check the old backend address still answers 404"
+        },
+        {
+          "date": "2026-10-20",
+          "subject": "Say in the README that the backend has no public address and is checked through the frontend's /api/health"
+        },
         {
           "date": "2026-10-20",
           "subject": "Bring the README's layout, commands and CI description up to date with the dependency lock and audit"
@@ -137,46 +177,6 @@
         {
           "date": "2026-10-20",
           "subject": "Test that constraints.txt pins every package pyproject.toml asks for, within its range"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Audit the pinned backend and frontend versions for known vulnerabilities in CI on every push"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Install the backend's exact tested versions everywhere from constraints.txt, so a new release reaches production only when it is let in"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Install httpx2 for the tests, the client Starlette's test client now asks for instead of httpx"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Say in the README and architecture notes that opening the bell reads only what it has shown"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Mark as read only the notifications the bell has shown when it is opened, so one that came after its last load stays unread"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Read a school's student names for the warehouse bell only when one of its issues is listed, not every school's on each refresh"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Close the mail server connection when its greeting or STARTTLS fails, such as a certificate that does not verify"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Tell browsers to reach the site over HTTPS only, for a year"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Test that the migrations build the database the models describe, and align the three columns that had drifted"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Test the GitHub and GitLab clients' requests and how they read the answers, with the network faked"
         }
       ]
     },

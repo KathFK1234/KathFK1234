@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
-<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-20</sub>
+<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-21</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,9 +109,9 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 42.0%" : 1108.0
-    "TypeScript · 22.0%" : 580.8
-    "JavaScript · 20.9%" : 552.8
+    "Python · 41.9%" : 1109.2
+    "TypeScript · 22.0%" : 581.1
+    "JavaScript · 21.0%" : 556.1
     "CSS · 8.6%" : 227.5
     "HTML · 3.7%" : 98.1
     "C · 2.4%" : 62.7
@@ -189,8 +189,8 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-20 | Say where each page size is kept in step, and stop exporting it |
-| Murengeti Lab System | 2026-10-20 | Bring the README's layout, commands and CI description up to date with the dependency lock and audit |
+| Murengeti Lab System | 2026-10-21 | Record in the architecture notes which browsers the frontend is built for, and why |
+| Healing Hive | 2026-10-20 | Count an institution's invited members from the same list as its other totals |
 | MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
 
 <sub>Read from each project's repository several times a day.</sub>

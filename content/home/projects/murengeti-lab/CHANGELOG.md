@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  234 commits · first 2026-09-20 · latest 2026-10-20
+  244 commits · first 2026-09-20 · latest 2026-10-21
 
+  2026-10-21  Record in the architecture notes which browsers the frontend is built for, and why
+  2026-10-21  Ask for Node 22.12 or newer, the oldest 22 that Vite 8 runs on
+  2026-10-21  Upgrade Vite 6 to 8 and @vitejs/plugin-react 4 to 6, keeping the browsers Vite 6 built for
+  2026-10-21  Give BACKEND_URL's real default in the README, and say it is the backend's private address on Railway
+  2026-10-21  Sign the tests' tokens with a 32-byte-plus key, and fail the tests if a shorter one comes back
+  2026-10-21  Give alembic.ini a path_separator, so Alembic stops warning about its deprecated fallback
+  2026-10-20  Log the address and port the backend listens on, which uvicorn leaves out when it is handed a socket
+  2026-10-20  Describe the private backend in the architecture notes and give .env.example a private BACKEND_URL
+  2026-10-20  Name the frontend's /api/health as the after-deploy check, and check the old backend address still answers 404
+  2026-10-20  Say in the README that the backend has no public address and is checked through the frontend's /api/health
   2026-10-20  Bring the README's layout, commands and CI description up to date with the dependency lock and audit
   2026-10-20  Test that constraints.txt pins every package pyproject.toml asks for, within its range
-  2026-10-20  Audit the pinned backend and frontend versions for known vulnerabilities in CI on every push
-  2026-10-20  Install the backend's exact tested versions everywhere from constraints.txt, so a new release reaches production only when it is let in
-  2026-10-20  Install httpx2 for the tests, the client Starlette's test client now asks for instead of httpx
-  2026-10-20  Say in the README and architecture notes that opening the bell reads only what it has shown
-  2026-10-20  Mark as read only the notifications the bell has shown when it is opened, so one that came after its last load stays unread
-  2026-10-20  Read a school's student names for the warehouse bell only when one of its issues is listed, not every school's on each refresh
-  2026-10-20  Close the mail server connection when its greeting or STARTTLS fails, such as a certificate that does not verify
-  2026-10-19  Tell browsers to reach the site over HTTPS only, for a year
-  2026-10-19  Test that the migrations build the database the models describe, and align the three columns that had drifted
-  2026-10-19  Test the GitHub and GitLab clients' requests and how they read the answers, with the network faked
 
 From anywhere in this terminal, `updates` shows the same for every project.
