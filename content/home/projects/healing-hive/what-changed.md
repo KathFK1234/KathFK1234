@@ -17,6 +17,7 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
 
   availability     a professional's weekly hours become a list of open slots, in East Africa Time, two weeks ahead.
   double booking   the database refuses a second booking for the same slot. Two people tapping at the same moment: exactly one succeeds.
+  waiting          a request holds its time until it is answered, so one person can have 3 waiting with the same professional and 10 in all.
   who sees what    only the two people in a session can see or change it. A professional's private notes are never sent to the client.
   price            saved at the time of booking, so a later rate change does not rewrite history.
   meeting          a confirmed session gets a link: Google Meet when the professional has connected their calendar, otherwise their own link, otherwise a private Jitsi room. Both people are emailed when a session is requested, confirmed or cancelled.

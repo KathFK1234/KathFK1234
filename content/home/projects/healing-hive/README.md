@@ -13,7 +13,7 @@ v1 answered "can this exist?". v2 asks the harder question: what does a person i
 
   accounts          sign up, sign in, profile, password reset by email; nobody can give themselves a role
   professionals     therapists and peer counsellors sign up on their own form, an admin approves, then they appear in the directory
-  booking           weekly hours become open slots, minus anything already in a connected Google Calendar; a slot can be held by one person only, and a request can be confirmed only while its time is still ahead
+  booking           weekly hours become open slots, minus anything already in a connected Google Calendar; a slot can be held by one person only, and a request can be confirmed only while its time is still ahead; since a waiting request holds its time, one person can have 3 waiting with a professional and 10 in all
   sessions          each confirmed session gets a meeting link (Google Meet, the professional's own link, or a private Jitsi room), and both sides are emailed
   ratings           only the client of a completed session can rate it, once; reviews are public without names
   institutions      a clinic or organisation with counsellors on staff invites verified professionals, who must accept; it sees their public ratings, and sessions and value only once they have accepted, never client names
