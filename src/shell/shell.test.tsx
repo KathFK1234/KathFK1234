@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import projectData from '../data/projects.json';
@@ -7,6 +7,10 @@ import { commandNames, commands, createShellState, EXAMPLES, execute, tokenize, 
 import { commonPrefix, complete, ghostFor } from './complete';
 import { readEndpoints } from './mood';
 import { buildTree, describe as describeNode, displayPath, getNode, resolvePath, root, walk } from './fs';
+
+// Keyed like the terminal keys each entry, so React's key warnings stay for real ones
+const renderPrinted = (printed: ReactNode[]) =>
+  renderToStaticMarkup(<>{printed.map((node, index) => <Fragment key={index}>{node}</Fragment>)}</>);
 
 function shell() {
   const printed: ReactNode[] = [];
@@ -21,7 +25,7 @@ function shell() {
   const markup = async (line: string) => {
     printed.length = 0;
     await execute(line, ctx);
-    return renderToStaticMarkup(<>{printed}</>);
+    return renderPrinted(printed);
   };
   const run = async (line: string) => (await markup(line)).replace(/<[^>]+>/g, '');
   // Only what the terminal prints as a warning, so a word in a synced commit subject is never taken for an error.
@@ -704,7 +708,7 @@ describe('updates', () => {
       prefs: DEFAULT_PREFS,
       setPrefs: () => {},
     });
-    const html = renderToStaticMarkup(<>{printed}</>);
+    const html = renderPrinted(printed);
     expect(html).toContain('href="https://github.com/x/murengeti-lab"');
     expect(html).toContain('href="https://github.com/x/healing-hive"');
     vi.doUnmock('../data/projects.json');
