@@ -304,9 +304,21 @@ body {
   grid-template-columns: max-content 1fr;
   column-gap: 2ch;
   padding-left: 2ch;
+  /* Keeps a description level with its command when the command is taller */
+  align-items: baseline;
 }
 .rows-3 {
   grid-template-columns: max-content max-content 1fr;
+}
+/* A stacked list is not a sentence, so each command or link in it gets the 24px a finger needs (WCAG 2.5.8). */
+.rows .cmd,
+.rows .link {
+  display: inline-block;
+  min-height: 24px;
+}
+/* A wrapped link lines up with its label by its first line, not its last */
+.rows .link {
+  vertical-align: top;
 }
 
 /* A command you can click or tap to run. */
