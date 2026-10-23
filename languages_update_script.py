@@ -258,7 +258,11 @@ class GitHubLanguageFetcher:
         return repos
 
     def fetch_file(self, repo, path):
-        """Return one file's text, or None if it cannot be read."""
+        """Return one file's text, or None if it is gone since the tree was read.
+
+        Any other failure raises: skipping the file would drop the tools only it
+        names, the same loss that stops the run for a repository.
+        """
         if repo["private"]:
             response = requests.get(
                 f"{repo['url']}/contents/{path}",
@@ -272,7 +276,10 @@ class GitHubLanguageFetcher:
                 f"https://raw.githubusercontent.com/{repo['full_name']}/{repo['default_branch']}/{path}",
                 timeout=20,
             )
-        return response.text if response.ok else None
+        if response.status_code == 404:
+            return None
+        response.raise_for_status()
+        return response.text
 
     def scan_repository(self, repo):
         """Record the languages and known tools used in one repository."""
