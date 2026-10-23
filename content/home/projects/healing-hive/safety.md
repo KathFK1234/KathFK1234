@@ -3,7 +3,7 @@
 Most software can fail politely. This one has a few moments where it cannot fail at all. These are the rules v2 is built around.
 
 1. Help never depends on a third party being up.
-   If a message sounds like crisis and the AI provider is slow, down, or switched off, the person still gets a caring reply and the helplines. The crisis contacts also live inside the web app, so the help page works when the server does not, and a test fails if the two copies ever differ.
+   If a message sounds like crisis and the AI provider is slow, down, or switched off, the person still gets a caring reply and the helplines. The crisis contacts also live inside the web app, so the help page works when the server does not, and a test fails if the two copies ever differ. When the server's host is down, the app says so calmly and the crisis numbers stay on screen: on the help page, or, for someone signed in whose account cannot load, on the page saying the app is unavailable.
    The lines that answer at any hour come first, and every line shows its hours. A number that only answers on weekdays is no help at two in the morning.
 
 2. Screen broadly.
