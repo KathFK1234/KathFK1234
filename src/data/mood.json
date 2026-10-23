@@ -236,10 +236,142 @@
       ]
     },
     {
+      "name": "volleyball",
+      "category": "active",
+      "aliases": [
+        "volleyball",
+        "beach volleyball"
+      ]
+    },
+    {
+      "name": "frisbee",
+      "category": "active",
+      "aliases": [
+        "frisbee",
+        "ultimate frisbee",
+        "disc golf"
+      ]
+    },
+    {
+      "name": "skateboarding",
+      "category": "active",
+      "aliases": [
+        "skateboard",
+        "skateboarding",
+        "skatepark",
+        "skate park"
+      ]
+    },
+    {
+      "name": "roller skating",
+      "category": "active",
+      "aliases": [
+        "skate",
+        "skating",
+        "roller skate",
+        "roller skates",
+        "roller skating",
+        "rollerblade",
+        "rollerblades",
+        "rollerblading",
+        "inline skating"
+      ]
+    },
+    {
+      "name": "rock climbing",
+      "category": "active",
+      "aliases": [
+        "climb",
+        "climbing",
+        "rock climbing",
+        "abseil",
+        "abseiling"
+      ]
+    },
+    {
+      "name": "horse riding",
+      "category": "active",
+      "aliases": [
+        "horse",
+        "horses",
+        "horse riding",
+        "horseback",
+        "horseback riding",
+        "pony",
+        "equestrian"
+      ]
+    },
+    {
+      "name": "an outdoor workout",
+      "category": "active",
+      "aliases": [
+        "outdoor workout",
+        "outdoor yoga",
+        "outdoor gym",
+        "calisthenics",
+        "bootcamp",
+        "boot camp",
+        "tai chi"
+      ]
+    },
+    {
+      "name": "netball",
+      "category": "active",
+      "aliases": [
+        "netball"
+      ]
+    },
+    {
+      "name": "kabaddi",
+      "category": "active",
+      "aliases": [
+        "kabaddi"
+      ]
+    },
+    {
+      "name": "sepak takraw",
+      "category": "active",
+      "aliases": [
+        "sepak takraw",
+        "takraw",
+        "sepak raga"
+      ]
+    },
+    {
+      "name": "Gaelic football",
+      "category": "active",
+      "aliases": [
+        "gaelic football",
+        "gaelic",
+        "gaa",
+        "hurling",
+        "camogie"
+      ]
+    },
+    {
+      "name": "Aussie rules",
+      "category": "active",
+      "aliases": [
+        "aussie rules",
+        "afl",
+        "australian rules"
+      ]
+    },
+    {
       "name": "golf",
       "category": "leisure",
       "aliases": [
         "golf"
+      ]
+    },
+    {
+      "name": "a safari",
+      "category": "leisure",
+      "aliases": [
+        "safari",
+        "safaris",
+        "game drive",
+        "game park"
       ]
     },
     {
@@ -260,6 +392,57 @@
         "asado",
         "cookout",
         "grill"
+      ]
+    },
+    {
+      "name": "a bonfire",
+      "category": "leisure",
+      "aliases": [
+        "bonfire",
+        "campfire",
+        "fire pit",
+        "firepit",
+        "smores",
+        "s'mores"
+      ]
+    },
+    {
+      "name": "eating outdoors",
+      "category": "leisure",
+      "aliases": [
+        "eat outside",
+        "eat outdoors",
+        "eating outside",
+        "eating outdoors",
+        "outdoor dining",
+        "al fresco",
+        "terrace",
+        "rooftop",
+        "beer garden",
+        "sundowner",
+        "sundowners"
+      ]
+    },
+    {
+      "name": "sightseeing",
+      "category": "leisure",
+      "aliases": [
+        "sightseeing",
+        "sights",
+        "walking tour",
+        "city tour",
+        "landmarks"
+      ]
+    },
+    {
+      "name": "birdwatching",
+      "category": "leisure",
+      "aliases": [
+        "birdwatching",
+        "bird watching",
+        "birding",
+        "birds",
+        "binoculars"
       ]
     },
     {
@@ -338,6 +521,45 @@
       ]
     },
     {
+      "name": "a water park",
+      "category": "water",
+      "aliases": [
+        "water park",
+        "waterpark",
+        "water slide",
+        "water slides",
+        "splash pad"
+      ]
+    },
+    {
+      "name": "kayaking",
+      "category": "paddle",
+      "aliases": [
+        "kayak",
+        "kayaking",
+        "canoe",
+        "canoeing",
+        "paddleboard",
+        "paddleboarding",
+        "paddle board",
+        "paddle boarding",
+        "rowing",
+        "row a boat"
+      ]
+    },
+    {
+      "name": "a boat trip",
+      "category": "leisure",
+      "aliases": [
+        "boat",
+        "boat trip",
+        "boat ride",
+        "cruise",
+        "ferry",
+        "dhow"
+      ]
+    },
+    {
       "name": "snow sports",
       "category": "snow",
       "aliases": [
@@ -348,7 +570,12 @@
         "sled",
         "sledding",
         "snowman",
-        "snowball"
+        "snowball",
+        "snowshoe",
+        "snowshoeing",
+        "cross-country skiing",
+        "toboggan",
+        "tobogganing"
       ]
     },
     {
@@ -457,6 +684,143 @@
       "aliases": [
         "nap",
         "sleep"
+      ]
+    },
+    {
+      "name": "bowling",
+      "category": "indoor",
+      "aliases": [
+        "bowling",
+        "tenpin",
+        "ten pin"
+      ]
+    },
+    {
+      "name": "ice skating",
+      "category": "indoor",
+      "aliases": [
+        "ice skating",
+        "ice skate",
+        "ice rink",
+        "skating rink"
+      ]
+    },
+    {
+      "name": "indoor climbing",
+      "category": "indoor",
+      "aliases": [
+        "indoor climbing",
+        "climbing wall",
+        "climbing gym",
+        "bouldering"
+      ]
+    },
+    {
+      "name": "arts and crafts",
+      "category": "indoor",
+      "aliases": [
+        "art",
+        "arts",
+        "craft",
+        "crafts",
+        "paint",
+        "painting",
+        "draw",
+        "drawing",
+        "sketch",
+        "sketching",
+        "knit",
+        "knitting",
+        "crochet",
+        "pottery"
+      ]
+    },
+    {
+      "name": "meditation",
+      "category": "indoor",
+      "aliases": [
+        "meditate",
+        "meditation",
+        "mindfulness",
+        "breathing exercises",
+        "journal",
+        "journaling"
+      ]
+    },
+    {
+      "name": "karaoke",
+      "category": "indoor",
+      "aliases": [
+        "karaoke",
+        "sing",
+        "singing"
+      ]
+    },
+    {
+      "name": "an escape room",
+      "category": "indoor",
+      "aliases": [
+        "escape room",
+        "escape rooms"
+      ]
+    },
+    {
+      "name": "a sauna",
+      "category": "indoor",
+      "aliases": [
+        "sauna",
+        "steam room",
+        "spa",
+        "hot tub",
+        "massage"
+      ]
+    },
+    {
+      "name": "live music",
+      "category": "indoor",
+      "aliases": [
+        "live music",
+        "concert",
+        "gig",
+        "theatre",
+        "theater",
+        "comedy show",
+        "stand-up"
+      ]
+    },
+    {
+      "name": "music",
+      "category": "indoor",
+      "aliases": [
+        "play music",
+        "guitar",
+        "piano",
+        "instrument",
+        "jam session",
+        "make music"
+      ]
+    },
+    {
+      "name": "learning something new",
+      "category": "indoor",
+      "aliases": [
+        "learn something",
+        "learn something new",
+        "online course",
+        "study",
+        "studying",
+        "learn a language"
+      ]
+    },
+    {
+      "name": "time with friends",
+      "category": "indoor",
+      "aliases": [
+        "visit friends",
+        "visiting friends",
+        "visit family",
+        "catch up with friends",
+        "sleepover"
       ]
     }
   ]

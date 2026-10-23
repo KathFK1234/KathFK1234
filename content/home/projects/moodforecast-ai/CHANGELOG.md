@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  116 commits · first 2026-06-05 · latest 2026-10-05
+  129 commits · first 2026-06-05 · latest 2026-10-23
 
-  2026-10-05  Stop place lookups failing a search when the geocoder is slow
-  2026-10-05  Ride out brief Open-Meteo slowness instead of failing the search
-  2026-10-05  Send each confirmation and unsubscribe link at most once per ten minutes
-  2026-10-05  Keep the details of unexpected errors out of responses
-  2026-10-05  Make run_tests.sh work without an activated venv and cover new endpoints
-  2026-10-05  Remove the language field from the subscribe form
-  2026-10-05  Give plain-language errors when the weather service is slow or down
-  2026-10-05  Keep random picks quiet in the small hours
-  2026-10-05  Stop suggesting a fan and a cool shower in cold, humid weather
-  2026-10-05  Clarify the risk badge and show when an activity answer is loading
-  2026-10-05  Show place names in English
-  2026-10-05  Name the place in the tab title and address, and support Back
+  2026-10-23  Keep local files out of the Docker image and run it unprivileged
+  2026-10-23  Link the live site from the README
+  2026-10-23  Describe the wider range of activities in the READMEs
+  2026-10-23  Group the subscription's activity list and flag local favourites
+  2026-10-23  Word place refusals as the place, not the weather
+  2026-10-23  Recommend safaris and regional sports where they fit
+  2026-10-23  Recommend more indoor and social activities
+  2026-10-23  Recommend bonfires, eating outdoors, sightseeing and birdwatching
+  2026-10-23  Recommend kayaking, water parks and boat trips
+  2026-10-23  Put the popular location chips in a navigation landmark
+  2026-10-23  Recommend more active outdoor activities
+  2026-10-23  Rule out outdoor activities in freezing rain or drizzle
 
 From anywhere in this terminal, `updates` shows the same for every project.

@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
-<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-21</sub>
+<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-23</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,12 +109,12 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 41.9%" : 1109.2
-    "TypeScript · 22.0%" : 581.1
-    "JavaScript · 21.0%" : 556.1
-    "CSS · 8.6%" : 227.5
-    "HTML · 3.7%" : 98.1
-    "C · 2.4%" : 62.7
+    "Python · 42.1%" : 1133.7
+    "TypeScript · 21.6%" : 583.1
+    "JavaScript · 21.4%" : 577.2
+    "CSS · 8.5%" : 228.2
+    "HTML · 3.7%" : 99.5
+    "C · 2.3%" : 62.7
     "Ruby · 0.4%" : 10.1
 ```
 <!-- languages:end -->
@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Murengeti Lab System | 2026-10-21 | Record in the architecture notes which browsers the frontend is built for, and why |
-| Healing Hive | 2026-10-20 | Count an institution's invited members from the same list as its other totals |
-| MoodForecast AI | 2026-10-05 | Stop place lookups failing a search when the geocoder is slow |
+| Healing Hive | 2026-10-23 | Say which commit the live API is running in /health |
+| MoodForecast AI | 2026-10-23 | Keep local files out of the Docker image and run it unprivileged |
+| Murengeti Lab System | 2026-10-23 | Put getData's comment back above getData, where adding unavailableMessage had left it behind |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->

@@ -7,9 +7,37 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-10-20",
-      "commits": 138,
+      "updated": "2026-10-23",
+      "commits": 145,
       "recent": [
+        {
+          "date": "2026-10-23",
+          "subject": "Say which commit the live API is running in /health"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Point the README's folder tree at the web app's tests and outage notice"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Update lucide-react to 1.61.0, vite to 8.3.5 and mongoose to 9.11.3"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Take years of experience off a profile when the box is emptied"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Take a journal entry's title away when it is cleared"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Show a calm notice when the API's host is down"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Take a rating's comment down when it is cleared"
+        },
         {
           "date": "2026-10-20",
           "subject": "Count an institution's invited members from the same list as its other totals"
@@ -29,34 +57,6 @@
         {
           "date": "2026-10-20",
           "subject": "Update lucide-react to 1.60.0"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Say where each page size is kept in step, and stop exporting it"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Let professionals page back through every completed session and its notes"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Make the Google token tamper test change the token every time"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Let the whole journal be read back, a page of 50 at a time"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Say in the README how to check that the pre-deploy seed ran on Railway"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Update @tanstack/react-query to 5.104.5 within its range"
-        },
-        {
-          "date": "2026-10-19",
-          "subject": "Refresh the directory after booking, cancelling or rating a session"
         }
       ]
     },
@@ -67,56 +67,56 @@
       "url": "https://github.com/KathFK1234/moodforecast_ai",
       "team": false,
       "started": "2026-06-05",
-      "updated": "2026-10-05",
-      "commits": 116,
+      "updated": "2026-10-23",
+      "commits": 129,
       "recent": [
         {
-          "date": "2026-10-05",
-          "subject": "Stop place lookups failing a search when the geocoder is slow"
+          "date": "2026-10-23",
+          "subject": "Keep local files out of the Docker image and run it unprivileged"
         },
         {
-          "date": "2026-10-05",
-          "subject": "Ride out brief Open-Meteo slowness instead of failing the search"
+          "date": "2026-10-23",
+          "subject": "Link the live site from the README"
         },
         {
-          "date": "2026-10-05",
-          "subject": "Send each confirmation and unsubscribe link at most once per ten minutes"
+          "date": "2026-10-23",
+          "subject": "Describe the wider range of activities in the READMEs"
         },
         {
-          "date": "2026-10-05",
-          "subject": "Keep the details of unexpected errors out of responses"
+          "date": "2026-10-23",
+          "subject": "Group the subscription's activity list and flag local favourites"
         },
         {
-          "date": "2026-10-05",
-          "subject": "Make run_tests.sh work without an activated venv and cover new endpoints"
+          "date": "2026-10-23",
+          "subject": "Word place refusals as the place, not the weather"
         },
         {
-          "date": "2026-10-05",
-          "subject": "Remove the language field from the subscribe form"
+          "date": "2026-10-23",
+          "subject": "Recommend safaris and regional sports where they fit"
         },
         {
-          "date": "2026-10-05",
-          "subject": "Give plain-language errors when the weather service is slow or down"
+          "date": "2026-10-23",
+          "subject": "Recommend more indoor and social activities"
         },
         {
-          "date": "2026-10-05",
-          "subject": "Keep random picks quiet in the small hours"
+          "date": "2026-10-23",
+          "subject": "Recommend bonfires, eating outdoors, sightseeing and birdwatching"
         },
         {
-          "date": "2026-10-05",
-          "subject": "Stop suggesting a fan and a cool shower in cold, humid weather"
+          "date": "2026-10-23",
+          "subject": "Recommend kayaking, water parks and boat trips"
         },
         {
-          "date": "2026-10-05",
-          "subject": "Clarify the risk badge and show when an activity answer is loading"
+          "date": "2026-10-23",
+          "subject": "Put the popular location chips in a navigation landmark"
         },
         {
-          "date": "2026-10-05",
-          "subject": "Show place names in English"
+          "date": "2026-10-23",
+          "subject": "Recommend more active outdoor activities"
         },
         {
-          "date": "2026-10-05",
-          "subject": "Name the place in the tab title and address, and support Back"
+          "date": "2026-10-23",
+          "subject": "Rule out outdoor activities in freezing rain or drizzle"
         }
       ]
     },
@@ -127,9 +127,37 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-21",
-      "commits": 244,
+      "updated": "2026-10-23",
+      "commits": 251,
       "recent": [
+        {
+          "date": "2026-10-23",
+          "subject": "Put getData's comment back above getData, where adding unavailableMessage had left it behind"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Update the frontend lockfile to vite 8.3.5 and puppeteer-core 25.16.0, both within package.json's ranges"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Colour the Back shortly links like the site's own links, readable on their backgrounds in both themes"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Say \"Back shortly\" when the server cannot be reached, instead of loading forever, and carry on once it answers"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Answer /api/ with a calm 503 from the image when nginx cannot reach the backend, instead of nginx's bare 502"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Write down that a failed Railway deploy leaves the working one serving, and what each health check guards"
+        },
+        {
+          "date": "2026-10-23",
+          "subject": "Refresh the backend lock to the newest releases its ranges allow, among them fastapi 0.161.1"
+        },
         {
           "date": "2026-10-21",
           "subject": "Record in the architecture notes which browsers the frontend is built for, and why"
@@ -149,34 +177,6 @@
         {
           "date": "2026-10-21",
           "subject": "Sign the tests' tokens with a 32-byte-plus key, and fail the tests if a shorter one comes back"
-        },
-        {
-          "date": "2026-10-21",
-          "subject": "Give alembic.ini a path_separator, so Alembic stops warning about its deprecated fallback"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Log the address and port the backend listens on, which uvicorn leaves out when it is handed a socket"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Describe the private backend in the architecture notes and give .env.example a private BACKEND_URL"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Name the frontend's /api/health as the after-deploy check, and check the old backend address still answers 404"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Say in the README that the backend has no public address and is checked through the frontend's /api/health"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Bring the README's layout, commands and CI description up to date with the dependency lock and audit"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Test that constraints.txt pins every package pyproject.toml asks for, within its range"
         }
       ]
     },
