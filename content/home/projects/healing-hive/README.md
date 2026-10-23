@@ -35,7 +35,7 @@ Twenty-four pages on top of that API, in four groups:
 
 A "Get help now" button is on every page, signed in or not, with the hours each line answers. Light and dark themes share one set of colour tokens, and each page loads on first visit, so a slow connection only pays for the screen it opens. Pages fit a phone's width, Register and Publish show when they are working and cannot be sent twice, and forms say what to fix instead of showing raw validation messages. When something fails, the app says what: the server not responding, the server not found, the device offline, or a page that could not download, which keeps the crisis numbers on screen. Connecting Google Calendar says why it did not connect: cancelled, not set up, a link that expired, not approved, refused by Google, or not saved.
 
-Locally, `npm install` and `npm run dev` start a database, the API and the web app together, with sample accounts so every page has something in it. Email, Google Calendar and the AI companion switch on when their settings are filled in, and the app still works without them. Every push runs the API tests and the lint, and the repository is set up to publish the web app on GitHub Pages and the API on Railway.
+Locally, `npm install` and `npm run dev` start a database, the API and the web app together, with sample accounts so every page has something in it. Email, Google Calendar and the AI companion switch on when their settings are filled in, and the app still works without them. Every push runs the API tests, the web app's tests and the lint, and the repository is set up to publish the web app on GitHub Pages and the API on Railway.
 
 ## Stack
 
