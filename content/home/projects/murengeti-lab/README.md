@@ -24,6 +24,8 @@ Importing a class list is two steps: preview, then confirm. The preview shows ex
 
 A list says it is loading until its records arrive, never "nothing here yet" before it knows. A page that cannot load its records says so above the page, with a Try again button, and shows nothing it could not load. An empty list there would look like lost data. The sign-up page does the same when it cannot read which roles are open, rather than offering every role, and CI checks every page this way in Chrome for each role.
 
+When the server cannot be reached, the site says "Back shortly" instead of loading forever, signed in or out: a problem with the hosting provider, nothing the person did, their records safe, with a link to the host's status page. It keeps checking and carries on as soon as the server answers, and a page that gets this answer while loading says the same in its banner, with Try again. CI checks this against the built site.
+
 Times are kept as they are typed, so a lesson can be recorded before 08:00. A "4:30" in an imported file still becomes 16:30.
 
 ## Signing in
