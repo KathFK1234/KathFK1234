@@ -63,7 +63,7 @@ flowchart TD
 
 <!-- stack:start -->
 <p align="center">
-  <a href="https://github.com/KathFK1234?tab=repositories&language=python" title="Python"><img src="https://skillicons.dev/icons?i=python" width="48" height="48" alt="Python" title="Python"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=html" title="HTML"><img src="https://skillicons.dev/icons?i=html" width="48" height="48" alt="HTML" title="HTML"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=css" title="CSS"><img src="https://skillicons.dev/icons?i=css" width="48" height="48" alt="CSS" title="CSS"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=javascript" title="JavaScript"><img src="https://skillicons.dev/icons?i=js" width="48" height="48" alt="JavaScript" title="JavaScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=c" title="C"><img src="https://skillicons.dev/icons?i=c" width="48" height="48" alt="C" title="C"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=typescript" title="TypeScript"><img src="https://skillicons.dev/icons?i=ts" width="48" height="48" alt="TypeScript" title="TypeScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=ruby" title="Ruby"><img src="https://skillicons.dev/icons?i=ruby" width="48" height="48" alt="Ruby" title="Ruby"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=shell" title="Shell"><img src="https://skillicons.dev/icons?i=bash" width="48" height="48" alt="Shell" title="Shell"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="FastAPI"><img src="https://skillicons.dev/icons?i=fastapi" width="48" height="48" alt="FastAPI" title="FastAPI"></a>
+  <a href="https://github.com/KathFK1234?tab=repositories&language=html" title="HTML"><img src="https://skillicons.dev/icons?i=html" width="48" height="48" alt="HTML" title="HTML"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=python" title="Python"><img src="https://skillicons.dev/icons?i=python" width="48" height="48" alt="Python" title="Python"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=css" title="CSS"><img src="https://skillicons.dev/icons?i=css" width="48" height="48" alt="CSS" title="CSS"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=javascript" title="JavaScript"><img src="https://skillicons.dev/icons?i=js" width="48" height="48" alt="JavaScript" title="JavaScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=c" title="C"><img src="https://skillicons.dev/icons?i=c" width="48" height="48" alt="C" title="C"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=typescript" title="TypeScript"><img src="https://skillicons.dev/icons?i=ts" width="48" height="48" alt="TypeScript" title="TypeScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=ruby" title="Ruby"><img src="https://skillicons.dev/icons?i=ruby" width="48" height="48" alt="Ruby" title="Ruby"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=shell" title="Shell"><img src="https://skillicons.dev/icons?i=bash" width="48" height="48" alt="Shell" title="Shell"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="FastAPI"><img src="https://skillicons.dev/icons?i=fastapi" width="48" height="48" alt="FastAPI" title="FastAPI"></a>
 </p>
 
 <p align="center">
@@ -78,14 +78,14 @@ flowchart TD
 
 | Found in my repositories | |
 | --- | --- |
-| **Languages** | Python · HTML · CSS · JavaScript · C · TypeScript · Ruby |
+| **Languages** | HTML · Python · CSS · JavaScript · C · TypeScript · Ruby |
 | **Backend** | FastAPI · SQLAlchemy · Pydantic · Django · Express · SQLModel |
 | **Frontend** | React · Vite · Tailwind CSS |
 | **Data & databases** | PostgreSQL · MongoDB |
 | **Testing** | pytest · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
-<sub>Detected automatically from 29 repositories (public and private) · last changed 2026-10-23</sub>
+<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-10-26</sub>
 <!-- stack:end -->
 
 <br>
@@ -104,16 +104,16 @@ flowchart TD
 ### Languages
 
 <!-- languages:start -->
-Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
+HTML · Python · CSS · JavaScript · C · TypeScript · Ruby
 
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 42.1%" : 1133.7
-    "TypeScript · 21.6%" : 583.1
-    "JavaScript · 21.4%" : 577.2
-    "CSS · 8.5%" : 228.2
-    "HTML · 3.7%" : 99.5
+    "Python · 42.6%" : 1161.8
+    "TypeScript · 21.4%" : 583.1
+    "JavaScript · 21.2%" : 577.2
+    "CSS · 8.4%" : 230.2
+    "HTML · 3.7%" : 101.1
     "C · 2.3%" : 62.7
     "Ruby · 0.4%" : 10.1
 ```
