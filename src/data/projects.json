@@ -7,9 +7,21 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-10-23",
-      "commits": 145,
+      "updated": "2026-10-27",
+      "commits": 148,
       "recent": [
+        {
+          "date": "2026-10-27",
+          "subject": "Answer an unreadable request body with 400 or 415, not 500"
+        },
+        {
+          "date": "2026-10-27",
+          "subject": "Update mongoose to 9.11.4, nodemailer to 10.2.1 and dotenv to 18.0.9"
+        },
+        {
+          "date": "2026-10-27",
+          "subject": "Update body-parser to 2.4.0"
+        },
         {
           "date": "2026-10-23",
           "subject": "Say which commit the live API is running in /health"
@@ -45,18 +57,6 @@
         {
           "date": "2026-10-20",
           "subject": "Say in the README what institutions see and how many requests can wait"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Limit how many booking requests one person can have waiting"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Only show an institution numbers for professionals who accepted its invitation"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Update lucide-react to 1.60.0"
         }
       ]
     },
@@ -67,56 +67,56 @@
       "url": "https://github.com/KathFK1234/moodforecast_ai",
       "team": false,
       "started": "2026-06-05",
-      "updated": "2026-10-23",
-      "commits": 129,
+      "updated": "2026-10-27",
+      "commits": 145,
       "recent": [
         {
-          "date": "2026-10-23",
-          "subject": "Keep local files out of the Docker image and run it unprivileged"
+          "date": "2026-10-27",
+          "subject": "Reword the message shown after asking for alerts"
         },
         {
-          "date": "2026-10-23",
-          "subject": "Link the live site from the README"
+          "date": "2026-10-27",
+          "subject": "Explain the email-alert messages in the troubleshooting table"
         },
         {
-          "date": "2026-10-23",
-          "subject": "Describe the wider range of activities in the READMEs"
+          "date": "2026-10-27",
+          "subject": "Say when a confirmation link was already sent minutes ago"
         },
         {
-          "date": "2026-10-23",
-          "subject": "Group the subscription's activity list and flag local favourites"
+          "date": "2026-10-27",
+          "subject": "Ask new subscribers to confirm their email address"
         },
         {
-          "date": "2026-10-23",
-          "subject": "Word place refusals as the place, not the weather"
+          "date": "2026-10-27",
+          "subject": "Recognise every quick pick's own wording"
         },
         {
-          "date": "2026-10-23",
-          "subject": "Recommend safaris and regional sports where they fit"
+          "date": "2026-10-27",
+          "subject": "List every test file in the backend README"
         },
         {
-          "date": "2026-10-23",
-          "subject": "Recommend more indoor and social activities"
+          "date": "2026-10-27",
+          "subject": "Limit locations to 120 characters and language to en or sw"
         },
         {
-          "date": "2026-10-23",
-          "subject": "Recommend bonfires, eating outdoors, sightseeing and birdwatching"
+          "date": "2026-10-27",
+          "subject": "Keep the repeated-email guard out of the shared cache"
         },
         {
-          "date": "2026-10-23",
-          "subject": "Recommend kayaking, water parks and boat trips"
+          "date": "2026-10-27",
+          "subject": "Name the psycopg2 driver in Postgres database URLs"
         },
         {
-          "date": "2026-10-23",
-          "subject": "Put the popular location chips in a navigation landmark"
+          "date": "2026-10-27",
+          "subject": "Update FastAPI, pydantic, SQLAlchemy and friends"
         },
         {
-          "date": "2026-10-23",
-          "subject": "Recommend more active outdoor activities"
+          "date": "2026-10-27",
+          "subject": "Keep Nominatim lookups to one per second"
         },
         {
-          "date": "2026-10-23",
-          "subject": "Rule out outdoor activities in freezing rain or drizzle"
+          "date": "2026-10-27",
+          "subject": "Compare regional activities with places where they are done"
         }
       ]
     },
@@ -127,9 +127,13 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-23",
-      "commits": 251,
+      "updated": "2026-10-27",
+      "commits": 252,
       "recent": [
+        {
+          "date": "2026-10-27",
+          "subject": "Refresh the backend lock to fastapi 0.162.0, starlette 1.10.0 and certifi 2026.10.23"
+        },
         {
           "date": "2026-10-23",
           "subject": "Put getData's comment back above getData, where adding unavailableMessage had left it behind"
@@ -173,10 +177,6 @@
         {
           "date": "2026-10-21",
           "subject": "Give BACKEND_URL's real default in the README, and say it is the backend's private address on Railway"
-        },
-        {
-          "date": "2026-10-21",
-          "subject": "Sign the tests' tokens with a 32-byte-plus key, and fail the tests if a shorter one comes back"
         }
       ]
     },

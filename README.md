@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
-<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-10-26</sub>
+<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-10-27</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,11 +109,11 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 42.6%" : 1161.8
-    "TypeScript · 21.4%" : 583.1
-    "JavaScript · 21.2%" : 577.2
-    "CSS · 8.4%" : 230.2
-    "HTML · 3.7%" : 101.1
+    "Python · 43.0%" : 1187.0
+    "TypeScript · 21.2%" : 584.2
+    "JavaScript · 21.1%" : 582.6
+    "CSS · 8.3%" : 230.2
+    "HTML · 3.7%" : 101.2
     "C · 2.3%" : 62.7
     "Ruby · 0.4%" : 10.1
 ```
@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-23 | Say which commit the live API is running in /health |
-| MoodForecast AI | 2026-10-23 | Keep local files out of the Docker image and run it unprivileged |
-| Murengeti Lab System | 2026-10-23 | Put getData's comment back above getData, where adding unavailableMessage had left it behind |
+| Healing Hive | 2026-10-27 | Answer an unreadable request body with 400 or 415, not 500 |
+| MoodForecast AI | 2026-10-27 | Reword the message shown after asking for alerts |
+| Murengeti Lab System | 2026-10-27 | Refresh the backend lock to fastapi 0.162.0, starlette 1.10.0 and certifi 2026.10.23 |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->

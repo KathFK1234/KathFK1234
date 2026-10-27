@@ -64,6 +64,22 @@
     }
   ],
   "places": {
+    "aussie_rules": [
+      "Melbourne",
+      "Adelaide",
+      "Perth",
+      "Brisbane",
+      "Sydney",
+      "Hobart"
+    ],
+    "baseball": [
+      "New York",
+      "Tokyo",
+      "Havana",
+      "Santo Domingo",
+      "Seoul",
+      "Taipei"
+    ],
     "beach": [
       "Mombasa",
       "Zanzibar",
@@ -79,6 +95,14 @@
       "Nuuk",
       "Ulaanbaatar",
       "Anchorage"
+    ],
+    "cricket": [
+      "Mumbai",
+      "Lahore",
+      "Colombo",
+      "Melbourne",
+      "Kingston",
+      "London"
     ],
     "dark_sky": [
       "San Pedro de Atacama",
@@ -96,6 +120,54 @@
       "Phoenix",
       "Alice Springs"
     ],
+    "gaelic": [
+      "Dublin",
+      "Galway",
+      "Cork",
+      "Limerick",
+      "Kilkenny",
+      "Killarney"
+    ],
+    "golf": [
+      "St Andrews",
+      "Dublin",
+      "Melbourne",
+      "Marbella",
+      "Cape Town",
+      "Myrtle Beach"
+    ],
+    "kabaddi": [
+      "Mumbai",
+      "Delhi",
+      "Lahore",
+      "Dhaka",
+      "Kathmandu",
+      "Chennai"
+    ],
+    "netball": [
+      "Auckland",
+      "Melbourne",
+      "Johannesburg",
+      "Kingston",
+      "Lilongwe",
+      "Birmingham"
+    ],
+    "rugby": [
+      "Auckland",
+      "Cape Town",
+      "Cardiff",
+      "Dublin",
+      "Buenos Aires",
+      "Suva"
+    ],
+    "safari": [
+      "Nairobi",
+      "Arusha",
+      "Maun",
+      "Livingstone",
+      "Windhoek",
+      "Kampala"
+    ],
     "snow": [
       "Zermatt",
       "Tromsø",
@@ -103,6 +175,14 @@
       "Banff",
       "Queenstown",
       "Innsbruck"
+    ],
+    "takraw": [
+      "Bangkok",
+      "Kuala Lumpur",
+      "Jakarta",
+      "Hanoi",
+      "Manila",
+      "Vientiane"
     ],
     "warm": [
       "Mombasa",
