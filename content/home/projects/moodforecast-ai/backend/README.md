@@ -9,6 +9,7 @@
   app/services/weather.py          async client for Open-Meteo
   app/services/mood_engine.py      rule-based scoring (see ../data)
   app/services/activity_advisor.py is the weather right for this activity?
+  app/services/locality.py         what a place offers: the sea, snow, wildlife, the sports played there
   app/services/curiosity.py        questions that point to other places
   app/services/cache.py            in-memory TTL cache, swappable with Redis
   app/services/geocoding.py        location name -> coordinates
