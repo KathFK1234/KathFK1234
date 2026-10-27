@@ -11,7 +11,7 @@
   app/services/activity_advisor.py is the weather right for this activity?
   app/services/locality.py         what a place offers: the sea, snow, wildlife, the sports played there
   app/services/curiosity.py        questions that point to other places
-  app/services/cache.py            in-memory TTL cache, swappable with Redis
+  app/services/cache.py            in-memory TTL cache, capped at 5,000 entries
   app/services/geocoding.py        location name -> coordinates
 
 The files next to this one are short excerpts. The full source is at https://github.com/KathFK1234/moodforecast_ai/tree/main/backend
