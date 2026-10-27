@@ -143,11 +143,19 @@ class NoReading extends Error {
   }
 }
 
+/** A validation answer (a list, not a sentence) that refused a place for its length, said plainly; '' for anything else. */
+function tooLong(detail: unknown): string {
+  const item = Array.isArray(detail) ? (detail as { type?: unknown; ctx?: { max_length?: unknown } }[])[0] : undefined;
+  if (item?.type !== 'string_too_long') return '';
+  const limit = typeof item.ctx?.max_length === 'number' ? ` of ${item.ctx.max_length} characters` : '';
+  return `that place name is longer than the service's limit${limit}.`;
+}
+
 async function ask<T>(path: string, timeout = 15000): Promise<T> {
   const response = await fetch(`${MOOD_API}${path}`, { signal: AbortSignal.timeout(timeout) });
   if (!response.ok) {
     const body = (await response.json().catch(() => null)) as { detail?: unknown } | null;
-    throw new NoReading(response.status, typeof body?.detail === 'string' ? body.detail : '');
+    throw new NoReading(response.status, typeof body?.detail === 'string' ? body.detail : tooLong(body?.detail));
   }
   return (await response.json()) as T;
 }

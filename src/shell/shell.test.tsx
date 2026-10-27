@@ -661,6 +661,20 @@ describe('mood', () => {
     });
     expect(await run('mood nairobi')).toMatch(/could not reach the MoodForecast AI service/);
   });
+
+  it('says a place name is too long when the service refuses it for its length', async () => {
+    const long = 'a'.repeat(121);
+    vi.stubGlobal('fetch', async () =>
+      new Response(
+        JSON.stringify({ detail: [{ type: 'string_too_long', loc: ['path', 'location'], ctx: { max_length: 120 } }] }),
+        { status: 422 },
+      ),
+    );
+    const { run } = shell();
+    const out = await run(`mood ${long}`);
+    expect(out).toMatch(/that place name is longer than the service&#x27;s limit of 120 characters\./);
+    expect(out).not.toMatch(/could not find a place/);
+  });
 });
 
 describe('updates', () => {
