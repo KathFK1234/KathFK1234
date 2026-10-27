@@ -8,6 +8,7 @@ Weather apps report conditions. They rarely say what those conditions mean for a
   Weather and geocoding from Open-Meteo (no API key)
   SQLite in development, PostgreSQL in production
   Deployed on Railway; vanilla HTML/CSS/JS frontend
+  Other sites can read the API but not change anything; the image runs as an unprivileged user, with no local files in it
 
 ## API
 
