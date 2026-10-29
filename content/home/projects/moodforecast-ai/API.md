@@ -5,6 +5,7 @@ Written by a script from the service's own description of itself, so this list k
   GET   /api/activities                  Names of the activities the advisor knows, e.g. for a subscription form.
   GET   /api/activities/{location}       The activities that are practical at a location, local favourites first.
   GET   /api/activity/{location}         Check whether an activity suits a location and its current weather.
+  GET   /api/alerts                      Whether daily email alerts can be signed up for, so the page can say so before anyone fills in the form.
   POST  /api/confirm/{token}             Confirm a subscription request with the token from its email.
   GET   /api/forecast/{location}         Get weather forecast for a location.
   GET   /api/locations                   Suggest locations matching the start of a place name.

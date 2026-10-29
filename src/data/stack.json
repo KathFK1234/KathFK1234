@@ -4,8 +4,13 @@
   "languages": [
     {
       "name": "Python",
-      "bytes": 1215493,
+      "bytes": 1246477,
       "repos": 12
+    },
+    {
+      "name": "JavaScript",
+      "bytes": 628673,
+      "repos": 7
     },
     {
       "name": "TypeScript",
@@ -13,13 +18,8 @@
       "repos": 2
     },
     {
-      "name": "JavaScript",
-      "bytes": 596539,
-      "repos": 7
-    },
-    {
       "name": "CSS",
-      "bytes": 235679,
+      "bytes": 236064,
       "repos": 10
     },
     {
@@ -34,7 +34,7 @@
     },
     {
       "name": "Shell",
-      "bytes": 22782,
+      "bytes": 22803,
       "repos": 9
     },
     {
@@ -112,7 +112,7 @@
     {
       "name": "GitHub Actions",
       "category": "Infrastructure",
-      "repos": 3
+      "repos": 4
     },
     {
       "name": "Railway",
@@ -130,5 +130,5 @@
       "repos": 1
     }
   ],
-  "updated": "2026-10-27"
+  "updated": "2026-10-29"
 }

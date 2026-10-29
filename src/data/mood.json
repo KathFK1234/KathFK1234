@@ -29,6 +29,12 @@
       ]
     },
     {
+      "name": "alerts",
+      "place": false,
+      "about": "Whether daily email alerts can be signed up for, so the page can say so before anyone fills in the form.",
+      "params": []
+    },
+    {
       "name": "forecast",
       "place": true,
       "about": "Get weather forecast for a location.",

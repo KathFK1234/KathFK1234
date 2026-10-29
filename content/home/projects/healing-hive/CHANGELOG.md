@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  148 commits · first 2026-10-06 · latest 2026-10-27
+  156 commits · first 2026-10-06 · latest 2026-10-29
 
+  2026-10-29  Limit certificate uploads to 10 an hour per account
+  2026-10-29  Tell new therapists and peer counsellors to upload their certificate
+  2026-10-29  Give professionals their practice page before verification, with certificate upload
+  2026-10-29  Keep a switched-off reminder readable
+  2026-10-29  Give the browser-tab icon the logo's softer honey
+  2026-10-29  Calm the colours: one soft main colour, honey only as a small accent
+  2026-10-29  Update lucide-react to 1.62.0
+  2026-10-29  Update @tanstack/react-query to 5.105.0
   2026-10-27  Answer an unreadable request body with 400 or 415, not 500
   2026-10-27  Update mongoose to 9.11.4, nodemailer to 10.2.1 and dotenv to 18.0.9
   2026-10-27  Update body-parser to 2.4.0
   2026-10-23  Say which commit the live API is running in /health
-  2026-10-23  Point the README's folder tree at the web app's tests and outage notice
-  2026-10-23  Update lucide-react to 1.61.0, vite to 8.3.5 and mongoose to 9.11.3
-  2026-10-23  Take years of experience off a profile when the box is emptied
-  2026-10-23  Take a journal entry's title away when it is cleared
-  2026-10-23  Show a calm notice when the API's host is down
-  2026-10-23  Take a rating's comment down when it is cleared
-  2026-10-20  Count an institution's invited members from the same list as its other totals
-  2026-10-20  Say in the README what institutions see and how many requests can wait
 
 From anywhere in this terminal, `updates` shows the same for every project.

@@ -7,9 +7,41 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-10-27",
-      "commits": 148,
+      "updated": "2026-10-29",
+      "commits": 156,
       "recent": [
+        {
+          "date": "2026-10-29",
+          "subject": "Limit certificate uploads to 10 an hour per account"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Tell new therapists and peer counsellors to upload their certificate"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Give professionals their practice page before verification, with certificate upload"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Keep a switched-off reminder readable"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Give the browser-tab icon the logo's softer honey"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Calm the colours: one soft main colour, honey only as a small accent"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Update lucide-react to 1.62.0"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Update @tanstack/react-query to 5.105.0"
+        },
         {
           "date": "2026-10-27",
           "subject": "Answer an unreadable request body with 400 or 415, not 500"
@@ -25,38 +57,6 @@
         {
           "date": "2026-10-23",
           "subject": "Say which commit the live API is running in /health"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Point the README's folder tree at the web app's tests and outage notice"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Update lucide-react to 1.61.0, vite to 8.3.5 and mongoose to 9.11.3"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Take years of experience off a profile when the box is emptied"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Take a journal entry's title away when it is cleared"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Show a calm notice when the API's host is down"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Take a rating's comment down when it is cleared"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Count an institution's invited members from the same list as its other totals"
-        },
-        {
-          "date": "2026-10-20",
-          "subject": "Say in the README what institutions see and how many requests can wait"
         }
       ]
     },
@@ -67,56 +67,56 @@
       "url": "https://github.com/KathFK1234/moodforecast_ai",
       "team": false,
       "started": "2026-06-05",
-      "updated": "2026-10-27",
-      "commits": 145,
+      "updated": "2026-10-29",
+      "commits": 158,
       "recent": [
         {
-          "date": "2026-10-27",
-          "subject": "Reword the message shown after asking for alerts"
+          "date": "2026-10-29",
+          "subject": "Describe the Brevo retry accurately in its docstring"
         },
         {
-          "date": "2026-10-27",
-          "subject": "Explain the email-alert messages in the troubleshooting table"
+          "date": "2026-10-29",
+          "subject": "Treat any Brevo error body as a failed send"
         },
         {
-          "date": "2026-10-27",
-          "subject": "Say when a confirmation link was already sent minutes ago"
+          "date": "2026-10-29",
+          "subject": "Mention Brevo where the README says what email alerts need"
         },
         {
-          "date": "2026-10-27",
-          "subject": "Ask new subscribers to confirm their email address"
+          "date": "2026-10-29",
+          "subject": "Log Brevo's own reason when retrying without headers"
         },
         {
-          "date": "2026-10-27",
-          "subject": "Recognise every quick pick's own wording"
+          "date": "2026-10-29",
+          "subject": "Send email through Brevo's API, which works on Railway's Hobby plan"
         },
         {
-          "date": "2026-10-27",
-          "subject": "List every test file in the backend README"
+          "date": "2026-10-29",
+          "subject": "Say alerts go to confirmed subscribers in the docstring and README query"
         },
         {
-          "date": "2026-10-27",
-          "subject": "Limit locations to 120 characters and language to en or sw"
+          "date": "2026-10-29",
+          "subject": "Ask subscribers from before confirmation to confirm too"
         },
         {
-          "date": "2026-10-27",
-          "subject": "Keep the repeated-email guard out of the shared cache"
+          "date": "2026-10-29",
+          "subject": "Keep the test tools out of the production image"
         },
         {
-          "date": "2026-10-27",
-          "subject": "Name the psycopg2 driver in Postgres database URLs"
+          "date": "2026-10-29",
+          "subject": "List the confirmation step in the README's endpoint table"
         },
         {
-          "date": "2026-10-27",
-          "subject": "Update FastAPI, pydantic, SQLAlchemy and friends"
+          "date": "2026-10-29",
+          "subject": "Disable the subscribe form when email alerts aren't available"
         },
         {
-          "date": "2026-10-27",
-          "subject": "Keep Nominatim lookups to one per second"
+          "date": "2026-10-29",
+          "subject": "Document MARINE_API_URL and SMTP_STARTTLS everywhere the other settings are"
         },
         {
-          "date": "2026-10-27",
-          "subject": "Compare regional activities with places where they are done"
+          "date": "2026-10-29",
+          "subject": "Run the tests on GitHub Actions for every push and pull request"
         }
       ]
     },
@@ -127,9 +127,49 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-27",
-      "commits": 252,
+      "updated": "2026-10-29",
+      "commits": 262,
       "recent": [
+        {
+          "date": "2026-10-29",
+          "subject": "Upgrade TypeScript 5.9 to 7, the native compiler, for the frontend's type check"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Say in the README that each sign-in sends the account's details to Back4App again"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Send an account's details to Back4App at each sign-in, so an approval it missed reaches it"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Upgrade React and React DOM 18 to 19, with their types"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Give the 10 MB import limit in the README, and say a PDF import's preview is the start of its text"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Serve and delete kept files only inside the upload folder, whatever path their record holds"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Stop reading a PDF import once its preview has its 5,000 characters, and after 50 pages at most"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Read import files beside the server's event loop, so parsing one no longer holds up everyone else's requests"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Update the frontend lockfile to react-router-dom and react-router 7.18.5, within package.json's range"
+        },
+        {
+          "date": "2026-10-29",
+          "subject": "Refresh the backend lock to pypdf 6.21.4 and pytest 9.2.0"
+        },
         {
           "date": "2026-10-27",
           "subject": "Refresh the backend lock to fastapi 0.162.0, starlette 1.10.0 and certifi 2026.10.23"
@@ -137,46 +177,6 @@
         {
           "date": "2026-10-23",
           "subject": "Put getData's comment back above getData, where adding unavailableMessage had left it behind"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Update the frontend lockfile to vite 8.3.5 and puppeteer-core 25.16.0, both within package.json's ranges"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Colour the Back shortly links like the site's own links, readable on their backgrounds in both themes"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Say \"Back shortly\" when the server cannot be reached, instead of loading forever, and carry on once it answers"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Answer /api/ with a calm 503 from the image when nginx cannot reach the backend, instead of nginx's bare 502"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Write down that a failed Railway deploy leaves the working one serving, and what each health check guards"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Refresh the backend lock to the newest releases its ranges allow, among them fastapi 0.161.1"
-        },
-        {
-          "date": "2026-10-21",
-          "subject": "Record in the architecture notes which browsers the frontend is built for, and why"
-        },
-        {
-          "date": "2026-10-21",
-          "subject": "Ask for Node 22.12 or newer, the oldest 22 that Vite 8 runs on"
-        },
-        {
-          "date": "2026-10-21",
-          "subject": "Upgrade Vite 6 to 8 and @vitejs/plugin-react 4 to 6, keeping the browsers Vite 6 built for"
-        },
-        {
-          "date": "2026-10-21",
-          "subject": "Give BACKEND_URL's real default in the README, and say it is the backend's private address on Railway"
         }
       ]
     },
