@@ -16,7 +16,7 @@ Most software can fail politely. This one has a few moments where it cannot fail
    Admins see counts. An institution sees session numbers only for professionals who accepted its invitation, never a client's name or notes. There is no route into anyone's journal, check-ins, or AI conversation, and a person can clear their conversation whenever they like.
 
 5. A professional is someone we checked.
-   Nobody appears in the directory until an admin has approved their application. Removing someone cancels their upcoming sessions and tells each client, and a deleted event emails everyone registered for it, so nobody waits for something that will not happen.
+   Nobody appears in the directory until an admin has approved their application, and a therapist or peer counsellor cannot be approved without a certificate on file. Until then their practice page is a preview where nothing involving clients works. Removing someone cancels their upcoming sessions and tells each client, and a deleted event emails everyone registered for it, so nobody waits for something that will not happen.
 
 The helpline numbers are re-checked before every release. A wrong number is worse than none.
 

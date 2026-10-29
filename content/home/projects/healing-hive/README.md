@@ -12,7 +12,7 @@ v1 answered "can this exist?". v2 asks the harder question: what does a person i
 ## What v2 is
 
   accounts          sign up, sign in, profile, password reset by email; nobody can give themselves a role
-  professionals     therapists and peer counsellors sign up on their own form, an admin approves, then they appear in the directory
+  professionals     therapists and peer counsellors sign up on their own form and upload a certificate that only they and admins can download; an admin cannot approve them without it, and only then do they appear in the directory
   booking           weekly hours become open slots, minus anything already in a connected Google Calendar; a slot can be held by one person only, and a request can be confirmed only while its time is still ahead; since a waiting request holds its time, one person can have 3 waiting with a professional and 10 in all
   sessions          each confirmed session gets a meeting link (Google Meet, the professional's own link, or a private Jitsi room), and both sides are emailed
   ratings           only the client of a completed session can rate it, once; reviews are public without names
@@ -30,7 +30,7 @@ Twenty-four pages on top of that API, in four groups:
 
   anyone             landing, help, the support directory and each professional's profile, nuggets, events, sign-up for professionals, password reset
   signed in          home, check-ins, journal, AI companion, my sessions, reminders, settings, apply as a professional
-  by role            My practice for professionals, with Google Calendar and every completed session's notes, a page at a time; the institution dashboard; the admin page for applications, institutions and nuggets, with a search of everyone who has signed up
+  by role            My practice for professionals, a preview with a "Getting verified" checklist until they are approved, then with Google Calendar and every completed session's notes, a page at a time; the institution dashboard; the admin page for applications, institutions and nuggets, with a search of everyone who has signed up
   each account       its own home and a short menu grouped for what that kind of person came to do
 
 A "Get help now" button is on every page, signed in or not, with the hours each line answers. Light and dark themes share one set of colour tokens, and each page loads on first visit, so a slow connection only pays for the screen it opens. Pages fit a phone's width, Register and Publish show when they are working and cannot be sent twice, and forms say what to fix instead of showing raw validation messages. When something fails, the app says what: the server not responding, the server not found, the device offline, or a page that could not download, which keeps the crisis numbers on screen. When the server's host is down, a calm banner says so: nothing the person did, their information is safe, a link to the host's status page and Try again. It clears by itself once the server answers, and pages that do not need the server keep working. Someone signed in whose account cannot load gets a "temporarily unavailable" page with the crisis numbers. Connecting Google Calendar says why it did not connect: cancelled, not set up, a link that expired, not approved, refused by Google, or not saved.
