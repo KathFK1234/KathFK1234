@@ -19,7 +19,7 @@ The endpoint list is in `API.md`, next to this file. It is rewritten from the se
 
   `cat ~/projects/moodforecast-ai/API.md`
 
-Weather is cached for 10 minutes. The scoring engine, the activity advisor, the daily alerts and the endpoints are all covered by tests.
+Weather is cached for 10 minutes. The scoring engine, the activity advisor, the daily alerts and the endpoints are all covered by tests, which run on every push. Every install uses the exact versions the tests ran with, and the production image carries no test tools.
 
 ## Links
 
