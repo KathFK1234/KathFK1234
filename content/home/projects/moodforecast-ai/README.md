@@ -2,6 +2,8 @@
 
 Weather apps report conditions. They rarely say what those conditions mean for a person's day. MoodForecast AI takes live weather for a location and turns it into a mood score with the reasons behind it, an energy level, a risk rating, and a few concrete things to do. It can also say whether the weather suits a plan, any of about 65 activities from a run or kayaking to a bonfire, a safari or an escape room, with safety rules built in: nothing outdoors in a thunderstorm or freezing rain, no skateboarding or climbing on wet ground, wind limits for climbing, paddling and fires, and daylight for riding, climbing and paddling. And it says what else is practical where you are: no beach days inland or safaris outside wildlife country, sports such as cricket or kabaddi only where they are commonly played, and local favourites first.
 
+It can also email a daily activity for a place. Nothing starts until the address is confirmed from a link sent to it, and the service never hands back a subscriber's unsubscribe link, so typing in someone else's address cannot sign them up, change their alerts or cancel them.
+
 ## Stack
 
   FastAPI · Pydantic · SQLModel · httpx · pytest

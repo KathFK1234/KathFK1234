@@ -5,7 +5,7 @@
   app/routers/forecast.py          GET /api/forecast/{location}
   app/routers/activity.py          activity verdicts, suggestions and random picks
   app/routers/locations.py         GET /api/locations (place names as you type)
-  app/routers/subscribe.py         daily email alerts: subscribe and unsubscribe
+  app/routers/subscribe.py         daily email alerts: subscribe, confirm by email, unsubscribe
   app/services/weather.py          async client for Open-Meteo
   app/services/mood_engine.py      rule-based scoring (see ../data)
   app/services/activity_advisor.py is the weather right for this activity?
