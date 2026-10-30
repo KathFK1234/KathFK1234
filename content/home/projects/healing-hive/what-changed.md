@@ -7,7 +7,7 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   roles            v1 carried the role inside the sign-in token. v2 reads it from the database on every request, so approving or removing a professional takes effect at once.
   becoming a pro   v2 has one way in: apply, and an admin approves. Therapists must give a licence number, and therapists and peer counsellors must upload a certificate (a PDF or photo, checked by its contents, at most 10 uploads an hour) before they can be approved. Only they and admins can download it.
   sign-in          a wrong password and an unknown email get the same answer in the same time, so the form cannot be used to find out who has an account. Repeated failed attempts are slowed down; successful ones are not counted, because a campus or a mobile network can put many people behind one address.
-  passwords        never returned by the API, and not read from the database unless a query asks for them. Changing or resetting one signs out every other device.
+  passwords        never returned by the API, and not read from the database unless a query asks for them. Changing or resetting one signs out every other device, and asking for a reset answers without waiting for the email, so its speed does not show who has an account.
   sign-up          one connection can only create so many accounts.
   responses        internal fields stay out of what the API sends, and meeting and event links must be http or https.
   web app          served with a Content-Security-Policy.
