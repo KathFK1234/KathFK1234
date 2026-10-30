@@ -1,0 +1,4 @@
+This site has no cookies, no analytics and no accounts.
+
+Your theme, font and command history stay in your own browser. `history -c` clears the history.
+A place you type into `mood` is sent to MoodForecast AI to answer you. Nothing else you type leaves this page.
