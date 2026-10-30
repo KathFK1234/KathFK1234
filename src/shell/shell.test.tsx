@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import projectData from '../data/projects.json';
 import { DEFAULT_PREFS, loadPrefs } from '../prefs';
-import { commandNames, commands, createShellState, EXAMPLES, execute, tokenize, type Ctx } from './commands';
+import { canDeepLink, commandNames, commands, createShellState, EXAMPLES, execute, tokenize, type Ctx } from './commands';
 import { commonPrefix, complete, ghostFor } from './complete';
 import { readEndpoints } from './mood';
 import { buildTree, describe as describeNode, displayPath, getNode, resolvePath, root, walk } from './fs';
@@ -248,6 +248,12 @@ describe('commands', () => {
     await run('clear');
     expect(cleared()).toBe(1);
     expect(await run('echo hi $USER')).toBe('hi visitor');
+  });
+
+  it('lets a shared link run only commands that read', () => {
+    for (const line of ['projects', 'cat README.md', 'mood nairobi', ' HELP ']) expect(canDeepLink(line)).toBe(true);
+    for (const line of ['echo pay here', 'theme amber', 'history -c', 'open github', 'cd projects', 'nosuchcommand', ''])
+      expect(canDeepLink(line)).toBe(false);
   });
 
   it('takes only its own themes, fonts and links, never built-in object names', async () => {

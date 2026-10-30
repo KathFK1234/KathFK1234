@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { applyPrefs, loadHistory, loadPrefs, saveHistory, savePrefs, type Prefs } from './prefs';
 import { Prompt, Ps1 } from './Prompt';
-import { Banner, createShellState, execute, type Ctx } from './shell/commands';
+import { Banner, canDeepLink, createShellState, execute, type Ctx } from './shell/commands';
 import { commonPrefix, complete, ghostFor } from './shell/complete';
 import { displayPath } from './shell/fs';
 import { RunContext } from './shell/ui';
@@ -128,13 +128,13 @@ export default function App() {
     if (term && menu) term.scrollTop = term.scrollHeight;
   }, [menu]);
 
-  // Shareable links: ?cmd=projects runs a command on load.
+  // Shareable links: ?cmd=projects runs a read-only command on load.
   const ranDeepLink = useRef(false);
   useEffect(() => {
     if (ranDeepLink.current) return;
     ranDeepLink.current = true;
     const command = new URLSearchParams(window.location.search).get('cmd');
-    if (command) void run(command.slice(0, 200));
+    if (command && canDeepLink(command)) void run(command.slice(0, 200));
   }, [run]);
 
   // Typing anywhere, or clicking empty space, lands in the prompt —

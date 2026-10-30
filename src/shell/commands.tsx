@@ -1718,6 +1718,21 @@ function unknownCommand(name: string): ReactNode {
 }
 
 /** Run one line. Output goes through `ctx.print`; the caller echoes the line itself. */
+/* What a shared ?cmd= link may run: commands that only read, so a link cannot put its own words on the page
+   with echo, change a visitor's theme or history, or open a window. */
+const DEEP_LINK_COMMANDS = new Set([
+  'about', 'psychology', 'thinking', 'projects', 'updates', 'skills', 'stack', 'experience', 'education', 'volunteer',
+  'resume', 'contact', 'hire-me', 'whois', 'ls', 'cat', 'head', 'tail', 'wc', 'grep', 'find', 'tree', 'help', 'man',
+  'mood',
+]);
+
+export function canDeepLink(line: string): boolean {
+  const trimmed = line.trim();
+  const name = tokenize(SHORTCUTS[trimmed.toLowerCase()] ?? trimmed)[0]?.toLowerCase();
+  const command = name ? findCommand(name) : undefined;
+  return !!command && DEEP_LINK_COMMANDS.has(command.name);
+}
+
 export async function execute(line: string, ctx: Ctx): Promise<void> {
   const trimmed = line.trim();
   if (!trimmed) return;
