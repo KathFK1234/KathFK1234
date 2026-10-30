@@ -456,4 +456,8 @@ body {
   .output {
     animation: none;
   }
+  .navlinks button,
+  .tab-menu button {
+    transition: none;
+  }
 }
