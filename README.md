@@ -286,6 +286,10 @@ python3 -m unittest discover tests   # the sync scripts' tests
 
 Pushing to `main` builds and deploys the site through [.github/workflows/deploy.yml](.github/workflows/deploy.yml). In the repository settings, Pages → Source must be set to **GitHub Actions**.
 
+The workflow keeps its secrets away from third-party code. `sync` holds the tokens and installs only the hash-pinned Python packages, `build` runs the npm packages with no secrets and without their install scripts, `commit` alone can push, and only after the tests pass, `deploy` alone can publish, and `verify` then fetches the live page and everything it loads. Every action is pinned to a full commit.
+
+Railway also deploys `main`, as a copy at [kathfk1234-production.up.railway.app](https://kathfk1234-production.up.railway.app); GitHub Pages stays the canonical address. The Python requirements sit in `ci/` because at the repository root they make Railway take the site for a Python app.
+
 **Languages and tools update themselves.** Several times a day (or on demand from the Actions tab → *Run workflow*), the same workflow runs [languages_update_script.py](languages_update_script.py). It reads every repository I own (the public ones, and the private ones too once the `STACK_TOKEN` secret described below is set, as it is here) — GitHub's language statistics, plus dependency files such as `requirements.txt`, `pyproject.toml` and `package.json` — and rewrites:
 
 - the icon row, tools table, language list and pie chart in this README (between the `stack` and `languages` comment markers), and
