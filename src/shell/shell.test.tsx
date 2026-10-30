@@ -2,7 +2,7 @@ import { Fragment, type ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import projectData from '../data/projects.json';
-import { DEFAULT_PREFS, loadPrefs } from '../prefs';
+import { DEFAULT_PREFS, loadHistory, loadPrefs, saveHistory } from '../prefs';
 import { canDeepLink, commandNames, commands, createShellState, EXAMPLES, execute, tokenize, type Ctx } from './commands';
 import { commonPrefix, complete, ghostFor } from './complete';
 import { readEndpoints } from './mood';
@@ -262,6 +262,38 @@ describe('commands', () => {
     const { warnings } = shell();
     for (const name of commandNames().filter(name => name !== 'mood'))
       for (const arg of odd) expect(await warnings(`${name} ${arg}`), `${name} ${arg}`).not.toMatch(/went wrong/);
+  });
+
+  it('keeps at most 100 history entries, and only strings', () => {
+    const saved = new Map<string, string>();
+    vi.stubGlobal('localStorage', { getItem: (key: string) => saved.get(key) ?? null, setItem: (key: string, value: string) => saved.set(key, value) });
+    saveHistory(Array.from({ length: 150 }, (_, index) => `cmd ${index}`));
+    const history = loadHistory();
+    expect(history).toHaveLength(100);
+    expect(history.at(-1)).toBe('cmd 149');
+    saved.set('katheu:history', JSON.stringify(['ls', 1, null, { a: 1 }]));
+    expect(loadHistory()).toEqual(['ls']);
+    vi.unstubAllGlobals();
+  });
+
+  it('starts clean from corrupted or blocked storage', () => {
+    for (const value of ['{not json', 'null', '"text"', '[1]']) {
+      vi.stubGlobal('localStorage', { getItem: () => value });
+      expect(loadPrefs()).toEqual(DEFAULT_PREFS);
+      expect(loadHistory()).toEqual([]);
+    }
+    vi.stubGlobal('localStorage', {
+      getItem: () => {
+        throw new Error('blocked');
+      },
+      setItem: () => {
+        throw new Error('blocked');
+      },
+    });
+    expect(loadPrefs()).toEqual(DEFAULT_PREFS);
+    expect(loadHistory()).toEqual([]);
+    expect(() => saveHistory(['ls'])).not.toThrow();
+    vi.unstubAllGlobals();
   });
 
   it('lets a shared link run only commands that read', () => {
