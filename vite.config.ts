@@ -22,7 +22,7 @@ function contentSecurityPolicy(moodApi: string): Plugin {
           ([, css]) => `'sha256-${createHash('sha256').update(css).digest('base64')}'`,
         );
         const policy = [
-          "default-src 'self'",
+          "default-src 'none'",
           "script-src 'self'",
           `style-src 'self' ${styles.join(' ')}`,
           "font-src 'self' data:",
@@ -32,6 +32,7 @@ function contentSecurityPolicy(moodApi: string): Plugin {
           "object-src 'none'",
           "base-uri 'self'",
           "form-action 'none'",
+          "require-trusted-types-for 'script'",
         ].join('; ');
         return html.replace('<meta charset="UTF-8" />', `$&\n    <meta http-equiv="Content-Security-Policy" content="${policy}" />`);
       },
