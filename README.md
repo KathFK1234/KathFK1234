@@ -287,7 +287,7 @@ python3 -m unittest discover tests   # the sync scripts' tests
 
 Pushing to `main` builds and deploys the site through [.github/workflows/deploy.yml](.github/workflows/deploy.yml). In the repository settings, Pages → Source must be set to **GitHub Actions**.
 
-The workflow keeps its secrets away from third-party code. `sync` holds the tokens and installs only the hash-pinned Python packages, `build` runs the npm packages with no secrets and without their install scripts, `commit` alone can push, and only after the tests pass, `deploy` alone can publish, and `verify` then fetches the live page and everything it loads. Every action is pinned to a full commit.
+The workflow keeps its secrets away from third-party code. `sync` holds the tokens and installs only the hash-pinned Python packages, `build` runs the npm packages with no secrets and without their install scripts, then the tests and a check of the built site in Chrome, `commit` alone can push, and only after those pass, `deploy` alone can publish, `verify` then confirms the live page is this run's build and fetches everything it loads, and on each push `railway` follows Railway's deploy of the same commit. Every action is pinned to a full commit.
 
 Railway also deploys `main`, as a copy at [kathfk1234-production.up.railway.app](https://kathfk1234-production.up.railway.app); GitHub Pages stays the canonical address. The Python requirements sit in `ci/` because at the repository root they make Railway take the site for a Python app.
 
