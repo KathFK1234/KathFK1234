@@ -25,6 +25,7 @@ jobs:
   # hashed Python packages, and it can read this repository but not change it.
   sync:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
     steps:
@@ -153,6 +154,7 @@ jobs:
   build:
     needs: sync
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
     steps:
@@ -181,6 +183,7 @@ jobs:
     needs: build
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       contents: write
     steps:
@@ -209,6 +212,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     # Only this job publishes, and it runs nothing but the official deploy action
     permissions:
       pages: write
