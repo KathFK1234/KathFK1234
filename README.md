@@ -280,7 +280,7 @@ npm test         # shell, file system, and completion tests
 npm run build    # type-check and build into dist/
 python3 -m venv .venv          # for the Python scripts below, once; a distribution's own Python refuses pip installs
 . .venv/bin/activate           # in each new shell
-pip install --require-hashes -r requirements.txt   # the same pinned versions the workflow uses
+pip install --require-hashes -r ci/requirements.txt   # the same pinned versions the workflow uses
 python3 -m unittest discover tests   # the sync scripts' tests
 ```
 

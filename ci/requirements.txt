@@ -1,5 +1,6 @@
+# Not at the repository root: there, Railway takes the repository for a Python app and its deploy fails.
 # What the sync scripts need in CI. Every package is pinned with its hash, so the
-# workflow installs exactly these files (pip install --require-hashes -r requirements.txt).
+# workflow installs exactly these files (pip install --require-hashes -r ci/requirements.txt).
 # Each hash is the package's universal wheel (py3-none-any) on PyPI.
 requests==2.34.2 \
     --hash=sha256:2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0
