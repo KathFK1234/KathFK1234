@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
-<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-10-29</sub>
+<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-10-30</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,11 +109,11 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 43.2%" : 1217.3
-    "JavaScript · 21.8%" : 613.9
-    "TypeScript · 20.7%" : 584.2
-    "CSS · 8.2%" : 230.5
-    "HTML · 3.6%" : 101.2
+    "Python · 43.4%" : 1229.2
+    "JavaScript · 21.7%" : 615.7
+    "TypeScript · 20.6%" : 585.4
+    "CSS · 8.1%" : 230.5
+    "HTML · 3.6%" : 101.8
     "C · 2.2%" : 62.7
     "Ruby · 0.4%" : 10.1
 ```
@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-29 | Limit certificate uploads to 10 an hour per account |
-| MoodForecast AI | 2026-10-29 | Describe the Brevo retry accurately in its docstring |
-| Murengeti Lab System | 2026-10-29 | Upgrade TypeScript 5.9 to 7, the native compiler, for the frontend's type check |
+| Healing Hive | 2026-10-30 | Add the crisis detection change the last commit left out |
+| MoodForecast AI | 2026-10-30 | Make unsubscribing a pop-up |
+| Murengeti Lab System | 2026-10-30 | Read a CSV saved by Excel on Windows instead of refusing it with a Python error |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->

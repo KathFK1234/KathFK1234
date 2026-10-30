@@ -7,9 +7,37 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-10-29",
-      "commits": 156,
+      "updated": "2026-10-30",
+      "commits": 163,
       "recent": [
+        {
+          "date": "2026-10-30",
+          "subject": "Add the crisis detection change the last commit left out"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Notice crisis messages however they are typed"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Keep the certificate card after answering an institution's invitation"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Answer forgot password without waiting for the email"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Update react-router-dom to 7.18.5"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Update nodemailer to 10.3.0"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Update lucide-react to 1.64.0"
+        },
         {
           "date": "2026-10-29",
           "subject": "Limit certificate uploads to 10 an hour per account"
@@ -29,34 +57,6 @@
         {
           "date": "2026-10-29",
           "subject": "Give the browser-tab icon the logo's softer honey"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Calm the colours: one soft main colour, honey only as a small accent"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Update lucide-react to 1.62.0"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Update @tanstack/react-query to 5.105.0"
-        },
-        {
-          "date": "2026-10-27",
-          "subject": "Answer an unreadable request body with 400 or 415, not 500"
-        },
-        {
-          "date": "2026-10-27",
-          "subject": "Update mongoose to 9.11.4, nodemailer to 10.2.1 and dotenv to 18.0.9"
-        },
-        {
-          "date": "2026-10-27",
-          "subject": "Update body-parser to 2.4.0"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Say which commit the live API is running in /health"
         }
       ]
     },
@@ -67,9 +67,17 @@
       "url": "https://github.com/KathFK1234/moodforecast_ai",
       "team": false,
       "started": "2026-06-05",
-      "updated": "2026-10-29",
-      "commits": 158,
+      "updated": "2026-10-30",
+      "commits": 160,
       "recent": [
+        {
+          "date": "2026-10-30",
+          "subject": "Make unsubscribing a pop-up"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Tell subscribers to check their spam folder"
+        },
         {
           "date": "2026-10-29",
           "subject": "Describe the Brevo retry accurately in its docstring"
@@ -109,14 +117,6 @@
         {
           "date": "2026-10-29",
           "subject": "Disable the subscribe form when email alerts aren't available"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Document MARINE_API_URL and SMTP_STARTTLS everywhere the other settings are"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Run the tests on GitHub Actions for every push and pull request"
         }
       ]
     },
@@ -127,9 +127,29 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-29",
-      "commits": 262,
+      "updated": "2026-10-30",
+      "commits": 267,
       "recent": [
+        {
+          "date": "2026-10-30",
+          "subject": "Read a CSV saved by Excel on Windows instead of refusing it with a Python error"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Stop reading an inventory PDF after its first 50 pages, and say so"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Save an inventory import whole or not at all"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Delete the students' project files with them when an import overwrites the roster"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Change a password only once Back4App has taken it"
+        },
         {
           "date": "2026-10-29",
           "subject": "Upgrade TypeScript 5.9 to 7, the native compiler, for the frontend's type check"
@@ -157,26 +177,6 @@
         {
           "date": "2026-10-29",
           "subject": "Stop reading a PDF import once its preview has its 5,000 characters, and after 50 pages at most"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Read import files beside the server's event loop, so parsing one no longer holds up everyone else's requests"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Update the frontend lockfile to react-router-dom and react-router 7.18.5, within package.json's range"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Refresh the backend lock to pypdf 6.21.4 and pytest 9.2.0"
-        },
-        {
-          "date": "2026-10-27",
-          "subject": "Refresh the backend lock to fastapi 0.162.0, starlette 1.10.0 and certifi 2026.10.23"
-        },
-        {
-          "date": "2026-10-23",
-          "subject": "Put getData's comment back above getData, where adding unavailableMessage had left it behind"
         }
       ]
     },
