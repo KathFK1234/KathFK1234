@@ -20,7 +20,7 @@ A school that does not run to a timetable can switch it off. The dashboard then 
 
 ## A detail I care about
 
-Importing a class list is two steps: preview, then confirm. The preview shows exactly which students, classes, and timetable slots would be created, and any warnings, before anything is written. Running the same import twice does not create duplicates.
+Importing a class list is two steps: preview, then confirm. The preview shows exactly which students, classes, and timetable slots would be created, and any warnings, before anything is written. Running the same import twice does not create duplicates. A file can be up to 10 MB, and nobody else waits while one is read. A PDF's preview is the start of its text: the first 5,000 characters, from the first 50 pages at most.
 
 A list says it is loading until its records arrive, never "nothing here yet" before it knows. A page that cannot load its records says so above the page, with a Try again button, and shows nothing it could not load. An empty list there would look like lost data. The sign-up page does the same when it cannot read which roles are open, rather than offering every role, and CI checks every page this way in Chrome for each role.
 
