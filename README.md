@@ -109,10 +109,10 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 43.7%" : 1268.6
-    "JavaScript · 21.6%" : 628.1
-    "TypeScript · 20.2%" : 587.8
-    "CSS · 8.0%" : 232.3
+    "Python · 43.7%" : 1274.4
+    "JavaScript · 21.7%" : 631.6
+    "TypeScript · 20.2%" : 588.0
+    "CSS · 8.0%" : 233.2
     "HTML · 3.9%" : 114.6
     "C · 2.2%" : 62.7
     "Ruby · 0.3%" : 10.1
@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-30 | Handle one booking at a time per person |
+| Healing Hive | 2026-10-30 | List account deletion and a privacy notice as not built |
 | MoodForecast AI | 2026-10-30 | List the PostgreSQL tests in the backend README |
-| Murengeti Lab System | 2026-10-30 | Treat a new email on the built-in account as unconfirmed |
+| Murengeti Lab System | 2026-10-30 | Run the migrations on PostgreSQL in CI |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->

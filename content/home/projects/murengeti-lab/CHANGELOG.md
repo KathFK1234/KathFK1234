@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  277 commits · first 2026-09-20 · latest 2026-10-30
+  294 commits · first 2026-09-20 · latest 2026-10-30
 
-  2026-10-30  Treat a new email on the built-in account as unconfirmed
-  2026-10-30  Tell browsers not to store API answers
-  2026-10-30  Compare passwords and setup keys as bytes, so a non-ASCII letter is refused and not a crash
-  2026-10-30  Refuse a large body on the sign-in routes before reading it
-  2026-10-30  Import the kept-file check from where it now lives
-  2026-10-30  Show a card for the system when a link to it is shared
-  2026-10-30  Say when a code host fails instead of reading it as a folder that does not exist
-  2026-10-30  Refuse a repository folder another project of the school already has
-  2026-10-30  Check that a stored path stays in the upload folder before sending or listing its file
-  2026-10-30  Open a rejected educator's school again when the educator is approved
-  2026-10-30  Read a CSV saved by Excel on Windows instead of refusing it with a Python error
-  2026-10-30  Stop reading an inventory PDF after its first 50 pages, and say so
+  2026-10-30  Run the migrations on PostgreSQL in CI
+  2026-10-30  Index the columns the common lookups filter by
+  2026-10-30  Serve the fonts from the site, not from Google
+  2026-10-30  Wait longer in the smoke test, so a busy machine does not fail it
+  2026-10-30  Bring small text up to the WCAG AA contrast minimum in both themes
+  2026-10-30  Test how the code host clients report failures
+  2026-10-30  Drop a repeated import and a list copied for nothing
+  2026-10-30  Keep one copy of the row limit for sheets and of the safe file name
+  2026-10-30  Answer 409 when a save meets a unique rule, wherever it happens
+  2026-10-30  Say how to make and test a database backup
+  2026-10-30  Give open requests a minute to finish when the server is stopped
+  2026-10-30  Run pyflakes in CI
 
 From anywhere in this terminal, `updates` shows the same for every project.

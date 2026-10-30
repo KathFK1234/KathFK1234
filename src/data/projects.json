@@ -8,8 +8,28 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-30",
-      "commits": 177,
+      "commits": 182,
       "recent": [
+        {
+          "date": "2026-10-30",
+          "subject": "List account deletion and a privacy notice as not built"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Point to help when someone picks the lowest mood"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Fit every page on 320px phones"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Test the companion's crisis fallback"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Let only the first of two status changes through"
+        },
         {
           "date": "2026-10-30",
           "subject": "Handle one booking at a time per person"
@@ -37,26 +57,6 @@
         {
           "date": "2026-10-30",
           "subject": "Name the logo link with the words it shows"
-        },
-        {
-          "date": "2026-10-30",
-          "subject": "Give public pages real copies so they answer 200"
-        },
-        {
-          "date": "2026-10-30",
-          "subject": "Show a preview card when a link is shared"
-        },
-        {
-          "date": "2026-10-30",
-          "subject": "Pin the workflow's actions to full commits"
-        },
-        {
-          "date": "2026-10-30",
-          "subject": "Stop waiting on a silent mail server after 10 seconds"
-        },
-        {
-          "date": "2026-10-30",
-          "subject": "Give a crisis message one short try at the AI"
         }
       ]
     },
@@ -128,55 +128,55 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-30",
-      "commits": 277,
+      "commits": 294,
       "recent": [
         {
           "date": "2026-10-30",
-          "subject": "Treat a new email on the built-in account as unconfirmed"
+          "subject": "Run the migrations on PostgreSQL in CI"
         },
         {
           "date": "2026-10-30",
-          "subject": "Tell browsers not to store API answers"
+          "subject": "Index the columns the common lookups filter by"
         },
         {
           "date": "2026-10-30",
-          "subject": "Compare passwords and setup keys as bytes, so a non-ASCII letter is refused and not a crash"
+          "subject": "Serve the fonts from the site, not from Google"
         },
         {
           "date": "2026-10-30",
-          "subject": "Refuse a large body on the sign-in routes before reading it"
+          "subject": "Wait longer in the smoke test, so a busy machine does not fail it"
         },
         {
           "date": "2026-10-30",
-          "subject": "Import the kept-file check from where it now lives"
+          "subject": "Bring small text up to the WCAG AA contrast minimum in both themes"
         },
         {
           "date": "2026-10-30",
-          "subject": "Show a card for the system when a link to it is shared"
+          "subject": "Test how the code host clients report failures"
         },
         {
           "date": "2026-10-30",
-          "subject": "Say when a code host fails instead of reading it as a folder that does not exist"
+          "subject": "Drop a repeated import and a list copied for nothing"
         },
         {
           "date": "2026-10-30",
-          "subject": "Refuse a repository folder another project of the school already has"
+          "subject": "Keep one copy of the row limit for sheets and of the safe file name"
         },
         {
           "date": "2026-10-30",
-          "subject": "Check that a stored path stays in the upload folder before sending or listing its file"
+          "subject": "Answer 409 when a save meets a unique rule, wherever it happens"
         },
         {
           "date": "2026-10-30",
-          "subject": "Open a rejected educator's school again when the educator is approved"
+          "subject": "Say how to make and test a database backup"
         },
         {
           "date": "2026-10-30",
-          "subject": "Read a CSV saved by Excel on Windows instead of refusing it with a Python error"
+          "subject": "Give open requests a minute to finish when the server is stopped"
         },
         {
           "date": "2026-10-30",
-          "subject": "Stop reading an inventory PDF after its first 50 pages, and say so"
+          "subject": "Run pyflakes in CI"
         }
       ]
     },
