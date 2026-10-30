@@ -158,6 +158,8 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: read
+    outputs:
+      page: ${{ steps.page.outputs.sha256 }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -172,6 +174,8 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm test
       - run: npm run build
+      - id: page
+        run: echo "sha256=$(sha256sum dist/index.html | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: dist
@@ -227,7 +231,7 @@ jobs:
 
   # Checks what visitors actually get. It needs no token at all.
   verify:
-    needs: deploy
+    needs: [build, deploy]
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions: {}
@@ -235,13 +239,14 @@ jobs:
       - name: Check the live page and everything it loads
         env:
           SITE: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+          PAGE: ${{ needs.build.outputs.page }}
         run: |
           # Pages can take a moment to serve a new deploy
           for attempt in 1 2 3 4 5 6; do
             ok=true
             curl -fsS --retry 2 "$SITE" -o page.html || ok=false
-            grep -q 'Content-Security-Policy' page.html || ok=false
-            grep -q '<title>Katheu Kilonzo' page.html || ok=false
+            # The page this run built, not the one before it
+            [ "$(sha256sum page.html | cut -d' ' -f1)" = "$PAGE" ] || ok=false
             assets="$(grep -oE '(src|href)="\./assets/[^"]+"' page.html | cut -d'"' -f2)"
             [ -n "$assets" ] || ok=false
             for asset in $assets activity.svg og-image.png; do
@@ -250,5 +255,5 @@ jobs:
             if [ "$ok" = true ]; then echo "The live page and its assets answer."; exit 0; fi
             sleep 30
           done
-          echo "::error title=The live site failed its check::$SITE did not serve the page and its assets."
+          echo "::error title=The live site failed its check::$SITE did not serve this run's page and its assets."
           exit 1
