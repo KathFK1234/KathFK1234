@@ -278,6 +278,7 @@ npm install
 npm run dev      # local server with live reload
 npm test         # shell, file system, and completion tests
 npm run build    # type-check and build into dist/
+npm run check:site -- http://localhost:4791/   # with `npx vite preview --port 4791` running: the built site in Chrome
 python3 -m venv .venv          # for the Python scripts below, once; a distribution's own Python refuses pip installs
 . .venv/bin/activate           # in each new shell
 pip install --require-hashes -r ci/requirements.txt   # the same pinned versions the workflow uses

@@ -174,6 +174,12 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npm test
       - run: npm run build
+      # In a real browser, before anything is published
+      - name: Check the built site in Chrome
+        run: |
+          npx vite preview --port 4791 --strictPort &
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do curl -fsS -o /dev/null http://localhost:4791/ && break; sleep 1; done
+          npm run check:site -- http://localhost:4791/
       - id: page
         run: echo "sha256=$(sha256sum dist/index.html | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
