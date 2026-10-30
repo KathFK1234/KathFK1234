@@ -38,6 +38,10 @@ jobs:
         with:
           python-version: '3.14'
 
+      # Exactly the pinned files: the steps below hold a token
+      - run: pip install --quiet --require-hashes -r requirements.txt
+      - run: python3 -m unittest discover tests
+
       # Rewrites the marked README sections and src/data/stack.json.
       # If GitHub's API is unavailable the site still deploys with the last known data.
       - name: Detect languages and tools across my repositories
@@ -49,8 +53,6 @@ jobs:
           STACK_TOKEN: ${{ secrets.STACK_TOKEN }}
           OWNER: ${{ github.repository_owner }}
         run: |
-          # Exactly the pinned files: these steps hold a token that can push
-          pip install --quiet --require-hashes -r requirements.txt
           if [ -n "$STACK_TOKEN" ]; then
             GITHUB_TOKEN="$STACK_TOKEN" python3 languages_update_script.py --username "$OWNER" --include-private
           else

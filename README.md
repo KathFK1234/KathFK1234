@@ -281,6 +281,7 @@ npm run build    # type-check and build into dist/
 python3 -m venv .venv          # for the Python scripts below, once; a distribution's own Python refuses pip installs
 . .venv/bin/activate           # in each new shell
 pip install --require-hashes -r requirements.txt   # the same pinned versions the workflow uses
+python3 -m unittest discover tests   # the sync scripts' tests
 ```
 
 Pushing to `main` builds and deploys the site through [.github/workflows/deploy.yml](.github/workflows/deploy.yml). In the repository settings, Pages → Source must be set to **GitHub Actions**.
