@@ -21,17 +21,15 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  # Refreshes the data. It holds STACK_TOKEN, so it installs only the pinned,
+  # hashed Python packages, and it can read this repository but not change it.
+  sync:
     runs-on: ubuntu-latest
-    # To commit the refreshed data. This job runs npm and pip installs, so it
-    # gets nothing that can publish the site.
     permissions:
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v7
         with:
-          # Keep the write token off disk while npm and pip install packages;
-          # only the commit step below is given it
           persist-credentials: false
 
       - uses: actions/setup-python@v7
@@ -140,10 +138,59 @@ jobs:
         if: steps.projects.outcome == 'failure'
         run: echo "::warning title=Project updates were not refreshed::GitHub did not answer, so the changelogs and the Lately table kept their last data."
 
-      # Not on pushes: a push changes this repo's own totals, and committing back
-      # every time would leave the local clone permanently one commit behind.
+      - uses: actions/upload-artifact@v7
+        with:
+          name: data
+          retention-days: 1
+          path: |
+            README.md
+            src/data/
+            content/home/projects/
+            public/activity.svg
+
+  # Runs the npm packages. Code running in a job can reach that job's secrets,
+  # so this one has none, and a read-only token.
+  build:
+    needs: sync
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v8
+        with:
+          name: data
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  # Not on pushes: a push changes this repo's own totals, and committing back
+  # every time would leave the local clone permanently one commit behind.
+  # After build, so data that fails the tests never reaches main. Only this job
+  # can push, and it runs nothing from the repository or its packages.
+  commit:
+    needs: build
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v8
+        with:
+          name: data
       - name: Commit the update if anything changed
-        if: github.event_name != 'push'
         env:
           REMOTE: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
         run: |
@@ -158,17 +205,6 @@ jobs:
             git pull --rebase "$REMOTE" main
             git push "$REMOTE" HEAD:main
           fi
-
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: npm
-      - run: npm ci
-      - run: npm test
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v5
-        with:
-          path: dist
 
   deploy:
     needs: build
