@@ -128,8 +128,20 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-30",
-      "commits": 294,
+      "commits": 297,
       "recent": [
+        {
+          "date": "2026-10-30",
+          "subject": "Say in the docs what today's security and CI changes do"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Refuse to approve a rejected educator for a school that has one"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Refuse a new project name that would move it onto another project's folder"
+        },
         {
           "date": "2026-10-30",
           "subject": "Run the migrations on PostgreSQL in CI"
@@ -165,18 +177,6 @@
         {
           "date": "2026-10-30",
           "subject": "Answer 409 when a save meets a unique rule, wherever it happens"
-        },
-        {
-          "date": "2026-10-30",
-          "subject": "Say how to make and test a database backup"
-        },
-        {
-          "date": "2026-10-30",
-          "subject": "Give open requests a minute to finish when the server is stopped"
-        },
-        {
-          "date": "2026-10-30",
-          "subject": "Run pyflakes in CI"
         }
       ]
     },
