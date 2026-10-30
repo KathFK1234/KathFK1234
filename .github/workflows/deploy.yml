@@ -16,9 +16,10 @@ on:
 # Each job is given only what it uses, below
 permissions: {}
 
+# A run in progress always finishes, so a deploy is never cut off; a newer one waits
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   # Refreshes the data. It holds STACK_TOKEN, so it installs only the pinned,
