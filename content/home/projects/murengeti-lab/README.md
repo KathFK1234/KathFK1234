@@ -20,7 +20,7 @@ A school that does not run to a timetable can switch it off. The dashboard then 
 
 ## A detail I care about
 
-Importing a class list is two steps: preview, then confirm. The preview shows exactly which students, classes, and timetable slots would be created, and any warnings, before anything is written. Running the same import twice does not create duplicates. A file can be up to 10 MB, and nobody else waits while one is read. A PDF's preview is the start of its text: the first 5,000 characters, from the first 50 pages at most.
+Importing a class list is two steps: preview, then confirm. The preview shows exactly which students, classes, and timetable slots would be created, and any warnings, before anything is written. Running the same import twice does not create duplicates. An equipment list goes in whole or not at all, and an import that overwrites a roster removes those students' project files only once it is saved. A file can be up to 10 MB, and nobody else waits while one is read. A PDF's preview is the start of its text: the first 5,000 characters, from the first 50 pages at most.
 
 A kept file is served or deleted only from inside the upload folder, whatever path its record holds.
 
@@ -48,6 +48,6 @@ A deploy takes traffic only once its health check passes (the backend's after it
 
 The site is built for browsers as old as Chrome 87, Edge 88, Firefox 78 and Safari 14, because lab computers are often old: Chrome on Windows 7 and 8.1 stopped at 109.
 
-171 backend tests run on every push to main, and a smoke test opens every page in Chrome for each role. The backend installs the exact versions it was tested with, from a lock, everywhere it runs, and every push checks the pinned backend and frontend versions for known vulnerabilities.
+173 backend tests run on every push to main, and a smoke test opens every page in Chrome for each role. The backend installs the exact versions it was tested with, from a lock, everywhere it runs, and every push checks the pinned backend and frontend versions for known vulnerabilities.
 
 The source is private, so this folder holds notes, not code.
