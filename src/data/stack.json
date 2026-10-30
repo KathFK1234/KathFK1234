@@ -4,27 +4,27 @@
   "languages": [
     {
       "name": "Python",
-      "bytes": 1264354,
+      "bytes": 1299013,
       "repos": 12
     },
     {
       "name": "JavaScript",
-      "bytes": 635039,
-      "repos": 7
+      "bytes": 643132,
+      "repos": 8
     },
     {
       "name": "TypeScript",
-      "bytes": 599440,
+      "bytes": 601860,
       "repos": 2
     },
     {
       "name": "CSS",
-      "bytes": 237052,
+      "bytes": 237839,
       "repos": 10
     },
     {
       "name": "HTML",
-      "bytes": 105280,
+      "bytes": 117398,
       "repos": 12
     },
     {
@@ -103,6 +103,11 @@
       "name": "pytest",
       "category": "Testing",
       "repos": 2
+    },
+    {
+      "name": "Playwright",
+      "category": "Testing",
+      "repos": 1
     },
     {
       "name": "Vitest",

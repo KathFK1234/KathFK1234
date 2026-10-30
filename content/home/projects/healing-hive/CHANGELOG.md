@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  165 commits · first 2026-10-06 · latest 2026-10-30
+  177 commits · first 2026-10-06 · latest 2026-10-30
 
-  2026-10-30  Load the test settings in the mailer tests
-  2026-10-30  Send email through Brevo's API when BREVO_API_KEY is set
-  2026-10-30  Add the crisis detection change the last commit left out
-  2026-10-30  Notice crisis messages however they are typed
-  2026-10-30  Keep the certificate card after answering an institution's invitation
-  2026-10-30  Answer forgot password without waiting for the email
-  2026-10-30  Update react-router-dom to 7.18.5
-  2026-10-30  Update nodemailer to 10.3.0
-  2026-10-30  Update lucide-react to 1.64.0
-  2026-10-29  Limit certificate uploads to 10 an hour per account
-  2026-10-29  Tell new therapists and peer counsellors to upload their certificate
-  2026-10-29  Give professionals their practice page before verification, with certificate upload
+  2026-10-30  Handle one booking at a time per person
+  2026-10-30  Disconnect a calendar whose stored token can't be read
+  2026-10-30  Limit each CI job to 15 minutes
+  2026-10-30  Cancel pending reset links when a password changes
+  2026-10-30  Add database backups to the before-going-live list
+  2026-10-30  Warn at startup when MAIL_FROM can't work with Brevo
+  2026-10-30  Name the logo link with the words it shows
+  2026-10-30  Give public pages real copies so they answer 200
+  2026-10-30  Show a preview card when a link is shared
+  2026-10-30  Pin the workflow's actions to full commits
+  2026-10-30  Stop waiting on a silent mail server after 10 seconds
+  2026-10-30  Give a crisis message one short try at the AI
 
 From anywhere in this terminal, `updates` shows the same for every project.

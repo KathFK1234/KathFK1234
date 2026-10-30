@@ -82,7 +82,7 @@ flowchart TD
 | **Backend** | FastAPI · SQLAlchemy · Pydantic · Django · Express · SQLModel |
 | **Frontend** | React · Vite · Tailwind CSS |
 | **Data & databases** | PostgreSQL · MongoDB |
-| **Testing** | pytest · Vitest |
+| **Testing** | pytest · Playwright · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
 <sub>Detected automatically from 30 repositories (public and private) · last changed 2026-10-30</sub>
@@ -109,13 +109,13 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 43.4%" : 1234.7
-    "JavaScript · 21.8%" : 620.2
-    "TypeScript · 20.6%" : 585.4
-    "CSS · 8.1%" : 231.5
-    "HTML · 3.6%" : 102.8
+    "Python · 43.7%" : 1268.6
+    "JavaScript · 21.6%" : 628.1
+    "TypeScript · 20.2%" : 587.8
+    "CSS · 8.0%" : 232.3
+    "HTML · 3.9%" : 114.6
     "C · 2.2%" : 62.7
-    "Ruby · 0.4%" : 10.1
+    "Ruby · 0.3%" : 10.1
 ```
 <!-- languages:end -->
 
@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-30 | Load the test settings in the mailer tests |
-| MoodForecast AI | 2026-10-30 | Limit how many emails the site's forms can send in a day |
-| Murengeti Lab System | 2026-10-30 | Open a rejected educator's school again when the educator is approved |
+| Healing Hive | 2026-10-30 | Handle one booking at a time per person |
+| MoodForecast AI | 2026-10-30 | List the PostgreSQL tests in the backend README |
+| Murengeti Lab System | 2026-10-30 | Treat a new email on the built-in account as unconfirmed |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->

@@ -12,7 +12,7 @@ Written by a script from the service's own description of itself, so this list k
   GET   /api/random-activity/{location}  Pick a random activity that suits a location and its current weather.
   POST  /api/subscribe                   Ask for daily alerts about a location, or for a change to existing ones.
   POST  /api/unsubscribe-link            Email a subscriber their unsubscribe link.
-  POST  /api/unsubscribe/{token}         Stop daily alerts for the subscription the token belongs to.
+  POST  /api/unsubscribe/{token}         Stop daily alerts and delete the subscriber's details.
   GET   /api/wellbeing/{location}        Get mood and wellbeing score for a location.
   GET   /health                          Health check endpoint for Railway deploy probe.
 

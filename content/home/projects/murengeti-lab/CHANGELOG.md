@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  268 commits · first 2026-09-20 · latest 2026-10-30
+  277 commits · first 2026-09-20 · latest 2026-10-30
 
+  2026-10-30  Treat a new email on the built-in account as unconfirmed
+  2026-10-30  Tell browsers not to store API answers
+  2026-10-30  Compare passwords and setup keys as bytes, so a non-ASCII letter is refused and not a crash
+  2026-10-30  Refuse a large body on the sign-in routes before reading it
+  2026-10-30  Import the kept-file check from where it now lives
+  2026-10-30  Show a card for the system when a link to it is shared
+  2026-10-30  Say when a code host fails instead of reading it as a folder that does not exist
+  2026-10-30  Refuse a repository folder another project of the school already has
+  2026-10-30  Check that a stored path stays in the upload folder before sending or listing its file
   2026-10-30  Open a rejected educator's school again when the educator is approved
   2026-10-30  Read a CSV saved by Excel on Windows instead of refusing it with a Python error
   2026-10-30  Stop reading an inventory PDF after its first 50 pages, and say so
-  2026-10-30  Save an inventory import whole or not at all
-  2026-10-30  Delete the students' project files with them when an import overwrites the roster
-  2026-10-30  Change a password only once Back4App has taken it
-  2026-10-29  Upgrade TypeScript 5.9 to 7, the native compiler, for the frontend's type check
-  2026-10-29  Say in the README that each sign-in sends the account's details to Back4App again
-  2026-10-29  Send an account's details to Back4App at each sign-in, so an approval it missed reaches it
-  2026-10-29  Upgrade React and React DOM 18 to 19, with their types
-  2026-10-29  Give the 10 MB import limit in the README, and say a PDF import's preview is the start of its text
-  2026-10-29  Serve and delete kept files only inside the upload folder, whatever path their record holds
 
 From anywhere in this terminal, `updates` shows the same for every project.

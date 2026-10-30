@@ -8,55 +8,55 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-30",
-      "commits": 165,
+      "commits": 177,
       "recent": [
         {
           "date": "2026-10-30",
-          "subject": "Load the test settings in the mailer tests"
+          "subject": "Handle one booking at a time per person"
         },
         {
           "date": "2026-10-30",
-          "subject": "Send email through Brevo's API when BREVO_API_KEY is set"
+          "subject": "Disconnect a calendar whose stored token can't be read"
         },
         {
           "date": "2026-10-30",
-          "subject": "Add the crisis detection change the last commit left out"
+          "subject": "Limit each CI job to 15 minutes"
         },
         {
           "date": "2026-10-30",
-          "subject": "Notice crisis messages however they are typed"
+          "subject": "Cancel pending reset links when a password changes"
         },
         {
           "date": "2026-10-30",
-          "subject": "Keep the certificate card after answering an institution's invitation"
+          "subject": "Add database backups to the before-going-live list"
         },
         {
           "date": "2026-10-30",
-          "subject": "Answer forgot password without waiting for the email"
+          "subject": "Warn at startup when MAIL_FROM can't work with Brevo"
         },
         {
           "date": "2026-10-30",
-          "subject": "Update react-router-dom to 7.18.5"
+          "subject": "Name the logo link with the words it shows"
         },
         {
           "date": "2026-10-30",
-          "subject": "Update nodemailer to 10.3.0"
+          "subject": "Give public pages real copies so they answer 200"
         },
         {
           "date": "2026-10-30",
-          "subject": "Update lucide-react to 1.64.0"
+          "subject": "Show a preview card when a link is shared"
         },
         {
-          "date": "2026-10-29",
-          "subject": "Limit certificate uploads to 10 an hour per account"
+          "date": "2026-10-30",
+          "subject": "Pin the workflow's actions to full commits"
         },
         {
-          "date": "2026-10-29",
-          "subject": "Tell new therapists and peer counsellors to upload their certificate"
+          "date": "2026-10-30",
+          "subject": "Stop waiting on a silent mail server after 10 seconds"
         },
         {
-          "date": "2026-10-29",
-          "subject": "Give professionals their practice page before verification, with certificate upload"
+          "date": "2026-10-30",
+          "subject": "Give a crisis message one short try at the AI"
         }
       ]
     },
@@ -68,55 +68,55 @@
       "team": false,
       "started": "2026-06-05",
       "updated": "2026-10-30",
-      "commits": 167,
+      "commits": 197,
       "recent": [
         {
           "date": "2026-10-30",
-          "subject": "Limit how many emails the site's forms can send in a day"
+          "subject": "List the PostgreSQL tests in the backend README"
         },
         {
           "date": "2026-10-30",
-          "subject": "Send security headers with every response"
+          "subject": "Remove an unused import from the mood engine tests"
         },
         {
           "date": "2026-10-30",
-          "subject": "Document the Gmail sender behaviour and the MAIL_FROM error"
+          "subject": "Bring the READMEs up to date with the new files and deletion"
         },
         {
           "date": "2026-10-30",
-          "subject": "Stop one subscriber's failed alert ending the run for everyone after them"
+          "subject": "Tell search engines which address is the real one"
         },
         {
           "date": "2026-10-30",
-          "subject": "Correct where unsubscribe tokens come from and what PUBLIC_URL is for"
+          "subject": "Add a privacy page"
         },
         {
           "date": "2026-10-30",
-          "subject": "Remove the README note that says subscribing needs no confirmation"
+          "subject": "Say the wellbeing ideas aren't medical advice"
         },
         {
           "date": "2026-10-30",
-          "subject": "Say so plainly when MAIL_FROM is malformed"
+          "subject": "Test the page in a real browser in CI"
         },
         {
           "date": "2026-10-30",
-          "subject": "Make unsubscribing a pop-up"
+          "subject": "Compress responses"
         },
         {
           "date": "2026-10-30",
-          "subject": "Tell subscribers to check their spam folder"
+          "subject": "Share the routes' error handling"
         },
         {
-          "date": "2026-10-29",
-          "subject": "Describe the Brevo retry accurately in its docstring"
+          "date": "2026-10-30",
+          "subject": "Test the database code on real PostgreSQL in CI"
         },
         {
-          "date": "2026-10-29",
-          "subject": "Treat any Brevo error body as a failed send"
+          "date": "2026-10-30",
+          "subject": "Build and start the Docker image in CI"
         },
         {
-          "date": "2026-10-29",
-          "subject": "Mention Brevo where the README says what email alerts need"
+          "date": "2026-10-30",
+          "subject": "Check the pinned packages for known vulnerabilities in CI"
         }
       ]
     },
@@ -128,8 +128,44 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-30",
-      "commits": 268,
+      "commits": 277,
       "recent": [
+        {
+          "date": "2026-10-30",
+          "subject": "Treat a new email on the built-in account as unconfirmed"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Tell browsers not to store API answers"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Compare passwords and setup keys as bytes, so a non-ASCII letter is refused and not a crash"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Refuse a large body on the sign-in routes before reading it"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Import the kept-file check from where it now lives"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Show a card for the system when a link to it is shared"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Say when a code host fails instead of reading it as a folder that does not exist"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Refuse a repository folder another project of the school already has"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Check that a stored path stays in the upload folder before sending or listing its file"
+        },
         {
           "date": "2026-10-30",
           "subject": "Open a rejected educator's school again when the educator is approved"
@@ -141,42 +177,6 @@
         {
           "date": "2026-10-30",
           "subject": "Stop reading an inventory PDF after its first 50 pages, and say so"
-        },
-        {
-          "date": "2026-10-30",
-          "subject": "Save an inventory import whole or not at all"
-        },
-        {
-          "date": "2026-10-30",
-          "subject": "Delete the students' project files with them when an import overwrites the roster"
-        },
-        {
-          "date": "2026-10-30",
-          "subject": "Change a password only once Back4App has taken it"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Upgrade TypeScript 5.9 to 7, the native compiler, for the frontend's type check"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Say in the README that each sign-in sends the account's details to Back4App again"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Send an account's details to Back4App at each sign-in, so an approval it missed reaches it"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Upgrade React and React DOM 18 to 19, with their types"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Give the 10 MB import limit in the README, and say a PDF import's preview is the start of its text"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Serve and delete kept files only inside the upload folder, whatever path their record holds"
         }
       ]
     },

@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  167 commits · first 2026-06-05 · latest 2026-10-30
+  197 commits · first 2026-06-05 · latest 2026-10-30
 
-  2026-10-30  Limit how many emails the site's forms can send in a day
-  2026-10-30  Send security headers with every response
-  2026-10-30  Document the Gmail sender behaviour and the MAIL_FROM error
-  2026-10-30  Stop one subscriber's failed alert ending the run for everyone after them
-  2026-10-30  Correct where unsubscribe tokens come from and what PUBLIC_URL is for
-  2026-10-30  Remove the README note that says subscribing needs no confirmation
-  2026-10-30  Say so plainly when MAIL_FROM is malformed
-  2026-10-30  Make unsubscribing a pop-up
-  2026-10-30  Tell subscribers to check their spam folder
-  2026-10-29  Describe the Brevo retry accurately in its docstring
-  2026-10-29  Treat any Brevo error body as a failed send
-  2026-10-29  Mention Brevo where the README says what email alerts need
+  2026-10-30  List the PostgreSQL tests in the backend README
+  2026-10-30  Remove an unused import from the mood engine tests
+  2026-10-30  Bring the READMEs up to date with the new files and deletion
+  2026-10-30  Tell search engines which address is the real one
+  2026-10-30  Add a privacy page
+  2026-10-30  Say the wellbeing ideas aren't medical advice
+  2026-10-30  Test the page in a real browser in CI
+  2026-10-30  Compress responses
+  2026-10-30  Share the routes' error handling
+  2026-10-30  Test the database code on real PostgreSQL in CI
+  2026-10-30  Build and start the Docker image in CI
+  2026-10-30  Check the pinned packages for known vulnerabilities in CI
 
 From anywhere in this terminal, `updates` shows the same for every project.
