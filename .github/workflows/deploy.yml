@@ -257,3 +257,37 @@ jobs:
           done
           echo "::error title=The live site failed its check::$SITE did not serve this run's page and its assets."
           exit 1
+
+  # Railway deploys the same commit by itself and reports back as a commit
+  # status. A failure there would otherwise go unnoticed.
+  railway:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      statuses: read
+    steps:
+      - name: Follow Railway's deploy of this commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SITE: https://kathfk1234-production.up.railway.app/
+        run: |
+          for attempt in $(seq 1 60); do
+            state="$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/status" \
+              --jq '[.statuses[] | select(.context | startswith("Personal Website")) | .state][0] // "none"')"
+            case "$state" in
+              success)
+                curl -fsS --retry 3 --retry-all-errors -o /dev/null "$SITE"
+                echo "Railway deployed this commit and the copy answers."
+                exit 0
+                ;;
+              failure|error)
+                echo "::error title=Railway deploy failed::Railway reports $state for this commit."
+                exit 1
+                ;;
+            esac
+            sleep 10
+          done
+          echo "::error title=Railway did not report::No result from Railway after ten minutes (last state: $state)."
+          exit 1
