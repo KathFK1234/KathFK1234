@@ -224,3 +224,31 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v5
+
+  # Checks what visitors actually get. It needs no token at all.
+  verify:
+    needs: deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: {}
+    steps:
+      - name: Check the live page and everything it loads
+        env:
+          SITE: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        run: |
+          # Pages can take a moment to serve a new deploy
+          for attempt in 1 2 3 4 5 6; do
+            ok=true
+            curl -fsS --retry 2 "$SITE" -o page.html || ok=false
+            grep -q 'Content-Security-Policy' page.html || ok=false
+            grep -q '<title>Katheu Kilonzo' page.html || ok=false
+            assets="$(grep -oE '(src|href)="\./assets/[^"]+"' page.html | cut -d'"' -f2)"
+            [ -n "$assets" ] || ok=false
+            for asset in $assets activity.svg og-image.png; do
+              curl -fsS -o /dev/null "$SITE$asset" || ok=false
+            done
+            if [ "$ok" = true ]; then echo "The live page and its assets answer."; exit 0; fi
+            sleep 30
+          done
+          echo "::error title=The live site failed its check::$SITE did not serve the page and its assets."
+          exit 1
