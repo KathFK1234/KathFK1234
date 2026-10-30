@@ -16,6 +16,8 @@ const browser = await puppeteer.launch({
   args: ['--no-sandbox'],
 });
 const page = await browser.newPage();
+// New output fades in; measured mid-fade, its contrast would read as too low.
+await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
 const problems = [];
 page.on('console', message => {
   if (message.type() === 'error' || /Content.Security.Policy/i.test(message.text())) problems.push(`console: ${message.text().slice(0, 200)}`);
@@ -34,7 +36,7 @@ const look = async label => {
   const sideways = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   if (sideways > 0) problems.push(`${label}: ${sideways}px of sideways scrolling`);
   await page.evaluate(axeSource);
-  const found = await page.evaluate(async () => (await window.axe.run(document)).violations.map(violation => violation.id));
+  const found = await page.evaluate(async () => (await window.axe.run(document)).violations.map(violation => `${violation.id} ${violation.nodes[0].target}`));
   if (found.length) problems.push(`${label}: ${found.join(', ')}`);
 };
 
