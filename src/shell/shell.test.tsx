@@ -250,6 +250,12 @@ describe('commands', () => {
     expect(await run('echo hi $USER')).toBe('hi visitor');
   });
 
+  it('says so when the mood service answers in a form it cannot read', async () => {
+    vi.stubGlobal('fetch', async () => new Response('{}', { status: 200 }));
+    const { warnings } = shell();
+    expect(await warnings('mood nairobi')).toMatch(/form this terminal cannot read/);
+  });
+
   it('lets a shared link run only commands that read', () => {
     for (const line of ['projects', 'cat README.md', 'mood nairobi', ' HELP ']) expect(canDeepLink(line)).toBe(true);
     for (const line of ['echo pay here', 'theme amber', 'history -c', 'open github', 'cd projects', 'nosuchcommand', ''])

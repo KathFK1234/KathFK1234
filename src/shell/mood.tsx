@@ -1046,6 +1046,15 @@ async function other(endpoint: Endpoint, words: string[], ctx: Ctx): Promise<Rea
 }
 
 export async function mood(args: string[], ctx: Ctx): Promise<ReactNode> {
+  try {
+    return await answer(args, ctx);
+  } catch {
+    // The service is another system: what it sends may not be the shape this terminal knows.
+    return <Warn>mood: MoodForecast AI answered in a form this terminal cannot read.</Warn>;
+  }
+}
+
+async function answer(args: string[], ctx: Ctx): Promise<ReactNode> {
   const session = ctx.state.mood;
   const words = args.filter(Boolean);
   // "mood in nairobi", "mood for tokyo": the first word is not part of the place.
