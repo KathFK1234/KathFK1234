@@ -256,6 +256,14 @@ describe('commands', () => {
     expect(await warnings('mood nairobi')).toMatch(/form this terminal cannot read/);
   });
 
+  it('keeps every command standing whatever it is given', async () => {
+    const odd = ['-', '-n abc', '-n -1', '-L abc', '__proto__', 'constructor', '../../..', '/etc/passwd', '[', '(', '\\', '.*'];
+    odd.push('(a+)+$', '"', '$__proto__', '<script>', 'a'.repeat(5000), '. -name [', 'README.md/x');
+    const { warnings } = shell();
+    for (const name of commandNames().filter(name => name !== 'mood'))
+      for (const arg of odd) expect(await warnings(`${name} ${arg}`), `${name} ${arg}`).not.toMatch(/went wrong/);
+  });
+
   it('lets a shared link run only commands that read', () => {
     for (const line of ['projects', 'cat README.md', 'mood nairobi', ' HELP ']) expect(canDeepLink(line)).toBe(true);
     for (const line of ['echo pay here', 'theme amber', 'history -c', 'open github', 'cd projects', 'nosuchcommand', ''])
