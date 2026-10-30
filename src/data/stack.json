@@ -4,12 +4,12 @@
   "languages": [
     {
       "name": "Python",
-      "bytes": 1258685,
+      "bytes": 1264354,
       "repos": 12
     },
     {
       "name": "JavaScript",
-      "bytes": 630438,
+      "bytes": 635039,
       "repos": 7
     },
     {
@@ -19,12 +19,12 @@
     },
     {
       "name": "CSS",
-      "bytes": 236064,
+      "bytes": 237052,
       "repos": 10
     },
     {
       "name": "HTML",
-      "bytes": 104250,
+      "bytes": 105280,
       "repos": 12
     },
     {

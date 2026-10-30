@@ -2,8 +2,10 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  163 commits · first 2026-10-06 · latest 2026-10-30
+  165 commits · first 2026-10-06 · latest 2026-10-30
 
+  2026-10-30  Load the test settings in the mailer tests
+  2026-10-30  Send email through Brevo's API when BREVO_API_KEY is set
   2026-10-30  Add the crisis detection change the last commit left out
   2026-10-30  Notice crisis messages however they are typed
   2026-10-30  Keep the certificate card after answering an institution's invitation
@@ -14,7 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-10-29  Limit certificate uploads to 10 an hour per account
   2026-10-29  Tell new therapists and peer counsellors to upload their certificate
   2026-10-29  Give professionals their practice page before verification, with certificate upload
-  2026-10-29  Keep a switched-off reminder readable
-  2026-10-29  Give the browser-tab icon the logo's softer honey
 
 From anywhere in this terminal, `updates` shows the same for every project.

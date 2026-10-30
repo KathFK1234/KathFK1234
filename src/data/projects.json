@@ -8,8 +8,16 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-30",
-      "commits": 163,
+      "commits": 165,
       "recent": [
+        {
+          "date": "2026-10-30",
+          "subject": "Load the test settings in the mailer tests"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Send email through Brevo's API when BREVO_API_KEY is set"
+        },
         {
           "date": "2026-10-30",
           "subject": "Add the crisis detection change the last commit left out"
@@ -49,14 +57,6 @@
         {
           "date": "2026-10-29",
           "subject": "Give professionals their practice page before verification, with certificate upload"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Keep a switched-off reminder readable"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Give the browser-tab icon the logo's softer honey"
         }
       ]
     },
@@ -68,8 +68,36 @@
       "team": false,
       "started": "2026-06-05",
       "updated": "2026-10-30",
-      "commits": 160,
+      "commits": 167,
       "recent": [
+        {
+          "date": "2026-10-30",
+          "subject": "Limit how many emails the site's forms can send in a day"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Send security headers with every response"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Document the Gmail sender behaviour and the MAIL_FROM error"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Stop one subscriber's failed alert ending the run for everyone after them"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Correct where unsubscribe tokens come from and what PUBLIC_URL is for"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Remove the README note that says subscribing needs no confirmation"
+        },
+        {
+          "date": "2026-10-30",
+          "subject": "Say so plainly when MAIL_FROM is malformed"
+        },
         {
           "date": "2026-10-30",
           "subject": "Make unsubscribing a pop-up"
@@ -89,34 +117,6 @@
         {
           "date": "2026-10-29",
           "subject": "Mention Brevo where the README says what email alerts need"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Log Brevo's own reason when retrying without headers"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Send email through Brevo's API, which works on Railway's Hobby plan"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Say alerts go to confirmed subscribers in the docstring and README query"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Ask subscribers from before confirmation to confirm too"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Keep the test tools out of the production image"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "List the confirmation step in the README's endpoint table"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Disable the subscribe form when email alerts aren't available"
         }
       ]
     },
@@ -128,8 +128,12 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-30",
-      "commits": 267,
+      "commits": 268,
       "recent": [
+        {
+          "date": "2026-10-30",
+          "subject": "Open a rejected educator's school again when the educator is approved"
+        },
         {
           "date": "2026-10-30",
           "subject": "Read a CSV saved by Excel on Windows instead of refusing it with a Python error"
@@ -173,10 +177,6 @@
         {
           "date": "2026-10-29",
           "subject": "Serve and delete kept files only inside the upload folder, whatever path their record holds"
-        },
-        {
-          "date": "2026-10-29",
-          "subject": "Stop reading a PDF import once its preview has its 5,000 characters, and after 50 pages at most"
         }
       ]
     },

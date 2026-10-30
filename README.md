@@ -109,11 +109,11 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 43.4%" : 1229.2
-    "JavaScript · 21.7%" : 615.7
+    "Python · 43.4%" : 1234.7
+    "JavaScript · 21.8%" : 620.2
     "TypeScript · 20.6%" : 585.4
-    "CSS · 8.1%" : 230.5
-    "HTML · 3.6%" : 101.8
+    "CSS · 8.1%" : 231.5
+    "HTML · 3.6%" : 102.8
     "C · 2.2%" : 62.7
     "Ruby · 0.4%" : 10.1
 ```
@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-30 | Add the crisis detection change the last commit left out |
-| MoodForecast AI | 2026-10-30 | Make unsubscribing a pop-up |
-| Murengeti Lab System | 2026-10-30 | Read a CSV saved by Excel on Windows instead of refusing it with a Python error |
+| Healing Hive | 2026-10-30 | Load the test settings in the mailer tests |
+| MoodForecast AI | 2026-10-30 | Limit how many emails the site's forms can send in a day |
+| Murengeti Lab System | 2026-10-30 | Open a rejected educator's school again when the educator is approved |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->
