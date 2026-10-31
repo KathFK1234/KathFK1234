@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  297 commits · first 2026-09-20 · latest 2026-10-30
+  314 commits · first 2026-09-20 · latest 2026-10-31
 
-  2026-10-30  Say in the docs what today's security and CI changes do
-  2026-10-30  Refuse to approve a rejected educator for a school that has one
-  2026-10-30  Refuse a new project name that would move it onto another project's folder
-  2026-10-30  Run the migrations on PostgreSQL in CI
-  2026-10-30  Index the columns the common lookups filter by
-  2026-10-30  Serve the fonts from the site, not from Google
-  2026-10-30  Wait longer in the smoke test, so a busy machine does not fail it
-  2026-10-30  Bring small text up to the WCAG AA contrast minimum in both themes
-  2026-10-30  Test how the code host clients report failures
-  2026-10-30  Drop a repeated import and a list copied for nothing
-  2026-10-30  Keep one copy of the row limit for sheets and of the safe file name
-  2026-10-30  Answer 409 when a save meets a unique rule, wherever it happens
+  2026-10-31  Bring focus back into a dialog when a browser lets it slip out
+  2026-10-31  Pass axe in every dialog, in both themes and at phone width
+  2026-10-31  Keep keyboard focus inside a dialog and give it back on closing
+  2026-10-31  Empty the built-in account of its person when it is removed
+  2026-10-31  Take a deleted student's name out of what was typed about them
+  2026-10-31  List equipment photos without reading them from the database
+  2026-10-31  Search for what was typed: % and _ are ordinary characters
+  2026-10-31  Refuse a name of only spaces, and tidy spaces around any name
+  2026-10-31  Keep a long file name to what the disk takes, with its extension
+  2026-10-31  Run the tests on PostgreSQL in CI
+  2026-10-31  Move PostgreSQL's account numbers past the built-in account
+  2026-10-31  Refresh the backend lock to pydantic 2.14.2, opentelemetry-api 1.45.2 and websockets 17.4
 
 From anywhere in this terminal, `updates` shows the same for every project.

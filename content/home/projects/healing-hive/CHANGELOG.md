@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  182 commits · first 2026-10-06 · latest 2026-10-30
+  203 commits · first 2026-10-06 · latest 2026-10-31
 
-  2026-10-30  List account deletion and a privacy notice as not built
-  2026-10-30  Point to help when someone picks the lowest mood
-  2026-10-30  Fit every page on 320px phones
-  2026-10-30  Test the companion's crisis fallback
-  2026-10-30  Let only the first of two status changes through
-  2026-10-30  Handle one booking at a time per person
-  2026-10-30  Disconnect a calendar whose stored token can't be read
-  2026-10-30  Limit each CI job to 15 minutes
-  2026-10-30  Cancel pending reset links when a password changes
-  2026-10-30  Add database backups to the before-going-live list
-  2026-10-30  Warn at startup when MAIL_FROM can't work with Brevo
-  2026-10-30  Name the logo link with the words it shows
+  2026-10-31  Tell a removed professional they were removed
+  2026-10-31  Say what is true about who can read private writing
+  2026-10-31  Stop waiting on a server that doesn't answer
+  2026-10-31  Treat losing the database as an outage
+  2026-10-31  Point to help when a companion message fails to send
+  2026-10-31  Answer a crisis message even over the chat limit
+  2026-10-31  Notice more ways of saying it in the crisis screen
+  2026-10-31  Give the safety reply when the model declines a crisis message
+  2026-10-31  Keep a cancel that lands while a meeting is arranged
+  2026-10-31  Limit requests per address across the API
+  2026-10-31  Let hosts edit their events
+  2026-10-31  Let the host edit an event that is under way
 
 From anywhere in this terminal, `updates` shows the same for every project.

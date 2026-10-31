@@ -7,56 +7,56 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-10-30",
-      "commits": 182,
+      "updated": "2026-10-31",
+      "commits": 203,
       "recent": [
         {
-          "date": "2026-10-30",
-          "subject": "List account deletion and a privacy notice as not built"
+          "date": "2026-10-31",
+          "subject": "Tell a removed professional they were removed"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Point to help when someone picks the lowest mood"
+          "date": "2026-10-31",
+          "subject": "Say what is true about who can read private writing"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Fit every page on 320px phones"
+          "date": "2026-10-31",
+          "subject": "Stop waiting on a server that doesn't answer"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Test the companion's crisis fallback"
+          "date": "2026-10-31",
+          "subject": "Treat losing the database as an outage"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Let only the first of two status changes through"
+          "date": "2026-10-31",
+          "subject": "Point to help when a companion message fails to send"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Handle one booking at a time per person"
+          "date": "2026-10-31",
+          "subject": "Answer a crisis message even over the chat limit"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Disconnect a calendar whose stored token can't be read"
+          "date": "2026-10-31",
+          "subject": "Notice more ways of saying it in the crisis screen"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Limit each CI job to 15 minutes"
+          "date": "2026-10-31",
+          "subject": "Give the safety reply when the model declines a crisis message"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Cancel pending reset links when a password changes"
+          "date": "2026-10-31",
+          "subject": "Keep a cancel that lands while a meeting is arranged"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Add database backups to the before-going-live list"
+          "date": "2026-10-31",
+          "subject": "Limit requests per address across the API"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Warn at startup when MAIL_FROM can't work with Brevo"
+          "date": "2026-10-31",
+          "subject": "Let hosts edit their events"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Name the logo link with the words it shows"
+          "date": "2026-10-31",
+          "subject": "Let the host edit an event that is under way"
         }
       ]
     },
@@ -67,56 +67,56 @@
       "url": "https://github.com/KathFK1234/moodforecast_ai",
       "team": false,
       "started": "2026-06-05",
-      "updated": "2026-10-30",
-      "commits": 197,
+      "updated": "2026-10-31",
+      "commits": 224,
       "recent": [
         {
-          "date": "2026-10-30",
-          "subject": "List the PostgreSQL tests in the backend README"
+          "date": "2026-10-31",
+          "subject": "Document BREVO_API_URL"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Remove an unused import from the mood engine tests"
+          "date": "2026-10-31",
+          "subject": "Test the NUL byte tokens on real PostgreSQL"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Bring the READMEs up to date with the new files and deletion"
+          "date": "2026-10-31",
+          "subject": "Add a sitemap"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Tell search engines which address is the real one"
+          "date": "2026-10-31",
+          "subject": "Say the daily email's ideas aren't medical advice"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Add a privacy page"
+          "date": "2026-10-31",
+          "subject": "Serve the font files with the right type"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Say the wellbeing ideas aren't medical advice"
+          "date": "2026-10-31",
+          "subject": "Serve the font from the site so visits don't reach Google"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Test the page in a real browser in CI"
+          "date": "2026-10-31",
+          "subject": "Check the Docker image serves the page and preview image in CI"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Compress responses"
+          "date": "2026-10-31",
+          "subject": "Don't fail run_tests.sh on a slow outside weather service"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Share the routes' error handling"
+          "date": "2026-10-31",
+          "subject": "Use the last forecast when the weather service sends a null temperature"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Test the database code on real PostgreSQL in CI"
+          "date": "2026-10-31",
+          "subject": "Treat a weather reply that isn't JSON as the service being down"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Build and start the Docker image in CI"
+          "date": "2026-10-31",
+          "subject": "Limit how many form emails one address can receive in a day"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Check the pinned packages for known vulnerabilities in CI"
+          "date": "2026-10-31",
+          "subject": "Document the new unsubscribe redirect and when tokens leave the address"
         }
       ]
     },
@@ -127,56 +127,56 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-30",
-      "commits": 297,
+      "updated": "2026-10-31",
+      "commits": 314,
       "recent": [
         {
-          "date": "2026-10-30",
-          "subject": "Say in the docs what today's security and CI changes do"
+          "date": "2026-10-31",
+          "subject": "Bring focus back into a dialog when a browser lets it slip out"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Refuse to approve a rejected educator for a school that has one"
+          "date": "2026-10-31",
+          "subject": "Pass axe in every dialog, in both themes and at phone width"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Refuse a new project name that would move it onto another project's folder"
+          "date": "2026-10-31",
+          "subject": "Keep keyboard focus inside a dialog and give it back on closing"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Run the migrations on PostgreSQL in CI"
+          "date": "2026-10-31",
+          "subject": "Empty the built-in account of its person when it is removed"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Index the columns the common lookups filter by"
+          "date": "2026-10-31",
+          "subject": "Take a deleted student's name out of what was typed about them"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Serve the fonts from the site, not from Google"
+          "date": "2026-10-31",
+          "subject": "List equipment photos without reading them from the database"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Wait longer in the smoke test, so a busy machine does not fail it"
+          "date": "2026-10-31",
+          "subject": "Search for what was typed: % and _ are ordinary characters"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Bring small text up to the WCAG AA contrast minimum in both themes"
+          "date": "2026-10-31",
+          "subject": "Refuse a name of only spaces, and tidy spaces around any name"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Test how the code host clients report failures"
+          "date": "2026-10-31",
+          "subject": "Keep a long file name to what the disk takes, with its extension"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Drop a repeated import and a list copied for nothing"
+          "date": "2026-10-31",
+          "subject": "Run the tests on PostgreSQL in CI"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Keep one copy of the row limit for sheets and of the safe file name"
+          "date": "2026-10-31",
+          "subject": "Move PostgreSQL's account numbers past the built-in account"
         },
         {
-          "date": "2026-10-30",
-          "subject": "Answer 409 when a save meets a unique rule, wherever it happens"
+          "date": "2026-10-31",
+          "subject": "Refresh the backend lock to pydantic 2.14.2, opentelemetry-api 1.45.2 and websockets 17.4"
         }
       ]
     },
