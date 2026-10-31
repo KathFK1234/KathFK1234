@@ -30,6 +30,8 @@ When the server cannot be reached, the site says "Back shortly" instead of loadi
 
 Times are kept as they are typed, so a lesson can be recorded before 08:00. A "4:30" in an imported file still becomes 16:30.
 
+Small text reaches WCAG AA contrast in both themes, and a dialog keeps the keyboard's focus and gives it back on closing. The fonts come from the site, so a visit does not reach Google. A shared link shows a generic card that never names a school or a person.
+
 ## Signing in
 
 Back4App confirms who each person is: their password, their email address, and a forgotten-password link. This system keeps the roles and the schools. If Back4App cannot be reached, the password it last accepted still works, so a lesson is never held up by a sign-in.
