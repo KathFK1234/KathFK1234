@@ -727,7 +727,7 @@ describe('mood', () => {
     const long = 'a'.repeat(121);
     vi.stubGlobal('fetch', async () =>
       new Response(
-        JSON.stringify({ detail: [{ type: 'string_too_long', loc: ['path', 'location'], ctx: { max_length: 120 } }] }),
+        JSON.stringify({ detail: [{ type: 'string_too_long', loc: ['path', 'location'], msg: 'String should have at most 120 characters' }] }),
         { status: 422 },
       ),
     );

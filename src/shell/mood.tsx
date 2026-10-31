@@ -145,9 +145,11 @@ class NoReading extends Error {
 
 /** A validation answer (a list, not a sentence) that refused a place for its length, said plainly; '' for anything else. */
 function tooLong(detail: unknown): string {
-  const item = Array.isArray(detail) ? (detail as { type?: unknown; ctx?: { max_length?: unknown } }[])[0] : undefined;
+  const item = Array.isArray(detail) ? (detail as { type?: unknown; msg?: unknown }[])[0] : undefined;
   if (item?.type !== 'string_too_long') return '';
-  const limit = typeof item.ctx?.max_length === 'number' ? ` of ${item.ctx.max_length} characters` : '';
+  // The service gives its limit only in the message: "String should have at most 120 characters".
+  const most = typeof item.msg === 'string' ? /at most (\d+)/.exec(item.msg)?.[1] : undefined;
+  const limit = most ? ` of ${most} characters` : '';
   return `that place name is longer than the service's limit${limit}.`;
 }
 
