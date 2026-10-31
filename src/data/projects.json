@@ -8,8 +8,32 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-10-31",
-      "commits": 203,
+      "commits": 209,
       "recent": [
+        {
+          "date": "2026-10-31",
+          "subject": "Say the new page's title to screen readers"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Find nobody for a search holding a NUL byte"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Keep refused email addresses out of the logs"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Only mention cancelled sessions when some were"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Answer 404 for a web address that can't be decoded"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Explain the page copies and the request limits in the README"
+        },
         {
           "date": "2026-10-31",
           "subject": "Tell a removed professional they were removed"
@@ -33,30 +57,6 @@
         {
           "date": "2026-10-31",
           "subject": "Answer a crisis message even over the chat limit"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Notice more ways of saying it in the crisis screen"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Give the safety reply when the model declines a crisis message"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Keep a cancel that lands while a meeting is arranged"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Limit requests per address across the API"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Let hosts edit their events"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Let the host edit an event that is under way"
         }
       ]
     },
@@ -68,55 +68,55 @@
       "team": false,
       "started": "2026-06-05",
       "updated": "2026-10-31",
-      "commits": 224,
+      "commits": 251,
       "recent": [
         {
           "date": "2026-10-31",
-          "subject": "Document BREVO_API_URL"
+          "subject": "Document the size and rate limit errors and the new startup checks"
         },
         {
           "date": "2026-10-31",
-          "subject": "Test the NUL byte tokens on real PostgreSQL"
+          "subject": "Let screen readers hear what the forecast's rain figures mean"
         },
         {
           "date": "2026-10-31",
-          "subject": "Add a sitemap"
+          "subject": "Test the app's startup and shutdown"
         },
         {
           "date": "2026-10-31",
-          "subject": "Say the daily email's ideas aren't medical advice"
+          "subject": "Disclose request logs and in-memory limits on the privacy page"
         },
         {
           "date": "2026-10-31",
-          "subject": "Serve the font files with the right type"
+          "subject": "Say the mood score is an estimate from the weather"
         },
         {
           "date": "2026-10-31",
-          "subject": "Serve the font from the site so visits don't reach Google"
+          "subject": "Soften the daily email's mood line"
         },
         {
           "date": "2026-10-31",
-          "subject": "Check the Docker image serves the page and preview image in CI"
+          "subject": "Word the mood badge about the weather, not the reader"
         },
         {
           "date": "2026-10-31",
-          "subject": "Don't fail run_tests.sh on a slow outside weather service"
+          "subject": "Describe the site to search engines with structured data"
         },
         {
           "date": "2026-10-31",
-          "subject": "Use the last forecast when the weather service sends a null temperature"
+          "subject": "Keep the API docs out of search results"
         },
         {
           "date": "2026-10-31",
-          "subject": "Treat a weather reply that isn't JSON as the service being down"
+          "subject": "Explain the blank page when JavaScript is off"
         },
         {
           "date": "2026-10-31",
-          "subject": "Limit how many form emails one address can receive in a day"
+          "subject": "Take people to the subscribe field they left empty"
         },
         {
           "date": "2026-10-31",
-          "subject": "Document the new unsubscribe redirect and when tokens leave the address"
+          "subject": "Tell screen readers when a search finishes"
         }
       ]
     },
@@ -128,55 +128,55 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-31",
-      "commits": 314,
+      "commits": 341,
       "recent": [
         {
           "date": "2026-10-31",
-          "subject": "Bring focus back into a dialog when a browser lets it slip out"
+          "subject": "Make the small account links big enough to press"
         },
         {
           "date": "2026-10-31",
-          "subject": "Pass axe in every dialog, in both themes and at phone width"
+          "subject": "Drop the username the Back4App delete no longer logs"
         },
         {
           "date": "2026-10-31",
-          "subject": "Keep keyboard focus inside a dialog and give it back on closing"
+          "subject": "Remove expired sign-in codes when a new one is made"
         },
         {
           "date": "2026-10-31",
-          "subject": "Empty the built-in account of its person when it is removed"
+          "subject": "Index the seven foreign keys that had none"
         },
         {
           "date": "2026-10-31",
-          "subject": "Take a deleted student's name out of what was typed about them"
+          "subject": "Load an account's photo only when it is asked for"
         },
         {
           "date": "2026-10-31",
-          "subject": "List equipment photos without reading them from the database"
+          "subject": "Name accounts by id, not email address, in the Back4App warnings"
         },
         {
           "date": "2026-10-31",
-          "subject": "Search for what was typed: % and _ are ordinary characters"
+          "subject": "Keep login codes out of the log on a deployed server"
         },
         {
           "date": "2026-10-31",
-          "subject": "Refuse a name of only spaces, and tidy spaces around any name"
+          "subject": "Let the note-cleaning test run on PostgreSQL too"
         },
         {
           "date": "2026-10-31",
-          "subject": "Keep a long file name to what the disk takes, with its extension"
+          "subject": "Take a deleted student's name out of every note about someone else"
         },
         {
           "date": "2026-10-31",
-          "subject": "Run the tests on PostgreSQL in CI"
+          "subject": "Fix contrast in text that only shows with certain data"
         },
         {
           "date": "2026-10-31",
-          "subject": "Move PostgreSQL's account numbers past the built-in account"
+          "subject": "Announce form errors to screen readers"
         },
         {
           "date": "2026-10-31",
-          "subject": "Refresh the backend lock to pydantic 2.14.2, opentelemetry-api 1.45.2 and websockets 17.4"
+          "subject": "Make a clickable metric card a proper button, and keep Space from scrolling"
         }
       ]
     },
