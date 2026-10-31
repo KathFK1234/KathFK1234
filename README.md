@@ -276,7 +276,7 @@ Vite + React + TypeScript. The terminal's file system is the real [content/home/
 ```bash
 npm install
 npm run dev      # local server with live reload
-npm test         # shell, file system, and completion tests
+npm test         # shell, file system, completion and link preview tests
 npm run build    # type-check and build into dist/
 npm run check:site -- http://localhost:4791/   # with `npx vite preview --port 4791` running: the built site in Chrome
 python3 -m venv .venv          # for the Python scripts below, once; a distribution's own Python refuses pip installs
