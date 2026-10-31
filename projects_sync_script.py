@@ -378,6 +378,10 @@ def check(reader, reviewed: dict, quiet: bool) -> None:
 
 
 def mark_reviewed(reader, reviewed: dict, folders: list[str]) -> None:
+    unknown = sorted(set(folders) - {project["folder"] for project in PROJECTS})
+    if unknown:
+        # A slip here would otherwise look like success, with the mark left where it was
+        sys.exit(f"Error: no project folder called {', '.join(unknown)}. Nothing was marked.")
     for project in PROJECTS:
         if folders and project["folder"] not in folders:
             continue

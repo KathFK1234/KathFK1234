@@ -20,6 +20,15 @@ READ = {
 }
 
 
+class MarkReviewed(unittest.TestCase):
+    def test_a_folder_that_does_not_exist_stops_it_before_anything_is_marked(self):
+        reviewed = {"healing-hive": {"sha": "old", "date": "2026-10-01"}}
+        with self.assertRaises(SystemExit) as stopped:
+            projects.mark_reviewed(None, reviewed, ["healing-hive", "healing_hive"])
+        self.assertIn("healing_hive", str(stopped.exception.code))
+        self.assertEqual(reviewed["healing-hive"]["sha"], "old")
+
+
 class PrivateProjects(unittest.TestCase):
     def test_a_private_project_keeps_its_link_and_commits_to_itself(self):
         entry = projects.public_entry({"name": "Secret", "folder": "secret"}, READ)
