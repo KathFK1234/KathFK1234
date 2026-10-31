@@ -24,7 +24,7 @@ def create_app() -> FastAPI:
     # Static files (frontend)
     static_path = Path(__file__).parent / "static"
     if static_path.exists():
-        app.mount("/", StaticFiles(directory=str(static_path), html=True), name="static")
+        app.mount("/", RevalidatedStaticFiles(directory=str(static_path), html=True), name="static")
 
     return app
 
