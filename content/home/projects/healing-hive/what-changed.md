@@ -49,6 +49,8 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   v2               twenty-four pages covering every feature above, for four kinds of people: someone looking for support, a professional running their practice, an institution with professionals on its team, and an admin reviewing applications and content. Each has its own home and a short menu.
   get help now     a button on every page, signed in or not.
   themes           light and dark, from one set of colour tokens.
+  phones           every page fits a 320-pixel screen.
+  link previews    a shared link shows a generic card, so nothing personal can appear in one, and public pages answer 200 at their own address.
 
 ## Not built yet
 
