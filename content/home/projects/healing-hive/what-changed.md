@@ -7,8 +7,9 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   roles            v1 carried the role inside the sign-in token. v2 reads it from the database on every request, so approving or removing a professional takes effect at once.
   becoming a pro   v2 has one way in: apply, and an admin approves. Therapists must give a licence number, and therapists and peer counsellors must upload a certificate (a PDF or photo, checked by its contents, at most 10 uploads an hour) before they can be approved. Only they and admins can download it.
   sign-in          a wrong password and an unknown email get the same answer in the same time, so the form cannot be used to find out who has an account. Repeated failed attempts are slowed down; successful ones are not counted, because a campus or a mobile network can put many people behind one address.
-  passwords        never returned by the API, and not read from the database unless a query asks for them. Changing or resetting one signs out every other device, and asking for a reset answers without waiting for the email, so its speed does not show who has an account.
+  passwords        never returned by the API, and not read from the database unless a query asks for them. Changing or resetting one signs out every other device and cancels pending reset links, and asking for a reset answers without waiting for the email, so its speed does not show who has an account.
   sign-up          one connection can only create so many accounts.
+  request limits   every address is limited across the API, 600 requests a minute with 120 of them writes, on top of tighter limits on sign-in, resets, certificates and chat. Health and the crisis contacts stay outside.
   responses        internal fields stay out of what the API sends, and meeting and event links must be http or https.
   web app          served with a Content-Security-Policy.
   secrets          settings are checked when the server starts. A missing or weak one stops it there, not on some later request.
@@ -38,7 +39,6 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   validation       every request is checked before it reaches a handler, and errors come back in one shape. A request the server cannot read is the sender's error (400 or 415), not the server's.
   editing          emptying a box removes what was there: a rating's public comment, a journal entry's title, a professional's years of experience.
   tests            66 API tests against an in-memory database, each named for the promise it keeps, and 9 web app tests for telling an outage from an ordinary error and checking a certificate file before it is sent.
-  email changes    changing an email address, and confirming one at sign-up.
   local setup      `npm run dev` starts a database, the API and the web app together, and fills them with sample accounts for every kind of person. Email, Google Calendar and the AI companion are optional, and the app works without them.
 
 ## The web app
