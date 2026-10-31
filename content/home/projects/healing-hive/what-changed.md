@@ -38,7 +38,9 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   structure        one folder per feature (auth, sessions, journal ...) with a versioned API, where v1 had one folder per file type.
   validation       every request is checked before it reaches a handler, and errors come back in one shape. A request the server cannot read is the sender's error (400 or 415), not the server's.
   editing          emptying a box removes what was there: a rating's public comment, a journal entry's title, a professional's years of experience.
-  tests            66 API tests against an in-memory database, each named for the promise it keeps, and 9 web app tests for telling an outage from an ordinary error and checking a certificate file before it is sent.
+  tests            84 API tests against an in-memory database, each named for the promise it keeps, and 9 web app tests for telling an outage from an ordinary error and checking a certificate file before it is sent.
+  outages          losing the database counts as an outage, and the web app stops waiting on a silent server after 30 seconds, longer for the companion and files, so the calm notice shows instead of a page that hangs.
+  email            sent through Brevo's API when its key is set, because Railway's plan blocks SMTP; SMTP stays as the fallback, and a silent mail server is dropped after 10 seconds.
   local setup      `npm run dev` starts a database, the API and the web app together, and fills them with sample accounts for every kind of person. Email, Google Calendar and the AI companion are optional, and the app works without them.
 
 ## The web app

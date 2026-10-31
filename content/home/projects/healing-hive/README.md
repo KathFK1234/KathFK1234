@@ -39,7 +39,7 @@ Locally, `npm install` and `npm run dev` start a database, the API and the web a
 
 ## Stack
 
-  Node.js · Express · MongoDB (Mongoose) · Zod · JWT · Nodemailer
+  Node.js · Express · MongoDB (Mongoose) · Zod · JWT · Brevo and Nodemailer
   React · Vite · Tailwind CSS 4
   Claude API · Google Calendar and Meet
 
