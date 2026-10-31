@@ -420,6 +420,15 @@ function newFields(data: object, known: string[]): ReactNode {
   );
 }
 
+/* The service's own wording for its risk levels: about the weather, never a reading of the person. */
+const OUTLOOK: Record<string, string> = {
+  Minimal: 'weather unlikely to dampen mood',
+  Low: 'weather has little effect on mood',
+  Moderate: 'weather may dampen mood',
+  High: 'weather likely to dampen mood',
+};
+const outlook = (level: string) => OUTLOOK[level] ?? level;
+
 function weatherLine(weather: Weather): string {
   const parts = [weather.condition, `${weather.temp_c}°C`];
   if (weather.feels_like_c != null && weather.feels_like_c !== weather.temp_c) {
@@ -563,12 +572,13 @@ async function reading(place: string, ctx: Ctx): Promise<ReactNode> {
     ],
   ];
   if (why) rows.push(['why', why]);
-  rows.push(['energy', data.energy_level], ['risk', data.risk_level], ['weather', weatherLine(data.weather)]);
+  rows.push(['energy', data.energy_level], ['outlook', outlook(data.risk_level)], ['weather', weatherLine(data.weather)]);
 
   return (
     <>
       <Accent>{data.location}</Accent> <Dim>— live from the MoodForecast AI service</Dim>{'\n'}
       <Rows rows={rows} />
+      <Dim>an estimate from the weather alone, not a measure of how you feel.</Dim>{'\n'}
       {data.ai_summary ? `\n${data.ai_summary}\n` : null}
       {data.recommendations.length ? '\n' : null}
       {data.recommendations.map(item => `  • ${item}\n`)}
@@ -616,7 +626,7 @@ async function versus(places: [string, string], ctx: Ctx): Promise<ReactNode> {
       {data.mood_score}/100{data.mood_label ? ` ${data.mood_label}` : ''}
     </>,
     data.energy_level,
-    data.risk_level,
+    outlook(data.risk_level),
     `${data.weather.condition}, ${data.weather.temp_c}°C`,
     data.weather.is_day === false ? 'night' : 'day',
   ];
@@ -626,7 +636,7 @@ async function versus(places: [string, string], ctx: Ctx): Promise<ReactNode> {
   return (
     <>
       <div className="rows rows-3">
-        {['', 'mood score', 'energy', 'risk', 'weather', 'time'].map((label, index) => (
+        {['', 'mood score', 'energy', 'outlook', 'weather', 'time'].map((label, index) => (
           <Fragment key={label}>
             <Dim>{label}</Dim>
             <span>{left[index]}</span>

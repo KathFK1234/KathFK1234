@@ -380,6 +380,15 @@ const NAIROBI = {
 describe('mood', () => {
   afterEach(() => vi.unstubAllGlobals());
 
+  it('words the risk level about the weather, and says the score is only an estimate', async () => {
+    serve({ '/api/wellbeing/nairobi': { ...NAIROBI, risk_level: 'High' } });
+    const { run } = shell();
+    const out = await run('mood nairobi');
+    expect(out).toContain('weather likely to dampen mood');
+    expect(out).toContain('not a measure of how you feel');
+    expect(out).not.toMatch(/risk/);
+  });
+
   it('asks for a place instead of assuming one', async () => {
     const calls = serve({});
     const { run } = shell();
