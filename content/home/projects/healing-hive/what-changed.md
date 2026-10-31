@@ -28,7 +28,7 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
 ## Care
 
   AI companion     v1 had the code for an AI chat, not yet connected. v2 connects it to Claude, tells it what it is not (a therapist, a doctor, a human), and lets a person wipe the conversation.
-  crisis           a message that sounds like crisis always gets help contacts back, in English or Swahili, whether or not the AI answers. Every number was checked against its organisation's own details, and the lines that answer at any hour come first, with their hours shown.
+  crisis           a message that sounds like crisis always gets help contacts back, in English or Swahili, whether or not the AI answers, declines or times out, and even past the chat limit. Every number was checked against its organisation's own details, and the lines that answer at any hour come first, with their hours shown.
   check-ins        new in v2: a mood score short enough to finish when tired.
   privacy          journals, check-ins and AI conversations belong to their owner. The admin dashboard gets counts, nothing else, and so does an institution about the professionals who accepted its invitation.
 

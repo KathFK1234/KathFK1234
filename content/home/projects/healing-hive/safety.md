@@ -3,11 +3,11 @@
 Most software can fail politely. This one has a few moments where it cannot fail at all. These are the rules v2 is built around.
 
 1. Help never depends on a third party being up.
-   If a message sounds like crisis and the AI provider is slow, down, or switched off, the person still gets a caring reply and the helplines. The crisis contacts also live inside the web app, so the help page works when the server does not, and a test fails if the two copies ever differ. When the server's host is down, the app says so calmly and the crisis numbers stay on screen: on the help page, or, for someone signed in whose account cannot load, on the page saying the app is unavailable.
+   If a message sounds like crisis and the AI provider is slow, down, switched off, or declines to answer, the person still gets a caring reply and the helplines. The AI gets one short try, so a hanging provider cannot hold them back, and a crisis message past the chat limit still gets the reply. The crisis contacts also live inside the web app, so the help page works when the server does not, and a test fails if the two copies ever differ. When the server's host is down, the app says so calmly and the crisis numbers stay on screen: on the help page, or, for someone signed in whose account cannot load, on the page saying the app is unavailable.
    The lines that answer at any hour come first, and every line shows its hours. A number that only answers on weekdays is no help at two in the morning.
 
 2. Screen broadly.
-   The first check for crisis language is deliberately wide, in English and Swahili. Showing helplines to someone who did not need them costs little. Missing someone who did is the cost that matters.
+   The first check for crisis language is deliberately wide, in English and Swahili, slang included, and it copes with a phone's curly apostrophe. Tests keep everyday sentences out of it. Showing helplines to someone who did not need them costs little. Missing someone who did is the cost that matters. Picking the lowest mood at a check-in brings a gentle line with links to help; nothing is recorded or sent because of it.
 
 3. Say what the AI is not.
    Not a therapist, not a doctor, not a human. It never diagnoses or advises on medication, and it points to a person when a person is needed.
