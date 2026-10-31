@@ -53,5 +53,6 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   reminders        saved and shown in the app; sending them by SMS or email comes later.
   calls            sessions happen on Google Meet, the professional's own link, or Jitsi; there is no built-in call room.
   email changes    changing an email address, and confirming one at sign-up.
+  your data        deleting an account, downloading your data, and a privacy notice with consent at sign-up. Kenya's Data Protection Act 2019 covers this kind of health-related data.
 
-Before real people use it: the AI companion's instructions reviewed by a qualified clinician, Google's verification so every professional can connect a calendar, and the crisis numbers checked again before each release.
+Before real people use it: the data items above, the AI companion's instructions reviewed by a qualified clinician, Google's verification so every professional can connect a calendar, database backups with a restore tried once, and the crisis numbers checked again before each release.
