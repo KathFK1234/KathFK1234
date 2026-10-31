@@ -18,13 +18,13 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
 
   availability     a professional's weekly hours become a list of open slots, in East Africa Time, two weeks ahead.
   double booking   the database refuses a second booking for the same slot. Two people tapping at the same moment: exactly one succeeds.
-  waiting          a request holds its time until it is answered, so one person can have 3 waiting with the same professional and 10 in all.
+  waiting          a request holds its time until it is answered, so one person can have 3 waiting with the same professional and 10 in all. Requests sent together are handled one at a time, so they cannot slip past that limit.
   who sees what    only the two people in a session can see or change it. A professional's private notes are never sent to the client.
   price            saved at the time of booking, so a later rate change does not rewrite history.
   meeting          a confirmed session gets a link: Google Meet when the professional has connected their calendar, otherwise their own link, otherwise a private Jitsi room. Both people are emailed when a session is requested, confirmed or cancelled.
   ratings          only the client of a completed session can rate it, and only once. Reviews are shown without names.
-  cancelling       a client can cancel up to the moment a session starts. A professional removed from the directory has every upcoming session cancelled, and one under way ended, and each client is told.
-  events           a new event cannot start in the past or be moved there, and stays under Upcoming until it has ended. Deleting one emails everyone registered, and its host when an admin removes it.
+  cancelling       a client can cancel up to the moment a session starts. A professional removed from the directory has every upcoming session cancelled, and one under way ended, and each client is told; the professional is told plainly too. The answer to a cancel leaves out the professional's meeting room.
+  events           a new event cannot start in the past or be moved there, and stays under Upcoming until it has ended. Hosts can edit their events, even one under way, and people going are emailed if the time moves. Deleting one emails everyone registered, and its host when an admin removes it.
 
 ## Care
 

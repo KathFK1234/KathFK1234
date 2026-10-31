@@ -20,7 +20,7 @@ v1 answered "can this exist?". v2 asks the harder question: what does a person i
   check-ins         a 1 to 5 mood score with an optional note, private to the person
   journal           private entries, all of them readable back a page at a time; no admin route reaches them
   nuggets           short mental-health education; professionals submit, an admin publishes
-  events            wellness events with limited places, without showing who else is going
+  events            wellness events with limited places, without showing who else is going; hosts can edit theirs
   AI companion      a listener on Claude with stated limits, and a crisis reply that never depends on the AI being up
   crisis contacts   Kenyan helplines checked against each organisation's own details, the ones that answer at any hour first, kept in the web app so they work when the server does not
 
