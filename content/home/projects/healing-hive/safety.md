@@ -12,8 +12,8 @@ Most software can fail politely. This one has a few moments where it cannot fail
 3. Say what the AI is not.
    Not a therapist, not a doctor, not a human. It never diagnoses or advises on medication, and it points to a person when a person is needed.
 
-4. Private means private from us too.
-   Admins see counts. An institution sees session numbers only for professionals who accepted its invitation, never a client's name or notes. There is no route into anyone's journal, check-ins, or AI conversation, and a person can clear their conversation whenever they like.
+4. Private means no one else can open it in the app.
+   Admins see counts. An institution sees session numbers only for professionals who accepted its invitation, never a client's name or notes. There is no route into anyone's journal, check-ins, or AI conversation, for staff either, and a person can clear their conversation whenever they like. These are stored unencrypted, so the app promises only this and not "only you can read it".
 
 5. A professional is someone we checked.
    Nobody appears in the directory until an admin has approved their application, and a therapist or peer counsellor cannot be approved without a certificate on file. Until then their practice page is a preview where nothing involving clients works. Removing someone cancels their upcoming sessions and tells each client, and a deleted event emails everyone registered for it, so nobody waits for something that will not happen.
