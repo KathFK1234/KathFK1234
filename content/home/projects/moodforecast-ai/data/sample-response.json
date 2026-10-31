@@ -28,5 +28,15 @@
   "recommendations": [
     "Call a friend for an outdoor catch-up — a park bench beats a group chat today.",
     "Tackle your hardest task first, then celebrate with a proper break."
+  ],
+  "curiosity": [
+    {
+      "question": "Ever wondered what the weather does in Marrakech?",
+      "location": "Marrakech"
+    },
+    {
+      "question": "Is it day or night in Buenos Aires right now? Take a guess, then check.",
+      "location": "Buenos Aires"
+    }
   ]
 }
