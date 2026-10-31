@@ -5,6 +5,9 @@ Vanilla HTML, CSS, and JavaScript. No framework and no build step: the FastAPI a
   index.html    search box, current conditions, mood summary, activity question, daily-email sign-up
   app.js        calls the API (wellbeing, forecast, activities, place suggestions) and renders results
   styles.css    mobile-first layout
+  privacy.html  what the site does with people's details
+  dm-sans-*     the font, served from the site so a visit does not reach Google
+  og-image.png  the card a shared link shows
 
 Design goal: a person should understand the score before they understand the system. Number first, reason second, recommendation third.
 

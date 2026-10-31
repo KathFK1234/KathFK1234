@@ -6,6 +6,8 @@ It can also email a daily activity for a place. Nothing starts until the address
 
 Details are kept only while they have a use. Unsubscribing deletes them straight away, a request nobody confirms goes after 48 hours, and addresses and tokens stay out of the logs. The forms cannot be used to flood anyone: at most 100 form emails a day, and 5 to one address.
 
+The page has a privacy page of its own, says its ideas are not medical advice, as the daily email does, and serves its font from the site, so a visit does not reach Google.
+
 ## Stack
 
   FastAPI · Pydantic · SQLModel · httpx · pytest
