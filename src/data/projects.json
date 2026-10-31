@@ -128,8 +128,24 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-31",
-      "commits": 341,
+      "commits": 345,
       "recent": [
+        {
+          "date": "2026-10-31",
+          "subject": "Test the Resend mail path and its failures"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Let the keyboard scroll the lessons table"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Refuse a project that ends before it starts"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Refuse a second lesson for the same group at the same time"
+        },
         {
           "date": "2026-10-31",
           "subject": "Make the small account links big enough to press"
@@ -161,22 +177,6 @@
         {
           "date": "2026-10-31",
           "subject": "Let the note-cleaning test run on PostgreSQL too"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Take a deleted student's name out of every note about someone else"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Fix contrast in text that only shows with certain data"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Announce form errors to screen readers"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Make a clickable metric card a proper button, and keep Space from scrolling"
         }
       ]
     },

@@ -109,9 +109,9 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 44.2%" : 1329.1
+    "Python · 44.3%" : 1332.9
     "JavaScript · 21.7%" : 652.9
-    "TypeScript · 19.8%" : 594.2
+    "TypeScript · 19.8%" : 595.4
     "CSS · 7.9%" : 238.1
     "HTML · 4.0%" : 119.8
     "C · 2.1%" : 62.7
@@ -191,7 +191,7 @@ Built at Chakula Africa · source is private
 | --- | --- | --- |
 | Healing Hive | 2026-10-31 | Say the new page's title to screen readers |
 | MoodForecast AI | 2026-10-31 | Document the size and rate limit errors and the new startup checks |
-| Murengeti Lab System | 2026-10-31 | Make the small account links big enough to press |
+| Murengeti Lab System | 2026-10-31 | Test the Resend mail path and its failures |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->
