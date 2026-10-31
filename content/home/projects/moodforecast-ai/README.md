@@ -21,7 +21,9 @@ The endpoint list is in `API.md`, next to this file. It is rewritten from the se
 
   `cat ~/projects/moodforecast-ai/API.md`
 
-Weather is cached for 10 minutes. The scoring engine, the activity advisor, the daily alerts and the endpoints are all covered by tests, which run on every push. Every install uses the exact versions the tests ran with, and the production image carries no test tools.
+Weather is cached for 10 minutes. If Open-Meteo cannot be reached, a forecast up to an hour old is served instead; a place with nothing saved gets a plain error, not the weather service's own text. One visitor can make 300 API requests a minute and use the email forms 20 times an hour, and a request body over 4 KB is refused.
+
+The scoring engine, the activity advisor, the daily alerts and the endpoints are all covered by tests, which run on every push. Every install uses the exact versions the tests ran with, and the production image carries no test tools.
 
 ## Links
 

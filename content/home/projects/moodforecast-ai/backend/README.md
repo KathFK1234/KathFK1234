@@ -1,6 +1,6 @@
 # Backend — FastAPI application, routers, and services
 
-  app/main.py                      application factory, CORS, static mount, daily-alert loop
+  app/main.py                      application factory, CORS, security headers, request limits, static mount, daily-alert loop
   app/routers/wellbeing.py         GET /api/wellbeing/{location}
   app/routers/forecast.py          GET /api/forecast/{location}
   app/routers/activity.py          activity verdicts, suggestions and random picks
@@ -13,5 +13,8 @@
   app/services/curiosity.py        questions that point to other places
   app/services/cache.py            in-memory TTL cache, capped at 5,000 entries
   app/services/geocoding.py        location name -> coordinates
+  app/services/alerts.py           composes and sends the five emails, deletes what is no longer needed
+  app/services/mailer.py           Brevo's API, or SMTP where it is allowed
+  app/services/rate_limit.py       how often one visitor can use the API and the forms
 
 The files next to this one are short excerpts. The full source is at https://github.com/KathFK1234/moodforecast_ai/tree/main/backend
