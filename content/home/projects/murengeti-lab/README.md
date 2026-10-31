@@ -50,6 +50,6 @@ A deploy takes traffic only once its health check passes (the backend's after it
 
 The site is built for browsers as old as Chrome 87, Edge 88, Firefox 78 and Safari 14, because lab computers are often old: Chrome on Windows 7 and 8.1 stopped at 109.
 
-173 backend tests run on every push to main, and a smoke test opens every page in Chrome for each role. The backend installs the exact versions it was tested with, from a lock, everywhere it runs, and every push checks the pinned backend and frontend versions for known vulnerabilities.
+203 backend tests run on every push to main, on SQLite and on real PostgreSQL, a smoke test opens every page in Chrome for each role, and the images are built and started as Railway does. The backend installs the exact versions it was tested with, from a lock, everywhere it runs, and every push checks the pinned backend and frontend versions for known vulnerabilities.
 
 The source is private, so this folder holds notes, not code.
