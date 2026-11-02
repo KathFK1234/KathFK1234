@@ -1,6 +1,7 @@
 // Opens the built site in Chrome at five widths and in five themes, and fails on a console error,
 // a Content-Security-Policy violation, a failed asset, sideways scrolling, text cut off inside the terminal
-// or an accessibility problem. The mood service is answered from fixed data, so no network is needed.
+// or an accessibility problem, then the keyboard: Tab, history, Shift+Tab out of the prompt and Enter on a command.
+// The mood service is answered from fixed data, so no network is needed.
 // Usage: npm run build && npx vite preview --port 4791 & node e2e/check.mjs http://localhost:4791/
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -104,6 +105,28 @@ for (const theme of ['teal', 'amber', 'matrix', 'violet', 'paper']) {
   await run('cat README.md');
   await look(`theme ${theme}`);
 }
+// The keyboard: Tab completes, the arrows walk history, Shift+Tab leaves the prompt, Enter runs a focused command
+await page.goto(url, { waitUntil: 'networkidle2' });
+await page.focus('input');
+const input = () => page.$eval('input', element => element.value);
+await page.keyboard.type('pro');
+await page.keyboard.press('Tab');
+if ((await input()) !== 'projects ') problems.push(`keyboard: Tab turned "pro" into "${await input()}"`);
+await page.keyboard.press('Enter');
+await page.keyboard.press('ArrowUp');
+if ((await input()) !== 'projects') problems.push(`keyboard: ArrowUp gave "${await input()}"`);
+await page.keyboard.down('Shift');
+await page.keyboard.press('Tab');
+await page.keyboard.up('Shift');
+const left = await page.evaluate(() => document.activeElement?.tagName);
+if (left !== 'BUTTON') problems.push(`keyboard: Shift+Tab left focus on ${left}, not a command or nav button`);
+const before = await page.$$eval('.prompt-line .typed', lines => lines.length);
+await page.keyboard.press('Enter');
+await new Promise(resolve => setTimeout(resolve, 200));
+if ((await page.$$eval('.prompt-line .typed', lines => lines.length)) <= before) problems.push('keyboard: Enter on a focused command did not run it');
+await page.keyboard.type('x');
+if ((await page.evaluate(() => document.activeElement?.tagName)) !== 'INPUT') problems.push('keyboard: typing after a button did not return to the prompt');
+
 await browser.close();
 
 for (const problem of problems) console.error(problem);
