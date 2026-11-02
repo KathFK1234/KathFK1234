@@ -10,7 +10,7 @@ const MOOD_API = 'https://moodforecastai-production.up.railway.app';
  * so it goes in a meta tag. Build only: the dev server's React preamble is an
  * inline script, which this policy would block.
  */
-function contentSecurityPolicy(moodApi: string): Plugin {
+export function contentSecurityPolicy(moodApi: string): Plugin {
   return {
     name: 'content-security-policy',
     apply: 'build',
@@ -30,7 +30,7 @@ function contentSecurityPolicy(moodApi: string): Plugin {
           // The mood command's live calls
           `connect-src 'self' ${new URL(moodApi).origin}`,
           "object-src 'none'",
-          "base-uri 'self'",
+          "base-uri 'none'",
           "form-action 'none'",
           "require-trusted-types-for 'script'",
         ].join('; ');
