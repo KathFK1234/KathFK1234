@@ -91,6 +91,11 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('ignores a find -type that is not d or f, even one named like a built-in', async () => {
+    const { run } = shell();
+    expect(await run('find -type constructor mood')).toBe(await run('find mood'));
+  });
+
   it('has unique names and aliases', () => {
     const all = commands.flatMap(command => [command.name, ...(command.aliases ?? [])]);
     expect(new Set(all).size).toBe(all.length);

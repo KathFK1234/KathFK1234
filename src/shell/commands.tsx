@@ -966,7 +966,10 @@ export const commands: Command[] = [
       let kind: 'dir' | 'file' | null = null;
       const operands: string[] = [];
       for (let i = 0; i < args.length; i++) {
-        if (args[i] === '-type') kind = { d: 'dir' as const, f: 'file' as const }[args[++i]] ?? null;
+        if (args[i] === '-type') {
+          const type = args[++i];
+          kind = type === 'd' ? 'dir' : type === 'f' ? 'file' : null;
+        }
         else if (!args[i].startsWith('-') && args[i] !== '.') operands.push(args[i]);
       }
       const query = (operands[operands.length - 1] ?? '').replace(/\*/g, '').toLowerCase();
