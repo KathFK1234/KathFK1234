@@ -143,6 +143,11 @@ class NoReading extends Error {
   }
 }
 
+/** The service answered, but with something that is not JSON. */
+class Unreadable extends Error {}
+
+const UNREADABLE = <Warn>mood: MoodForecast AI answered in a form this terminal cannot read.</Warn>;
+
 /** A validation answer (a list, not a sentence) that refused a place for its length, said plainly; '' for anything else. */
 function tooLong(detail: unknown): string {
   const item = Array.isArray(detail) ? (detail as { type?: unknown; msg?: unknown }[])[0] : undefined;
@@ -159,7 +164,11 @@ async function ask<T>(path: string, timeout = 15000): Promise<T> {
     const body = (await response.json().catch(() => null)) as { detail?: unknown } | null;
     throw new NoReading(response.status, typeof body?.detail === 'string' ? body.detail : tooLong(body?.detail));
   }
-  return (await response.json()) as T;
+  try {
+    return (await response.json()) as T;
+  } catch {
+    throw new Unreadable();
+  }
 }
 
 /* ---------- finding out what the service can do ---------- */
@@ -505,6 +514,7 @@ async function lookalikes(typed: string, session: MoodSession): Promise<string[]
 
 /** What to say when the service gave no reading. Its own explanation is used whenever it sent one. */
 async function problem(error: unknown, place: string, session: MoodSession): Promise<ReactNode> {
+  if (error instanceof Unreadable) return UNREADABLE;
   if (error instanceof NoReading && error.status === 422) {
     const close = await lookalikes(place, session);
     return (
@@ -1062,7 +1072,7 @@ export async function mood(args: string[], ctx: Ctx): Promise<ReactNode> {
     return await answer(args, ctx);
   } catch {
     // The service is another system: what it sends may not be the shape this terminal knows.
-    return <Warn>mood: MoodForecast AI answered in a form this terminal cannot read.</Warn>;
+    return UNREADABLE;
   }
 }
 

@@ -728,6 +728,14 @@ describe('mood', () => {
     expect(await run('mood nairobi')).toMatch(/could not reach the MoodForecast AI service/);
   });
 
+  it('says the service answered in a form it cannot read, not that it could not be reached', async () => {
+    vi.stubGlobal('fetch', async () => new Response('<!doctype html><p>a page, not JSON</p>', { status: 200 }));
+    const { run } = shell();
+    const out = await run('mood nairobi');
+    expect(out).toMatch(/MoodForecast AI answered in a form this terminal cannot read/);
+    expect(out).not.toMatch(/could not reach/);
+  });
+
   it('says a place name is too long when the service refuses it for its length', async () => {
     const long = 'a'.repeat(121);
     vi.stubGlobal('fetch', async () =>
