@@ -7,9 +7,41 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-10-31",
-      "commits": 209,
+      "updated": "2026-11-02",
+      "commits": 217,
       "recent": [
+        {
+          "date": "2026-11-02",
+          "subject": "Put the Railway secrets warning before the migration steps"
+        },
+        {
+          "date": "2026-11-02",
+          "subject": "Warn in the Railway migration steps against flags that expose secrets"
+        },
+        {
+          "date": "2026-11-02",
+          "subject": "Say which Railway plans block SMTP"
+        },
+        {
+          "date": "2026-11-02",
+          "subject": "Say in the README how to move Railway's settings off railway.json before 1 December"
+        },
+        {
+          "date": "2026-11-02",
+          "subject": "Let Railway restart the API up to 10 times after a crash"
+        },
+        {
+          "date": "2026-11-02",
+          "subject": "Give requests in progress 75 seconds to finish when Railway replaces the API"
+        },
+        {
+          "date": "2026-11-02",
+          "subject": "Update eslint to 10.14.0"
+        },
+        {
+          "date": "2026-11-02",
+          "subject": "Update lucide-react to 1.66.0"
+        },
         {
           "date": "2026-10-31",
           "subject": "Say the new page's title to screen readers"
@@ -25,38 +57,6 @@
         {
           "date": "2026-10-31",
           "subject": "Only mention cancelled sessions when some were"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Answer 404 for a web address that can't be decoded"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Explain the page copies and the request limits in the README"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Tell a removed professional they were removed"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Say what is true about who can read private writing"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Stop waiting on a server that doesn't answer"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Treat losing the database as an outage"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Point to help when a companion message fails to send"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Answer a crisis message even over the chat limit"
         }
       ]
     },
@@ -67,56 +67,56 @@
       "url": "https://github.com/KathFK1234/moodforecast_ai",
       "team": false,
       "started": "2026-06-05",
-      "updated": "2026-10-31",
-      "commits": 251,
+      "updated": "2026-11-02",
+      "commits": 268,
       "recent": [
         {
-          "date": "2026-10-31",
-          "subject": "Document the size and rate limit errors and the new startup checks"
+          "date": "2026-11-02",
+          "subject": "Let the tests and vulnerability check be run by hand"
         },
         {
-          "date": "2026-10-31",
-          "subject": "Let screen readers hear what the forecast's rain figures mean"
+          "date": "2026-11-02",
+          "subject": "Start the image in CI on a PORT the way Railway does"
         },
         {
-          "date": "2026-10-31",
-          "subject": "Test the app's startup and shutdown"
+          "date": "2026-11-02",
+          "subject": "Warn at startup when Railway would lose subscribers on redeploy"
         },
         {
-          "date": "2026-10-31",
-          "subject": "Disclose request logs and in-memory limits on the privacy page"
+          "date": "2026-11-02",
+          "subject": "Don't leave the CI token on disk after checkout"
         },
         {
-          "date": "2026-10-31",
-          "subject": "Say the mood score is an estimate from the weather"
+          "date": "2026-11-02",
+          "subject": "Make the image's code read-only to the app's user"
         },
         {
-          "date": "2026-10-31",
-          "subject": "Soften the daily email's mood line"
+          "date": "2026-11-02",
+          "subject": "Let the checks pass once railway.toml is removed"
         },
         {
-          "date": "2026-10-31",
-          "subject": "Word the mood badge about the weather, not the reader"
+          "date": "2026-11-02",
+          "subject": "Keep HEAD /health out of the API schema"
         },
         {
-          "date": "2026-10-31",
-          "subject": "Describe the site to search engines with structured data"
+          "date": "2026-11-02",
+          "subject": "Remove an unused colour from verify_setup.sh"
         },
         {
-          "date": "2026-10-31",
-          "subject": "Keep the API docs out of search results"
+          "date": "2026-11-02",
+          "subject": "Stop the check scripts when they can't change folder"
         },
         {
-          "date": "2026-10-31",
-          "subject": "Explain the blank page when JavaScript is off"
+          "date": "2026-11-02",
+          "subject": "Answer HEAD requests to /health with 200"
         },
         {
-          "date": "2026-10-31",
-          "subject": "Take people to the subscribe field they left empty"
+          "date": "2026-11-02",
+          "subject": "Add BREVO_API_URL to .env.example"
         },
         {
-          "date": "2026-10-31",
-          "subject": "Tell screen readers when a search finishes"
+          "date": "2026-11-02",
+          "subject": "Point the deployment guide's variable table at the email settings"
         }
       ]
     },
@@ -128,8 +128,40 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-31",
-      "commits": 345,
+      "commits": 353,
       "recent": [
+        {
+          "date": "2026-10-31",
+          "subject": "Test a code that cannot be emailed and a broken sign-out"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Check the backend image on PostgreSQL, and that it stays up"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Say that a failed backend deploy leaves the API down"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Show a refused value's own message, without Pydantic's prefix"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Keep a lesson with marks on it with its group"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Leave a cancelled lesson's time free for another lesson"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Refuse to move a lesson onto another of the same group"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Test that a new sign-in code clears the expired ones"
+        },
         {
           "date": "2026-10-31",
           "subject": "Test the Resend mail path and its failures"
@@ -145,38 +177,6 @@
         {
           "date": "2026-10-31",
           "subject": "Refuse a second lesson for the same group at the same time"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Make the small account links big enough to press"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Drop the username the Back4App delete no longer logs"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Remove expired sign-in codes when a new one is made"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Index the seven foreign keys that had none"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Load an account's photo only when it is asked for"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Name accounts by id, not email address, in the Back4App warnings"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Keep login codes out of the log on a deployed server"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Let the note-cleaning test run on PostgreSQL too"
         }
       ]
     },

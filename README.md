@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Playwright · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
-<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-10-31</sub>
+<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-11-02</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,10 +109,10 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 44.3%" : 1332.9
-    "JavaScript · 21.7%" : 652.9
-    "TypeScript · 19.8%" : 595.4
-    "CSS · 7.9%" : 238.1
+    "Python · 44.5%" : 1347.1
+    "JavaScript · 21.6%" : 652.9
+    "TypeScript · 19.7%" : 598.1
+    "CSS · 7.9%" : 238.5
     "HTML · 4.0%" : 119.8
     "C · 2.1%" : 62.7
     "Ruby · 0.3%" : 10.1
@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-10-31 | Say the new page's title to screen readers |
-| MoodForecast AI | 2026-10-31 | Document the size and rate limit errors and the new startup checks |
-| Murengeti Lab System | 2026-10-31 | Test the Resend mail path and its failures |
+| Healing Hive | 2026-11-02 | Put the Railway secrets warning before the migration steps |
+| MoodForecast AI | 2026-11-02 | Let the tests and vulnerability check be run by hand |
+| Murengeti Lab System | 2026-10-31 | Test a code that cannot be emailed and a broken sign-out |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->

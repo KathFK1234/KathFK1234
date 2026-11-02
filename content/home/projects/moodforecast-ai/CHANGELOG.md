@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  251 commits · first 2026-06-05 · latest 2026-10-31
+  268 commits · first 2026-06-05 · latest 2026-11-02
 
-  2026-10-31  Document the size and rate limit errors and the new startup checks
-  2026-10-31  Let screen readers hear what the forecast's rain figures mean
-  2026-10-31  Test the app's startup and shutdown
-  2026-10-31  Disclose request logs and in-memory limits on the privacy page
-  2026-10-31  Say the mood score is an estimate from the weather
-  2026-10-31  Soften the daily email's mood line
-  2026-10-31  Word the mood badge about the weather, not the reader
-  2026-10-31  Describe the site to search engines with structured data
-  2026-10-31  Keep the API docs out of search results
-  2026-10-31  Explain the blank page when JavaScript is off
-  2026-10-31  Take people to the subscribe field they left empty
-  2026-10-31  Tell screen readers when a search finishes
+  2026-11-02  Let the tests and vulnerability check be run by hand
+  2026-11-02  Start the image in CI on a PORT the way Railway does
+  2026-11-02  Warn at startup when Railway would lose subscribers on redeploy
+  2026-11-02  Don't leave the CI token on disk after checkout
+  2026-11-02  Make the image's code read-only to the app's user
+  2026-11-02  Let the checks pass once railway.toml is removed
+  2026-11-02  Keep HEAD /health out of the API schema
+  2026-11-02  Remove an unused colour from verify_setup.sh
+  2026-11-02  Stop the check scripts when they can't change folder
+  2026-11-02  Answer HEAD requests to /health with 200
+  2026-11-02  Add BREVO_API_URL to .env.example
+  2026-11-02  Point the deployment guide's variable table at the email settings
 
 From anywhere in this terminal, `updates` shows the same for every project.

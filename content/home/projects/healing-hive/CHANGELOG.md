@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  209 commits · first 2026-10-06 · latest 2026-10-31
+  217 commits · first 2026-10-06 · latest 2026-11-02
 
+  2026-11-02  Put the Railway secrets warning before the migration steps
+  2026-11-02  Warn in the Railway migration steps against flags that expose secrets
+  2026-11-02  Say which Railway plans block SMTP
+  2026-11-02  Say in the README how to move Railway's settings off railway.json before 1 December
+  2026-11-02  Let Railway restart the API up to 10 times after a crash
+  2026-11-02  Give requests in progress 75 seconds to finish when Railway replaces the API
+  2026-11-02  Update eslint to 10.14.0
+  2026-11-02  Update lucide-react to 1.66.0
   2026-10-31  Say the new page's title to screen readers
   2026-10-31  Find nobody for a search holding a NUL byte
   2026-10-31  Keep refused email addresses out of the logs
   2026-10-31  Only mention cancelled sessions when some were
-  2026-10-31  Answer 404 for a web address that can't be decoded
-  2026-10-31  Explain the page copies and the request limits in the README
-  2026-10-31  Tell a removed professional they were removed
-  2026-10-31  Say what is true about who can read private writing
-  2026-10-31  Stop waiting on a server that doesn't answer
-  2026-10-31  Treat losing the database as an outage
-  2026-10-31  Point to help when a companion message fails to send
-  2026-10-31  Answer a crisis message even over the chat limit
 
 From anywhere in this terminal, `updates` shows the same for every project.
