@@ -1,10 +1,12 @@
 """Tests for the sync scripts, on the standard library: python3 -m unittest discover tests"""
 
+import io
 import json
 import sys
 import tempfile
 import unittest
 from pathlib import Path
+from contextlib import redirect_stdout
 from types import SimpleNamespace
 from unittest.mock import patch
 
@@ -24,7 +26,14 @@ READ = {
 }
 
 
-class MarkReviewed(unittest.TestCase):
+class Quiet(unittest.TestCase):
+    """For code that reports as it goes: what it prints is kept out of the test log."""
+
+    def setUp(self):
+        self.printed = self.enterContext(redirect_stdout(io.StringIO()))
+
+
+class MarkReviewed(Quiet):
     def test_a_folder_that_does_not_exist_stops_it_before_anything_is_marked(self):
         reviewed = {"healing-hive": {"sha": "old", "date": "2026-10-01"}}
         with self.assertRaises(SystemExit) as stopped:
@@ -140,7 +149,7 @@ class Manifests(unittest.TestCase):
         self.assertEqual(languages.parse_manifest("requirements.txt", text), {"fastapi", "requests"})
 
 
-class MoodSync(unittest.TestCase):
+class MoodSync(Quiet):
     def test_only_get_endpoints_under_api_are_listed(self):
         document = {"paths": {
             "/api/mood/{location}": {"get": {"description": "Mood\nmore", "parameters": [
