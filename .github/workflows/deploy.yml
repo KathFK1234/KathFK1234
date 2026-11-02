@@ -199,6 +199,8 @@ jobs:
     timeout-minutes: 5
     permissions:
       contents: write
+    outputs:
+      sha: ${{ steps.push.outputs.sha }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -207,6 +209,7 @@ jobs:
         with:
           name: data
       - name: Commit the update if anything changed
+        id: push
         env:
           REMOTE: https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
         run: |
@@ -220,6 +223,8 @@ jobs:
             # main may have moved while this ran
             git pull --rebase "$REMOTE" main
             git push "$REMOTE" HEAD:main
+            # The railway job follows this commit's deploy too
+            echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           fi
 
   deploy:
@@ -266,11 +271,12 @@ jobs:
           echo "::error title=The live site failed its check::$SITE did not serve this run's page and its assets."
           exit 1
 
-  # Railway deploys the same commit by itself and reports back as a commit
-  # status. A failure there would otherwise go unnoticed.
+  # Railway deploys every commit to main by itself and reports back as a commit
+  # status. A failure there would otherwise go unnoticed. It follows the pushed
+  # commit, or the data commit the commit job made; a run with neither has nothing to follow.
   railway:
-    if: github.event_name == 'push'
-    needs: build
+    needs: [build, commit]
+    if: ${{ !cancelled() && needs.build.result == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -280,9 +286,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           SITE: https://kathfk1234-production.up.railway.app/
+          SHA: ${{ github.event_name == 'push' && github.sha || needs.commit.outputs.sha }}
         run: |
+          if [ -z "$SHA" ]; then
+            echo "This run made no commit, so there is no new Railway deploy to follow."
+            exit 0
+          fi
           for attempt in $(seq 1 60); do
-            state="$(gh api "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/status" \
+            state="$(gh api "repos/$GITHUB_REPOSITORY/commits/$SHA/status" \
               --jq '[.statuses[] | select(.context | startswith("Personal Website")) | .state][0] // "none"')"
             case "$state" in
               success)
