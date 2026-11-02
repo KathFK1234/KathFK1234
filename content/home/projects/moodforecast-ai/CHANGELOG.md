@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  268 commits · first 2026-06-05 · latest 2026-11-02
+  280 commits · first 2026-06-05 · latest 2026-11-02
 
-  2026-11-02  Let the tests and vulnerability check be run by hand
-  2026-11-02  Start the image in CI on a PORT the way Railway does
-  2026-11-02  Warn at startup when Railway would lose subscribers on redeploy
-  2026-11-02  Don't leave the CI token on disk after checkout
-  2026-11-02  Make the image's code read-only to the app's user
-  2026-11-02  Let the checks pass once railway.toml is removed
-  2026-11-02  Keep HEAD /health out of the API schema
-  2026-11-02  Remove an unused colour from verify_setup.sh
-  2026-11-02  Stop the check scripts when they can't change folder
-  2026-11-02  Answer HEAD requests to /health with 200
-  2026-11-02  Add BREVO_API_URL to .env.example
-  2026-11-02  Point the deployment guide's variable table at the email settings
+  2026-11-02  Ignore every .env file except the example
+  2026-11-02  Test the colour of links inside the email text too
+  2026-11-02  Word railway.toml's header as a requirement, not a fact
+  2026-11-02  Bring the README's feature list in line with the forecast wording
+  2026-11-02  Say the 7-day mood scores get less certain further ahead
+  2026-11-02  Describe the mood score as a rule of thumb, not an observed pattern
+  2026-11-02  Describe the forecast's rain figure as the chance of rain or snow at some point
+  2026-11-02  Make the search box's keyboard focus visible on every sky
+  2026-11-02  Mark the emails' language for screen readers
+  2026-11-02  Darken the email links to meet WCAG AA contrast
+  2026-11-02  Date the privacy page
+  2026-11-02  Say on the privacy page that details may be handled in other countries
 
 From anywhere in this terminal, `updates` shows the same for every project.

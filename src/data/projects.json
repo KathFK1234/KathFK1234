@@ -8,8 +8,28 @@
       "team": false,
       "started": "2026-10-06",
       "updated": "2026-11-02",
-      "commits": 217,
+      "commits": 222,
       "recent": [
+        {
+          "date": "2026-11-02",
+          "subject": "Say in the README that Railway stores the data outside Kenya"
+        },
+        {
+          "date": "2026-11-02",
+          "subject": "Match the Railway migration steps to what the CLI really does"
+        },
+        {
+          "date": "2026-11-02",
+          "subject": "Install lucide-react at the root of node_modules again"
+        },
+        {
+          "date": "2026-11-02",
+          "subject": "Say in the README that Railway doesn't watch the API after a deploy"
+        },
+        {
+          "date": "2026-11-02",
+          "subject": "Let npm start at the repo root start the API, so Railway finds it without railway.json"
+        },
         {
           "date": "2026-11-02",
           "subject": "Put the Railway secrets warning before the migration steps"
@@ -37,26 +57,6 @@
         {
           "date": "2026-11-02",
           "subject": "Update eslint to 10.14.0"
-        },
-        {
-          "date": "2026-11-02",
-          "subject": "Update lucide-react to 1.66.0"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Say the new page's title to screen readers"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Find nobody for a search holding a NUL byte"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Keep refused email addresses out of the logs"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Only mention cancelled sessions when some were"
         }
       ]
     },
@@ -68,55 +68,55 @@
       "team": false,
       "started": "2026-06-05",
       "updated": "2026-11-02",
-      "commits": 268,
+      "commits": 280,
       "recent": [
         {
           "date": "2026-11-02",
-          "subject": "Let the tests and vulnerability check be run by hand"
+          "subject": "Ignore every .env file except the example"
         },
         {
           "date": "2026-11-02",
-          "subject": "Start the image in CI on a PORT the way Railway does"
+          "subject": "Test the colour of links inside the email text too"
         },
         {
           "date": "2026-11-02",
-          "subject": "Warn at startup when Railway would lose subscribers on redeploy"
+          "subject": "Word railway.toml's header as a requirement, not a fact"
         },
         {
           "date": "2026-11-02",
-          "subject": "Don't leave the CI token on disk after checkout"
+          "subject": "Bring the README's feature list in line with the forecast wording"
         },
         {
           "date": "2026-11-02",
-          "subject": "Make the image's code read-only to the app's user"
+          "subject": "Say the 7-day mood scores get less certain further ahead"
         },
         {
           "date": "2026-11-02",
-          "subject": "Let the checks pass once railway.toml is removed"
+          "subject": "Describe the mood score as a rule of thumb, not an observed pattern"
         },
         {
           "date": "2026-11-02",
-          "subject": "Keep HEAD /health out of the API schema"
+          "subject": "Describe the forecast's rain figure as the chance of rain or snow at some point"
         },
         {
           "date": "2026-11-02",
-          "subject": "Remove an unused colour from verify_setup.sh"
+          "subject": "Make the search box's keyboard focus visible on every sky"
         },
         {
           "date": "2026-11-02",
-          "subject": "Stop the check scripts when they can't change folder"
+          "subject": "Mark the emails' language for screen readers"
         },
         {
           "date": "2026-11-02",
-          "subject": "Answer HEAD requests to /health with 200"
+          "subject": "Darken the email links to meet WCAG AA contrast"
         },
         {
           "date": "2026-11-02",
-          "subject": "Add BREVO_API_URL to .env.example"
+          "subject": "Date the privacy page"
         },
         {
           "date": "2026-11-02",
-          "subject": "Point the deployment guide's variable table at the email settings"
+          "subject": "Say on the privacy page that details may be handled in other countries"
         }
       ]
     },
@@ -128,8 +128,12 @@
       "team": false,
       "started": "2026-09-20",
       "updated": "2026-10-31",
-      "commits": 353,
+      "commits": 354,
       "recent": [
+        {
+          "date": "2026-10-31",
+          "subject": "Test the guards that a hand-made mutation run showed were unwatched"
+        },
         {
           "date": "2026-10-31",
           "subject": "Test a code that cannot be emailed and a broken sign-out"
@@ -173,10 +177,6 @@
         {
           "date": "2026-10-31",
           "subject": "Refuse a project that ends before it starts"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Refuse a second lesson for the same group at the same time"
         }
       ]
     },
