@@ -388,6 +388,7 @@ def mark_reviewed(reader, reviewed: dict, folders: list[str]) -> None:
     if unknown:
         # A slip here would otherwise look like success, with the mark left where it was
         sys.exit(f"Error: no project folder called {', '.join(unknown)}. Nothing was marked.")
+    left = []
     for project in PROJECTS:
         if folders and project["folder"] not in folders:
             continue
@@ -395,10 +396,13 @@ def mark_reviewed(reader, reviewed: dict, folders: list[str]) -> None:
             read = reader.read(project)
         except Unavailable as e:
             print(f"Warning: {project['name']} left as it was ({e})")
+            left.append(project["name"])
             continue
         reviewed[project["folder"]] = {"sha": read["head"], "date": read["updated"]}
         print(f"{project['name']}: write-up marked as revised at {read['head'][:7]}")
     Path(REVIEWED).write_text(json.dumps(reviewed, indent=2) + "\n", encoding="utf-8")
+    if left:
+        sys.exit(f"Error: not marked, try again: {', '.join(left)}")
 
 
 def main():

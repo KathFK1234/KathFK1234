@@ -1,9 +1,12 @@
 """Tests for the sync scripts, on the standard library: python3 -m unittest discover tests"""
 
+import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -28,6 +31,23 @@ class MarkReviewed(unittest.TestCase):
             projects.mark_reviewed(None, reviewed, ["healing-hive", "healing_hive"])
         self.assertIn("healing_hive", str(stopped.exception.code))
         self.assertEqual(reviewed["healing-hive"]["sha"], "old")
+
+
+    def test_a_project_it_could_not_read_fails_the_command_and_keeps_the_others(self):
+        class Reader:
+            def read(self, project):
+                if project["folder"] == "healing-hive":
+                    raise projects.Unavailable("HTTP 504")
+                return {"head": "new", "updated": "2026-11-02"}
+
+        reviewed = {"healing-hive": {"sha": "old", "date": "2026-10-01"}}
+        with tempfile.TemporaryDirectory() as folder, patch.object(projects, "REVIEWED", f"{folder}/reviewed.json"):
+            with self.assertRaises(SystemExit) as stopped:
+                projects.mark_reviewed(Reader(), reviewed, ["healing-hive", "mindconnect"])
+            written = json.loads(Path(projects.REVIEWED).read_text())
+        self.assertIn("Healing Hive", str(stopped.exception.code))
+        self.assertEqual(written["healing-hive"]["sha"], "old")
+        self.assertEqual(written["mindconnect"]["sha"], "new")
 
 
 class ComparingWithTheMark(unittest.TestCase):
