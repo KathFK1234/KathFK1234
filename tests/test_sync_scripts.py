@@ -159,6 +159,31 @@ class MoodSync(unittest.TestCase):
         self.assertEqual(places, {"cold": ["Oslo"]})
         self.assertEqual(activities, [{"name": "Walk", "category": "outdoor", "aliases": ["hike"]}])
 
+    def run_main(self, document, sources):
+        with tempfile.TemporaryDirectory() as folder:
+            data, notes = Path(folder, "mood.json"), Path(folder, "API.md")
+            data.write_text("last known", encoding="utf-8")
+            argv = ["mood_sync_script.py", "--data", str(data), "--notes", str(notes)]
+            with patch.object(sys, "argv", argv), patch.object(mood, "read_openapi", return_value=document), \
+                    patch.object(mood, "github_sources", return_value=sources):
+                try:
+                    mood.main()
+                except SystemExit as stopped:
+                    return stopped.code, data.read_text(encoding="utf-8")
+            return 0, data.read_text(encoding="utf-8")
+
+    def test_an_answer_with_nothing_in_it_keeps_the_last_data(self):
+        code, data = self.run_main({"paths": {}}, {})
+        self.assertEqual(code, 1)
+        self.assertEqual(data, "last known")
+
+    def test_a_full_answer_is_written(self):
+        document = {"paths": {"/api/wellbeing/{location}": {"get": {"description": "Mood"}}}}
+        source = 'COLD_PLACES = ("Oslo",)\nACTIVITIES = (Activity("Walk", "outdoor", ("hike",)),)\n'
+        code, data = self.run_main(document, {"a.py": source})
+        self.assertEqual(code, 0)
+        self.assertIn("Oslo", data)
+
     def test_a_module_that_cannot_be_parsed_is_skipped(self):
         self.assertEqual(mood.read_vocabulary({"a.py": "def ("}), ({}, []))
 

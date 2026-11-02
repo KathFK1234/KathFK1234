@@ -253,6 +253,10 @@ def main():
         sys.exit(1)
 
     places, activities = read_vocabulary(sources)
+    if not (endpoints and places and activities):
+        # An answer that parsed but says nothing would blank the mood command's data
+        print("Error: MoodForecast AI's answer was missing its endpoints, places or activities.")
+        sys.exit(1)
     data = {
         "source": {
             "repo": args.repo,
