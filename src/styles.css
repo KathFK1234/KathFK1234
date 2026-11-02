@@ -241,9 +241,10 @@ body {
 .warn {
   color: var(--warn);
 }
+/* A suggestion, not typed text: dim and italic, at full strength so it stays readable (4.7:1 or more) */
 .ghost {
   color: var(--fg-dim);
-  opacity: 0.6;
+  font-style: italic;
 }
 .match {
   background: var(--accent);
