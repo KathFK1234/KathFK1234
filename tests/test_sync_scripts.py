@@ -144,6 +144,23 @@ class Manifests(unittest.TestCase):
     def test_a_broken_package_json_lists_nothing(self):
         self.assertEqual(languages.parse_manifest("package.json", "{broken"), set())
 
+    def test_a_manifest_path_is_sent_whole_even_with_url_characters_in_it(self):
+        fetcher = languages.GitHubLanguageFetcher("me")
+        asked = []
+
+        def get(url, **_):
+            asked.append(url)
+            return SimpleNamespace(status_code=200, text="{}", raise_for_status=lambda: None)
+
+        public = {"private": False, "full_name": "me/app", "default_branch": "main", "url": "https://api.github.com/repos/me/app"}
+        with patch.object(languages.requests, "get", get):
+            fetcher.fetch_file(public, "web #2/what?/package.json")
+            fetcher.fetch_file({**public, "private": True}, "web #2/what?/package.json")
+        self.assertEqual(asked, [
+            "https://raw.githubusercontent.com/me/app/main/web%20%232/what%3F/package.json",
+            "https://api.github.com/repos/me/app/contents/web%20%232/what%3F/package.json",
+        ])
+
     def test_requirements_lose_their_versions_and_comments(self):
         text = "FastAPI==1.0\n# a comment\n--hash=sha256:abc\nrequests>=2\n"
         self.assertEqual(languages.parse_manifest("requirements.txt", text), {"fastapi", "requests"})

@@ -263,6 +263,8 @@ class GitHubLanguageFetcher:
         Any other failure raises: skipping the file would drop the tools only it
         names, the same loss that stops the run for a repository.
         """
+        # A path can hold characters that mean something in a URL, such as # or ?
+        path = quote(path)
         if repo["private"]:
             response = requests.get(
                 f"{repo['url']}/contents/{path}",
