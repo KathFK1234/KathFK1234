@@ -3,6 +3,7 @@
 import sys
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -27,6 +28,29 @@ class MarkReviewed(unittest.TestCase):
             projects.mark_reviewed(None, reviewed, ["healing-hive", "healing_hive"])
         self.assertIn("healing_hive", str(stopped.exception.code))
         self.assertEqual(reviewed["healing-hive"]["sha"], "old")
+
+
+class ComparingWithTheMark(unittest.TestCase):
+    PROJECT = {"repo": "a/b", "folder": "b"}
+
+    def reader(self, compare):
+        reader = projects.GitHub.__new__(projects.GitHub)
+
+        def get(path, **_):
+            if "/compare/" in path:
+                raise compare
+            return SimpleNamespace(json=lambda: {"default_branch": "main", "private": False})
+
+        reader.get = get
+        return reader
+
+    def test_a_commit_github_cannot_find_is_a_lost_mark(self):
+        found = self.reader(projects.Missing("HTTP 404")).since(self.PROJECT, "old")
+        self.assertEqual(found, {"lost": True})
+
+    def test_github_being_down_is_not_taken_for_a_rewritten_history(self):
+        with self.assertRaises(projects.Unavailable):
+            self.reader(projects.Unavailable("HTTP 504")).since(self.PROJECT, "old")
 
 
 class PrivateProjects(unittest.TestCase):

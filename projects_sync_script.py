@@ -80,6 +80,10 @@ class Unavailable(Exception):
     """A repository could not be read; its last known data is kept."""
 
 
+class Missing(Unavailable):
+    """GitHub answered 404: it does not have what was asked for."""
+
+
 class NoClone(Unavailable):
     """With --local, a project that has no clone on this machine."""
 
@@ -111,8 +115,10 @@ class GitHub:
             )
         except self.requests.RequestException as e:
             raise Unavailable(str(e)) from e
-        if response.status_code != 200:
+        if response.status_code == 404:
             # A private repository answers 404 to a token that cannot read it
+            raise Missing("HTTP 404")
+        if response.status_code != 200:
             raise Unavailable(f"HTTP {response.status_code}")
         return response
 
@@ -146,7 +152,7 @@ class GitHub:
         info = self.get(f"/repos/{repo}").json()
         try:
             compared = self.get(f"/repos/{repo}/compare/{sha}...{info['default_branch']}").json()
-        except Unavailable:
+        except Missing:
             return {"lost": True}
         found = {"count": compared["ahead_by"]}
         # This output ends up in public workflow logs, so the same rule applies as for the site
