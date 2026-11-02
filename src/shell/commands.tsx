@@ -542,7 +542,7 @@ export const commands: Command[] = [
           <Accent>languages</Accent> <Dim>
             — share of code across {stack.repos} {stack.includesPrivate ? '' : 'public '}repositories
           </Dim>{'\n'}
-          <div className="rows rows-3">
+          <div className="rows rows-bars">
             {stack.languages.map(language => {
               const share = language.bytes / total;
               const filled = Math.max(1, Math.round(share * barWidth));

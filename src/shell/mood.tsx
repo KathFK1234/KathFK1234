@@ -647,7 +647,7 @@ async function versus(places: [string, string], ctx: Ctx): Promise<ReactNode> {
 
   return (
     <>
-      <div className="rows rows-3">
+      <div className="rows rows-pair">
         {['', 'mood score', 'energy', 'outlook', 'weather', 'time'].map((label, index) => (
           <Fragment key={label}>
             <Dim>{label}</Dim>

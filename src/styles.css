@@ -310,6 +310,18 @@ body {
 .rows-3 {
   grid-template-columns: max-content max-content 1fr;
 }
+/* Name, bar, share: on a narrow screen the bar is cut short, never the share */
+.rows-bars {
+  grid-template-columns: max-content minmax(0, max-content) max-content;
+}
+.rows-bars .art {
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* Two places side by side get half each, so neither is pushed off a phone's screen */
+.rows-pair {
+  grid-template-columns: max-content minmax(0, 1fr) minmax(0, 1fr);
+}
 /* A stacked list is not a sentence, so each command or link in it gets the 24px a finger needs (WCAG 2.5.8). */
 .rows .cmd,
 .rows .link {
