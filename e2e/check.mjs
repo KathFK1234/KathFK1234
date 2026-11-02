@@ -87,9 +87,37 @@ const look = async label => {
     return terminal.scrollWidth - terminal.clientWidth;
   });
   if (cut > 0) problems.push(`${label}: ${cut}px cut off at the terminal's right edge`);
+  // A half-typed command, so the grey suggestion after it is measured too; Ctrl+U clears it again
+  await page.focus('input');
+  await page.keyboard.type('he');
+  // axe cannot measure text over a gradient and only marks it for review, so the background glow is swapped
+  // for one solid colour: the glow at its brightest over --bg, the hardest place for the text to be read.
+  await page.evaluate(() => {
+    const style = getComputedStyle(document.documentElement);
+    const bg = style.getPropertyValue('--bg').trim().match(/[0-9a-f]{2}/gi).map(part => parseInt(part, 16));
+    const [r, g, b, alpha] = style.getPropertyValue('--glow').match(/[\d.]+/g).map(Number);
+    const brightest = [r, g, b].map((channel, index) => Math.round(channel * alpha + bg[index] * (1 - alpha)));
+    document.body.style.backgroundImage = 'none';
+    document.body.style.backgroundColor = `rgb(${brightest.join(', ')})`;
+  });
   await page.evaluate(axeSource);
-  const found = await page.evaluate(async () => (await window.axe.run(document)).violations.map(violation => `${violation.id} ${violation.nodes[0].target}`));
-  if (found.length) problems.push(`${label}: ${found.join(', ')}`);
+  const result = await page.evaluate(async () => {
+    const { violations, incomplete } = await window.axe.run(document);
+    return {
+      found: violations.map(violation => `${violation.id} ${violation.nodes[0].target}`),
+      // Text it still could not measure because of what is behind it (block-character bars are not text)
+      unmeasured: incomplete
+        .filter(check => check.id === 'color-contrast')
+        .flatMap(check => check.nodes)
+        .filter(node => ['bgGradient', 'bgImage'].includes(node.any[0]?.data?.messageKey)).length,
+    };
+  });
+  await page.evaluate(() => document.body.removeAttribute('style'));
+  if (result.found.length) problems.push(`${label}: ${result.found.join(', ')}`);
+  if (result.unmeasured) problems.push(`${label}: axe could not measure the contrast of ${result.unmeasured} elements`);
+  await page.keyboard.down('Control');
+  await page.keyboard.press('u');
+  await page.keyboard.up('Control');
 };
 
 for (const width of [320, 390, 768, 1280, 1920]) {
