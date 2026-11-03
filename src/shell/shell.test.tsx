@@ -486,6 +486,7 @@ describe('mood', () => {
     expect(out).toMatch(/Mon 5 Oct.*65 Steady.*Rain Showers, 16–25°C, rain 53%/s);
     expect(out).toMatch(/Tue 6 Oct.*80 Upbeat.*Clear, 16–25°C(?!, rain)/s);
     expect(out).toMatch(/best day: Tue 6 Oct \(80, Upbeat\)/);
+    expect(out).toContain('a rule of thumb from the weather alone, not a measure of how you feel.');
     expect(out).toMatch(/daylight today 06:17–18:24/);
     expect(out).toMatch(/mood week [a-z]/);
     expect(await run('mood week')).toMatch(/which place\?.*mood week [a-z]/s);
@@ -507,6 +508,7 @@ describe('mood', () => {
     expect(out).toMatch(/Nairobi, KE.*Tokyo, JP/s);
     expect(out).toMatch(/77\/100 Upbeat.*58\/100 Mellow/s);
     expect(out).toMatch(/Nairobi is having the better day, 19 points ahead of Tokyo\. Nairobi is 6°C warmer\./);
+    expect(out).toContain('a rule of thumb from the weather alone, not a measure of how you feel.');
     expect(out).toMatch(/mood nairobi vs (?!tokyo|nairobi)[a-z]/);
     expect(ctx.state.mood.checked).toBe(2);
     expect(await run('mood tokyo vs tokyo')).toMatch(/A tie: both sit at 58\. Same temperature, too\./);

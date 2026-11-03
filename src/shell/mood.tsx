@@ -673,6 +673,8 @@ async function versus(places: [string, string], ctx: Ctx): Promise<ReactNode> {
         <>A tie: both sit at {a.mood_score}.</>
       )}
       {degrees ? ` ${name(warmer)} is ${degrees}°C warmer.` : ' Same temperature, too.'}
+      {'\n'}
+      <Dim>{CAVEAT}</Dim>
       {'\n\n'}
       <Dim>try another pairing:</Dim>{' '}
       <PlaceCmds
@@ -725,7 +727,7 @@ async function week(place: string, ctx: Ctx): Promise<ReactNode> {
           ];
         })}
       />
-      {'\n'}
+      <Dim>{CAVEAT}</Dim>{'\n\n'}
       best day: <Accent>{dayName(best.date)}</Accent> ({best.mood_score}, {best.mood_label})
       {today.sunrise && today.sunset ? <Dim>{`  ·  daylight today ${today.sunrise}–${today.sunset}`}</Dim> : null}
       {newFields(data, FORECAST_FIELDS)}
