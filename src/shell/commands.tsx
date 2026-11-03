@@ -1617,7 +1617,7 @@ const MAN_NOTES: Record<string, string> = {
   cd: 'you cannot leave home. this is a feature, and also a metaphor.',
   cat: 'run it with no file at all. go on.',
   grep: 'searches what the files say, not just what they are called. that is find.',
-  mood: 'the numbers are real: every reading is a live call to a service I built. try a place you have never been.',
+  mood: 'every reading is live, from a service I built; the score is a rule of thumb from hand-set rules, not a measure of anyone. try a place you have never been.',
   sudo: 'there is exactly one thing you are allowed to do as root here.',
   coffee: 'known issue. will not fix.',
   vim: 'no visitor has ever needed the exit instructions.',

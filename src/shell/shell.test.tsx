@@ -92,6 +92,13 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it("says in mood's manual that the score is a rule of thumb, not that the numbers are real", async () => {
+    const { run } = shell();
+    const page = await run('man mood');
+    expect(page).toMatch(/the score is a rule of thumb from hand-set rules, not a measure of anyone/);
+    expect(page).not.toMatch(/numbers are real/);
+  });
+
   it('ignores a find -type that is not d or f, even one named like a built-in', async () => {
     const { run } = shell();
     expect(await run('find -type constructor mood')).toBe(await run('find mood'));
