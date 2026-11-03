@@ -10,7 +10,7 @@ import puppeteer from 'puppeteer-core';
 const url = process.argv[2];
 if (!url) throw new Error('Usage: node e2e/check.mjs <url>');
 const axeSource = readFileSync(createRequire(import.meta.url).resolve('axe-core/axe.min.js'), 'utf8');
-const commands = ['help', 'about', 'ls -l', 'tree projects', 'projects', 'skills', 'stack', 'updates', 'cat README.md', 'grep psychology', 'man mood', 'history', 'nosuchcommand', 'mood nairobi', 'mood nairobi vs tokyo', 'mood week nairobi'];
+const commands = ['help', 'about', 'ls -l', 'tree projects', 'projects', 'skills', 'stack', 'updates', 'cat README.md', 'grep psychology', 'man mood', 'history', 'cat privacy.txt', 'nosuchcommand', 'mood nairobi', 'mood nairobi vs tokyo', 'mood week nairobi'];
 
 // MoodForecast AI stands in here with fixed answers, so the check needs no network and tests what the page does with them.
 const place = (location, score, temp) => ({
