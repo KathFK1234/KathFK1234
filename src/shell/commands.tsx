@@ -549,7 +549,8 @@ export const commands: Command[] = [
               return (
                 <Fragment key={language.name}>
                   <span>{language.name}</span>
-                  <span className="art">
+                  {/* The share is printed beside the bar, so screen readers skip the block characters. */}
+                  <span className="art" aria-hidden="true">
                     <Accent>{'█'.repeat(filled)}</Accent>
                     <Dim>{'░'.repeat(barWidth - filled)}</Dim>
                   </span>

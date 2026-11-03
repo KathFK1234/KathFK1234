@@ -369,8 +369,9 @@ function whereNext(data: Wellbeing, place: string, session: MoodSession): ReactN
 
 function Bar({ score }: { score: number }) {
   const filled = Math.round((Math.min(100, Math.max(0, score)) / 100) * BAR_WIDTH);
+  // The score is printed beside the bar, so screen readers skip the block characters.
   return (
-    <span className="art">
+    <span className="art" aria-hidden="true">
       <Accent>{'█'.repeat(filled)}</Accent>
       <Dim>{'░'.repeat(BAR_WIDTH - filled)}</Dim>
     </span>

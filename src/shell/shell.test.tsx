@@ -32,7 +32,7 @@ function shell() {
   // Only what the terminal prints as a warning, so a word in a synced commit subject is never taken for an error.
   const warnings = async (line: string) =>
     [...(await markup(line)).matchAll(/<span class="warn">(.*?)<\/span>/g)].map(match => match[1].replace(/<[^>]+>/g, '')).join('\n');
-  return { ctx, run, warnings, cleared: () => cleared };
+  return { ctx, run, markup, warnings, cleared: () => cleared };
 }
 
 // No test reaches the live service: one that does not say what the service answers gets 404s.
@@ -393,6 +393,16 @@ describe('mood', () => {
     expect(out).toContain('weather likely to dampen mood');
     expect(out).toContain('not a measure of how you feel');
     expect(out).not.toMatch(/risk/);
+  });
+
+  it('keeps the bars of block characters from screen readers, which read the numbers beside them', async () => {
+    serve({ '/api/wellbeing/nairobi': NAIROBI });
+    const { markup } = shell();
+    for (const html of [await markup('mood nairobi'), await markup('stack')]) {
+      const bars = [...html.matchAll(/<span class="art"[^>]*>(?:(?!<\/span><\/span>).)*█/g)].map(match => match[0]);
+      expect(bars.length).toBeGreaterThan(0);
+      for (const bar of bars) expect(bar).toMatch(/^<span class="art" aria-hidden="true">/);
+    }
   });
 
   it('asks for a place instead of assuming one', async () => {
