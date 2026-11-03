@@ -48,6 +48,8 @@ const browser = await puppeteer.launch({
   executablePath: process.env.CHROME ?? '/usr/bin/google-chrome',
   headless: true,
   args: ['--no-sandbox'],
+  // A busy CI runner can take more than puppeteer's default 30 seconds to start Chrome.
+  timeout: 120_000,
 });
 const page = await browser.newPage();
 // New output fades in; measured mid-fade, its contrast would read as too low.
