@@ -181,6 +181,13 @@ body {
   transition: color 0.15s, border-color 0.15s;
 }
 
+/* The same clear ring in every browser and theme, rather than each browser's own (WCAG 2.4.7, 2.4.13) */
+.navlinks button:focus-visible,
+.tab-menu button:focus-visible,
+.link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
 .navlinks button:hover,
 .tab-menu button:hover,
 .tab-menu button.active {

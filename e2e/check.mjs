@@ -158,6 +158,17 @@ await page.keyboard.press('Tab');
 await page.keyboard.up('Shift');
 const left = await page.evaluate(() => document.activeElement?.tagName);
 if (left !== 'BUTTON') problems.push(`keyboard: Shift+Tab left focus on ${left}, not a command or nav button`);
+// Back to a nav button: its focus ring is the site's own, 2px and solid, not the browser's
+await page.keyboard.down('Shift');
+for (let step = 0; step < 80 && !(await page.evaluate(() => document.activeElement?.matches('.navlinks button'))); step++) {
+  await page.keyboard.press('Tab');
+}
+await page.keyboard.up('Shift');
+const ring = await page.evaluate(() => {
+  const style = getComputedStyle(document.activeElement);
+  return document.activeElement.matches('.navlinks button') && style.outlineStyle === 'solid' && parseFloat(style.outlineWidth) >= 2;
+});
+if (!ring) problems.push('keyboard: a focused nav button shows no clear focus ring of its own');
 const before = await page.$$eval('.prompt-line .typed', lines => lines.length);
 await page.keyboard.press('Enter');
 await new Promise(resolve => setTimeout(resolve, 200));
