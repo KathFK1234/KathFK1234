@@ -292,9 +292,16 @@ jobs:
             echo "This run made no commit, so there is no new Railway deploy to follow."
             exit 0
           fi
+          # Every status Railway posted for this commit, newest first. A push GitHub delivers twice starts
+          # two deploys, and Railway cancels one after the other has succeeded (#195), so any success
+          # counts, and a cancelled deploy is not a result: another deploy replaced it.
           for attempt in $(seq 1 60); do
-            state="$(gh api "repos/$GITHUB_REPOSITORY/commits/$SHA/status" \
-              --jq '[.statuses[] | select(.context | startswith("Personal Website")) | .state][0] // "none"')"
+            state="$(gh api "repos/$GITHUB_REPOSITORY/commits/$SHA/statuses?per_page=100" --jq '
+              [.[] | select(.context | startswith("Personal Website"))] as $all
+              | if any($all[]; .state == "success") then "success"
+                elif ($all | length) == 0 then "none"
+                elif $all[0].state == "error" and ($all[0].description // "" | test("cancel"; "i")) then "cancelled"
+                else $all[0].state end')"
             case "$state" in
               success)
                 curl -fsS --retry 3 --retry-all-errors -o /dev/null "$SITE"
@@ -308,5 +315,10 @@ jobs:
             esac
             sleep 10
           done
+          head="$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)"
+          if [ "$state" = cancelled ] && [ "$head" != "$SHA" ]; then
+            echo "Railway cancelled this deploy for a newer commit ($head); that commit's run follows it."
+            exit 0
+          fi
           echo "::error title=Railway did not report::No result from Railway after ten minutes (last state: $state)."
           exit 1
