@@ -6,6 +6,7 @@ import { DEFAULT_PREFS, loadHistory, loadPrefs, saveHistory } from '../prefs';
 import { canDeepLink, commandNames, commands, createShellState, EXAMPLES, execute, tokenize, type Ctx } from './commands';
 import { commonPrefix, complete, ghostFor, menuStatus } from './complete';
 import { readEndpoints } from './mood';
+import { Link } from './ui';
 import { buildTree, describe as describeNode, displayPath, getNode, resolvePath, root, walk } from './fs';
 
 // Keyed like the terminal keys each entry, so React's key warnings stay for real ones
@@ -772,7 +773,7 @@ describe('updates', () => {
     const output = await run('projects');
     // run() strips tags, so a link reads as the bare word and the note keeps its brackets
     const note = (folder: string) =>
-      projectData.projects.find(project => project.folder === folder)!.url ? 'source' : '(source is private)';
+      projectData.projects.find(project => project.folder === folder)!.url ? 'source (opens in a new tab)' : '(source is private)';
     expect(output).toContain(`and admins. ${note('healing-hive')} ·`);
     expect(output).toContain(`private workspace. ${note('murengeti-lab')}\n`);
   });
@@ -801,6 +802,17 @@ describe('updates', () => {
     expect(html).toContain('href="https://github.com/x/healing-hive"');
     vi.doUnmock('../data/projects.json');
     vi.resetModules();
+  });
+});
+
+describe('links', () => {
+  it('says a link opens a new tab, except an email address, which opens the mail app', () => {
+    expect(renderToStaticMarkup(<Link href="https://github.com/KathFK1234">GitHub</Link>)).toBe(
+      '<a class="link" href="https://github.com/KathFK1234" target="_blank" rel="noreferrer">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>',
+    );
+    expect(renderToStaticMarkup(<Link href="mailto:a@example.com">a@example.com</Link>)).toBe(
+      '<a class="link" href="mailto:a@example.com">a@example.com</a>',
+    );
   });
 });
 

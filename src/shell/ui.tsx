@@ -15,9 +15,18 @@ export function Cmd({ children, run }: { children: string; run?: string }) {
 
 export function Link({ href, children }: { href: string; children: ReactNode }) {
   return (
-    <a className="link" href={href} target="_blank" rel="noreferrer">
-      {children}
-    </a>
+    // An email address opens the mail app, not a tab.
+    href.startsWith('mailto:') ? (
+      <a className="link" href={href}>
+        {children}
+      </a>
+    ) : (
+      <a className="link" href={href} target="_blank" rel="noreferrer">
+        {children}
+        {/* Screen readers are told before a new tab takes them away from the terminal. */}
+        <span className="visually-hidden"> (opens in a new tab)</span>
+      </a>
+    )
   );
 }
 
