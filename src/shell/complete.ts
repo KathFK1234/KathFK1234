@@ -69,3 +69,12 @@ export function ghostFor(input: string, history: string[]): string {
   const name = commandNames(false).find(candidate => candidate.startsWith(input.toLowerCase()));
   return name && name.length > input.length ? name.slice(input.length) : '';
 }
+
+/** What a screen reader hears about the Tab menu: the choices when it opens, then the one Tab has picked. */
+export function menuStatus(labels: string[], active: number): string {
+  if (labels.length < 2) return '';
+  if (active >= 0) return `${labels[active]}, ${active + 1} of ${labels.length}`;
+  const shown = labels.slice(0, 10).join(', ');
+  const more = labels.length > 10 ? ` and ${labels.length - 10} more` : '';
+  return `${labels.length} completions: ${shown}${more}. Press Tab to go through them.`;
+}

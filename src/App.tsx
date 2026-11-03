@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, 
 import { applyPrefs, loadHistory, loadPrefs, saveHistory, savePrefs, type Prefs } from './prefs';
 import { Prompt, Ps1 } from './Prompt';
 import { Banner, canDeepLink, createShellState, execute, type Ctx } from './shell/commands';
-import { commonPrefix, complete, ghostFor } from './shell/complete';
+import { commonPrefix, complete, ghostFor, menuStatus } from './shell/complete';
 import { displayPath } from './shell/fs';
 import { RunContext } from './shell/ui';
 
@@ -298,8 +298,12 @@ export default function App() {
           onFocusChange={setFocused}
         />
 
+        {/* Always present, so screen readers notice when the Tab menu opens or Tab picks another choice. */}
+        <div className="visually-hidden" role="status">
+          {menu ? menuStatus(menu.labels, menu.active) : ''}
+        </div>
         {menu ? (
-          <div className="tab-menu">
+          <div className="tab-menu" role="group" aria-label="completions">
             {menu.labels.map((label, index) => (
               <button
                 key={label}

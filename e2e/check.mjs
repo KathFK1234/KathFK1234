@@ -141,6 +141,16 @@ await page.keyboard.type('pro');
 await page.keyboard.press('Tab');
 if ((await input()) !== 'projects ') problems.push(`keyboard: Tab turned "pro" into "${await input()}"`);
 await page.keyboard.press('Enter');
+// A Tab with several choices opens the menu, and screen readers are told what it offers
+await page.keyboard.type('c');
+await page.keyboard.press('Tab');
+const said = () => page.evaluate(() => document.querySelector('[role="status"]')?.textContent ?? '(no status region)');
+if (!/^\d+ completions: /.test(await said())) problems.push(`keyboard: the Tab menu was announced as "${await said()}"`);
+await page.keyboard.press('Tab');
+if (!/, 1 of \d+$/.test(await said())) problems.push(`keyboard: a second Tab was announced as "${await said()}"`);
+await page.keyboard.down('Control');
+await page.keyboard.press('u');
+await page.keyboard.up('Control');
 await page.keyboard.press('ArrowUp');
 if ((await input()) !== 'projects') problems.push(`keyboard: ArrowUp gave "${await input()}"`);
 await page.keyboard.down('Shift');

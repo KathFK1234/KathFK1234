@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import projectData from '../data/projects.json';
 import { DEFAULT_PREFS, loadHistory, loadPrefs, saveHistory } from '../prefs';
 import { canDeepLink, commandNames, commands, createShellState, EXAMPLES, execute, tokenize, type Ctx } from './commands';
-import { commonPrefix, complete, ghostFor } from './complete';
+import { commonPrefix, complete, ghostFor, menuStatus } from './complete';
 import { readEndpoints } from './mood';
 import { buildTree, describe as describeNode, displayPath, getNode, resolvePath, root, walk } from './fs';
 
@@ -830,6 +830,13 @@ describe('completion', () => {
     expect(complete('mood rey', []).lines).toEqual(['mood reykjavik']);
     expect(complete('mood nairobi v', []).lines).toContain('mood nairobi vs');
     expect(complete('mood week kig', []).lines).toEqual(['mood week kigali']);
+  });
+
+  it('says what the Tab menu offers, and which choice Tab picked', () => {
+    expect(menuStatus(['cat', 'cd'], -1)).toBe('2 completions: cat, cd. Press Tab to go through them.');
+    expect(menuStatus(['cat', 'cd'], 1)).toBe('cd, 2 of 2');
+    expect(menuStatus(Array.from({ length: 12 }, (_, i) => `c${i}`), -1)).toMatch(/c9 and 2 more\. Press Tab/);
+    expect(menuStatus(['only'], -1)).toBe('');
   });
 
   it('finds the shared prefix and a ghost suggestion', () => {
