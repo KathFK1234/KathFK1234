@@ -394,7 +394,12 @@ export const commands: Command[] = [
     run: () => (
       <>
         <Accent2>
-          <span className="art">{'psychology\n     \\\n      \\\n  systems ─── backend ─── ai\n      \\           \\\n       \\           education\n        research'}</span>
+          {/* Read as one sentence by screen readers instead of slashes and lines. */}
+          <span
+            className="art"
+            role="img"
+            aria-label="Diagram: psychology leads to systems; systems connects to backend, and backend to AI; systems also leads to research, and backend to education."
+          >{'psychology\n     \\\n      \\\n  systems ─── backend ─── ai\n      \\           \\\n       \\           education\n        research'}</span>
         </Accent2>
         {'\n\n'}
         I do not treat these as separate careers. They are one way of thinking: observe, form a hypothesis, build a

@@ -815,6 +815,13 @@ describe('updates', () => {
   });
 });
 
+describe('thinking', () => {
+  it('gives the diagram a sentence screen readers read instead of its lines', async () => {
+    const { markup } = shell();
+    expect(await markup('thinking')).toMatch(/<span class="art" role="img" aria-label="Diagram: psychology leads to systems;[^"]*">psychology\n/);
+  });
+});
+
 describe('links', () => {
   it('says a link opens a new tab, except an email address, which opens the mail app', () => {
     expect(renderToStaticMarkup(<Link href="https://github.com/KathFK1234">GitHub</Link>)).toBe(
