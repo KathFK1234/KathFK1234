@@ -498,8 +498,8 @@ describe('mood', () => {
     serve({ '/api/forecast/nairobi': { location: 'Nairobi, KE', daily } });
     const { run } = shell();
     const out = await run('mood week nairobi');
-    expect(out).toMatch(/Mon 5 Oct.*65 Steady.*Rain Showers, 16–25°C, rain 53%/s);
-    expect(out).toMatch(/Tue 6 Oct.*80 Upbeat.*Clear, 16–25°C(?!, rain)/s);
+    expect(out).toMatch(/Mon 5 Oct.*65 Steady.*Rain Showers, 16–25°C, 53% chance of rain or snow/s);
+    expect(out).toMatch(/Tue 6 Oct.*80 Upbeat.*Clear, 16–25°C(?!, \d+% chance)/s);
     expect(out).toMatch(/best day: Tue 6 Oct \(80, Upbeat\)/);
     expect(out).toContain('a rule of thumb from the weather alone, not a measure of how you feel.');
     expect(out).toMatch(/daylight today 06:17–18:24/);

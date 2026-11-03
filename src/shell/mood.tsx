@@ -721,7 +721,8 @@ async function week(place: string, ctx: Ctx): Promise<ReactNode> {
               <Bar score={day.mood_score} /> {`${day.mood_score} ${day.mood_label}`.padEnd(11)}{' '}
               <Dim>
                 {day.condition}, {Math.round(day.temp_min_c)}–{Math.round(day.temp_max_c)}°C
-                {rain != null ? `, rain ${Math.round(rain)}%` : ''}
+                {/* The day's chance of any rain or snow, as the service words it, not how much of the day it rains. */}
+                {rain != null ? `, ${Math.round(rain)}% chance of rain or snow` : ''}
               </Dim>
             </>,
           ];
