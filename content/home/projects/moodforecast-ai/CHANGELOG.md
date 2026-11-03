@@ -2,8 +2,9 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  280 commits · first 2026-06-05 · latest 2026-11-02
+  281 commits · first 2026-06-05 · latest 2026-11-03
 
+  2026-11-03  Give the full Railway config migration steps, including the cutover
   2026-11-02  Ignore every .env file except the example
   2026-11-02  Test the colour of links inside the email text too
   2026-11-02  Word railway.toml's header as a requirement, not a fact
@@ -15,6 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-11-02  Mark the emails' language for screen readers
   2026-11-02  Darken the email links to meet WCAG AA contrast
   2026-11-02  Date the privacy page
-  2026-11-02  Say on the privacy page that details may be handled in other countries
 
 From anywhere in this terminal, `updates` shows the same for every project.

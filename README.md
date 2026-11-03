@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Playwright · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
-<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-11-02</sub>
+<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-11-03</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,12 +109,12 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 44.5%" : 1352.2
-    "JavaScript · 21.7%" : 658.5
-    "TypeScript · 19.7%" : 598.1
-    "CSS · 7.9%" : 238.9
-    "HTML · 4.0%" : 120.3
-    "C · 2.1%" : 62.7
+    "Python · 44.2%" : 1353.3
+    "JavaScript · 21.7%" : 664.9
+    "TypeScript · 20.0%" : 610.7
+    "CSS · 7.8%" : 239.3
+    "HTML · 3.9%" : 120.3
+    "C · 2.0%" : 62.7
     "Ruby · 0.3%" : 10.1
 ```
 <!-- languages:end -->
@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-11-02 | Say in the README that Railway stores the data outside Kenya |
-| MoodForecast AI | 2026-11-02 | Ignore every .env file except the example |
-| Murengeti Lab System | 2026-10-31 | Test the guards that a hand-made mutation run showed were unwatched |
+| Healing Hive | 2026-11-03 | Point at duplicate data only when an index fails on a duplicate key |
+| MoodForecast AI | 2026-11-03 | Give the full Railway config migration steps, including the cutover |
+| Murengeti Lab System | 2026-11-02 | Give Chrome two minutes to start in the smoke test |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->

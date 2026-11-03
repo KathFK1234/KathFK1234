@@ -7,9 +7,37 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-11-02",
-      "commits": 222,
+      "updated": "2026-11-03",
+      "commits": 229,
       "recent": [
+        {
+          "date": "2026-11-03",
+          "subject": "Point at duplicate data only when an index fails on a duplicate key"
+        },
+        {
+          "date": "2026-11-03",
+          "subject": "Log a database index that fails to build"
+        },
+        {
+          "date": "2026-11-03",
+          "subject": "Index professionals by institution"
+        },
+        {
+          "date": "2026-11-03",
+          "subject": "Let the public header wrap instead of running off the screen"
+        },
+        {
+          "date": "2026-11-03",
+          "subject": "Put the page-not-found screen in a main landmark"
+        },
+        {
+          "date": "2026-11-03",
+          "subject": "Keep signed-in API answers out of the browser cache"
+        },
+        {
+          "date": "2026-11-03",
+          "subject": "Name the services outside Kenya that receive personal data in the README"
+        },
         {
           "date": "2026-11-02",
           "subject": "Say in the README that Railway stores the data outside Kenya"
@@ -29,34 +57,6 @@
         {
           "date": "2026-11-02",
           "subject": "Let npm start at the repo root start the API, so Railway finds it without railway.json"
-        },
-        {
-          "date": "2026-11-02",
-          "subject": "Put the Railway secrets warning before the migration steps"
-        },
-        {
-          "date": "2026-11-02",
-          "subject": "Warn in the Railway migration steps against flags that expose secrets"
-        },
-        {
-          "date": "2026-11-02",
-          "subject": "Say which Railway plans block SMTP"
-        },
-        {
-          "date": "2026-11-02",
-          "subject": "Say in the README how to move Railway's settings off railway.json before 1 December"
-        },
-        {
-          "date": "2026-11-02",
-          "subject": "Let Railway restart the API up to 10 times after a crash"
-        },
-        {
-          "date": "2026-11-02",
-          "subject": "Give requests in progress 75 seconds to finish when Railway replaces the API"
-        },
-        {
-          "date": "2026-11-02",
-          "subject": "Update eslint to 10.14.0"
         }
       ]
     },
@@ -67,9 +67,13 @@
       "url": "https://github.com/KathFK1234/moodforecast_ai",
       "team": false,
       "started": "2026-06-05",
-      "updated": "2026-11-02",
-      "commits": 280,
+      "updated": "2026-11-03",
+      "commits": 281,
       "recent": [
+        {
+          "date": "2026-11-03",
+          "subject": "Give the full Railway config migration steps, including the cutover"
+        },
         {
           "date": "2026-11-02",
           "subject": "Ignore every .env file except the example"
@@ -113,10 +117,6 @@
         {
           "date": "2026-11-02",
           "subject": "Date the privacy page"
-        },
-        {
-          "date": "2026-11-02",
-          "subject": "Say on the privacy page that details may be handled in other countries"
         }
       ]
     },
@@ -127,9 +127,33 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-10-31",
-      "commits": 354,
+      "updated": "2026-11-02",
+      "commits": 360,
       "recent": [
+        {
+          "date": "2026-11-02",
+          "subject": "Give Chrome two minutes to start in the smoke test"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Let a promotion undone the same day be made again"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Build a student's full name in one place everywhere"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Keep one copy of how a project entry is named and which files it holds"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Keep one copy of the school's date"
+        },
+        {
+          "date": "2026-10-31",
+          "subject": "Keep one copy of the helper that makes a stored time UTC"
+        },
         {
           "date": "2026-10-31",
           "subject": "Test the guards that a hand-made mutation run showed were unwatched"
@@ -153,30 +177,6 @@
         {
           "date": "2026-10-31",
           "subject": "Keep a lesson with marks on it with its group"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Leave a cancelled lesson's time free for another lesson"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Refuse to move a lesson onto another of the same group"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Test that a new sign-in code clears the expired ones"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Test the Resend mail path and its failures"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Let the keyboard scroll the lessons table"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Refuse a project that ends before it starts"
         }
       ]
     },
