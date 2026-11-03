@@ -155,6 +155,13 @@ if ((await page.$$eval('.prompt-line .typed', lines => lines.length)) <= before)
 await page.keyboard.type('x');
 if ((await page.evaluate(() => document.activeElement?.tagName)) !== 'INPUT') problems.push('keyboard: typing after a button did not return to the prompt');
 
+// Nothing blinks or pulses for more than five seconds on its own (WCAG 2.2.2)
+await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'no-preference' }]);
+await page.goto(url, { waitUntil: 'networkidle2' });
+await new Promise(resolve => setTimeout(resolve, 5500));
+const moving = await page.evaluate(() => document.getAnimations().filter(animation => animation.playState === 'running').map(animation => animation.animationName));
+if (moving.length) problems.push(`still moving after five seconds: ${moving.join(', ')}`);
+
 await browser.close();
 
 for (const problem of problems) console.error(problem);
