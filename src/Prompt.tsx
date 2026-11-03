@@ -44,7 +44,8 @@ export function Prompt(props: PromptProps) {
   return (
     <div className="prompt-line">
       <Ps1 path={props.path} question={props.question} />
-      <span className="typed">
+      {/* A copy of the input for the eye; screen readers read the input itself, so they hear it once. */}
+      <span className="typed" aria-hidden="true">
         {value.slice(0, caret)}
         <span
           // Re-keying restarts the blink, so the cursor stays solid while typing.
