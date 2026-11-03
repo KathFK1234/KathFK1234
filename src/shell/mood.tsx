@@ -492,7 +492,10 @@ function guide(session: MoodSession): ReactNode {
         ]}
       />
       {'\n'}
-      <Dim>any town or city works, not just the ones above.</Dim>
+      <Dim>any town or city works, not just the ones above.</Dim>{'\n'}
+      {/* Said where the words are typed, not only in the privacy note. */}
+      <Dim>what you type after mood is sent to the service, so keep it to places and plans, not yourself:</Dim>{' '}
+      <Cmd>cat ~/privacy.txt</Cmd>
     </>
   );
 }

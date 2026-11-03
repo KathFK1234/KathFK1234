@@ -411,6 +411,8 @@ describe('mood', () => {
     const out = await run('mood');
     expect(out).toMatch(/It needs a place/);
     expect(out.match(/mood [a-z]/g)!.length).toBeGreaterThanOrEqual(5);
+    expect(out).toMatch(/what you type after mood is sent to the service[^\n]*cat ~\/privacy\.txt/);
+    expect(await run('cat ~/privacy.txt')).toMatch(/Whatever you type after mood is sent/);
     expect(calls).toEqual([]);
   });
 
