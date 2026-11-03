@@ -433,6 +433,7 @@ describe('mood', () => {
     // A shared link can run mood, so the note says that too.
     expect(canDeepLink('mood nairobi')).toBe(true);
     expect(note).toMatch(/\?cmd=mood \.\.\. sends its place the same way/);
+    expect(note).toMatch(/a line that sounds like crisis is answered here with helplines, and is neither sent nor saved/);
     expect(note).toMatch(/This site is Katheu Kilonzo(?:'|&#x27;)s\./);
     expect(note).toMatch(/a request about your data: fkatheukilonzo@gmail\.com/);
     expect(calls).toEqual([]);

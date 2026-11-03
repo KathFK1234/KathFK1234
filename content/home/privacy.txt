@@ -3,7 +3,8 @@ This site has no cookies, no analytics and no accounts.
 Your theme, font and command history stay in your own browser. `history -c` clears the history.
 Whatever you type after `mood` is sent to MoodForecast AI to answer you: places, plans such as a picnic,
 and the first letters of a place it cannot find, to suggest one. So type places and plans there, not anything
-about yourself. A link to this page that ends in `?cmd=mood ...` sends its place the same way as the page opens. MoodForecast AI's own privacy page says what it keeps: https://moodforecastai-production.up.railway.app/privacy.html
+about yourself. A link to this page that ends in `?cmd=mood ...` sends its place the same way as the page opens.
+One exception: a line that sounds like crisis is answered here with helplines, and is neither sent nor saved. MoodForecast AI's own privacy page says what it keeps: https://moodforecastai-production.up.railway.app/privacy.html
 Nothing else you type leaves this page.
 The hosts log requests too: GitHub Pages stores each visitor's IP address for security, and Railway's request logs record it.
 GitHub and Railway are companies in the United States, so these logs may be kept outside your country.
