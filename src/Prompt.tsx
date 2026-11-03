@@ -71,7 +71,12 @@ export function Prompt(props: PromptProps) {
         onSelect={syncCaret}
         onFocus={() => props.onFocusChange(true)}
         onBlur={() => props.onFocusChange(false)}
-        aria-label="terminal input — type help and press Enter"
+        // The screen shows only "?" while a command waits for an answer, so the label says it instead.
+        aria-label={
+          props.question
+            ? 'your answer to the question above — type it and press Enter'
+            : 'terminal input — type help and press Enter'
+        }
         autoFocus
         autoComplete="off"
         autoCapitalize="none"
