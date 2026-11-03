@@ -415,6 +415,9 @@ describe('mood', () => {
     const note = await run('cat ~/privacy.txt');
     expect(note).toMatch(/Whatever you type after mood is sent/);
     expect(note).toMatch(/may be kept outside your country/);
+    // A shared link can run mood, so the note says that too.
+    expect(canDeepLink('mood nairobi')).toBe(true);
+    expect(note).toMatch(/\?cmd=mood \.\.\. sends its place the same way/);
     expect(note).toMatch(/This site is Katheu Kilonzo(?:'|&#x27;)s\./);
     expect(note).toMatch(/a request about your data: fkatheukilonzo@gmail\.com/);
     expect(calls).toEqual([]);
