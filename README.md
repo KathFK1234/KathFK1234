@@ -129,7 +129,7 @@ pie title Share of code across my repositories
 
 ### MoodForecast AI
 
-Weather apps report conditions. This asks what those conditions mean for a person: live weather becomes a mood score with the reasons behind it, a week-ahead outlook, and a verdict on whether the weather suits your plans.
+Weather apps report conditions. This asks what those conditions mean for a person: live weather becomes a mood score, from hand-set rules and with the reasons behind it, a week-ahead outlook, and a verdict on whether the weather suits your plans.
 
 `Python` `FastAPI` `SQLModel` `Railway`
 

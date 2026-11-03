@@ -424,7 +424,7 @@ export const commands: Command[] = [
             ],
             [
               <Dim>Solution</Dim>,
-              'FastAPI backend, live weather data integration, and a psychologically informed wellbeing scoring layer designed to interpret the situation rather than just record it',
+              'FastAPI backend, live weather data, and a wellbeing score from fixed, hand-set rules: a rule of thumb that explains the situation rather than just recording it, never presented as a measure of how anyone feels',
             ],
             [
               <Dim>Links</Dim>,
