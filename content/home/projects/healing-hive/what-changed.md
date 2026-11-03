@@ -31,16 +31,17 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   AI companion     v1 had the code for an AI chat, not yet connected. v2 connects it to Claude, tells it what it is not (a therapist, a doctor, a human), and lets a person wipe the conversation.
   crisis           a message that sounds like crisis always gets help contacts back, in English or Swahili, whether or not the AI answers, declines or times out, and even past the chat limit. Every number was checked against its organisation's own details, and the lines that answer at any hour come first, with their hours shown.
   check-ins        new in v2: a mood score short enough to finish when tired.
-  privacy          journals, check-ins and AI conversations belong to their owner. The admin dashboard gets counts, nothing else, and so does an institution about the professionals who accepted its invitation.
+  privacy          journals, check-ins and AI conversations belong to their owner. The admin dashboard gets counts, nothing else, and so does an institution about the professionals who accepted its invitation. Signed-in answers are never kept in the browser's cache, so a shared computer does not hold them after sign-out.
 
 ## Engineering
 
   structure        one folder per feature (auth, sessions, journal ...) with a versioned API, where v1 had one folder per file type.
   validation       every request is checked before it reaches a handler, and errors come back in one shape. A request the server cannot read is the sender's error (400 or 415), not the server's, and a web address that cannot be decoded gets a 404.
   editing          emptying a box removes what was there: a rating's public comment, a journal entry's title, a professional's years of experience.
-  tests            87 API tests against an in-memory database, each named for the promise it keeps, and 9 web app tests for telling an outage from an ordinary error and checking a certificate file before it is sent.
+  tests            89 API tests against an in-memory database, each named for the promise it keeps, and 9 web app tests for telling an outage from an ordinary error and checking a certificate file before it is sent.
+  deploys          Railway restarts a crashed API up to ten times, and a replaced one gets 75 seconds to finish the requests in progress. A database index that fails to build is logged, and pointed at duplicate data only when that is the cause.
   outages          losing the database counts as an outage, and the web app stops waiting on a silent server after 30 seconds, longer for the companion and files, so the calm notice shows instead of a page that hangs.
-  email            sent through Brevo's API when its key is set, because Railway's plan blocks SMTP; SMTP stays as the fallback, and a silent mail server is dropped after 10 seconds. A mail server's refusal repeats the address, so the log keeps only its code.
+  email            sent through Brevo's API when its key is set, because Railway blocks SMTP on its Free, Trial and Hobby plans; SMTP stays as the fallback, and a silent mail server is dropped after 10 seconds. A mail server's refusal repeats the address, so the log keeps only its code.
   local setup      `npm run dev` starts a database, the API and the web app together, and fills them with sample accounts for every kind of person. Email, Google Calendar and the AI companion are optional, and the app works without them.
 
 ## The web app
@@ -49,8 +50,8 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   v2               twenty-four pages covering every feature above, for four kinds of people: someone looking for support, a professional running their practice, an institution with professionals on its team, and an admin reviewing applications and content. Each has its own home and a short menu.
   get help now     a button on every page, signed in or not.
   themes           light and dark, from one set of colour tokens.
-  phones           every page fits a 320-pixel screen.
-  screen readers   moving to a new page reads out its title, because nothing else on the screen announces it.
+  phones           every page fits a 320-pixel screen, and the public header wraps instead of running off it when text is spaced wider.
+  screen readers   moving to a new page reads out its title, because nothing else on the screen announces it, and every page, the not-found one included, has its main content marked as such.
   link previews    a shared link shows a generic card, so nothing personal can appear in one, and public pages answer 200 at their own address.
 
 ## Not built yet
@@ -59,6 +60,6 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   reminders        saved and shown in the app; sending them by SMS or email comes later.
   calls            sessions happen on Google Meet, the professional's own link, or Jitsi; there is no built-in call room.
   email changes    changing an email address, and confirming one at sign-up.
-  your data        deleting an account, downloading your data, and a privacy notice with consent at sign-up. Kenya's Data Protection Act 2019 covers this kind of health-related data.
+  your data        deleting an account, downloading your data, and a privacy notice with consent at sign-up. Kenya's Data Protection Act 2019 covers this kind of health-related data, and it is stored outside Kenya: Railway has no region in Africa, and Anthropic, Brevo and Google receive personal data once they are switched on. The README names each one, for the privacy notice and the legal check.
 
 Before real people use it: the data items above, the AI companion's instructions reviewed by a qualified clinician, Google's verification so every professional can connect a calendar, database backups with a restore tried once, and the crisis numbers checked again before each release.
