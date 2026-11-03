@@ -13,6 +13,7 @@ import {
   walk,
   type DirNode,
 } from './fs';
+import { HELPLINES, looksLikeCrisis } from './crisis';
 import { createMoodSession, mood, MOOD_WORDS, type MoodSession } from './mood';
 import { Accent, Accent2, Cmd, Dim, Link, Rows, Warn } from './ui';
 
@@ -1741,10 +1742,47 @@ export function canDeepLink(line: string): boolean {
   return !!command && DEEP_LINK_COMMANDS.has(command.name);
 }
 
+function crisisReply(): ReactNode {
+  return (
+    <>
+      It sounds like you may be going through something really painful. This terminal cannot help with that, but
+      people can, right now:{'\n\n'}
+      {HELPLINES.map(line => (
+        <Fragment key={line.phone}>
+          {'  '}
+          <Link href={telHref(line.phone)}>{line.phone}</Link>
+          {line.also ? (
+            <>
+              {' or '}
+              <Link href={telHref(line.also)}>{line.also}</Link>
+            </>
+          ) : null}
+          {'  '}
+          {line.who}
+          {'\n'}
+        </Fragment>
+      ))}
+      {'\n'}
+      Outside Kenya, <Link href="https://findahelpline.com">findahelpline.com</Link> lists free lines in your
+      country. If you can, tell someone near you how you are feeling.{'\n'}
+      <Dim>what you typed was not sent anywhere or kept in this terminal's history.</Dim>
+    </>
+  );
+}
+
+const telHref = (phone: string) => `tel:${phone.replace(/[^\d+]/g, '')}`;
+
 /** Run one line. Output goes through `ctx.print`; the caller echoes the line itself. */
 export async function execute(line: string, ctx: Ctx): Promise<void> {
   const trimmed = line.trim();
   if (!trimmed) return;
+
+  // Before anything else, so the words are never sent to a service or taken for a place.
+  if (looksLikeCrisis(trimmed)) {
+    ctx.state.mode = null;
+    ctx.print(crisisReply());
+    return;
+  }
 
   if (ctx.state.mode === 'whoami') {
     ctx.state.mode = null;

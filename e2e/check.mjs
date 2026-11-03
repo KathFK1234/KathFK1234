@@ -176,6 +176,18 @@ if ((await page.$$eval('.prompt-line .typed', lines => lines.length)) <= before)
 await page.keyboard.type('x');
 if ((await page.evaluate(() => document.activeElement?.tagName)) !== 'INPUT') problems.push('keyboard: typing after a button did not return to the prompt');
 
+// A line that sounds like crisis gets helplines, reaches no service and is not saved in the history
+await page.focus('input');
+await page.keyboard.type('mood i want to die');
+await page.keyboard.press('Enter');
+await new Promise(resolve => setTimeout(resolve, 300));
+const crisis = await page.evaluate(() => ({
+  helplines: document.body.innerText.includes('Kenya Red Cross'),
+  saved: (localStorage.getItem('katheu:history') ?? '').includes('want to die'),
+}));
+if (!crisis.helplines) problems.push('crisis: "mood i want to die" did not show the helplines');
+if (crisis.saved) problems.push('crisis: "mood i want to die" was saved in the history');
+
 // Nothing blinks or pulses for more than five seconds on its own (WCAG 2.2.2)
 await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'no-preference' }]);
 await page.goto(url, { waitUntil: 'networkidle2' });

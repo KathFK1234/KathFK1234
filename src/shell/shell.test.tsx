@@ -849,6 +849,32 @@ describe('thinking', () => {
   });
 });
 
+describe('crisis', () => {
+  it('answers a line that sounds like crisis with helplines, and sends nothing', async () => {
+    const calls = serve({});
+    const { ctx, run, markup } = shell();
+    for (const line of ['mood i want to die', 'mood I don\u2019t want to live anymore', 'nataka kufa', 'whoami i might hurt myself']) {
+      const out = await run(line);
+      expect(out).toMatch(/something really painful/);
+      expect(out).toMatch(/999 or 112 {2}emergency services/);
+      expect(out).toMatch(/1199 {2}Kenya Red Cross: free counselling by phone, at any hour/);
+      expect(out).toMatch(/\+254 722 178 177 {2}Befrienders Kenya/);
+      expect(out).toMatch(/not sent anywhere or kept in this terminal(?:'|&#x27;)s history/);
+    }
+    expect(calls).toEqual([]);
+    expect(ctx.state.mode).toBeNull();
+    // Phone numbers open the phone app, not a new tab
+    expect(await markup('mood i want to die')).toContain('<a class="link" href="tel:1199">1199</a>');
+  });
+
+  it('leaves everyday lines alone', async () => {
+    const { run } = shell();
+    for (const line of ['help', 'cat README.md', 'mood picnic in cape town', 'mood week tokyo']) {
+      expect(await run(line)).not.toMatch(/something really painful/);
+    }
+  });
+});
+
 describe('links', () => {
   it('says a link opens a new tab, except an email address, which opens the mail app', () => {
     expect(renderToStaticMarkup(<Link href="https://github.com/KathFK1234">GitHub</Link>)).toBe(

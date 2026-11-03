@@ -15,8 +15,8 @@ export function Cmd({ children, run }: { children: string; run?: string }) {
 
 export function Link({ href, children }: { href: string; children: ReactNode }) {
   return (
-    // An email address opens the mail app, not a tab.
-    href.startsWith('mailto:') ? (
+    // An email address or a phone number opens the mail or phone app, not a tab.
+    href.startsWith('mailto:') || href.startsWith('tel:') ? (
       <a className="link" href={href}>
         {children}
       </a>

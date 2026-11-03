@@ -3,6 +3,7 @@ import { applyPrefs, loadHistory, loadPrefs, saveHistory, savePrefs, type Prefs 
 import { Prompt, Ps1 } from './Prompt';
 import { Banner, canDeepLink, createShellState, execute, type Ctx } from './shell/commands';
 import { commonPrefix, complete, ghostFor, menuStatus } from './shell/complete';
+import { looksLikeCrisis } from './shell/crisis';
 import { displayPath } from './shell/fs';
 import { RunContext } from './shell/ui';
 
@@ -92,7 +93,8 @@ export default function App() {
       setEntries(current => [...current, echo]);
       if (!text) return;
 
-      if (shell.mode === null && shell.history[shell.history.length - 1] !== text) {
+      // A line that sounds like crisis is answered with helplines and never saved (see shell/crisis.ts).
+      if (shell.mode === null && shell.history[shell.history.length - 1] !== text && !looksLikeCrisis(text)) {
         shell.history.push(text);
       }
 
