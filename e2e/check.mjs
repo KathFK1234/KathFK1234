@@ -1,7 +1,9 @@
 // Opens the built site in Chrome at five widths and in five themes, and fails on a console error,
 // a Content-Security-Policy violation, a failed asset, sideways scrolling, text cut off inside the terminal
-// or an accessibility problem, then the keyboard: Tab, history, Shift+Tab out of the prompt and Enter on a command.
-// The mood service is answered from fixed data, so no network is needed.
+// or an accessibility problem; then the keyboard: Tab completion and how the Tab menu is announced, history,
+// Shift+Tab out of the prompt to a nav button with the site's own focus ring, and Enter on a command;
+// then that a line sounding like crisis shows helplines and is not saved, and that nothing still moves
+// after five seconds. The mood service is answered from fixed data, so no network is needed.
 // Usage: npm run build && npx vite preview --port 4791 & node e2e/check.mjs http://localhost:4791/
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
