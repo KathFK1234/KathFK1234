@@ -386,13 +386,13 @@ const NAIROBI = {
 describe('mood', () => {
   afterEach(() => vi.unstubAllGlobals());
 
-  it('words the risk level about the weather, and says the score is only an estimate', async () => {
+  it('words the risk level about the weather, and says the score is only a rule of thumb', async () => {
     serve({ '/api/wellbeing/nairobi': { ...NAIROBI, risk_level: 'High' } });
     const { run } = shell();
     const out = await run('mood nairobi');
     expect(out).toContain('weather likely to dampen mood');
-    expect(out).toContain('not a measure of how you feel');
-    expect(out).not.toMatch(/risk/);
+    expect(out).toContain('a rule of thumb from the weather alone, not a measure of how you feel.');
+    expect(out).not.toMatch(/risk|estimate/);
   });
 
   it('keeps the bars of block characters from screen readers, which read the numbers beside them', async () => {

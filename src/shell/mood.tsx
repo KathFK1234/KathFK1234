@@ -367,6 +367,9 @@ function whereNext(data: Wellbeing, place: string, session: MoodSession): ReactN
 
 /* ---------- output ---------- */
 
+/** Said under every score: the service's rules are hand-set, never fitted to how people feel (MoodForecast AI #191). */
+export const CAVEAT = 'a rule of thumb from the weather alone, not a measure of how you feel.';
+
 function Bar({ score }: { score: number }) {
   const filled = Math.round((Math.min(100, Math.max(0, score)) / 100) * BAR_WIDTH);
   // The score is printed beside the bar, so screen readers skip the block characters.
@@ -594,7 +597,7 @@ async function reading(place: string, ctx: Ctx): Promise<ReactNode> {
     <>
       <Accent>{data.location}</Accent> <Dim>— live from the MoodForecast AI service</Dim>{'\n'}
       <Rows rows={rows} />
-      <Dim>an estimate from the weather alone, not a measure of how you feel.</Dim>{'\n'}
+      <Dim>{CAVEAT}</Dim>{'\n'}
       {data.ai_summary ? `\n${data.ai_summary}\n` : null}
       {data.recommendations.length ? '\n' : null}
       {data.recommendations.map(item => `  • ${item}\n`)}
