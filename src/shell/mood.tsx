@@ -710,7 +710,7 @@ async function week(place: string, ctx: Ctx): Promise<ReactNode> {
   const today = data.daily[0];
   return (
     <>
-      <Accent>{data.location}</Accent> <Dim>— the week ahead, scored day by day</Dim>{'\n'}
+      <Accent>{data.location}</Accent> <Dim>— the week ahead, scored day by day; the later days are less certain</Dim>{'\n'}
       <Rows
         rows={data.daily.map(day => {
           const rain = day.precipitation_chance;
