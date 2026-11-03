@@ -92,6 +92,14 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('words the scoring rules as the terminal does: an outlook about the weather, from hand-set rules', async () => {
+    const { run } = shell();
+    const rules = await run('cat ~/projects/moodforecast-ai/data/scoring-rules.md');
+    expect(rules).toMatch(/score {5}energy {6}outlook\n/);
+    expect(rules).toMatch(/0-24 {6}Very Low {4}weather likely to dampen mood/);
+    expect(rules).toMatch(/never fitted to, or checked against, how people feel/);
+  });
+
   it("says in mood's manual that the score is a rule of thumb, not that the numbers are real", async () => {
     const { run } = shell();
     const page = await run('man mood');
