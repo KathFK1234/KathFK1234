@@ -368,7 +368,7 @@ function whereNext(data: Wellbeing, place: string, session: MoodSession): ReactN
 /* ---------- output ---------- */
 
 /** Said under every score: the service's rules are hand-set, never fitted to how people feel (MoodForecast AI #191). */
-export const CAVEAT = 'a rule of thumb from the weather alone, not a measure of how you feel.';
+const CAVEAT = 'a rule of thumb from the weather alone, not a measure of how you feel.';
 
 function Bar({ score }: { score: number }) {
   const filled = Math.round((Math.min(100, Math.max(0, score)) / 100) * BAR_WIDTH);
