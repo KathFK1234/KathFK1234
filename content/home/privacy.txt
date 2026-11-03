@@ -6,3 +6,6 @@ and the first letters of a place it cannot find, to suggest one. So type places 
 about yourself. MoodForecast AI's own privacy page says what it keeps: https://moodforecastai-production.up.railway.app/privacy.html
 Nothing else you type leaves this page.
 The hosts log requests too: GitHub Pages stores each visitor's IP address for security, and Railway's request logs record it.
+GitHub and Railway are companies in the United States, so these logs may be kept outside your country.
+
+This site is Katheu Kilonzo's. Questions about any of this, or a request about your data: fkatheukilonzo@gmail.com

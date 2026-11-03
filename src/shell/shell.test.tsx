@@ -412,7 +412,11 @@ describe('mood', () => {
     expect(out).toMatch(/It needs a place/);
     expect(out.match(/mood [a-z]/g)!.length).toBeGreaterThanOrEqual(5);
     expect(out).toMatch(/what you type after mood is sent to the service[^\n]*cat ~\/privacy\.txt/);
-    expect(await run('cat ~/privacy.txt')).toMatch(/Whatever you type after mood is sent/);
+    const note = await run('cat ~/privacy.txt');
+    expect(note).toMatch(/Whatever you type after mood is sent/);
+    expect(note).toMatch(/may be kept outside your country/);
+    expect(note).toMatch(/This site is Katheu Kilonzo(?:'|&#x27;)s\./);
+    expect(note).toMatch(/a request about your data: fkatheukilonzo@gmail\.com/);
     expect(calls).toEqual([]);
   });
 
