@@ -28,7 +28,7 @@ A list says it is loading until its records arrive, never "nothing here yet" bef
 
 When the server cannot be reached, the site says "Back shortly" instead of loading forever, signed in or out: a problem with the hosting provider, nothing the person did, their records safe, with a link to the host's status page. It keeps checking and carries on as soon as the server answers, and a page that gets this answer while loading says the same in its banner, with Try again. CI checks this against the built site.
 
-Times are kept as they are typed, so a lesson can be recorded before 08:00. A "4:30" in an imported file still becomes 16:30. A second lesson for the same group at the same time is refused, so a double click cannot count one lesson twice against a target, and so is a project that ends before it starts.
+Times are kept as they are typed, so a lesson can be recorded before 08:00. A "4:30" in an imported file still becomes 16:30. A second lesson for the same group at the same time is refused, so a double click cannot count one lesson twice against a target. So is moving a lesson onto another of that group, and a project that ends before it starts. A cancelled lesson leaves its time free for another, and a lesson with marks on it stays with its group.
 
 Small text reaches WCAG AA contrast in both themes, and a dialog keeps the keyboard's focus and gives it back on closing. Every control shows when the keyboard is on it, there is a way past the sidebar, a new page takes the focus and names itself in its title, and form errors are announced to screen readers. The fonts come from the site, so a visit does not reach Google. A shared link shows a generic card that never names a school or a person.
 
@@ -46,10 +46,10 @@ Every account is copied to Back4App. If Back4App already has a user with the sam
   React 19 · TypeScript 7 · Vite 8
   deployed on Railway, where only the site has a public address; the backend is reached on Railway's private network, through the site's own server
 
-A deploy takes traffic only once its health check passes (the backend's after its database migrations have run), so one that fails leaves the working version serving. Migrations are kept compatible with the code before them for that reason. A crashing service gets ten restarts, and `/api/ready` tells a monitor whether the server can reach its database.
+A deploy takes traffic only once its health check passes (the backend's after its database migrations have run). A site deploy that fails leaves the working version serving. The backend keeps its uploads on a volume, and Railway never runs two deployments of such a service at once, so every backend deploy has a short gap and a failed one leaves the API down until a deploy succeeds. Migrations are kept compatible with the code before them. A crashing service gets ten restarts, and `/api/ready` tells a monitor whether the server can reach its database.
 
 The site is built for browsers as old as Chrome 87, Edge 88, Firefox 78 and Safari 14, because lab computers are often old: Chrome on Windows 7 and 8.1 stopped at 109.
 
-216 backend tests run on every push to main, on SQLite and on real PostgreSQL, among them a sweep of every route, present and future, that keeps out anyone without a session and each role out of the others' pages; a smoke test opens every page in Chrome for each role, and the images are built and started as Railway does. The backend installs the exact versions it was tested with, from a lock, everywhere it runs, and every push checks the pinned backend and frontend versions for known vulnerabilities.
+225 backend tests run on every push to main, among them a sweep of every route, present and future, that keeps out anyone without a session and each role out of the others' pages. They all run on real PostgreSQL, and all but the two PostgreSQL-only ones on SQLite. A smoke test opens every page in Chrome for each role, and the images are built and started as Railway does. The backend installs the exact versions it was tested with, from a lock, everywhere it runs, and every push checks the pinned backend and frontend versions for known vulnerabilities.
 
 The source is private, so this folder holds notes, not code.
