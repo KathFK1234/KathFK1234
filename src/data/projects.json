@@ -127,9 +127,17 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-11-02",
-      "commits": 360,
+      "updated": "2026-11-03",
+      "commits": 362,
       "recent": [
+        {
+          "date": "2026-11-03",
+          "subject": "Ignore database dumps and private key files"
+        },
+        {
+          "date": "2026-11-03",
+          "subject": "Say how to move Railway's settings before it stops reading railway.toml"
+        },
         {
           "date": "2026-11-02",
           "subject": "Give Chrome two minutes to start in the smoke test"
@@ -169,14 +177,6 @@
         {
           "date": "2026-10-31",
           "subject": "Say that a failed backend deploy leaves the API down"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Show a refused value's own message, without Pydantic's prefix"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Keep a lesson with marks on it with its group"
         }
       ]
     },

@@ -110,8 +110,8 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
     "Python · 44.2%" : 1353.3
-    "JavaScript · 21.7%" : 664.9
-    "TypeScript · 20.0%" : 610.7
+    "JavaScript · 21.7%" : 665.0
+    "TypeScript · 19.9%" : 610.7
     "CSS · 7.8%" : 239.3
     "HTML · 3.9%" : 120.3
     "C · 2.0%" : 62.7
@@ -191,7 +191,7 @@ Built at Chakula Africa · source is private
 | --- | --- | --- |
 | Healing Hive | 2026-11-03 | Point at duplicate data only when an index fails on a duplicate key |
 | MoodForecast AI | 2026-11-03 | Give the full Railway config migration steps, including the cutover |
-| Murengeti Lab System | 2026-11-02 | Give Chrome two minutes to start in the smoke test |
+| Murengeti Lab System | 2026-11-03 | Ignore database dumps and private key files |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->
