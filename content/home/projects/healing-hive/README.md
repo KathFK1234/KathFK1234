@@ -4,7 +4,7 @@ Therapy, peer counselling, an AI companion, and bite-sized mental-health educati
 
 ## How it got here
 
-  2025-06 to 2025-09   MindConnect, v1. A team of four built the skeleton: accounts and roles, sessions, events, nuggets, reminders, and the first screens. I was the team's psychologist and a backend engineer, and built the chatbot interface.
+  2025-06 to 2025-09   MindConnect, v1. A team of four built the skeleton: accounts and roles, sessions, events, nuggets, reminders, and the first screens. I covered the psychology side for the team, was a backend engineer, and built the chatbot interface.
   2026-10-06           I decided to keep building it. Healing Hive is v2, in my own repository, on my own time.
 
 v1 answered "can this exist?". v2 asks the harder question: what does a person in distress need this to get right every time?

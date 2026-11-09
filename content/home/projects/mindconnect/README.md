@@ -2,7 +2,7 @@
 
 A platform designed around the realities of young people in Kenya: accessibility, empathy, and practical support. The aim is a digital experience where the next step always feels clear.
 
-v1 was built with a team of four between June and September 2025. I was the team's psychologist and a backend engineer, and built the chatbot interface. Together we set up the skeleton: accounts and roles, sessions, events, nuggets, reminders, and the first screens.
+v1 was built with a team of four between June and September 2025. I covered the psychology side for the team, was a backend engineer, and built the chatbot interface. Together we set up the skeleton: accounts and roles, sessions, events, nuggets, reminders, and the first screens.
 
 In October 2026 I decided to keep building it on my own, as Healing Hive.
 
