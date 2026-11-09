@@ -436,6 +436,8 @@ describe('mood', () => {
     expect(note).toMatch(/a line that sounds like crisis is answered here with helplines, and is neither sent nor saved/);
     expect(note).toMatch(/This site is Katheu Kilonzo(?:'|&#x27;)s\./);
     expect(note).toMatch(/a request about your data: fkatheukilonzo@gmail\.com/);
+    expect(note).toMatch(/legal basis, under Kenya(?:'|&#x27;)s Data Protection Act 2019, is legitimate interest/);
+    expect(note).toMatch(/complain to Kenya(?:'|&#x27;)s Office of the Data Protection Commissioner: https:\/\/www\.odpc\.go\.ke/);
     expect(calls).toEqual([]);
   });
 

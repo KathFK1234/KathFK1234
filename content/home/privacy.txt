@@ -8,5 +8,8 @@ One exception: a line that sounds like crisis is answered here with helplines, a
 Nothing else you type leaves this page.
 The hosts log requests too: GitHub Pages stores each visitor's IP address for security, and Railway's request logs record it.
 GitHub and Railway are companies in the United States, so these logs may be kept outside your country.
+The legal basis, under Kenya's Data Protection Act 2019, is legitimate interest: the hosts keep their logs to keep the site secure,
+and what you type after `mood` is sent only so it can be answered.
 
 This site is Katheu Kilonzo's. Questions about any of this, or a request about your data: fkatheukilonzo@gmail.com
+If you think your data has been mishandled, you can complain to Kenya's Office of the Data Protection Commissioner: https://www.odpc.go.ke
