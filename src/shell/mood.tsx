@@ -444,12 +444,16 @@ const OUTLOOK: Record<string, string> = {
 };
 const outlook = (level: string) => OUTLOOK[level] ?? level;
 
+// Whole numbers, halves up, as MoodForecast AI's page shows them and its own text rounds them,
+// so the weather row agrees with the summary printed under it.
+const shown = (value: number) => Math.round(value);
+
 function weatherLine(weather: Weather): string {
-  const parts = [weather.condition, `${weather.temp_c}°C`];
-  if (weather.feels_like_c != null && weather.feels_like_c !== weather.temp_c) {
-    parts.push(`feels like ${weather.feels_like_c}°C`);
+  const parts = [weather.condition, `${shown(weather.temp_c)}°C`];
+  if (weather.feels_like_c != null && shown(weather.feels_like_c) !== shown(weather.temp_c)) {
+    parts.push(`feels like ${shown(weather.feels_like_c)}°C`);
   }
-  parts.push(`humidity ${weather.humidity}%`, `wind ${weather.wind_kph} km/h`);
+  parts.push(`humidity ${shown(weather.humidity)}%`, `wind ${shown(weather.wind_kph)} km/h`);
   if (weather.is_day === false) parts.push('night');
   return parts.join(', ');
 }
@@ -638,7 +642,7 @@ async function versus(places: [string, string], ctx: Ctx): Promise<ReactNode> {
   const gap = Math.abs(a.mood_score - b.mood_score);
   const [ahead, behind] = a.mood_score >= b.mood_score ? [a, b] : [b, a];
   const warmer = a.weather.temp_c >= b.weather.temp_c ? a : b;
-  const degrees = Math.round(Math.abs(a.weather.temp_c - b.weather.temp_c));
+  const degrees = Math.abs(shown(a.weather.temp_c) - shown(b.weather.temp_c));
   const column = (data: Wellbeing): ReactNode[] => [
     <Accent>{data.location}</Accent>,
     <>
@@ -646,7 +650,7 @@ async function versus(places: [string, string], ctx: Ctx): Promise<ReactNode> {
     </>,
     data.energy_level,
     outlook(data.risk_level),
-    `${data.weather.condition}, ${data.weather.temp_c}°C`,
+    `${data.weather.condition}, ${shown(data.weather.temp_c)}°C`,
     data.weather.is_day === false ? 'night' : 'day',
   ];
   const left = column(a);

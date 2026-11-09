@@ -448,7 +448,9 @@ describe('mood', () => {
     expect(out).toMatch(/Nairobi, KE/);
     expect(out).toMatch(/77\/100 Upbeat/);
     expect(out).toMatch(/baseline 65 · Clear skies \+15 · Warm air −3/);
-    expect(out).toMatch(/Mainly Clear, 24\.3°C, feels like 25\.5°C, humidity 48%, wind 9\.1 km\/h/);
+    // Whole numbers, as the summary under it ("24°C") and the service's page show them
+    expect(out).toMatch(/Mainly Clear, 24°C, feels like 26°C, humidity 48%, wind 9 km\/h/);
+    expect(out).not.toMatch(/24\.3|25\.5|9\.1/);
     expect(out).toMatch(/• Water the plants\./);
   });
 
@@ -510,6 +512,17 @@ describe('mood', () => {
     expect(out).toMatch(/mood week [a-z]/);
     expect(await run('mood week')).toMatch(/which place\?.*mood week [a-z]/s);
     expect(await run('mood forecast atlantis')).toMatch(/service is up/);
+  });
+
+  it('compares two places in the whole degrees it shows', async () => {
+    const warm = { ...NAIROBI, weather: { ...NAIROBI.weather, temp_c: 24.4 } };
+    const cool = { ...NAIROBI, location: 'Tokyo, JP', weather: { ...NAIROBI.weather, temp_c: 18.5 } };
+    serve({ '/api/wellbeing/nairobi': warm, '/api/wellbeing/tokyo': cool });
+    const { run } = shell();
+    const out = await run('mood nairobi vs tokyo');
+    expect(out).toMatch(/Mainly Clear, 24°C.*Mainly Clear, 19°C/s);
+    expect(out).toMatch(/Nairobi is 5°C warmer\./);
+    expect(out).not.toMatch(/24\.4|18\.5/);
   });
 
   it('compares two places', async () => {
