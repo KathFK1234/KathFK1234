@@ -20,6 +20,7 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   double booking   the database refuses a second booking for the same slot. Two people tapping at the same moment: exactly one succeeds.
   waiting          a request holds its time until it is answered, so one person can have 3 waiting with the same professional and 10 in all. Requests sent together are handled one at a time, so they cannot slip past that limit.
   who sees what    only the two people in a session can see or change it. A professional's private notes are never sent to the client.
+  answering        only the professional can confirm or complete a session; a client who tries is told who can.
   price            saved at the time of booking, so a later rate change does not rewrite history.
   meeting          a confirmed session gets a link: Google Meet when the professional has connected their calendar, otherwise their own link, otherwise a private Jitsi room. Both people are emailed when a session is requested, confirmed or cancelled.
   ratings          only the client of a completed session can rate it, and only once. Reviews are shown without names.
@@ -50,7 +51,7 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
   v2               twenty-four pages covering every feature above, for four kinds of people: someone looking for support, a professional running their practice, an institution with professionals on its team, and an admin reviewing applications and content. Each has its own home and a short menu.
   get help now     a button on every page, signed in or not.
   themes           light and dark, from one set of colour tokens.
-  phones           every page fits a 320-pixel screen, and the public header wraps instead of running off it when text is spaced wider.
+  phones           every page fits a 320-pixel screen and stays usable with text at 200%: the headers and button labels wrap, and long words and links break instead of pushing the page sideways.
   screen readers   moving to a new page reads out its title, because nothing else on the screen announces it, and every page, the not-found one included, has its main content marked as such.
   link previews    a shared link shows a generic card, so nothing personal can appear in one, and public pages answer 200 at their own address.
 
