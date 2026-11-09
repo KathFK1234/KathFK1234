@@ -7,56 +7,56 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-11-03",
-      "commits": 229,
+      "updated": "2026-11-09",
+      "commits": 243,
       "recent": [
         {
-          "date": "2026-11-03",
-          "subject": "Point at duplicate data only when an index fails on a duplicate key"
+          "date": "2026-11-09",
+          "subject": "Let button labels wrap when the text size is large"
         },
         {
-          "date": "2026-11-03",
-          "subject": "Log a database index that fails to build"
+          "date": "2026-11-09",
+          "subject": "Let the signed-in header wrap when text is enlarged"
         },
         {
-          "date": "2026-11-03",
-          "subject": "Index professionals by institution"
+          "date": "2026-11-09",
+          "subject": "Break long words and links so they can't push pages sideways"
         },
         {
-          "date": "2026-11-03",
-          "subject": "Let the public header wrap instead of running off the screen"
+          "date": "2026-11-09",
+          "subject": "Tell a client only the professional can confirm or complete a session"
         },
         {
-          "date": "2026-11-03",
-          "subject": "Put the page-not-found screen in a main landmark"
+          "date": "2026-11-09",
+          "subject": "Let Vite share the root copy of lightningcss"
         },
         {
-          "date": "2026-11-03",
-          "subject": "Keep signed-in API answers out of the browser cache"
+          "date": "2026-11-09",
+          "subject": "Update supertest to 7.3.2"
         },
         {
-          "date": "2026-11-03",
-          "subject": "Name the services outside Kenya that receive personal data in the README"
+          "date": "2026-11-09",
+          "subject": "Update concurrently to 10.0.7"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Say in the README that Railway stores the data outside Kenya"
+          "date": "2026-11-09",
+          "subject": "Update globals to 17.14.0"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Match the Railway migration steps to what the CLI really does"
+          "date": "2026-11-09",
+          "subject": "Update express-rate-limit to 8.7.3"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Install lucide-react at the root of node_modules again"
+          "date": "2026-11-09",
+          "subject": "Update nodemailer to 10.4.0"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Say in the README that Railway doesn't watch the API after a deploy"
+          "date": "2026-11-09",
+          "subject": "Update lucide-react to 1.70.0"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Let npm start at the repo root start the API, so Railway finds it without railway.json"
+          "date": "2026-11-09",
+          "subject": "Update React Query to 5.107.1"
         }
       ]
     },
@@ -67,56 +67,56 @@
       "url": "https://github.com/KathFK1234/moodforecast_ai",
       "team": false,
       "started": "2026-06-05",
-      "updated": "2026-11-03",
-      "commits": 281,
+      "updated": "2026-11-09",
+      "commits": 309,
       "recent": [
         {
-          "date": "2026-11-03",
-          "subject": "Give the full Railway config migration steps, including the cutover"
+          "date": "2026-11-09",
+          "subject": "Put keyboard focus somewhere sensible when a finished action's button goes away"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Ignore every .env file except the example"
+          "date": "2026-11-09",
+          "subject": "Give keyboard focus back to a button after its request"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Test the colour of links inside the email text too"
+          "date": "2026-11-09",
+          "subject": "Deploy again: Railway missed 86d6773"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Word railway.toml's header as a requirement, not a fact"
+          "date": "2026-11-09",
+          "subject": "Delete unconfirmed requests on time even while email is switched off"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Bring the README's feature list in line with the forecast wording"
+          "date": "2026-11-09",
+          "subject": "Name the services the API docs pages load from on the privacy page"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Say the 7-day mood scores get less certain further ahead"
+          "date": "2026-11-09",
+          "subject": "Test that a daily alert offers something else when the weather rules out the chosen activity"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Describe the mood score as a rule of thumb, not an observed pattern"
+          "date": "2026-11-09",
+          "subject": "Warn when PUBLIC_URL isn't a full web address"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Describe the forecast's rain figure as the chance of rain or snow at some point"
+          "date": "2026-11-09",
+          "subject": "Keep the subscribe routes' database calls off the event loop"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Make the search box's keyboard focus visible on every sky"
+          "date": "2026-11-09",
+          "subject": "Say in the deployment guide how to get back to a working version"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Mark the emails' language for screen readers"
+          "date": "2026-11-09",
+          "subject": "Fetch Alpine's security fixes on every deploy, not only when the build cache misses"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Darken the email links to meet WCAG AA contrast"
+          "date": "2026-11-09",
+          "subject": "Check the Python code for unused imports and undefined names in CI"
         },
         {
-          "date": "2026-11-02",
-          "subject": "Date the privacy page"
+          "date": "2026-11-09",
+          "subject": "Clean line breaks out of the place names the map services return"
         }
       ]
     },
@@ -127,56 +127,56 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-11-03",
-      "commits": 362,
+      "updated": "2026-11-09",
+      "commits": 373,
       "recent": [
+        {
+          "date": "2026-11-09",
+          "subject": "Say when a student's corrected name could not be carried into the projects repository"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Say in follow_in_repository's comment that the token cannot be read, not that the host cannot be reached"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Read every student's class and group in a few queries, not one more per student"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Keep the backend's loggers on when the migrations run in the same process"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Say a projects repository needs connecting again when its token can no longer be read"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Apply LOG_LEVEL to the backend's own log lines, and show each line's level and source"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Keep local uploads, database dumps and key files out of the Docker build context"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Put the CI comment about auditing the pins above the audit step"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Send nothing to Back4App unless BACK4APP_SERVER_URL is https"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Update the frontend lockfile to vite 8.3.7 and @vitejs/plugin-react 6.3.0, within package.json's ranges"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Refresh the backend lock to fastapi 0.162.2, SQLAlchemy 2.1.8, psycopg 3.3.8 and pydantic 2.14.3"
+        },
         {
           "date": "2026-11-03",
           "subject": "Ignore database dumps and private key files"
-        },
-        {
-          "date": "2026-11-03",
-          "subject": "Say how to move Railway's settings before it stops reading railway.toml"
-        },
-        {
-          "date": "2026-11-02",
-          "subject": "Give Chrome two minutes to start in the smoke test"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Let a promotion undone the same day be made again"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Build a student's full name in one place everywhere"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Keep one copy of how a project entry is named and which files it holds"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Keep one copy of the school's date"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Keep one copy of the helper that makes a stored time UTC"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Test the guards that a hand-made mutation run showed were unwatched"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Test a code that cannot be emailed and a broken sign-out"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Check the backend image on PostgreSQL, and that it stays up"
-        },
-        {
-          "date": "2026-10-31",
-          "subject": "Say that a failed backend deploy leaves the API down"
         }
       ]
     },

@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  281 commits · first 2026-06-05 · latest 2026-11-03
+  309 commits · first 2026-06-05 · latest 2026-11-09
 
-  2026-11-03  Give the full Railway config migration steps, including the cutover
-  2026-11-02  Ignore every .env file except the example
-  2026-11-02  Test the colour of links inside the email text too
-  2026-11-02  Word railway.toml's header as a requirement, not a fact
-  2026-11-02  Bring the README's feature list in line with the forecast wording
-  2026-11-02  Say the 7-day mood scores get less certain further ahead
-  2026-11-02  Describe the mood score as a rule of thumb, not an observed pattern
-  2026-11-02  Describe the forecast's rain figure as the chance of rain or snow at some point
-  2026-11-02  Make the search box's keyboard focus visible on every sky
-  2026-11-02  Mark the emails' language for screen readers
-  2026-11-02  Darken the email links to meet WCAG AA contrast
-  2026-11-02  Date the privacy page
+  2026-11-09  Put keyboard focus somewhere sensible when a finished action's button goes away
+  2026-11-09  Give keyboard focus back to a button after its request
+  2026-11-09  Deploy again: Railway missed 86d6773
+  2026-11-09  Delete unconfirmed requests on time even while email is switched off
+  2026-11-09  Name the services the API docs pages load from on the privacy page
+  2026-11-09  Test that a daily alert offers something else when the weather rules out the chosen activity
+  2026-11-09  Warn when PUBLIC_URL isn't a full web address
+  2026-11-09  Keep the subscribe routes' database calls off the event loop
+  2026-11-09  Say in the deployment guide how to get back to a working version
+  2026-11-09  Fetch Alpine's security fixes on every deploy, not only when the build cache misses
+  2026-11-09  Check the Python code for unused imports and undefined names in CI
+  2026-11-09  Clean line breaks out of the place names the map services return
 
 From anywhere in this terminal, `updates` shows the same for every project.
