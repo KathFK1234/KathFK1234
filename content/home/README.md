@@ -1,4 +1,4 @@
-# Katheu Kilonzo — psychologist, backend engineer, human-centered systems builder
+# Katheu Kilonzo — psychology graduate, backend engineer, human-centered systems builder
 
 I build technology where human behavior, data, cloud infrastructure, and practical engineering meet.
 

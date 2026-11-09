@@ -160,7 +160,7 @@ export function Banner() {
         <span className="accent2">U</span>
         {'─────────┐\n'}
         {` ${artRow('$ whoami')}\n`}
-        {[' psychologist', ' backend engineer', ' educator'].map(line => (
+        {[' psychology graduate', ' backend engineer', ' educator'].map(line => (
           <Fragment key={line}>
             {' │'}
             <span className="hero-text">{line.padEnd(20)}</span>

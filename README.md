@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://kathfk1234.github.io/KathFK1234/" target="_blank" rel="noopener noreferrer">
-  <img src="./assets/header.svg" alt="Terminal window reading: whoami — Katheu Kilonzo, psychologist, backend engineer, educator" width="840">
+  <img src="./assets/header.svg" alt="Terminal window reading: whoami — Katheu Kilonzo, psychology graduate, backend engineer, educator" width="840">
 </a>
 
 <br><br>
