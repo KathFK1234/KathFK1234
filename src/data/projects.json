@@ -68,8 +68,24 @@
       "team": false,
       "started": "2026-06-05",
       "updated": "2026-11-09",
-      "commits": 309,
+      "commits": 313,
       "recent": [
+        {
+          "date": "2026-11-09",
+          "subject": "Describe what's in services/ in the README's project tree"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Keep the reader's place when a used confirmation link's button goes"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Keep forgetting old addresses after an unexpected error"
+        },
+        {
+          "date": "2026-11-09",
+          "subject": "Round temperatures the same way on the page and in the summaries and emails"
+        },
         {
           "date": "2026-11-09",
           "subject": "Put keyboard focus somewhere sensible when a finished action's button goes away"
@@ -101,22 +117,6 @@
         {
           "date": "2026-11-09",
           "subject": "Keep the subscribe routes' database calls off the event loop"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Say in the deployment guide how to get back to a working version"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Fetch Alpine's security fixes on every deploy, not only when the build cache misses"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Check the Python code for unused imports and undefined names in CI"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Clean line breaks out of the place names the map services return"
         }
       ]
     },

@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Playwright · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
-<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-11-09</sub>
+<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-11-10</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,9 +109,9 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 44.8%" : 1389.1
-    "JavaScript · 21.6%" : 669.0
-    "TypeScript · 19.7%" : 611.2
+    "Python · 44.8%" : 1391.3
+    "JavaScript · 21.6%" : 669.4
+    "TypeScript · 19.7%" : 612.2
     "CSS · 7.7%" : 239.6
     "HTML · 3.9%" : 120.9
     "C · 2.0%" : 62.7
@@ -190,7 +190,7 @@ Built at Chakula Africa · source is private
 | Project | Last change | What changed |
 | --- | --- | --- |
 | Healing Hive | 2026-11-09 | Let button labels wrap when the text size is large |
-| MoodForecast AI | 2026-11-09 | Put keyboard focus somewhere sensible when a finished action's button goes away |
+| MoodForecast AI | 2026-11-09 | Describe what's in services/ in the README's project tree |
 | Murengeti Lab System | 2026-11-09 | Say when a student's corrected name could not be carried into the projects repository |
 
 <sub>Read from each project's repository several times a day.</sub>
