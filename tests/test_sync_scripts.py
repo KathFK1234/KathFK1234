@@ -82,6 +82,30 @@ class ComparingWithTheMark(unittest.TestCase):
             self.reader(projects.Unavailable("HTTP 504")).since(self.PROJECT, "old")
 
 
+class CheckingAPrivateProject(unittest.TestCase):
+    """--check prints into the workflow's public log, so it follows the same rule as the site."""
+
+    def since(self, project):
+        reader = projects.GitHub.__new__(projects.GitHub)
+        commit = {"commit": {"message": "Add a secret thing\n\nDetails"}, "parents": [{}]}
+
+        def get(path, **_):
+            if "/compare/" in path:
+                return SimpleNamespace(json=lambda: {"ahead_by": 1, "commits": [commit]})
+            return SimpleNamespace(json=lambda: {"default_branch": "main", "private": True})
+
+        reader.get = get
+        return reader.since(project, "old")
+
+    def test_an_unshared_project_is_counted_but_its_commits_are_not_named(self):
+        found = self.since({"repo": "a/secret", "folder": "secret"})
+        self.assertEqual(found, {"count": 1})
+
+    def test_a_shared_project_names_its_commits(self):
+        found = self.since({"repo": "a/secret", "folder": "secret", "share": True})
+        self.assertEqual(found, {"count": 1, "new": ["Add a secret thing"]})
+
+
 class PrivateProjects(unittest.TestCase):
     def test_a_private_project_keeps_its_link_and_commits_to_itself(self):
         entry = projects.public_entry({"name": "Secret", "folder": "secret"}, READ)
