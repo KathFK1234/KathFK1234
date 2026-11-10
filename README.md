@@ -109,10 +109,10 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 44.8%" : 1391.3
-    "JavaScript · 21.6%" : 669.4
-    "TypeScript · 19.7%" : 612.2
-    "CSS · 7.7%" : 239.6
+    "Python · 45.0%" : 1404.0
+    "JavaScript · 21.5%" : 671.9
+    "TypeScript · 19.6%" : 613.0
+    "CSS · 7.7%" : 240.6
     "HTML · 3.9%" : 120.9
     "C · 2.0%" : 62.7
     "Ruby · 0.3%" : 10.1
@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-11-09 | Let button labels wrap when the text size is large |
-| MoodForecast AI | 2026-11-09 | Describe what's in services/ in the README's project tree |
-| Murengeti Lab System | 2026-11-09 | Say when a student's corrected name could not be carried into the projects repository |
+| Healing Hive | 2026-11-10 | Show the outage notice after one timed-out call instead of retrying |
+| MoodForecast AI | 2026-11-10 | Say the same thing about frostbite in the tips as in the activity advice |
+| Murengeti Lab System | 2026-11-10 | Stop the app's transitions and animations for anyone whose device asks for reduced motion |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->

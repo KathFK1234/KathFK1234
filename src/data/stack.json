@@ -4,22 +4,22 @@
   "languages": [
     {
       "name": "Python",
-      "bytes": 1424689,
+      "bytes": 1437730,
       "repos": 12
     },
     {
       "name": "JavaScript",
-      "bytes": 685469,
+      "bytes": 688001,
       "repos": 8
     },
     {
       "name": "TypeScript",
-      "bytes": 626893,
+      "bytes": 627708,
       "repos": 2
     },
     {
       "name": "CSS",
-      "bytes": 245342,
+      "bytes": 246337,
       "repos": 10
     },
     {
@@ -34,7 +34,7 @@
     },
     {
       "name": "Shell",
-      "bytes": 23265,
+      "bytes": 23551,
       "repos": 9
     },
     {

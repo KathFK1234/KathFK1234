@@ -2,19 +2,19 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  373 commits · first 2026-09-20 · latest 2026-11-09
+  381 commits · first 2026-09-20 · latest 2026-11-10
 
+  2026-11-10  Stop the app's transitions and animations for anyone whose device asks for reduced motion
+  2026-11-10  Fit the Dashboard top bar and the Students toolbar on a 320 px wide screen
+  2026-11-10  Log the cause when a file cannot be imported or previewed, not only tell the educator
+  2026-11-10  Say in the README that the setup key is JWT_SECRET_KEY on a server without ADMIN_PASSWORD
+  2026-11-10  Limit a lesson's topic list to 500 and a new class's groups to 50
+  2026-11-10  Refuse to approve a rejected warehouse admin request while someone else holds the role
+  2026-11-10  Keep the app working when the browser blocks this site's storage, holding the sign-in in memory instead
+  2026-11-10  Say in the README that CI also starts the backend image and checks for unused names
   2026-11-09  Say when a student's corrected name could not be carried into the projects repository
   2026-11-09  Say in follow_in_repository's comment that the token cannot be read, not that the host cannot be reached
   2026-11-09  Read every student's class and group in a few queries, not one more per student
   2026-11-09  Keep the backend's loggers on when the migrations run in the same process
-  2026-11-09  Say a projects repository needs connecting again when its token can no longer be read
-  2026-11-09  Apply LOG_LEVEL to the backend's own log lines, and show each line's level and source
-  2026-11-09  Keep local uploads, database dumps and key files out of the Docker build context
-  2026-11-09  Put the CI comment about auditing the pins above the audit step
-  2026-11-09  Send nothing to Back4App unless BACK4APP_SERVER_URL is https
-  2026-11-09  Update the frontend lockfile to vite 8.3.7 and @vitejs/plugin-react 6.3.0, within package.json's ranges
-  2026-11-09  Refresh the backend lock to fastapi 0.162.2, SQLAlchemy 2.1.8, psycopg 3.3.8 and pydantic 2.14.3
-  2026-11-03  Ignore database dumps and private key files
 
 From anywhere in this terminal, `updates` shows the same for every project.

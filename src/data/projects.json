@@ -7,9 +7,29 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-11-09",
-      "commits": 243,
+      "updated": "2026-11-10",
+      "commits": 248,
       "recent": [
+        {
+          "date": "2026-11-10",
+          "subject": "Show the outage notice after one timed-out call instead of retrying"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Show the outage notice when the database connection pool is cleared"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Update dotenv to 18.0.10"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Update @vitejs/plugin-react to 6.3.0"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Update vite to 8.3.7"
+        },
         {
           "date": "2026-11-09",
           "subject": "Let button labels wrap when the text size is large"
@@ -37,26 +57,6 @@
         {
           "date": "2026-11-09",
           "subject": "Update concurrently to 10.0.7"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Update globals to 17.14.0"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Update express-rate-limit to 8.7.3"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Update nodemailer to 10.4.0"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Update lucide-react to 1.70.0"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Update React Query to 5.107.1"
         }
       ]
     },
@@ -67,9 +67,49 @@
       "url": "https://github.com/KathFK1234/moodforecast_ai",
       "team": false,
       "started": "2026-06-05",
-      "updated": "2026-11-09",
-      "commits": 313,
+      "updated": "2026-11-10",
+      "commits": 323,
       "recent": [
+        {
+          "date": "2026-11-10",
+          "subject": "Say the same thing about frostbite in the tips as in the activity advice"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Keep the wellbeing tips indoors when the cold can cause frostbite"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Rule out outdoor activities when the cold can cause frostbite"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Use docker stop --timeout in CI instead of the deprecated --time"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Check the backend answers in verify_setup.sh, not that a uvicorn process exists"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Count subscribers in run_tests.sh without the sqlite3 command"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "List the missing files in the README's project tree and the frontend's file table"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Bring the deployment guide's architecture section up to date"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "List GET /api/activities in the README's endpoint table"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Pin the browser test job's packages and check them for vulnerabilities"
+        },
         {
           "date": "2026-11-09",
           "subject": "Describe what's in services/ in the README's project tree"
@@ -77,46 +117,6 @@
         {
           "date": "2026-11-09",
           "subject": "Keep the reader's place when a used confirmation link's button goes"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Keep forgetting old addresses after an unexpected error"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Round temperatures the same way on the page and in the summaries and emails"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Put keyboard focus somewhere sensible when a finished action's button goes away"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Give keyboard focus back to a button after its request"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Deploy again: Railway missed 86d6773"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Delete unconfirmed requests on time even while email is switched off"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Name the services the API docs pages load from on the privacy page"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Test that a daily alert offers something else when the weather rules out the chosen activity"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Warn when PUBLIC_URL isn't a full web address"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Keep the subscribe routes' database calls off the event loop"
         }
       ]
     },
@@ -127,9 +127,41 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-11-09",
-      "commits": 373,
+      "updated": "2026-11-10",
+      "commits": 381,
       "recent": [
+        {
+          "date": "2026-11-10",
+          "subject": "Stop the app's transitions and animations for anyone whose device asks for reduced motion"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Fit the Dashboard top bar and the Students toolbar on a 320 px wide screen"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Log the cause when a file cannot be imported or previewed, not only tell the educator"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Say in the README that the setup key is JWT_SECRET_KEY on a server without ADMIN_PASSWORD"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Limit a lesson's topic list to 500 and a new class's groups to 50"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Refuse to approve a rejected warehouse admin request while someone else holds the role"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Keep the app working when the browser blocks this site's storage, holding the sign-in in memory instead"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Say in the README that CI also starts the backend image and checks for unused names"
+        },
         {
           "date": "2026-11-09",
           "subject": "Say when a student's corrected name could not be carried into the projects repository"
@@ -145,38 +177,6 @@
         {
           "date": "2026-11-09",
           "subject": "Keep the backend's loggers on when the migrations run in the same process"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Say a projects repository needs connecting again when its token can no longer be read"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Apply LOG_LEVEL to the backend's own log lines, and show each line's level and source"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Keep local uploads, database dumps and key files out of the Docker build context"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Put the CI comment about auditing the pins above the audit step"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Send nothing to Back4App unless BACK4APP_SERVER_URL is https"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Update the frontend lockfile to vite 8.3.7 and @vitejs/plugin-react 6.3.0, within package.json's ranges"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Refresh the backend lock to fastapi 0.162.2, SQLAlchemy 2.1.8, psycopg 3.3.8 and pydantic 2.14.3"
-        },
-        {
-          "date": "2026-11-03",
-          "subject": "Ignore database dumps and private key files"
         }
       ]
     },
