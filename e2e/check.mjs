@@ -2,8 +2,8 @@
 // a Content-Security-Policy violation, a failed asset, sideways scrolling, text cut off inside the terminal
 // or an accessibility problem; then the keyboard: Tab completion and how the Tab menu is announced, history,
 // Shift+Tab out of the prompt to a nav button with the site's own focus ring, and Enter on a command;
-// then that a line sounding like crisis shows helplines and is not saved, and that nothing still moves
-// after five seconds. The mood service is answered from fixed data, so no network is needed.
+// then that a line sounding like crisis shows helplines and is not saved, that in high-contrast mode the caret
+// and the focus on a command name still show, and that nothing still moves after five seconds. The mood service is answered from fixed data, so no network is needed.
 // Usage: npm run build && npx vite preview --port 4791 & node e2e/check.mjs http://localhost:4791/
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -191,6 +191,25 @@ const crisis = await page.evaluate(() => ({
 }));
 if (!crisis.helplines) problems.push('crisis: "mood i want to die" did not show the helplines');
 if (crisis.saved) problems.push('crisis: "mood i want to die" was saved in the history');
+
+// High-contrast mode (forced colours) repaints backgrounds, so the caret and the focus on a command name must not rely on one
+await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }, { name: 'forced-colors', value: 'active' }]);
+await page.goto(`${url}?cmd=help`, { waitUntil: 'networkidle2' });
+await page.focus('input');
+const forced = await page.evaluate(() => {
+  const background = getComputedStyle(document.body).backgroundColor;
+  const caret = getComputedStyle(document.querySelector('.cursor')).backgroundColor;
+  const command = document.querySelector('[role="log"] .cmd');
+  command.focus({ focusVisible: true });
+  const ring = getComputedStyle(command);
+  return {
+    caret: caret !== background && !/^rgba\(.*, 0\)$/.test(caret),
+    colours: `${caret} on ${background}`,
+    ring: ring.outlineStyle !== 'none' && parseFloat(ring.outlineWidth) >= 2,
+  };
+});
+if (!forced.caret) problems.push(`high contrast: the caret is the colour of the page (${forced.colours})`);
+if (!forced.ring) problems.push('high contrast: a focused command name shows no focus ring');
 
 // Nothing blinks or pulses for more than five seconds on its own (WCAG 2.2.2)
 await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'no-preference' }]);

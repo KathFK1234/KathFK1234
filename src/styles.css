@@ -360,7 +360,8 @@ body {
   background: var(--accent);
   color: var(--bg);
   text-decoration: none;
-  outline: none;
+  /* Unseen here; high-contrast mode paints it, and drops the background that shows focus otherwise */
+  outline: 2px solid transparent;
 }
 
 .link {
@@ -389,6 +390,20 @@ body {
   50% {
     background: transparent;
     color: inherit;
+  }
+}
+
+/* High-contrast mode replaces backgrounds with the page's own colour, which would leave no caret */
+@media (forced-colors: active) {
+  .cursor {
+    forced-color-adjust: none;
+    background: CanvasText;
+    color: Canvas;
+  }
+  .cursor.hollow {
+    background: transparent;
+    color: CanvasText;
+    outline-color: CanvasText;
   }
 }
 
