@@ -63,7 +63,7 @@ flowchart TD
 
 <!-- stack:start -->
 <p align="center">
-  <a href="https://github.com/KathFK1234?tab=repositories&language=python" title="Python"><img src="https://skillicons.dev/icons?i=python" width="48" height="48" alt="Python" title="Python"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=html" title="HTML"><img src="https://skillicons.dev/icons?i=html" width="48" height="48" alt="HTML" title="HTML"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=css" title="CSS"><img src="https://skillicons.dev/icons?i=css" width="48" height="48" alt="CSS" title="CSS"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=javascript" title="JavaScript"><img src="https://skillicons.dev/icons?i=js" width="48" height="48" alt="JavaScript" title="JavaScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=c" title="C"><img src="https://skillicons.dev/icons?i=c" width="48" height="48" alt="C" title="C"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=typescript" title="TypeScript"><img src="https://skillicons.dev/icons?i=ts" width="48" height="48" alt="TypeScript" title="TypeScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=ruby" title="Ruby"><img src="https://skillicons.dev/icons?i=ruby" width="48" height="48" alt="Ruby" title="Ruby"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=shell" title="Shell"><img src="https://skillicons.dev/icons?i=bash" width="48" height="48" alt="Shell" title="Shell"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="FastAPI"><img src="https://skillicons.dev/icons?i=fastapi" width="48" height="48" alt="FastAPI" title="FastAPI"></a>
+  <a href="https://github.com/KathFK1234?tab=repositories&language=html" title="HTML"><img src="https://skillicons.dev/icons?i=html" width="48" height="48" alt="HTML" title="HTML"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=python" title="Python"><img src="https://skillicons.dev/icons?i=python" width="48" height="48" alt="Python" title="Python"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=css" title="CSS"><img src="https://skillicons.dev/icons?i=css" width="48" height="48" alt="CSS" title="CSS"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=javascript" title="JavaScript"><img src="https://skillicons.dev/icons?i=js" width="48" height="48" alt="JavaScript" title="JavaScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=c" title="C"><img src="https://skillicons.dev/icons?i=c" width="48" height="48" alt="C" title="C"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=typescript" title="TypeScript"><img src="https://skillicons.dev/icons?i=ts" width="48" height="48" alt="TypeScript" title="TypeScript"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=ruby" title="Ruby"><img src="https://skillicons.dev/icons?i=ruby" width="48" height="48" alt="Ruby" title="Ruby"></a>&nbsp;&nbsp;&nbsp;<a href="https://github.com/KathFK1234?tab=repositories&language=shell" title="Shell"><img src="https://skillicons.dev/icons?i=bash" width="48" height="48" alt="Shell" title="Shell"></a>&nbsp;&nbsp;&nbsp;<a href="#toolbox" title="FastAPI"><img src="https://skillicons.dev/icons?i=fastapi" width="48" height="48" alt="FastAPI" title="FastAPI"></a>
 </p>
 
 <p align="center">
@@ -78,14 +78,14 @@ flowchart TD
 
 | Found in my repositories | |
 | --- | --- |
-| **Languages** | Python · HTML · CSS · JavaScript · C · TypeScript · Ruby |
+| **Languages** | HTML · Python · CSS · JavaScript · C · TypeScript · Ruby |
 | **Backend** | FastAPI · SQLAlchemy · Pydantic · Django · Express · SQLModel |
 | **Frontend** | React · Vite · Tailwind CSS |
 | **Data & databases** | PostgreSQL · MongoDB |
 | **Testing** | pytest · Playwright · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
-<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-11-10</sub>
+<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-11-11</sub>
 <!-- stack:end -->
 
 <br>
@@ -104,16 +104,16 @@ flowchart TD
 ### Languages
 
 <!-- languages:start -->
-Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
+HTML · Python · CSS · JavaScript · C · TypeScript · Ruby
 
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 45.0%" : 1404.0
-    "JavaScript · 21.5%" : 671.9
-    "TypeScript · 19.6%" : 613.0
-    "CSS · 7.7%" : 240.6
-    "HTML · 3.9%" : 120.9
+    "Python · 45.1%" : 1420.7
+    "JavaScript · 21.5%" : 677.8
+    "TypeScript · 19.5%" : 614.1
+    "CSS · 7.6%" : 240.6
+    "HTML · 3.8%" : 120.9
     "C · 2.0%" : 62.7
     "Ruby · 0.3%" : 10.1
 ```
@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-11-10 | Show the outage notice after one timed-out call instead of retrying |
+| Healing Hive | 2026-11-11 | Have the companion give the GBV and child helplines to someone being abused |
+| Murengeti Lab System | 2026-11-11 | Clear a school's applicant name and email when its educator is deleted |
 | MoodForecast AI | 2026-11-10 | Say the same thing about frostbite in the tips as in the activity advice |
-| Murengeti Lab System | 2026-11-10 | Stop the app's transitions and animations for anyone whose device asks for reduced motion |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->

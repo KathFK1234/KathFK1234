@@ -7,9 +7,21 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-11-10",
-      "commits": 248,
+      "updated": "2026-11-11",
+      "commits": 251,
       "recent": [
+        {
+          "date": "2026-11-11",
+          "subject": "Have the companion give the GBV and child helplines to someone being abused"
+        },
+        {
+          "date": "2026-11-11",
+          "subject": "Give people hurt or threatened by someone the violence helplines when the companion can't answer"
+        },
+        {
+          "date": "2026-11-11",
+          "subject": "Notice crisis messages that name a method, say goodbye or wish to die in Swahili"
+        },
         {
           "date": "2026-11-10",
           "subject": "Show the outage notice after one timed-out call instead of retrying"
@@ -45,18 +57,6 @@
         {
           "date": "2026-11-09",
           "subject": "Tell a client only the professional can confirm or complete a session"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Let Vite share the root copy of lightningcss"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Update supertest to 7.3.2"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Update concurrently to 10.0.7"
         }
       ]
     },
@@ -127,9 +127,45 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-11-10",
-      "commits": 381,
+      "updated": "2026-11-11",
+      "commits": 390,
       "recent": [
+        {
+          "date": "2026-11-11",
+          "subject": "Clear a school's applicant name and email when its educator is deleted"
+        },
+        {
+          "date": "2026-11-11",
+          "subject": "Clear every uploader name on a school's kept files when its educator is deleted, not only their current one"
+        },
+        {
+          "date": "2026-11-11",
+          "subject": "Say in the README that equipment details hide student names and that an educator who leaves loses repository access"
+        },
+        {
+          "date": "2026-11-11",
+          "subject": "Take back an educator's read access to the projects repository when they leave or change their username"
+        },
+        {
+          "date": "2026-11-11",
+          "subject": "Clear a deleted account's name from its school's kept uploads"
+        },
+        {
+          "date": "2026-11-11",
+          "subject": "Take student names out of equipment details for the warehouse admin and when a student is deleted"
+        },
+        {
+          "date": "2026-11-11",
+          "subject": "Log an unreadable file's or a failed equipment import's cause without the error's message"
+        },
+        {
+          "date": "2026-11-11",
+          "subject": "Leave the imported file's name out of the log when its copy cannot be kept"
+        },
+        {
+          "date": "2026-11-10",
+          "subject": "Refuse a roster import with a value too long to keep, naming the row, before anything is changed"
+        },
         {
           "date": "2026-11-10",
           "subject": "Stop the app's transitions and animations for anyone whose device asks for reduced motion"
@@ -141,42 +177,6 @@
         {
           "date": "2026-11-10",
           "subject": "Log the cause when a file cannot be imported or previewed, not only tell the educator"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Say in the README that the setup key is JWT_SECRET_KEY on a server without ADMIN_PASSWORD"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Limit a lesson's topic list to 500 and a new class's groups to 50"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Refuse to approve a rejected warehouse admin request while someone else holds the role"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Keep the app working when the browser blocks this site's storage, holding the sign-in in memory instead"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Say in the README that CI also starts the backend image and checks for unused names"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Say when a student's corrected name could not be carried into the projects repository"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Say in follow_in_repository's comment that the token cannot be read, not that the host cannot be reached"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Read every student's class and group in a few queries, not one more per student"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Keep the backend's loggers on when the migrations run in the same process"
         }
       ]
     },
