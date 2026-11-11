@@ -1,5 +1,5 @@
 // A line that sounds like crisis gets helplines, not a command: `mood i want to die` must not be
-// looked up as a place. The patterns are Healing Hive's (server/src/utils/crisis.js at 64ea30d),
+// looked up as a place. The patterns are Healing Hive's (server/src/utils/crisis.js at f37b0a0),
 // deliberately broad: showing helplines to someone who did not need them costs little, missing
 // someone who did is the cost that matters. Keep the two lists in step.
 
@@ -8,7 +8,7 @@ const CRISIS_PATTERNS = [
   /\bkill(ing)?\s+my\s?self\b/i,
   /\bend(ing)?\s+(my|this)\s+life\b/i,
   /\bend(ing)?\s+it\s+all\b/i,
-  /\btake\s+my\s+(own\s+)?life\b/i,
+  /\b(take|taking|took)\s+my\s+(own\s+)?life\b/i,
   /\b(want|wish|going|ready)\s+to\s+die\b/i,
   /\b(wanna|gonna)\s+die\b/i,
   /\bwish\s+i\s+(was|were)\s+dead\b/i,
@@ -28,6 +28,29 @@ const CRISIS_PATTERNS = [
   /\b(hope|wish|want|pray)\b.{0,20}\bnever\s+wake\s+up\b/i,
   /\b(don'?t|do\s+not)\s+want\s+to\s+wake\s+up\b/i,
   /\bdisappear\s+forever\b/i,
+  // Ways and means: these are among the most urgent things someone can say
+  /\bhang(ing)?\s+my\s?self\b/i,
+  /\bjump(ing)?\s+(off|from|in\s+front\s+of)\s+(a|an|the|this|that)?\s*(bridge|building|roof|balcony|cliff|train|car|bus|lorry|truck|matatu)\b/i,
+  /\b(took|take|taking|swallow(ed|ing)?)\s+too\s+many\s+(pills|tablets|meds)\b/i,
+  /\b(took|swallow(ed|ing)?)\s+all\s+(my|the|of\s+my)\s+(pills|tablets|meds|medicine)\b/i,
+  /\b(drink|drinking|drank|swallow(ed|ing)?|take|taking|took)\s+(poison|jik|bleach|rat\s+poison|dawa\s+ya\s+panya)\b/i,
+  /\b(have|got|bought)\s+(a|the)\s+rope\b/i,
+  // Wishing not to be alive, and saying goodbye
+  /\bend(ing)?\s+(things|everything)\b(?!\s+with\b)/i,
+  /\b(won'?t|will\s+not)\s+be\s+(here|around|alive)\s+(tomorrow|much\s+longer|any\s?more)\b/i,
+  /\bthis\s+is\s+(my\s+)?goodbye\b/i,
+  /\b(don'?t|do\s+not)\s+want\s+to\s+exist\b/i,
+  /\bstop\s+existing\b/i,
+  /\b(is\s*n'?t|is\s+not)\s+worth\s+living\b/i,
+  /\btired\s+of\s+(living|being\s+alive|life)\b/i,
+  /\bdone\s+with\s+(life|living)\b/i,
+  /\bfeel\s+like\s+dying\b/i,
+  /\b(nobody|no\s+one)\s+would\s+(miss|notice|care)\b.{0,25}\b(gone|dead|die|died)\b/i,
+  /\ba\s+burden\s+to\s+(everyone|everybody|my\s+family|them|all)\b/i,
+  /\b(natamani|ningependa|heri|afadhali)\s+(ni)?(kufa|nife)\b/i,
+  /\b(ku|ni|nita|nime|ta)?kunywa\s+sumu\b/i,
+  /\bmaisha\s+(haina|hayana)\s+maana\b/i,
+  /\b(najihisi|nahisi|naskia|najiskia)\s+(kama\s+)?kufa\b/i,
   /\b(ku|ni|na|nita|ta)jiua\b/i,
   /\bnijiue\b/i,
   /\bkujitoa\s+uhai\b/i,

@@ -869,7 +869,18 @@ describe('crisis', () => {
   it('answers a line that sounds like crisis with helplines, and sends nothing', async () => {
     const calls = serve({});
     const { ctx, run, markup } = shell();
-    for (const line of ['mood i want to die', 'mood I don\u2019t want to live anymore', 'nataka kufa', 'whoami i might hurt myself']) {
+    for (const line of [
+      'mood i want to die',
+      'mood I don\u2019t want to live anymore',
+      'nataka kufa',
+      'whoami i might hurt myself',
+      // Healing Hive's #191: a method, a goodbye, a wish not to be alive, Swahili
+      'mood i took too many pills',
+      'this is my goodbye',
+      'mood nobody would miss me if i was gone',
+      'natamani kufa',
+      'maisha haina maana',
+    ]) {
       const out = await run(line);
       expect(out).toMatch(/something really painful/);
       expect(out).toMatch(/999 or 112 {2}emergency services/);
@@ -885,7 +896,14 @@ describe('crisis', () => {
 
   it('leaves everyday lines alone', async () => {
     const { run } = shell();
-    for (const line of ['help', 'cat README.md', 'mood picnic in cape town', 'mood week tokyo']) {
+    for (const line of [
+      'help',
+      'cat README.md',
+      'mood picnic in cape town',
+      'mood week tokyo',
+      'mood ending things with a walk in nairobi',
+      'cat projects/healing-hive/safety.md',
+    ]) {
       expect(await run(line)).not.toMatch(/something really painful/);
     }
   });
