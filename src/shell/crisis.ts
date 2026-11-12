@@ -2,6 +2,9 @@
 // looked up as a place. The patterns are Healing Hive's (server/src/utils/crisis.js at f37b0a0),
 // deliberately broad: showing helplines to someone who did not need them costs little, missing
 // someone who did is the cost that matters. Keep the two lists in step.
+//
+// Healing Hive's DANGER_PATTERNS are copied too: someone hit, raped or threatened by another person
+// gets the violence lines (GBV 1195, Child 116), as Healing Hive's DANGER_REPLY gives them.
 
 const CRISIS_PATTERNS = [
   /\bsuicid/i,
@@ -66,15 +69,55 @@ const CRISIS_PATTERNS = [
   /\bsitaki\s+kuishi\b/i,
 ];
 
+// Being hurt or threatened by another person (Healing Hive's DANGER_PATTERNS, same order).
+const DANGER_PATTERNS = [
+  /\b(he|she|they|my\s+\w+)\s+(beats?|hits?|chokes?|strangles?|kicks?|slaps?)\s+me\b(?!\s+(up|at|to|in)\b)/i,
+  /\b(he|she|they|my\s+\w+)\s+(raped|rapes|molested|molests|forced\s+himself|forced\s+herself)\b/i,
+  /\bi\s+(was|got|have\s+been|am\s+being|'?ve\s+been)\s+(raped|molested|sexually\s+(assaulted|abused)|abused|beaten)\b/i,
+  /\b(uncle|father|dad|stepfather|stepdad|teacher|pastor|boss|brother|cousin|husband|boyfriend|he)\s+(touches|touched|keeps\s+touching)\s+me\b/i,
+  /\b(scared|afraid|terrified)\s+(he|she|they)('ll|\s+will|\s+is\s+going\s+to|\s+are\s+going\s+to|\s+might)\s+(kill|hurt|beat)\s+me\b/i,
+  /\bthreaten(ed|s|ing)?\s+to\s+(kill|hurt|beat)\s+me\b/i,
+  /\b(not|don'?t\s+feel)\s+safe\s+at\s+home\b/i,
+  /\b(a|ali|ame|hu)(na)?nipiga\b/i,
+  /\b(a|ali|ame)(na)?nibaka\b/i,
+  /\b(a|ali|ame)(na)?nitishia\b/i,
+];
+
 /** Phones type a curly apostrophe, so "don’t" has to read as "don't". */
-export function looksLikeCrisis(text: string): boolean {
-  const plain = text.replace(/[‘’ʼ`]/g, "'");
-  return CRISIS_PATTERNS.some(pattern => pattern.test(plain));
+const plainText = (text: string) => text.replace(/[‘’ʼ`]/g, "'");
+
+export type Helpline = { phone: string; also?: string; who: string };
+export type SafetyReply = { kind: 'crisis' | 'danger'; lines: Helpline[] };
+
+// Kenyan lines, as Healing Hive lists them (checked against each organisation in October 2026).
+const EMERGENCY_CRISIS: Helpline = { phone: '999', also: '112', who: 'emergency services, if you might act on these thoughts or are in danger' };
+const EMERGENCY_DANGER: Helpline = { phone: '999', also: '112', who: 'emergency services, if you are in danger right now' };
+const RED_CROSS: Helpline = { phone: '1199', who: 'Kenya Red Cross: free counselling by phone, at any hour' };
+const GBV: Helpline = { phone: '1195', who: 'GBV helpline: free, at any hour, for anyone facing sexual or gender-based violence' };
+const CHILD: Helpline = { phone: '116', who: 'Child helpline: free, at any hour, if you are under 18' };
+const BEFRIENDERS: Helpline = { phone: '+254 722 178 177', who: 'Befrienders Kenya: call, SMS or WhatsApp, weekdays 9am to 5pm' };
+
+/** Thoughts of dying; any-hour lines first. */
+export const HELPLINES = [EMERGENCY_CRISIS, RED_CROSS, BEFRIENDERS];
+/** Being hurt or threatened, in the order of Healing Hive's DANGER_REPLY. */
+export const DANGER_HELPLINES = [EMERGENCY_DANGER, GBV, CHILD, RED_CROSS];
+/** Both at once: the crisis reply, with the violence lines added so neither set is lost. */
+export const BOTH_HELPLINES = [EMERGENCY_CRISIS, RED_CROSS, GBV, CHILD, BEFRIENDERS];
+
+/**
+ * The reply a line needs, or null. Thoughts of dying come first, as in Healing Hive; when the line
+ * also says someone is hurting them, the GBV and Child lines are added rather than dropped.
+ */
+export function safetyReplyFor(text: string): SafetyReply | null {
+  const plain = plainText(text);
+  const crisis = CRISIS_PATTERNS.some(pattern => pattern.test(plain));
+  const danger = DANGER_PATTERNS.some(pattern => pattern.test(plain));
+  if (crisis) return { kind: 'crisis', lines: danger ? BOTH_HELPLINES : HELPLINES };
+  if (danger) return { kind: 'danger', lines: DANGER_HELPLINES };
+  return null;
 }
 
-/** Kenyan lines, as Healing Hive lists them (checked against each organisation in October 2026); any-hour lines first. */
-export const HELPLINES = [
-  { phone: '999', also: '112', who: 'emergency services, if you might act on these thoughts or are in danger' },
-  { phone: '1199', who: 'Kenya Red Cross: free counselling by phone, at any hour' },
-  { phone: '+254 722 178 177', who: 'Befrienders Kenya: call, SMS or WhatsApp, weekdays 9am to 5pm' },
-];
+/** Any line that gets helplines instead of running: it is never sent anywhere or saved. */
+export function looksLikeCrisis(text: string): boolean {
+  return safetyReplyFor(text) !== null;
+}

@@ -13,7 +13,7 @@ import {
   walk,
   type DirNode,
 } from './fs';
-import { HELPLINES, looksLikeCrisis } from './crisis';
+import { safetyReplyFor, type SafetyReply } from './crisis';
 import { createMoodSession, mood, MOOD_WORDS, type MoodSession } from './mood';
 import { Accent, Accent2, Cmd, Dim, Link, Rows, Warn } from './ui';
 
@@ -1742,12 +1742,22 @@ export function canDeepLink(line: string): boolean {
   return !!command && DEEP_LINK_COMMANDS.has(command.name);
 }
 
-function crisisReply(): ReactNode {
+function safetyReply({ kind, lines }: SafetyReply): ReactNode {
   return (
     <>
-      It sounds like you may be going through something really painful. This terminal cannot help with that, but
-      people can, right now:{'\n\n'}
-      {HELPLINES.map(line => (
+      {kind === 'danger' ? (
+        <>
+          I'm really sorry this is happening to you. It is not your fault, and you deserve to be safe. This terminal
+          cannot help with that, but people can, right now:
+        </>
+      ) : (
+        <>
+          It sounds like you may be going through something really painful. This terminal cannot help with that, but
+          people can, right now:
+        </>
+      )}
+      {'\n\n'}
+      {lines.map(line => (
         <Fragment key={line.phone}>
           {'  '}
           <Link href={telHref(line.phone)}>{line.phone}</Link>
@@ -1764,7 +1774,11 @@ function crisisReply(): ReactNode {
       ))}
       {'\n'}
       Outside Kenya, <Link href="https://findahelpline.com">findahelpline.com</Link> lists free lines in your
-      country. If you can, tell someone near you how you are feeling.{'\n'}
+      country.{' '}
+      {kind === 'danger'
+        ? 'If you can, get somewhere you feel safer or tell someone you trust.'
+        : 'If you can, tell someone near you how you are feeling.'}
+      {'\n'}
       <Dim>what you typed was not sent anywhere or kept in this terminal's history.</Dim>
     </>
   );
@@ -1778,9 +1792,10 @@ export async function execute(line: string, ctx: Ctx): Promise<void> {
   if (!trimmed) return;
 
   // Before anything else, so the words are never sent to a service or taken for a place.
-  if (looksLikeCrisis(trimmed)) {
+  const safety = safetyReplyFor(trimmed);
+  if (safety) {
     ctx.state.mode = null;
-    ctx.print(crisisReply());
+    ctx.print(safetyReply(safety));
     return;
   }
 

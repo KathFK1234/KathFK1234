@@ -192,6 +192,18 @@ const crisis = await page.evaluate(() => ({
 if (!crisis.helplines) problems.push('crisis: "mood i want to die" did not show the helplines');
 if (crisis.saved) problems.push('crisis: "mood i want to die" was saved in the history');
 
+// Someone hurt or threatened by another person gets the violence lines, and the line is not saved either
+await page.focus('input');
+await page.keyboard.type('mood my husband beats me');
+await page.keyboard.press('Enter');
+await new Promise(resolve => setTimeout(resolve, 300));
+const danger = await page.evaluate(() => ({
+  helplines: document.body.innerText.includes('GBV helpline') && document.body.innerText.includes('Child helpline'),
+  saved: (localStorage.getItem('katheu:history') ?? '').includes('beats me'),
+}));
+if (!danger.helplines) problems.push('danger: "mood my husband beats me" did not show the GBV and Child helplines');
+if (danger.saved) problems.push('danger: "mood my husband beats me" was saved in the history');
+
 // High-contrast mode (forced colours) repaints backgrounds, so the caret and the focus on a command name must not rely on one
 await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }, { name: 'forced-colors', value: 'active' }]);
 await page.goto(`${url}?cmd=help`, { waitUntil: 'networkidle2' });

@@ -433,7 +433,7 @@ describe('mood', () => {
     // A shared link can run mood, so the note says that too.
     expect(canDeepLink('mood nairobi')).toBe(true);
     expect(note).toMatch(/\?cmd=mood \.\.\. sends its place the same way/);
-    expect(note).toMatch(/a line that sounds like crisis is answered here with helplines, and is neither sent nor saved/);
+    expect(note).toMatch(/a line that sounds like crisis, or like someone is hurting or threatening you, is answered here with helplines, and is neither sent nor saved/);
     expect(note).toMatch(/This site is Katheu Kilonzo(?:'|&#x27;)s\./);
     expect(note).toMatch(/a request about your data: fkatheukilonzo@gmail\.com/);
     expect(note).toMatch(/legal basis, under Kenya(?:'|&#x27;)s Data Protection Act 2019, is legitimate interest/);
@@ -905,6 +905,69 @@ describe('crisis', () => {
       'cat projects/healing-hive/safety.md',
     ]) {
       expect(await run(line)).not.toMatch(/something really painful/);
+    }
+  });
+
+  it('answers someone hurt or threatened by another person with the violence lines, and sends nothing', async () => {
+    const calls = serve({});
+    const { ctx, run, markup } = shell();
+    // Healing Hive's #192 lines, English and Swahili, as a bare line and after mood
+    for (const line of [
+      'he beats me every night',
+      'mood my husband beats me',
+      'my uncle touches me',
+      'I was raped',
+      'I\u2019m scared he will kill me',
+      'she threatened to kill me',
+      'I don\u2019t feel safe at home',
+      'ananipiga kila siku',
+      'mood alinibaka',
+      'ananitishia',
+    ]) {
+      const out = await run(line);
+      expect(out, line).toMatch(/It is not your fault, and you deserve to be safe/);
+      expect(out).not.toMatch(/something really painful/);
+      expect(out).toMatch(/999 or 112 {2}emergency services, if you are in danger right now/);
+      expect(out).toMatch(/1195 {2}GBV helpline: free, at any hour/);
+      expect(out).toMatch(/116 {2}Child helpline: free, at any hour, if you are under 18/);
+      expect(out).toMatch(/1199 {2}Kenya Red Cross/);
+      expect(out).toMatch(/get somewhere you feel safer or tell someone you trust/);
+      expect(out).toMatch(/not sent anywhere or kept in this terminal(?:'|&#x27;)s history/);
+    }
+    expect(calls).toEqual([]);
+    expect(ctx.state.mode).toBeNull();
+    const html = await markup('my husband hits me');
+    expect(html).toContain('<a class="link" href="tel:1195">1195</a>');
+    expect(html).toContain('<a class="link" href="tel:116">116</a>');
+  });
+
+  it('gives the crisis reply with the violence lines added when a line says both', async () => {
+    const calls = serve({});
+    const { run } = shell();
+    for (const line of ['he beats me and I want to die', 'ananipiga na nataka kufa']) {
+      const out = await run(line);
+      expect(out, line).toMatch(/something really painful/);
+      expect(out).toMatch(/999 or 112 {2}emergency services, if you might act on these thoughts/);
+      expect(out).toMatch(/1199 {2}Kenya Red Cross[\s\S]*1195 {2}GBV helpline[\s\S]*116 {2}Child helpline[\s\S]*\+254 722 178 177 {2}Befrienders Kenya/);
+    }
+    // A crisis line alone keeps the three lines Katheu approved, nothing more
+    const plain = await run('mood i want to die');
+    expect(plain).not.toMatch(/1195|Child helpline/);
+    expect(calls).toEqual([]);
+  });
+
+  it('leaves everyday lines about other people alone', async () => {
+    const { run } = shell();
+    for (const line of [
+      'he hit me up on WhatsApp',
+      'she beat me at FIFA',
+      'your words touched me',
+      'my mum is going to kill me when she sees my grades',
+      'alinipigia simu',
+      'mood beach in mombasa',
+    ]) {
+      const out = await run(line);
+      expect(out, line).not.toMatch(/not your fault|something really painful/);
     }
   });
 });

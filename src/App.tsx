@@ -93,7 +93,7 @@ export default function App() {
       setEntries(current => [...current, echo]);
       if (!text) return;
 
-      // A line that sounds like crisis is answered with helplines and never saved (see shell/crisis.ts).
+      // A line that sounds like crisis or abuse is answered with helplines and never saved (see shell/crisis.ts).
       if (shell.mode === null && shell.history[shell.history.length - 1] !== text && !looksLikeCrisis(text)) {
         shell.history.push(text);
       }
