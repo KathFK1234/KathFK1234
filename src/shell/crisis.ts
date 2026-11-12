@@ -98,11 +98,11 @@ const CHILD: Helpline = { phone: '116', who: 'Child helpline: free, at any hour,
 const BEFRIENDERS: Helpline = { phone: '+254 722 178 177', who: 'Befrienders Kenya: call, SMS or WhatsApp, weekdays 9am to 5pm' };
 
 /** Thoughts of dying; any-hour lines first. */
-export const HELPLINES = [EMERGENCY_CRISIS, RED_CROSS, BEFRIENDERS];
+const HELPLINES = [EMERGENCY_CRISIS, RED_CROSS, BEFRIENDERS];
 /** Being hurt or threatened, in the order of Healing Hive's DANGER_REPLY. */
-export const DANGER_HELPLINES = [EMERGENCY_DANGER, GBV, CHILD, RED_CROSS];
+const DANGER_HELPLINES = [EMERGENCY_DANGER, GBV, CHILD, RED_CROSS];
 /** Both at once: the crisis reply, with the violence lines added so neither set is lost. */
-export const BOTH_HELPLINES = [EMERGENCY_CRISIS, RED_CROSS, GBV, CHILD, BEFRIENDERS];
+const BOTH_HELPLINES = [EMERGENCY_CRISIS, RED_CROSS, GBV, CHILD, BEFRIENDERS];
 
 /**
  * The reply a line needs, or null. Thoughts of dying come first, as in Healing Hive; when the line
