@@ -5,6 +5,7 @@ import projectData from '../data/projects.json';
 import { DEFAULT_PREFS, loadHistory, loadPrefs, saveHistory } from '../prefs';
 import { canDeepLink, commandNames, commands, createShellState, EXAMPLES, execute, tokenize, type Ctx } from './commands';
 import { commonPrefix, complete, ghostFor, menuStatus } from './complete';
+import { safetyReplyFor, type Helpline } from './crisis';
 import { readEndpoints } from './mood';
 import { Link } from './ui';
 import { buildTree, describe as describeNode, displayPath, getNode, resolvePath, root, walk } from './fs';
@@ -954,6 +955,14 @@ describe('crisis', () => {
     const plain = await run('mood i want to die');
     expect(plain).not.toMatch(/1195|Child helpline/);
     expect(calls).toEqual([]);
+  });
+
+  it('hands out helpline lists that cannot be changed for the next reply', () => {
+    const reply = safetyReplyFor('my husband hits me')!;
+    expect(Object.isFrozen(reply.lines)).toBe(true);
+    expect(reply.lines.every(line => Object.isFrozen(line))).toBe(true);
+    expect(() => (reply.lines as Helpline[]).push({ phone: '0', who: 'x' })).toThrow();
+    expect(safetyReplyFor('my husband hits me')!.lines.map(line => line.phone)).toEqual(['999', '1195', '116', '1199']);
   });
 
   it('leaves everyday lines about other people alone', async () => {

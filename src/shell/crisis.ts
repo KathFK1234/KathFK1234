@@ -86,23 +86,27 @@ const DANGER_PATTERNS = [
 /** Phones type a curly apostrophe, so "don’t" has to read as "don't". */
 const plainText = (text: string) => text.replace(/[‘’ʼ`]/g, "'");
 
-export type Helpline = { phone: string; also?: string; who: string };
-export type SafetyReply = { kind: 'crisis' | 'danger'; lines: Helpline[] };
+export type Helpline = Readonly<{ phone: string; also?: string; who: string }>;
+export type SafetyReply = Readonly<{ kind: 'crisis' | 'danger'; lines: readonly Helpline[] }>;
+
+// Frozen: every reply shares these, so nothing that receives one can change a number for the next.
+const line = (helpline: Helpline): Helpline => Object.freeze(helpline);
+const list = (...lines: Helpline[]): readonly Helpline[] => Object.freeze(lines);
 
 // Kenyan lines, as Healing Hive lists them (checked against each organisation in October 2026).
-const EMERGENCY_CRISIS: Helpline = { phone: '999', also: '112', who: 'emergency services, if you might act on these thoughts or are in danger' };
-const EMERGENCY_DANGER: Helpline = { phone: '999', also: '112', who: 'emergency services, if you are in danger right now' };
-const RED_CROSS: Helpline = { phone: '1199', who: 'Kenya Red Cross: free counselling by phone, at any hour' };
-const GBV: Helpline = { phone: '1195', who: 'GBV helpline: free, at any hour, for anyone facing sexual or gender-based violence' };
-const CHILD: Helpline = { phone: '116', who: 'Child helpline: free, at any hour, if you are under 18' };
-const BEFRIENDERS: Helpline = { phone: '+254 722 178 177', who: 'Befrienders Kenya: call, SMS or WhatsApp, weekdays 9am to 5pm' };
+const EMERGENCY_CRISIS = line({ phone: '999', also: '112', who: 'emergency services, if you might act on these thoughts or are in danger' });
+const EMERGENCY_DANGER = line({ phone: '999', also: '112', who: 'emergency services, if you are in danger right now' });
+const RED_CROSS = line({ phone: '1199', who: 'Kenya Red Cross: free counselling by phone, at any hour' });
+const GBV = line({ phone: '1195', who: 'GBV helpline: free, at any hour, for anyone facing sexual or gender-based violence' });
+const CHILD = line({ phone: '116', who: 'Child helpline: free, at any hour, if you are under 18' });
+const BEFRIENDERS = line({ phone: '+254 722 178 177', who: 'Befrienders Kenya: call, SMS or WhatsApp, weekdays 9am to 5pm' });
 
 /** Thoughts of dying; any-hour lines first. */
-const HELPLINES = [EMERGENCY_CRISIS, RED_CROSS, BEFRIENDERS];
+const HELPLINES = list(EMERGENCY_CRISIS, RED_CROSS, BEFRIENDERS);
 /** Being hurt or threatened, in the order of Healing Hive's DANGER_REPLY. */
-const DANGER_HELPLINES = [EMERGENCY_DANGER, GBV, CHILD, RED_CROSS];
+const DANGER_HELPLINES = list(EMERGENCY_DANGER, GBV, CHILD, RED_CROSS);
 /** Both at once: the crisis reply, with the violence lines added so neither set is lost. */
-const BOTH_HELPLINES = [EMERGENCY_CRISIS, RED_CROSS, GBV, CHILD, BEFRIENDERS];
+const BOTH_HELPLINES = list(EMERGENCY_CRISIS, RED_CROSS, GBV, CHILD, BEFRIENDERS);
 
 /**
  * The reply a line needs, or null. Thoughts of dying come first, as in Healing Hive; when the line
