@@ -7,9 +7,25 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-11-11",
-      "commits": 251,
+      "updated": "2026-11-12",
+      "commits": 255,
       "recent": [
+        {
+          "date": "2026-11-12",
+          "subject": "Keep the public header on one row on screens narrower than 320 px"
+        },
+        {
+          "date": "2026-11-12",
+          "subject": "Name Healing Hive in the landing page's opening text"
+        },
+        {
+          "date": "2026-11-12",
+          "subject": "Keep the public header from covering the screen with large text"
+        },
+        {
+          "date": "2026-11-12",
+          "subject": "Show Get help in the public top bar on phones too"
+        },
         {
           "date": "2026-11-11",
           "subject": "Have the companion give the GBV and child helplines to someone being abused"
@@ -41,22 +57,6 @@
         {
           "date": "2026-11-10",
           "subject": "Update vite to 8.3.7"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Let button labels wrap when the text size is large"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Let the signed-in header wrap when text is enlarged"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Break long words and links so they can't push pages sideways"
-        },
-        {
-          "date": "2026-11-09",
-          "subject": "Tell a client only the professional can confirm or complete a session"
         }
       ]
     },
@@ -127,9 +127,13 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-11-11",
-      "commits": 390,
+      "updated": "2026-11-12",
+      "commits": 391,
       "recent": [
+        {
+          "date": "2026-11-12",
+          "subject": "Delete kept roster and equipment files once imported, and after 30 days when only looked at"
+        },
         {
           "date": "2026-11-11",
           "subject": "Clear a school's applicant name and email when its educator is deleted"
@@ -173,10 +177,6 @@
         {
           "date": "2026-11-10",
           "subject": "Fit the Dashboard top bar and the Students toolbar on a 320 px wide screen"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Log the cause when a file cannot be imported or previewed, not only tell the educator"
         }
       ]
     },

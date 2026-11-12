@@ -2,8 +2,9 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  390 commits · first 2026-09-20 · latest 2026-11-11
+  391 commits · first 2026-09-20 · latest 2026-11-12
 
+  2026-11-12  Delete kept roster and equipment files once imported, and after 30 days when only looked at
   2026-11-11  Clear a school's applicant name and email when its educator is deleted
   2026-11-11  Clear every uploader name on a school's kept files when its educator is deleted, not only their current one
   2026-11-11  Say in the README that equipment details hide student names and that an educator who leaves loses repository access
@@ -15,6 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-11-10  Refuse a roster import with a value too long to keep, naming the row, before anything is changed
   2026-11-10  Stop the app's transitions and animations for anyone whose device asks for reduced motion
   2026-11-10  Fit the Dashboard top bar and the Students toolbar on a 320 px wide screen
-  2026-11-10  Log the cause when a file cannot be imported or previewed, not only tell the educator
 
 From anywhere in this terminal, `updates` shows the same for every project.

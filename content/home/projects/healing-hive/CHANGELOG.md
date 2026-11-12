@@ -2,8 +2,12 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  251 commits · first 2026-10-06 · latest 2026-11-11
+  255 commits · first 2026-10-06 · latest 2026-11-12
 
+  2026-11-12  Keep the public header on one row on screens narrower than 320 px
+  2026-11-12  Name Healing Hive in the landing page's opening text
+  2026-11-12  Keep the public header from covering the screen with large text
+  2026-11-12  Show Get help in the public top bar on phones too
   2026-11-11  Have the companion give the GBV and child helplines to someone being abused
   2026-11-11  Give people hurt or threatened by someone the violence helplines when the companion can't answer
   2026-11-11  Notice crisis messages that name a method, say goodbye or wish to die in Swahili
@@ -12,9 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-11-10  Update dotenv to 18.0.10
   2026-11-10  Update @vitejs/plugin-react to 6.3.0
   2026-11-10  Update vite to 8.3.7
-  2026-11-09  Let button labels wrap when the text size is large
-  2026-11-09  Let the signed-in header wrap when text is enlarged
-  2026-11-09  Break long words and links so they can't push pages sideways
-  2026-11-09  Tell a client only the professional can confirm or complete a session
 
 From anywhere in this terminal, `updates` shows the same for every project.

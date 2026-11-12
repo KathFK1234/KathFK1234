@@ -85,7 +85,7 @@ flowchart TD
 | **Testing** | pytest · Playwright · Vitest |
 | **Infrastructure** | GitHub Actions · Railway · Docker · Docker Compose |
 
-<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-11-11</sub>
+<sub>Detected automatically from 30 repositories (public and private) · last changed 2026-11-12</sub>
 <!-- stack:end -->
 
 <br>
@@ -109,10 +109,10 @@ Python · HTML · CSS · JavaScript · C · TypeScript · Ruby
 ```mermaid
 %%{init: {"themeVariables": {"pieSectionTextSize": "0px"}}}%%
 pie title Share of code across my repositories
-    "Python · 45.1%" : 1421.9
-    "JavaScript · 21.5%" : 677.8
-    "TypeScript · 19.6%" : 615.9
-    "CSS · 7.6%" : 240.6
+    "Python · 45.2%" : 1434.8
+    "JavaScript · 21.4%" : 679.1
+    "TypeScript · 19.7%" : 625.0
+    "CSS · 7.6%" : 240.9
     "HTML · 3.8%" : 120.9
     "C · 2.0%" : 62.7
     "Ruby · 0.3%" : 10.1
@@ -189,8 +189,8 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-11-11 | Have the companion give the GBV and child helplines to someone being abused |
-| Murengeti Lab System | 2026-11-11 | Clear a school's applicant name and email when its educator is deleted |
+| Healing Hive | 2026-11-12 | Keep the public header on one row on screens narrower than 320 px |
+| Murengeti Lab System | 2026-11-12 | Delete kept roster and equipment files once imported, and after 30 days when only looked at |
 | MoodForecast AI | 2026-11-10 | Say the same thing about frostbite in the tips as in the activity advice |
 
 <sub>Read from each project's repository several times a day.</sub>
