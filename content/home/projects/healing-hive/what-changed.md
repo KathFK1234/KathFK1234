@@ -49,9 +49,9 @@ v1 was a skeleton built by a team learning the problem. v2 keeps its features an
 
   v1               a landing page, a dashboard, and a chatbot screen.
   v2               twenty-four pages covering every feature above, for four kinds of people: someone looking for support, a professional running their practice, an institution with professionals on its team, and an admin reviewing applications and content. Each has its own home and a short menu.
-  get help now     a button on every page, signed in or not.
+  get help now     a button in the top bar of every page, signed in or not and at every screen width, phones included.
   themes           light and dark, from one set of colour tokens.
-  phones           every page fits a 320-pixel screen and stays usable with text at 200%: the headers and button labels wrap, and long words and links break instead of pushing the page sideways.
+  phones           every page fits a 320-pixel screen and stays usable with text at 200%: button labels wrap, and long words and links break instead of pushing the page sideways. The public header keeps to one row down to 294 pixels (only the logo mark on small phones, so the landing page names Healing Hive in its opening line), and with large text it scrolls away instead of covering the screen.
   screen readers   moving to a new page reads out its title, because nothing else on the screen announces it, and every page, the not-found one included, has its main content marked as such.
   link previews    a shared link shows a generic card, so nothing personal can appear in one, and public pages answer 200 at their own address.
 
