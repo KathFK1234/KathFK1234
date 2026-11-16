@@ -17,7 +17,7 @@ The page and its emails are built to be read by everyone: keyboard focus shows o
 ## Stack
 
   FastAPI · Pydantic · SQLModel · httpx · pytest
-  Weather and geocoding from Open-Meteo (no API key)
+  Weather from Open-Meteo; place names from OpenStreetMap's Nominatim, with Open-Meteo's geocoder as a fallback (no API keys)
   SQLite in development, PostgreSQL in production
   Deployed on Railway; vanilla HTML/CSS/JS frontend
   Leaflet for the map, served from the site, with OpenStreetMap's map pictures
