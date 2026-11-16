@@ -7,9 +7,29 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-11-12",
-      "commits": 255,
+      "updated": "2026-11-14",
+      "commits": 260,
       "recent": [
+        {
+          "date": "2026-11-14",
+          "subject": "Hold each start command to the entry path it runs from in the start-command test"
+        },
+        {
+          "date": "2026-11-14",
+          "subject": "Raise the API's heap limit to 512 MB so a burst of large requests can't crash it"
+        },
+        {
+          "date": "2026-11-14",
+          "subject": "Test that the database pool keeps its limits"
+        },
+        {
+          "date": "2026-11-14",
+          "subject": "Keep at most ten database connections and close idle ones after a minute"
+        },
+        {
+          "date": "2026-11-14",
+          "subject": "Start the API with node itself and a heap limit sized for it, to cut its memory on Railway"
+        },
         {
           "date": "2026-11-12",
           "subject": "Keep the public header on one row on screens narrower than 320 px"
@@ -37,26 +57,6 @@
         {
           "date": "2026-11-11",
           "subject": "Notice crisis messages that name a method, say goodbye or wish to die in Swahili"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Show the outage notice after one timed-out call instead of retrying"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Show the outage notice when the database connection pool is cleared"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Update dotenv to 18.0.10"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Update @vitejs/plugin-react to 6.3.0"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Update vite to 8.3.7"
         }
       ]
     },
@@ -67,56 +67,56 @@
       "url": "https://github.com/KathFK1234/moodforecast_ai",
       "team": false,
       "started": "2026-06-05",
-      "updated": "2026-11-10",
-      "commits": 323,
+      "updated": "2026-11-16",
+      "commits": 341,
       "recent": [
         {
-          "date": "2026-11-10",
-          "subject": "Say the same thing about frostbite in the tips as in the activity advice"
+          "date": "2026-11-16",
+          "subject": "Test that picks learn what a visitor likes and follow a change of taste"
         },
         {
-          "date": "2026-11-10",
-          "subject": "Keep the wellbeing tips indoors when the cold can cause frostbite"
+          "date": "2026-11-16",
+          "subject": "Delete faded learning votes from the browser"
         },
         {
-          "date": "2026-11-10",
-          "subject": "Rule out outdoor activities when the cold can cause frostbite"
+          "date": "2026-11-16",
+          "subject": "Forget rounded visitor positions on time"
         },
         {
-          "date": "2026-11-10",
-          "subject": "Use docker stop --timeout in CI instead of the deprecated --time"
+          "date": "2026-11-16",
+          "subject": "Take a tapped town's dot away with its pop-up"
         },
         {
-          "date": "2026-11-10",
-          "subject": "Check the backend answers in verify_setup.sh, not that a uvicorn process exists"
+          "date": "2026-11-16",
+          "subject": "Log a failing reverse lookup, without the point"
         },
         {
-          "date": "2026-11-10",
-          "subject": "Count subscribers in run_tests.sh without the sqlite3 command"
+          "date": "2026-11-16",
+          "subject": "Mention choose= and suited in the README's endpoint table"
         },
         {
-          "date": "2026-11-10",
-          "subject": "List the missing files in the README's project tree and the frontend's file table"
+          "date": "2026-11-16",
+          "subject": "Word the family why-line so it reads for every family"
         },
         {
-          "date": "2026-11-10",
-          "subject": "Bring the deployment guide's architecture section up to date"
+          "date": "2026-11-16",
+          "subject": "Only say a pick was liked when likes outweigh dislikes"
         },
         {
-          "date": "2026-11-10",
-          "subject": "List GET /api/activities in the README's endpoint table"
+          "date": "2026-11-16",
+          "subject": "Load the same stylesheet address on the privacy page as on the main page"
         },
         {
-          "date": "2026-11-10",
-          "subject": "Pin the browser test job's packages and check them for vulnerabilities"
+          "date": "2026-11-16",
+          "subject": "Export only what the page uses from learn.js; list the Leaflet check"
         },
         {
-          "date": "2026-11-09",
-          "subject": "Describe what's in services/ in the README's project tree"
+          "date": "2026-11-16",
+          "subject": "Check the new endpoints and page files in run_tests.sh"
         },
         {
-          "date": "2026-11-09",
-          "subject": "Keep the reader's place when a used confirmation link's button goes"
+          "date": "2026-11-16",
+          "subject": "Add Choose on map"
         }
       ]
     },

@@ -59,6 +59,10 @@
         {
           "name": "exclude",
           "required": false
+        },
+        {
+          "name": "choose",
+          "required": false
         }
       ]
     },

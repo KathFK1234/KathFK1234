@@ -9,6 +9,7 @@ Written by a script from the service's own description of itself, so this list k
   POST  /api/confirm/{token}             Confirm a subscription request with the token from its email.
   GET   /api/forecast/{location}         Get weather forecast for a location.
   GET   /api/locations                   Suggest locations matching the start of a place name.
+  POST  /api/place                       The town or city at a point: for "Use my location" and choosing on the map.
   GET   /api/random-activity/{location}  Pick a random activity that suits a location and its current weather.
   POST  /api/subscribe                   Ask for daily alerts about a location, or for a change to existing ones.
   POST  /api/unsubscribe-link            Email a subscriber their unsubscribe link.

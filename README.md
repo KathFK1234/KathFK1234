@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| Healing Hive | 2026-11-12 | Keep the public header on one row on screens narrower than 320 px |
+| MoodForecast AI | 2026-11-16 | Test that picks learn what a visitor likes and follow a change of taste |
+| Healing Hive | 2026-11-14 | Hold each start command to the entry path it runs from in the start-command test |
 | Murengeti Lab System | 2026-11-12 | Delete kept roster and equipment files once imported, and after 30 days when only looked at |
-| MoodForecast AI | 2026-11-10 | Say the same thing about frostbite in the tips as in the activity advice |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->
