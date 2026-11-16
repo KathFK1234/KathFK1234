@@ -433,6 +433,10 @@ export const commands: Command[] = [
               'FastAPI backend, live weather data, and a wellbeing score from fixed, hand-set rules: a rule of thumb that explains the situation rather than just recording it, never presented as a measure of how anyone feels',
             ],
             [
+              <Dim>Also</Dim>,
+              'activity picks that learn from your 👍/👎, in your browser and only among what the safety rules allow, and a place found from your location or on a map',
+            ],
+            [
               <Dim>Links</Dim>,
               <>
                 <Link href={LINKS.moodforecast}>live demo</Link> · <Link href={`${LINKS.github}/moodforecast_ai`}>source</Link>{' '}

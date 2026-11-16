@@ -129,7 +129,7 @@ pie title Share of code across my repositories
 
 ### MoodForecast AI
 
-Weather apps report conditions. This asks what those conditions mean for a person: live weather becomes a mood score, from hand-set rules and with the reasons behind it, a week-ahead outlook, and a verdict on whether the weather suits your plans.
+Weather apps report conditions. This asks what those conditions mean for a person: live weather becomes a mood score, from hand-set rules and with the reasons behind it, a week-ahead outlook, and a verdict on whether the weather suits your plans. Its activity picks learn from your 👍/👎, in your browser and never past the safety rules, and a place can be typed, taken from your location or tapped on a map.
 
 `Python` `FastAPI` `SQLModel` `Railway`
 
