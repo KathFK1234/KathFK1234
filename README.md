@@ -189,7 +189,7 @@ A free job-application tracker with a board of verified roles, built first for t
 
 `Python` `FastAPI` `PostgreSQL` `React` `TypeScript` `Railway`
 
-<span><!-- source:kazi-hakika:start -->[Source](https://github.com/KathFK1234/Kazi-Hakika)<!-- source:kazi-hakika:end --></span>
+[Live](https://kazi-hakika.up.railway.app) · <span><!-- source:kazi-hakika:start -->[Source](https://github.com/KathFK1234/Kazi-Hakika)<!-- source:kazi-hakika:end --></span>
 
 <br>
 

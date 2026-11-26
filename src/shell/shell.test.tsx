@@ -835,7 +835,9 @@ describe('updates', () => {
       projectData.projects.find(project => project.folder === folder)!.url ? 'source (opens in a new tab)' : '(source is private)';
     expect(output).toContain(`and admins. ${note('healing-hive')} ·`);
     expect(output).toContain(`private workspace. ${note('murengeti-lab')}\n`);
-    expect(output).toContain(`In early development. ${note('kazi-hakika')} · cat projects/kazi-hakika/README.md`);
+    expect(output).toContain(
+      `In early development. live (opens in a new tab) · ${note('kazi-hakika')} · cat projects/kazi-hakika/README.md`,
+    );
   });
 
   it('follows a project whose source turns public', async () => {
