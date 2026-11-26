@@ -1668,7 +1668,7 @@ function whoamiAnswer(answer: string): ReactNode {
         {'  • practical AI workflows and product thinking\n'}
         {'  • human-centered design informed by psychology\n\n'}
         {'Featured work:\n'}
-        {'  • MoodForecast AI\n  • Murengeti Lab System\n  • Healing Hive\n  • Chema Backend\n\n'}
+        {'  • MoodForecast AI\n  • Murengeti Lab System\n  • Healing Hive\n  • Kazi Hakika\n  • Chema Backend\n\n'}
         Next steps: <Cmd>resume</Cmd> <Cmd>projects</Cmd> <Cmd>contact</Cmd> or <Cmd>sudo hire-me</Cmd> for the direct
         route.
       </>

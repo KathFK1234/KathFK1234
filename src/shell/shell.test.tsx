@@ -238,7 +238,12 @@ describe('commands', () => {
     const { ctx, run } = shell();
     await run('whoami');
     expect(ctx.state.mode).toBe('whoami');
-    expect(await run('1')).toMatch(/hiring profile/);
+    const hiring = await run('1');
+    expect(hiring).toMatch(/hiring profile/);
+    // Every project of my own that the site follows is in the featured list
+    for (const project of projectData.projects.filter(entry => !entry.team)) {
+      expect(hiring, project.name).toContain(`• ${project.name}\n`);
+    }
     expect(ctx.state.mode).toBeNull();
     // Running a command while the question is open cancels it.
     await run('whoami');
