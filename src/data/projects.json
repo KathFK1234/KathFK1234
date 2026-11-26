@@ -181,6 +181,66 @@
       ]
     },
     {
+      "name": "Kazi Hakika",
+      "folder": "kazi-hakika",
+      "private": false,
+      "url": "https://github.com/KathFK1234/Kazi-Hakika",
+      "team": false,
+      "started": "2026-11-20",
+      "updated": "2026-11-26",
+      "commits": 74,
+      "recent": [
+        {
+          "date": "2026-11-26",
+          "subject": "Watch the Railway SDK in .railway/ with Dependabot"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Define the Railway project in code (.railway/railway.ts)"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Set the kazi_app password from KAZI_APP_DB_PASSWORD on every web start"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Treat an empty RESEND_API_KEY as no key"
+        },
+        {
+          "date": "2026-11-20",
+          "subject": "Check the pinned base images for updates weekly"
+        },
+        {
+          "date": "2026-11-20",
+          "subject": "Pin the Docker base images by digest"
+        },
+        {
+          "date": "2026-11-20",
+          "subject": "Require Node 22.22.2+ for the web app, what jsdom 31 supports"
+        },
+        {
+          "date": "2026-11-20",
+          "subject": "Drop uvicorn extras the app never uses from the image"
+        },
+        {
+          "date": "2026-11-20",
+          "subject": "Run the test client on httpx2 and fail tests on any deprecation"
+        },
+        {
+          "date": "2026-11-20",
+          "subject": "Let Dependabot raise every update, majors included"
+        },
+        {
+          "date": "2026-11-20",
+          "subject": "Build the frontend on Node 26 LTS"
+        },
+        {
+          "date": "2026-11-20",
+          "subject": "Run on Python 3.14, the version every test already runs on"
+        }
+      ]
+    },
+    {
       "name": "MindConnect",
       "folder": "mindconnect",
       "private": false,

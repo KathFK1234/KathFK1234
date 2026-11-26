@@ -192,6 +192,7 @@ Built at Chakula Africa · source is private
 | Healing Hive | 2026-11-26 | Test that the Railway settings file keeps every deploy setting the API needs |
 | MoodForecast AI | 2026-11-26 | Give the Railway CLI version that .railway/railway.ts needs |
 | Murengeti Lab System | 2026-11-26 | Say in the README how to go back after a Railway settings change that breaks a deploy |
+| Kazi Hakika | 2026-11-26 | Watch the Railway SDK in .railway/ with Dependabot |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->
