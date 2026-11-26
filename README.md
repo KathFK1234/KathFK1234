@@ -294,7 +294,7 @@ Vite + React + TypeScript. The terminal's file system is the real [content/home/
 ```bash
 npm install
 npm run dev      # local server with live reload
-npm test         # shell, file system, completion, link preview and content security policy tests
+npm test         # shell, file system, completion, link preview, content security policy and Node version tests
 npm run build    # type-check and build into dist/
 npm run check:site -- http://localhost:4791/   # with `npx vite preview --port 4791` running: the built site in Chrome
 python3 -m venv .venv          # for the Python scripts below, once; a distribution's own Python refuses pip installs
@@ -307,7 +307,7 @@ Pushing to `main` builds and deploys the site through [.github/workflows/deploy.
 
 The workflow keeps its secrets away from third-party code. `sync` holds the tokens and installs only the hash-pinned Python packages, `build` runs the npm packages with no secrets and without their install scripts, then the tests and a check of the built site in Chrome, `commit` alone can push, and only after those pass, `deploy` alone can publish, `verify` then confirms the live page is this run's build and fetches everything it loads, and `railway` follows Railway's deploy of the pushed commit, or of the data commit `commit` made. Every action is pinned to a full commit.
 
-Railway also deploys `main`, as a copy at [kathfk1234-production.up.railway.app](https://kathfk1234-production.up.railway.app); GitHub Pages stays the canonical address. The Python requirements sit in `ci/` because at the repository root they make Railway take the site for a Python app.
+Railway also deploys `main`, as a copy at [kathfk1234-production.up.railway.app](https://kathfk1234-production.up.railway.app); GitHub Pages stays the canonical address. The Python requirements sit in `ci/` because at the repository root they make Railway take the site for a Python app. Railway builds it with the Node version in [.node-version](.node-version), the one the workflow tests with (a test keeps the two the same); its other settings are on Railway's dashboard, since the repository has no `railway.toml` or `railway.json`.
 
 **Languages and tools update themselves.** Several times a day (or on demand from the Actions tab → *Run workflow*), the same workflow runs [languages_update_script.py](languages_update_script.py). It reads every repository I own (the public ones, and the private ones too once the `STACK_TOKEN` secret described below is set, as it is here) — GitHub's language statistics, plus dependency files such as `requirements.txt`, `pyproject.toml` and `package.json` — and rewrites:
 
