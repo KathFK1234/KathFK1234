@@ -188,55 +188,55 @@
       "team": false,
       "started": "2026-11-20",
       "updated": "2026-11-26",
-      "commits": 74,
+      "commits": 97,
       "recent": [
         {
           "date": "2026-11-26",
-          "subject": "Watch the Railway SDK in .railway/ with Dependabot"
+          "subject": "Point signed-out visitors on a not-found page to the home page"
         },
         {
           "date": "2026-11-26",
-          "subject": "Define the Railway project in code (.railway/railway.ts)"
+          "subject": "Make every control at least a 44 px touch target"
         },
         {
           "date": "2026-11-26",
-          "subject": "Set the kazi_app password from KAZI_APP_DB_PASSWORD on every web start"
+          "subject": "Stop the tracker scrolling the whole page sideways on phones"
         },
         {
           "date": "2026-11-26",
-          "subject": "Treat an empty RESEND_API_KEY as no key"
+          "subject": "Update certifi to 2026.11.20"
         },
         {
-          "date": "2026-11-20",
-          "subject": "Check the pinned base images for updates weekly"
+          "date": "2026-11-26",
+          "subject": "Report an unreachable site as one FAIL line in the smoke test"
         },
         {
-          "date": "2026-11-20",
-          "subject": "Pin the Docker base images by digest"
+          "date": "2026-11-26",
+          "subject": "Smoke-test the theme script and asset caching"
         },
         {
-          "date": "2026-11-20",
-          "subject": "Require Node 22.22.2+ for the web app, what jsdom 31 supports"
+          "date": "2026-11-26",
+          "subject": "Say on /privacy what the site keeps in your browser"
         },
         {
-          "date": "2026-11-20",
-          "subject": "Drop uvicorn extras the app never uses from the image"
+          "date": "2026-11-26",
+          "subject": "Say on /privacy where data is stored: outside Kenya"
         },
         {
-          "date": "2026-11-20",
-          "subject": "Run the test client on httpx2 and fail tests on any deprecation"
+          "date": "2026-11-26",
+          "subject": "Test on Postgres 18, the version production runs"
         },
         {
-          "date": "2026-11-20",
-          "subject": "Let Dependabot raise every update, majors included"
+          "date": "2026-11-26",
+          "subject": "Don't rebuild on test-only changes under web/"
         },
         {
-          "date": "2026-11-20",
-          "subject": "Build the frontend on Node 26 LTS"
+          "date": "2026-11-26",
+          "subject": "Cache hashed assets for a year; revalidate unhashed files"
         },
         {
-          "date": "2026-11-20",
-          "subject": "Run on Python 3.14, the version every test already runs on"
+          "date": "2026-11-26",
+          "subject": "Send kazi_app's password to Postgres as a SCRAM verifier"
         }
       ]
     },
