@@ -180,6 +180,23 @@ Built at Chakula Africa · source is private
 
 </td>
 </tr>
+<tr>
+<td width="50%" valign="top">
+
+### Kazi Hakika
+
+A free job-application tracker with a board of verified roles, built first for tech job seekers in Kenya; *kazi hakika* is Kiswahili for "verified work". Each person's applications stay private, enforced by the database as well as the code. It never applies for anyone or promises a job, and every cost has a hard cap. In early development.
+
+`Python` `FastAPI` `PostgreSQL` `React` `TypeScript` `Railway`
+
+<span><!-- source:kazi-hakika:start -->[Source](https://github.com/KathFK1234/Kazi-Hakika)<!-- source:kazi-hakika:end --></span>
+
+<br>
+
+</td>
+<td width="50%" valign="top">
+</td>
+</tr>
 </table>
 
 <br>
