@@ -190,6 +190,16 @@ class Manifests(unittest.TestCase):
         self.assertEqual(languages.parse_manifest("requirements.txt", text), {"fastapi", "requests"})
 
 
+class Tools(unittest.TestCase):
+    def test_railway_is_found_from_its_config_file_old_or_new(self):
+        for path in ["railway.toml", "backend/railway.json", ".railway/railway.ts", ".railway/railway.py"]:
+            self.assertIn("Railway", languages.detect_tools([path], {}), path)
+
+    def test_a_file_merely_named_like_railway_is_not_railway(self):
+        for path in ["src/railway.ts", ".railway/other.ts", "notrailway.toml"]:
+            self.assertNotIn("Railway", languages.detect_tools([path], {}), path)
+
+
 class MoodSync(Quiet):
     def test_only_get_endpoints_under_api_are_listed(self):
         document = {"paths": {
