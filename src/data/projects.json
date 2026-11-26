@@ -188,8 +188,32 @@
       "team": false,
       "started": "2026-11-20",
       "updated": "2026-11-26",
-      "commits": 97,
+      "commits": 103,
       "recent": [
+        {
+          "date": "2026-11-26",
+          "subject": "Show a rejected field's error under that field and focus it"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Show validation errors without the raw field key"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Let password managers save the email as the login"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Separate stage history from the edit form's buttons"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Keep header nav items on one line at 320 px"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Give the landing page's board illustration its own class names"
+        },
         {
           "date": "2026-11-26",
           "subject": "Point signed-out visitors on a not-found page to the home page"
@@ -213,30 +237,6 @@
         {
           "date": "2026-11-26",
           "subject": "Smoke-test the theme script and asset caching"
-        },
-        {
-          "date": "2026-11-26",
-          "subject": "Say on /privacy what the site keeps in your browser"
-        },
-        {
-          "date": "2026-11-26",
-          "subject": "Say on /privacy where data is stored: outside Kenya"
-        },
-        {
-          "date": "2026-11-26",
-          "subject": "Test on Postgres 18, the version production runs"
-        },
-        {
-          "date": "2026-11-26",
-          "subject": "Don't rebuild on test-only changes under web/"
-        },
-        {
-          "date": "2026-11-26",
-          "subject": "Cache hashed assets for a year; revalidate unhashed files"
-        },
-        {
-          "date": "2026-11-26",
-          "subject": "Send kazi_app's password to Postgres as a SCRAM verifier"
         }
       ]
     },

@@ -209,7 +209,7 @@ A free job-application tracker with a board of verified roles, built first for t
 | Healing Hive | 2026-11-26 | Test that the Railway settings file keeps every deploy setting the API needs |
 | MoodForecast AI | 2026-11-26 | Give the Railway CLI version that .railway/railway.ts needs |
 | Murengeti Lab System | 2026-11-26 | Say in the README how to go back after a Railway settings change that breaks a deploy |
-| Kazi Hakika | 2026-11-26 | Point signed-out visitors on a not-found page to the home page |
+| Kazi Hakika | 2026-11-26 | Show a rejected field's error under that field and focus it |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->
