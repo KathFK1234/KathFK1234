@@ -120,7 +120,7 @@ KNOWN_PACKAGES = {
 KNOWN_FILES = {
     r"(^|/)Dockerfile$": ("Docker", "Infrastructure", "docker"),
     r"(^|/)(docker-)?compose\.ya?ml$": ("Docker Compose", "Infrastructure", None),
-    # Railway stopped reading railway.toml/json on 2026-12-01; .railway/railway.ts (or .py, .go) replaces them
+    # Railway stops reading railway.toml/json on 2026-12-01; .railway/railway.ts (or .py, .go) replaces them
     r"(^|/)railway\.(toml|json)$|(^|/)\.railway/railway\.(ts|py|go)$": ("Railway", "Infrastructure", None),
     r"^\.github/workflows/[^/]+\.ya?ml$": ("GitHub Actions", "Infrastructure", "githubactions"),
     r"(^|/)vercel\.json$": ("Vercel", "Infrastructure", "vercel"),
