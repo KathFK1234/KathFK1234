@@ -2,7 +2,7 @@
 
 "Kazi hakika" means "verified work" in Kiswahili. It is a free job-application tracker with a community board of verified roles, built first for tech job seekers in Kenya. It never promises anyone a job: it helps you keep track of your applications and spot fake ads.
 
-It is in early development. The first phase is the private tracker.
+It is live and in early development. The first phase is the private tracker.
 
 ## What it does
 
@@ -11,7 +11,7 @@ It is in early development. The first phase is the private tracker.
   your data    export everything as JSON, or delete your account for good
   coming later a shared board of checked roles, a public "Is this job real?" checker, and a connector so your own AI assistant can help with your applications
 
-Visitors who are not signed in get a landing page that says what it is. The app comes in light and dark, with its font served by the app itself, so a visit makes no request to a font service.
+Visitors who are not signed in get a landing page that says what it is. The app comes in light and dark, with its font served by the app itself, so a visit makes no request to a font service. Every control is at least 44 pixels for a finger, the header fits on one line on a 320-pixel phone, and a field the server refuses shows its error underneath and takes the focus, without the raw field name. Password managers can save the email as the login.
 
 ## The rules it keeps
 
@@ -36,3 +36,8 @@ It aims at about $5 a month on Railway, with caps so a bug cannot run up a bill:
   Resend for email · Docker · Railway
 
 Every push runs the linters and type checks, the API tests on real PostgreSQL (failing below 90% coverage), the web app's tests and build, a scan for secrets, a check of the pinned packages for known vulnerabilities, and a build of the image. Dependabot raises every update, majors included, and each one is applied together with fixes for anything it breaks. The code is open source under the MIT licence.
+
+## Links
+
+  repo: https://github.com/KathFK1234/Kazi-Hakika
+  live: https://kazi-hakika.up.railway.app
