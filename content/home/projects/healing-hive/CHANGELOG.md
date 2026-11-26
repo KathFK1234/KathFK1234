@@ -2,8 +2,10 @@
 
 Written by a script from the repository's own history, so this list keeps up as the project does.
 
-  260 commits · first 2026-10-06 · latest 2026-11-14
+  262 commits · first 2026-10-06 · latest 2026-11-26
 
+  2026-11-26  Test that the Railway settings file keeps every deploy setting the API needs
+  2026-11-26  Move Railway's API settings from railway.json to .railway/railway.ts
   2026-11-14  Hold each start command to the entry path it runs from in the start-command test
   2026-11-14  Raise the API's heap limit to 512 MB so a burst of large requests can't crash it
   2026-11-14  Test that the database pool keeps its limits
@@ -14,7 +16,5 @@ Written by a script from the repository's own history, so this list keeps up as 
   2026-11-12  Keep the public header from covering the screen with large text
   2026-11-12  Show Get help in the public top bar on phones too
   2026-11-11  Have the companion give the GBV and child helplines to someone being abused
-  2026-11-11  Give people hurt or threatened by someone the violence helplines when the companion can't answer
-  2026-11-11  Notice crisis messages that name a method, say goodbye or wish to die in Swahili
 
 From anywhere in this terminal, `updates` shows the same for every project.

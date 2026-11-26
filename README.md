@@ -189,9 +189,9 @@ Built at Chakula Africa · source is private
 
 | Project | Last change | What changed |
 | --- | --- | --- |
-| MoodForecast AI | 2026-11-16 | Test that picks learn what a visitor likes and follow a change of taste |
-| Healing Hive | 2026-11-14 | Hold each start command to the entry path it runs from in the start-command test |
-| Murengeti Lab System | 2026-11-12 | Delete kept roster and equipment files once imported, and after 30 days when only looked at |
+| Healing Hive | 2026-11-26 | Test that the Railway settings file keeps every deploy setting the API needs |
+| MoodForecast AI | 2026-11-26 | Give the Railway CLI version that .railway/railway.ts needs |
+| Murengeti Lab System | 2026-11-26 | Say in the README how to go back after a Railway settings change that breaks a deploy |
 
 <sub>Read from each project's repository several times a day.</sub>
 <!-- projects:end -->

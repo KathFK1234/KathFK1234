@@ -7,9 +7,17 @@
       "url": "https://github.com/KathFK1234/Healing-Hive",
       "team": false,
       "started": "2026-10-06",
-      "updated": "2026-11-14",
-      "commits": 260,
+      "updated": "2026-11-26",
+      "commits": 262,
       "recent": [
+        {
+          "date": "2026-11-26",
+          "subject": "Test that the Railway settings file keeps every deploy setting the API needs"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Move Railway's API settings from railway.json to .railway/railway.ts"
+        },
         {
           "date": "2026-11-14",
           "subject": "Hold each start command to the entry path it runs from in the start-command test"
@@ -49,14 +57,6 @@
         {
           "date": "2026-11-11",
           "subject": "Have the companion give the GBV and child helplines to someone being abused"
-        },
-        {
-          "date": "2026-11-11",
-          "subject": "Give people hurt or threatened by someone the violence helplines when the companion can't answer"
-        },
-        {
-          "date": "2026-11-11",
-          "subject": "Notice crisis messages that name a method, say goodbye or wish to die in Swahili"
         }
       ]
     },
@@ -67,9 +67,25 @@
       "url": "https://github.com/KathFK1234/moodforecast_ai",
       "team": false,
       "started": "2026-06-05",
-      "updated": "2026-11-16",
-      "commits": 341,
+      "updated": "2026-11-26",
+      "commits": 345,
       "recent": [
+        {
+          "date": "2026-11-26",
+          "subject": "Give the Railway CLI version that .railway/railway.ts needs"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Say the Railway plan's builder line is expected"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Say that a new Railway project needs its settings applied from .railway/railway.ts"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Move Railway's settings from backend/railway.toml to .railway/railway.ts"
+        },
         {
           "date": "2026-11-16",
           "subject": "Test that picks learn what a visitor likes and follow a change of taste"
@@ -101,22 +117,6 @@
         {
           "date": "2026-11-16",
           "subject": "Only say a pick was liked when likes outweigh dislikes"
-        },
-        {
-          "date": "2026-11-16",
-          "subject": "Load the same stylesheet address on the privacy page as on the main page"
-        },
-        {
-          "date": "2026-11-16",
-          "subject": "Export only what the page uses from learn.js; list the Leaflet check"
-        },
-        {
-          "date": "2026-11-16",
-          "subject": "Check the new endpoints and page files in run_tests.sh"
-        },
-        {
-          "date": "2026-11-16",
-          "subject": "Add Choose on map"
         }
       ]
     },
@@ -127,9 +127,29 @@
       "url": null,
       "team": false,
       "started": "2026-09-20",
-      "updated": "2026-11-12",
-      "commits": 391,
+      "updated": "2026-11-26",
+      "commits": 396,
       "recent": [
+        {
+          "date": "2026-11-26",
+          "subject": "Say in the README how to go back after a Railway settings change that breaks a deploy"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Say in the README that Railway settings are changed in .railway/railway.ts, not on the dashboard"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Mark the root package as an ES module so Node reads .railway/railway.ts without reparsing it"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Name the root package murengeti_sys and mark it private"
+        },
+        {
+          "date": "2026-11-26",
+          "subject": "Move Railway's service settings from railway.toml to .railway/railway.ts"
+        },
         {
           "date": "2026-11-12",
           "subject": "Delete kept roster and equipment files once imported, and after 30 days when only looked at"
@@ -157,26 +177,6 @@
         {
           "date": "2026-11-11",
           "subject": "Take student names out of equipment details for the warehouse admin and when a student is deleted"
-        },
-        {
-          "date": "2026-11-11",
-          "subject": "Log an unreadable file's or a failed equipment import's cause without the error's message"
-        },
-        {
-          "date": "2026-11-11",
-          "subject": "Leave the imported file's name out of the log when its copy cannot be kept"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Refuse a roster import with a value too long to keep, naming the row, before anything is changed"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Stop the app's transitions and animations for anyone whose device asks for reduced motion"
-        },
-        {
-          "date": "2026-11-10",
-          "subject": "Fit the Dashboard top bar and the Students toolbar on a 320 px wide screen"
         }
       ]
     },
