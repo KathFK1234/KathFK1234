@@ -11,13 +11,15 @@ It is in early development. The first phase is the private tracker.
   your data    export everything as JSON, or delete your account for good
   coming later a shared board of checked roles, a public "Is this job real?" checker, and a connector so your own AI assistant can help with your applications
 
+Visitors who are not signed in get a landing page that says what it is. The app comes in light and dark, with its font served by the app itself, so a visit makes no request to a font service.
+
 ## The rules it keeps
 
 The AI coaches; it never applies: nothing here submits an application or emails an employer. It holds tracker data only, with no CVs, no phone numbers and no AI model running on its side. Everything is private by default, checking a role is rule-based so everyone gets the same answer, and everything works without AI. It is free to use, cheap to run, and has a hard cap on every cost.
 
 ## Privacy
 
-Each person's applications are protected twice. Every query is filtered by the signed-in user, and PostgreSQL's row-level security, forced so that it binds the tables' owner too, shows a request only that user's rows. The app connects as a role that is not a superuser, cannot get around those rules and owns no tables, and a role's stage history can be added to but not rewritten. Logs never hold request bodies, email addresses or database values. An account whose email was never confirmed and which never tracked a role is deleted 30 days after sign-up.
+Each person's applications are protected twice. Every query is filtered by the signed-in user, and PostgreSQL's row-level security, forced so that it binds the tables' owner too, shows a request only that user's rows. The app connects as a role that is not a superuser, cannot get around those rules and owns no tables, and a role's stage history can be added to but not rewritten. Logs never hold request bodies, email addresses or database values. An account whose email was never confirmed and which never tracked a role is deleted 30 days after sign-up, and deleting an account removes it and every application at once. A plain-language privacy page names who is responsible for the data and how to complain, to Kenya's Office of the Data Protection Commissioner too, says the data is stored outside Kenya by two providers only, and lists what is kept in the browser: one cookie that keeps you signed in, for 14 days at most, and your light or dark choice if you make one. Nothing is used for tracking.
 
 ## Signing in
 
@@ -29,8 +31,8 @@ It aims at about $5 a month on Railway, with caps so a bug cannot run up a bill:
 
 ## Stack
 
-  Python 3.14 · FastAPI · Pydantic · SQLAlchemy · Alembic · PostgreSQL
+  Python 3.15 · FastAPI · Pydantic · SQLAlchemy · Alembic · PostgreSQL
   React · TypeScript · Vite, served by the same FastAPI service
   Resend for email · Docker · Railway
 
-Every push runs the linters and type checks, the API tests on real PostgreSQL (failing below 90% coverage), the web app's tests and build, a scan for secrets, a check of the pinned packages for known vulnerabilities, and a build of the image. Dependabot raises every update, majors included, and each one is applied together with fixes for anything it breaks.
+Every push runs the linters and type checks, the API tests on real PostgreSQL (failing below 90% coverage), the web app's tests and build, a scan for secrets, a check of the pinned packages for known vulnerabilities, and a build of the image. Dependabot raises every update, majors included, and each one is applied together with fixes for anything it breaks. The code is open source under the MIT licence.
