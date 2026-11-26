@@ -830,6 +830,7 @@ describe('updates', () => {
       projectData.projects.find(project => project.folder === folder)!.url ? 'source (opens in a new tab)' : '(source is private)';
     expect(output).toContain(`and admins. ${note('healing-hive')} ·`);
     expect(output).toContain(`private workspace. ${note('murengeti-lab')}\n`);
+    expect(output).toContain(`In early development. ${note('kazi-hakika')} · cat projects/kazi-hakika/README.md`);
   });
 
   it('follows a project whose source turns public', async () => {
@@ -854,6 +855,7 @@ describe('updates', () => {
     const html = renderPrinted(printed);
     expect(html).toContain('href="https://github.com/x/murengeti-lab"');
     expect(html).toContain('href="https://github.com/x/healing-hive"');
+    expect(html).toContain('href="https://github.com/x/kazi-hakika"');
     vi.doUnmock('../data/projects.json');
     vi.resetModules();
   });

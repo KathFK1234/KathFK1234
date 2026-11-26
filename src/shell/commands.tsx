@@ -458,6 +458,12 @@ export const commands: Command[] = [
         institutions, and admins.{' '}
         {sourceOf('healing-hive')} · <Cmd>cat projects/healing-hive/what-changed.md</Cmd>
         {'\n\n'}
+        <Accent>Kazi Hakika</Accent> — a free job-application tracker with a board of verified roles, built first
+        for tech job seekers in Kenya (kazi hakika is Kiswahili for “verified work”). Each person’s applications stay
+        private, enforced by the database as well as the code; it never applies for anyone or promises a job, and
+        every cost has a hard cap. In early development. {sourceOf('kazi-hakika')} ·{' '}
+        <Cmd>cat projects/kazi-hakika/README.md</Cmd>
+        {'\n\n'}
         <Accent>Chema Backend</Accent> — an agricultural and data platform built to connect decision-support,
         operational information, and AI assistance in a way that is practical for real work rather than abstract
         automation. <Dim>(source is private)</Dim>
