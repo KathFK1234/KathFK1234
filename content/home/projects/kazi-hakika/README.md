@@ -33,4 +33,4 @@ It aims at about $5 a month on Railway, with caps so a bug cannot run up a bill:
   React · TypeScript · Vite, served by the same FastAPI service
   Resend for email · Docker · Railway
 
-Every push runs the linters and type checks, the API tests on real PostgreSQL (failing below 90% coverage), the web app's tests and build, a scan for secrets, a check of the pinned packages for known vulnerabilities, and a build of the image. Dependabot raises every update, majors included, and each one is applied along with whatever it breaks.
+Every push runs the linters and type checks, the API tests on real PostgreSQL (failing below 90% coverage), the web app's tests and build, a scan for secrets, a check of the pinned packages for known vulnerabilities, and a build of the image. Dependabot raises every update, majors included, and each one is applied together with fixes for anything it breaks.
