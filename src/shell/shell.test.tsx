@@ -93,6 +93,25 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('lists experience as on LinkedIn, newest first, with the admissions role under work, not volunteering', async () => {
+    const { run } = shell();
+    const experience = (await run('experience')).replace(/&amp;/g, '&');
+    const roles = [
+      'School Lead Educator, TechLit Africa',
+      'Back End Developer (intern), Chakula, now Nawiri',
+      'TechLeap Apprentice, Zynamis',
+      'Class Representative, Kenyatta University',
+      'Student Psychologist (intern), Mathari National Teaching & Referral Hospital',
+      'Global Admissions Committee Member, Millennium Campus Network',
+      'Student Attaché (intern), KEMRI VCT centre at Kenyatta National Hospital',
+    ];
+    const at = roles.map(role => experience.indexOf(role));
+    expect(at.every(index => index >= 0), experience).toBe(true);
+    expect([...at].sort((a, b) => a - b)).toEqual(at);
+    expect(experience).toMatch(/under senior psychologists’ supervision/);
+    expect(await run('volunteer')).not.toMatch(/Admissions/);
+  });
+
   it('tells about from the LinkedIn About: both projects, what she is learning, and what she is open to', async () => {
     const { run } = shell();
     const about = await run('about');

@@ -344,6 +344,34 @@ function hireMe(): ReactNode {
   );
 }
 
+/* Kept in step with LinkedIn's Experience (revamped 2026-11-26): titles, types and dates
+   as written there, and each note taken from that role's own bullets. */
+const EXPERIENCE: [string, string, string][] = [
+  [
+    'Apr 2026 to now',
+    'School Lead Educator, TechLit Africa',
+    'Digital literacy at Murengeti Primary School. Redesigned typing practice so learners stuck on level one now move steadily up, and built the Murengeti Lab System to retire the lab’s disagreeing spreadsheets.',
+  ],
+  [
+    'Feb 2026 to Apr 2026',
+    'Back End Developer (intern), Chakula, now Nawiri',
+    'Built the backend for Chema. When prompt instructions alone didn’t stop the model adding confidence scores, enforced the rule on its output instead. SARIMAX price forecasts, 20% more accurate.',
+  ],
+  ['Nov 2025 to Feb 2026', 'TechLeap Apprentice, Zynamis', ''],
+  ['Sep 2024 to Apr 2025', 'Class Representative, Kenyatta University', ''],
+  [
+    'May 2024 to Sep 2024',
+    'Student Psychologist (intern), Mathari National Teaching & Referral Hospital',
+    'Psychological first aid for in- and outpatients under senior psychologists’ supervision; co-facilitated group therapy.',
+  ],
+  [
+    'Mar 2024 to Aug 2024',
+    'Global Admissions Committee Member, Millennium Campus Network',
+    'Reviewed and scored 200+ applications for the Millennium Fellowship.',
+  ],
+  ['May 2023 to Jul 2023', 'Student Attaché (intern), KEMRI VCT centre at Kenyatta National Hospital', ''],
+];
+
 /* ---------- command registry ---------- */
 
 const GROUP_TITLES: Record<Group, string> = {
@@ -641,16 +669,20 @@ export const commands: Command[] = [
     group: 'profile',
     run: () => (
       <>
-        current and relevant experience:{'\n\n'}
+        <Dim>$ git log career</Dim>{'\n\n'}
         <Rows
-          rows={[
-            [<Dim>Apr 2026 — Present</Dim>, 'School Lead Educator — TechLit Africa'],
-            [<Dim>Feb 2026 — Apr 2026</Dim>, 'Backend Developer Intern — Chakula Africa'],
-            [<Dim>Nov 2025 — Feb 2026</Dim>, 'Technical Apprentice — TechLeap at Zynamis'],
-            [<Dim>Sep 2024 — Apr 2025</Dim>, 'Class Representative — Kenyatta University'],
-            [<Dim>May 2024 — Sep 2024</Dim>, 'Student Psychologist — Mathari Teaching and Referral Hospital'],
-            [<Dim>May 2023 — Jul 2023</Dim>, 'Student Attache — KEMRI VCT'],
-          ]}
+          rows={EXPERIENCE.map(([when, role, note]) => [
+            <Dim>{when}</Dim>,
+            <>
+              <Accent>{role}</Accent>
+              {note ? (
+                <>
+                  {'\n'}
+                  <Dim>{note}</Dim>
+                </>
+              ) : null}
+            </>,
+          ])}
         />
         {'\n'}The common thread is practical systems thinking: design for how people actually behave, learn, and make
         decisions, then build the software to support that reality.
@@ -682,7 +714,6 @@ export const commands: Command[] = [
         community work:{'\n\n'}
         {'  Volunteer Educator — Joy Village\n'}
         {'  Social Media Support — UNV East Africa\n'}
-        {'  Global Admissions Committee Member — Millennium Campus Network\n'}
         {'  Millennium Fellowship — Art Therapy Clubhouse\n\n'}
         People, access, and opportunity are not side quests. They are part of the system.
       </>
