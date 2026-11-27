@@ -147,14 +147,13 @@ LANGUAGE_ICONS = {
     "Dart": "dart",
 }
 
-# Tools that never appear in a dependency file but belong in the icon row
+# Tools that never appear in a dependency file but belong in the icon row.
+# Kept to skills Katheu lists on LinkedIn (2026-11-26).
 BASE_ICONS = {
     "aws": "AWS",
     "linux": "Linux",
     "git": "Git",
     "github": "GitHub",
-    "figma": "Figma",
-    "postman": "Postman",
 }
 
 MANIFEST_PATTERN = re.compile(

@@ -280,3 +280,8 @@ class Retries(unittest.TestCase):
         self.assertIs(mood.http, sync_http.http)
         self.assertIs(activity.http, sync_http.http)
         self.assertIs(projects.GitHub(None).http, sync_http.http)
+
+
+class Icons(unittest.TestCase):
+    def test_the_hand_set_icons_are_skills_on_linkedin(self):
+        self.assertEqual(set(languages.BASE_ICONS.values()), {"AWS", "Linux", "Git", "GitHub"})
