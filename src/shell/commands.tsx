@@ -161,7 +161,7 @@ export function Banner() {
         <span className="accent2">U</span>
         {'─────────┐\n'}
         {` ${artRow('$ whoami')}\n`}
-        {[' psychology graduate', ' backend engineer', ' educator'].map(line => (
+        {[' software engineer', ' backend + AI', ' psychology graduate'].map(line => (
           <Fragment key={line}>
             {' │'}
             <span className="hero-text">{line.padEnd(20)}</span>
@@ -175,14 +175,15 @@ export function Banner() {
       </pre>
       <div>
         <div className="title">Hi, I’m Katheu Kilonzo.</div>
-        <Dim>psychology × backend engineering × human-centered systems</Dim>
+        <Dim>backend × AI × people first</Dim>
         {'\n\n'}
         <Rows
           rows={[
             [<Accent2>now</Accent2>, 'School Lead Educator at TechLit Africa'],
-            [<Accent2>builds</Accent2>, 'backend systems and AI products shaped by how people behave'],
+            [<Accent2>builds</Accent2>, 'backend and AI systems, starting with people'],
             [<Accent2>trained</Accent2>, 'BA Psychology · AWS Certified Cloud Practitioner'],
-            [<Accent2>based</Accent2>, 'Kenya (EAT)'],
+            [<Accent2>learning</Accent2>, 'how LLMs run underneath, at ATF AI School'],
+            [<Accent2>based</Accent2>, 'Kenya (EAT) · open to backend and AI roles'],
           ]}
         />
         {'\n'}
@@ -360,13 +361,51 @@ export const commands: Command[] = [
     group: 'profile',
     run: () => (
       <>
-        I’m Katheu Kilonzo — a software engineer who built my way into product work through psychology, systems
-        thinking, and a lot of hands-on debugging.{'\n\n'}
-        The pattern is consistent: I look for the hidden friction in a flow, then design software around the behavior
-        that actually happens in the real world. A form abandoned on step three is not a UX detail; it is a system
-        problem. A wellbeing score without context is not insight; it is noise.{'\n\n'}
-        That lens shows up in my work across backend engineering, AI product ideas, and education technology. I care
-        about software that reduces confusion, respects attention, and makes complex systems feel clear.{'\n\n'}
+        Hi, I’m Katheu Kilonzo. <Accent>I build backend and AI systems by starting with people.</Accent>{'\n\n'}
+        Studying psychology taught me how people think, learn and get stuck. Engineering lets me turn that into
+        software they can rely on.{'\n\n'}
+        <Rows
+          rows={[
+            [
+              <Accent2>by day</Accent2>,
+              <>
+                I lead digital literacy at a rural primary school in Limuru with TechLit Africa. The lab’s records lived
+                in spreadsheets that never agreed, so I built the <Accent>Murengeti Lab System</Accent>: FastAPI and
+                React, strict role separation, privacy by default, more than 200 tests.
+              </>,
+            ],
+            [
+              <Accent2>before</Accent2>,
+              <>
+                At Chakula (now Nawiri) I built the backend for <Accent>Chema</Accent>: a Llama model served through
+                Groq, with retrieval over agricultural datasets so its answers stay grounded in real data. Around it:
+                ETL pipelines, time-series forecasting, role-based access and Docker deployments.
+              </>,
+            ],
+            [
+              <Accent2>lately</Accent2>,
+              'going deeper into how AI systems run underneath: self-hosted LLM infrastructure (inference engines, RAG pipelines, agents), and ATF AI School’s course on building LLM applications, until March 2027.',
+            ],
+            [
+              <Accent2>drawn to</Accent2>,
+              'responsible AI, evaluation and safety, especially where AI meets education and young people’s mental health.',
+            ],
+            [
+              <Accent2>care about</Accent2>,
+              'privacy, accessibility, and honest software that tells you what went wrong and that your data is safe.',
+            ],
+            [
+              <Accent2>open to</Accent2>,
+              <>
+                backend and AI engineering roles, in Nairobi or remote. <Cmd>contact</Cmd>
+              </>,
+            ],
+          ]}
+        />
+        {'\n'}
+        <Dim>most of it is Python, FastAPI and PostgreSQL. the receipts:</Dim> <Cmd>projects</Cmd>{' '}
+        <Cmd>stack</Cmd>
+        {'\n'}
         Type <Cmd>psychology</Cmd> if you want the deeper version.
       </>
     ),

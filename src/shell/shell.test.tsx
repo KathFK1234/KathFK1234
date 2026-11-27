@@ -93,6 +93,18 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('tells about from the LinkedIn About: both projects, what she is learning, and what she is open to', async () => {
+    const { run } = shell();
+    const about = await run('about');
+    expect(about).toMatch(/I build backend and AI systems by starting with people\./);
+    expect(about).toMatch(/Murengeti Lab System.*more than 200 tests/s);
+    expect(about).toMatch(/Chakula \(now Nawiri\).*Chema.*Llama model served through\s+Groq/s);
+    // The ATF course runs until March 2027; it must never read as finished
+    expect(about).toMatch(/ATF AI School.*until March 2027/s);
+    expect(about).toMatch(/open to.*backend and AI engineering roles, in Nairobi or remote/s);
+    expect(about).not.toMatch(/psychologist/i);
+  });
+
   it('words the scoring rules as the terminal does: an outlook about the weather, from hand-set rules', async () => {
     const { run } = shell();
     const rules = await run('cat ~/projects/moodforecast-ai/data/scoring-rules.md');
