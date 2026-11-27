@@ -93,6 +93,19 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('lists education in LinkedIn’s order, shows ATF as still in progress, and only the strongest certifications', async () => {
+    const { run } = shell();
+    const education = await run('education');
+    const schools = ['ATF AI School', 'Dev Weekends', 'ALX Africa', 'Ajira AWS re/Start', 'Dimewise Africa', 'Kenyatta University', 'Alliance Girls'];
+    const at = schools.map(school => education.indexOf(school));
+    expect(at.every(index => index >= 0), education).toBe(true);
+    expect([...at].sort((a, b) => a - b)).toEqual(at);
+    expect(education).toMatch(/ATF AI School \(African Technology Forum\) \[in progress\]/);
+    expect(education.match(/\[in progress\]/g)).toHaveLength(1);
+    expect(education).toMatch(/Jan 2024 to Dec 2025\s*ALX Africa/);
+    expect(education.match(/✓/g)).toHaveLength(4);
+  });
+
   it('stacks about and experience on narrow screens, so long text is not squeezed beside its label', async () => {
     const { markup } = shell();
     expect(await markup('about')).toContain('class="rows rows-stack"');

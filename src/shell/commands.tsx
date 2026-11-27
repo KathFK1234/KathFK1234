@@ -372,6 +372,42 @@ const EXPERIENCE: [string, string, string][] = [
   ['May 2023 to Jul 2023', 'Student Attaché (intern), KEMRI VCT centre at Kenyatta National Hospital', ''],
 ];
 
+/* LinkedIn's Education (revamped 2026-11-26), in its order: when, where, what, a note, still going. */
+const EDUCATION: [string, string, string, string, boolean][] = [
+  [
+    'Nov 2026 to Mar 2027',
+    'ATF AI School (African Technology Forum)',
+    'Building LLM-based AI Applications',
+    'Transformers and attention, embeddings, vector databases and RAG, agents with tools, evaluations, guardrails and red teaming. Started because building Chema made me curious about how models work underneath.',
+    true,
+  ],
+  [
+    'Jun 2026 to Aug 2026',
+    'Dev Weekends',
+    'Fellowship 2026, Full-Stack AI Development',
+    'A free, selective mentorship fellowship: 1,072 fellows chosen from 3,000+ applicants, three months of mentored building.',
+    false,
+  ],
+  ['Jan 2024 to Dec 2025', 'ALX Africa', 'ALX Software Engineering Programme', '', false],
+  ['May 2025 to Aug 2025', 'Ajira AWS re/Start', 'Cloud Computing: AWS Certified Cloud Practitioner', '', false],
+  [
+    'May 2025 to Sep 2025',
+    'Dimewise Africa',
+    'Novus Africa Mentorship Program, Tech Entrepreneurship',
+    'Design thinking, product validation and investor readiness for early-stage founders. I used it to rethink MindConnect, which grew into Healing Hive.',
+    false,
+  ],
+  ['Oct 2021 to Dec 2025', 'Kenyatta University', 'BA Psychology, Second Class Upper Division', '', false],
+  ['Jan 2017 to Apr 2021', 'Alliance Girls’ High School', 'High School Diploma (KCSE), B+', '', false],
+];
+
+const CERTIFICATIONS = [
+  'AWS Certified Cloud Practitioner (Sep 2025, valid to Sep 2028)',
+  'AWS re/Start Graduate (Sep 2025)',
+  'McKinsey.org Forward Program (Jul 2025)',
+  'Next Generation Tech Booster Scholarship, Udacity and Bertelsmann (Feb 2024)',
+];
+
 /* ---------- command registry ---------- */
 
 const GROUP_TITLES: Record<Group, string> = {
@@ -697,13 +733,29 @@ export const commands: Command[] = [
     group: 'profile',
     run: () => (
       <>
-        learning path:{'\n\n'}
-        {'  BA Psychology — Kenyatta University (2021 — 2025)\n'}
-        {'  ALX Software Engineering (2024 — Present)\n'}
-        {'  AWS re/Start — AWS Certified Cloud Practitioner (2025)\n'}
-        {"  Alliance Girls' High School — KCSE, B+\n\n"}
-        The formal subjects differ, but the through-line is consistent: understand difficult systems, then make them
-        useful.
+        <Dim>$ ls ~/learning</Dim>{'\n\n'}
+        <Rows
+          stack
+          rows={EDUCATION.map(([when, school, course, note, ongoing]) => [
+            <Dim>{when}</Dim>,
+            <>
+              <Accent>{school}</Accent> {ongoing ? <Accent2>[in progress]</Accent2> : <Dim>[done]</Dim>}
+              {'\n'}
+              {course}
+              {note ? (
+                <>
+                  {'\n'}
+                  <Dim>{note}</Dim>
+                </>
+              ) : null}
+            </>,
+          ])}
+        />
+        {'\n'}
+        <Accent2>certifications</Accent2> <Dim>(the strongest; LinkedIn has the rest)</Dim>{'\n'}
+        {CERTIFICATIONS.map(line => `  ✓ ${line}\n`).join('')}
+        {'\n'}
+        <Dim>still compiling: the ATF capstone, a digital twin agent.</Dim>
       </>
     ),
   },
