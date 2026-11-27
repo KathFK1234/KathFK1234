@@ -93,6 +93,14 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('lists volunteering as on LinkedIn, each with its dates', async () => {
+    const { run } = shell();
+    const volunteer = await run('volunteer');
+    expect(volunteer).toMatch(/Nov 2024 to May 2025\s*Volunteer Educator, Joy-Village.*50\+ teens/s);
+    expect(volunteer).toMatch(/Nov 2024 to Dec 2024\s*Social Media Support, UN Volunteers East and Southern Africa/);
+    expect(volunteer).toMatch(/Sep 2023 to Dec 2023\s*Millennium Fellow, Millennium Campus Network.*40\+ youth/s);
+  });
+
   it('lists education in LinkedIn’s order, shows ATF as still in progress, and only the strongest certifications', async () => {
     const { run } = shell();
     const education = await run('education');

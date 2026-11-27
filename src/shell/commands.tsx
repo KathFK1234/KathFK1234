@@ -765,10 +765,37 @@ export const commands: Command[] = [
     group: 'profile',
     run: () => (
       <>
-        community work:{'\n\n'}
-        {'  Volunteer Educator — Joy Village\n'}
-        {'  Social Media Support — UNV East Africa\n'}
-        {'  Millennium Fellowship — Art Therapy Clubhouse\n\n'}
+        <Dim>$ ps --user community   # the unpaid jobs, still running in spirit</Dim>{'\n\n'}
+        <Rows
+          stack
+          rows={[
+            [
+              <Dim>Nov 2024 to May 2025</Dim>,
+              <>
+                <Accent>Volunteer Educator, Joy-Village</Accent>
+                {'\n'}
+                <Dim>Designed and delivered psychological-skills lessons for 50+ teens.</Dim>
+              </>,
+            ],
+            [
+              <Dim>Nov 2024 to Dec 2024</Dim>,
+              <>
+                <Accent>Social Media Support, UN Volunteers East and Southern Africa</Accent>
+                {'\n'}
+                <Dim>International Volunteer Day 2024.</Dim>
+              </>,
+            ],
+            [
+              <Dim>Sep 2023 to Dec 2023</Dim>,
+              <>
+                <Accent>Millennium Fellow, Millennium Campus Network</Accent>
+                {'\n'}
+                <Dim>Co-led an Art Therapy Clubhouse supporting 40+ youth through creative expression and peer support.</Dim>
+              </>,
+            ],
+          ]}
+        />
+        {'\n'}
         People, access, and opportunity are not side quests. They are part of the system.
       </>
     ),
