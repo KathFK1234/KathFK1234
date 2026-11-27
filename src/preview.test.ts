@@ -61,3 +61,22 @@ describe('link previews', () => {
     expect(readFileSync('public/robots.txt', 'utf8')).not.toMatch(/^Disallow:\s*\S/m);
   });
 });
+
+describe('how the preview describes Katheu', () => {
+  // Kept in step with the LinkedIn headline (2026-11-26): role first, then the backend and AI focus.
+  it('leads with the role from LinkedIn in the title and both card titles', () => {
+    const title = html.match(/<title>([^<]+)<\/title>/)?.[1];
+    expect(title).toBe('Katheu Kilonzo | Software Engineer, Backend &amp; AI Systems');
+    expect(tag('og:title')).toEqual([title]);
+    expect(tag('twitter:title')).toEqual([title]);
+  });
+
+  it('gives every card the same description', () => {
+    expect(tag('og:description')).toEqual(tag('description'));
+    expect(tag('twitter:description')).toEqual(tag('description'));
+  });
+
+  it('never calls Katheu a psychologist: she holds a BA in Psychology, not a licence', () => {
+    expect(html).not.toMatch(/psychologist/i);
+  });
+});
