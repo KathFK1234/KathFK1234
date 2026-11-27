@@ -93,6 +93,16 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('lists the published poems under writing, also as poems and publications', async () => {
+    const { run } = shell();
+    const writing = await run('writing');
+    expect(writing).toMatch(/May 2024\s*Perhaps I am the Devil &amp; Other poems\s*Ubwali Literary Magazine/);
+    expect(writing).toMatch(/Apr 2024\s*Show Me Your Stars\s*Qwani Anthology/);
+    expect(await run('poems')).toBe(writing);
+    expect(await run('publications')).toBe(writing);
+    expect(await run('resume')).toMatch(/writing/);
+  });
+
   it('gives the LinkedIn role, languages and what Katheu is open to in resume, whois and neofetch', async () => {
     const { run } = shell();
     const resume = await run('resume');

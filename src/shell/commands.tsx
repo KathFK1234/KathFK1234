@@ -801,6 +801,40 @@ export const commands: Command[] = [
     ),
   },
   {
+    name: 'writing',
+    summary: 'poems I have published',
+    group: 'profile',
+    aliases: ['poems', 'publications'],
+    run: () => (
+      <>
+        <Dim>$ ls ~/poems   # not everything I write compiles</Dim>{'\n\n'}
+        <Rows
+          stack
+          rows={[
+            [
+              <Dim>May 2024</Dim>,
+              <>
+                <Accent>Perhaps I am the Devil &amp; Other poems</Accent>
+                {'\n'}
+                <Dim>Ubwali Literary Magazine</Dim>
+              </>,
+            ],
+            [
+              <Dim>Apr 2024</Dim>,
+              <>
+                <Accent>Show Me Your Stars</Accent>
+                {'\n'}
+                <Dim>Qwani Anthology</Dim>
+              </>,
+            ],
+          ]}
+        />
+        {'\n'}
+        Poetry and engineering ask the same thing of me: say exactly what you mean, in as few words as it takes.
+      </>
+    ),
+  },
+  {
     name: 'resume',
     summary: 'quick professional summary',
     group: 'profile',
@@ -821,7 +855,8 @@ export const commands: Command[] = [
         {'\n  '}
         <Link href={LINKS.github}>github</Link>
         {'\n\n'}
-        <Dim>the long version:</Dim> <Cmd>experience</Cmd> <Cmd>education</Cmd> <Cmd>volunteer</Cmd>
+        <Dim>the long version:</Dim> <Cmd>experience</Cmd> <Cmd>education</Cmd> <Cmd>volunteer</Cmd>{' '}
+        <Cmd>writing</Cmd>
       </>
     ),
   },
@@ -1901,7 +1936,7 @@ function unknownCommand(name: string): ReactNode {
    with echo, change a visitor's theme or history, or open a window. */
 const DEEP_LINK_COMMANDS = new Set([
   'about', 'psychology', 'thinking', 'projects', 'updates', 'skills', 'stack', 'experience', 'education', 'volunteer',
-  'resume', 'contact', 'hire-me', 'whois', 'ls', 'cat', 'head', 'tail', 'wc', 'grep', 'find', 'tree', 'help', 'man',
+  'writing', 'resume', 'contact', 'hire-me', 'whois', 'ls', 'cat', 'head', 'tail', 'wc', 'grep', 'find', 'tree', 'help', 'man',
   'mood',
 ]);
 
