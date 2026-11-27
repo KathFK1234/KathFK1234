@@ -1843,7 +1843,7 @@ const MAN_NOTES: Record<string, string> = {
   fortune: 'run it twice. it rarely repeats itself; neither should a good engineer.',
   history: 'your own trail through this place. ↑ and ↓ walk it too.',
   theme: 'paper is the only one that works in direct sunlight.',
-  whoami: 'answers with a question, like a psychologist would.',
+  whoami: 'answers a question with a question. a psychology degree will do that to you.',
   top: 'curiosity has been the top process since boot.',
 };
 
@@ -1866,16 +1866,19 @@ function whoamiAnswer(answer: string): ReactNode {
     return (
       <>
         <Accent>hiring profile</Accent>{'\n'}
-        Katheu Kilonzo is a software engineer with a psychology-informed lens on product and systems.{'\n\n'}
-        I build backend systems, AI-powered experiences, and practical tools that are grounded in real user needs.
-        {'\n\n'}
-        {'Key strengths:\n'}
-        {'  • Python, FastAPI, Django, REST APIs\n'}
-        {'  • React and TypeScript frontends\n'}
-        {'  • practical AI workflows and product thinking\n'}
-        {'  • human-centered design informed by psychology\n\n'}
+        Katheu Kilonzo: software engineer, backend and AI systems. A psychology graduate who starts with the people
+        the software is for.{'\n\n'}
+        {'What I bring:\n'}
+        {'  • Python, FastAPI, Django REST Framework, PostgreSQL\n'}
+        {'  • LLM applications: RAG, a Llama model through Groq, rules enforced on the output\n'}
+        {'  • ETL and time-series forecasting\n'}
+        {'  • Docker, CI and tests on every push; AWS Certified Cloud Practitioner\n'}
+        {'  • React and TypeScript when the backend needs a face\n'}
+        {'  • privacy and accessibility by default\n\n'}
         {'Featured work:\n'}
-        {'  • MoodForecast AI\n  • Murengeti Lab System\n  • Healing Hive\n  • Kazi Hakika\n  • Chema Backend\n\n'}
+        {'  • MoodForecast AI\n  • Murengeti Lab System\n  • Healing Hive\n  • Kazi Hakika\n  • Chema\n\n'}
+        <Accent2>Open to backend and AI engineering roles, in Nairobi or remote.</Accent2>
+        {'\n'}
         Next steps: <Cmd>resume</Cmd> <Cmd>projects</Cmd> <Cmd>contact</Cmd> or <Cmd>sudo hire-me</Cmd> for the direct
         route.
       </>
@@ -1888,10 +1891,10 @@ function whoamiAnswer(answer: string): ReactNode {
         <Accent>collaboration profile</Accent>{'\n'}
         I enjoy building with people who care about quality, clarity, and thoughtful product decisions.{'\n\n'}
         {'Current interests:\n'}
-        {'  • AI-enabled product experiences\n'}
-        {'  • backend architecture and APIs\n'}
-        {'  • psychology-informed UX + digital wellbeing\n'}
-        {'  • education technology and tooling\n\n'}
+        {'  • responsible AI: evaluation and safety\n'}
+        {'  • where AI meets education and young people’s mental health\n'}
+        {'  • self-hosted LLM infrastructure: inference, RAG pipelines, agents (learning it now)\n'}
+        {'  • backend architecture and APIs\n\n'}
         Best next move: <Cmd>projects</Cmd> <Cmd>skills</Cmd> <Cmd>contact</Cmd>
       </>
     );

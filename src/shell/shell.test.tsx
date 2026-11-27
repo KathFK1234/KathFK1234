@@ -93,6 +93,18 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('answers whoami from the LinkedIn framing, and its manual calls no one a psychologist', async () => {
+    const { run } = shell();
+    await run('whoami');
+    const hiring = await run('1');
+    expect(hiring).toMatch(/software engineer, backend and AI systems/);
+    expect(hiring).toMatch(/• Chema\n/);
+    expect(hiring).toMatch(/Open to backend and AI engineering roles, in Nairobi or remote\./);
+    await run('whoami');
+    expect(await run('2')).toMatch(/responsible AI: evaluation and safety/);
+    expect(await run('man whoami')).not.toMatch(/psychologist/i);
+  });
+
   it('describes Chema as on LinkedIn: a RAG backend, Llama through Groq, at Chakula (now Nawiri), private', async () => {
     const { run } = shell();
     const projects = await run('projects');
