@@ -84,19 +84,25 @@ function sourceOf(folder: string): ReactNode {
 
 /* Skills written by hand. `skills` adds anything new that src/data/stack.json
    (refreshed from GitHub by languages_update_script.py) has found since, in the
-   row that matches the category `stack` files it under. */
+   row that matches the category `stack` files it under.
+   Grouped as on LinkedIn (2026-11-26), and only what I have built with: tools I have only studied join once
+   something I built uses them. */
 const CORE_SKILLS: [string, string[]][] = [
-  ['languages', ['Python', 'JavaScript', 'HTML', 'CSS', 'C', 'Shell']],
-  ['backend', ['FastAPI', 'Django', 'DRF', 'REST APIs', 'PostgreSQL']],
-  ['frontend', ['React', 'Vite']],
-  ['cloud', ['AWS', 'Docker', 'Railway', 'Supabase', 'DigitalOcean']],
-  ['ai', ['LLMs', 'RAG', 'intelligent assistants', 'practical automation']],
-  ['tooling', ['Git', 'GitHub', 'Linux', 'Postman', 'Figma', 'Canva']],
+  ['languages', ['Python', 'TypeScript', 'JavaScript', 'C', 'Shell']],
+  [
+    'backend',
+    ['FastAPI', 'Django', 'DRF', 'REST APIs', 'PostgreSQL', 'SQLAlchemy', 'MongoDB', 'auth and access control', 'ETL', 'time-series forecasting'],
+  ],
+  ['ai', ['LLMs', 'RAG', 'prompt engineering']],
+  ['devops', ['Docker', 'AWS', 'Railway', 'Supabase', 'Git', 'GitHub Actions', 'CI/CD', 'pytest', 'Vitest', 'Linux']],
+  ['frontend', ['React', 'Vite', 'Node.js']],
+  ['product', ['user-centred design', 'design thinking', 'product validation', 'teaching', 'digital literacy']],
+  ['psychology', ['cognitive and behavioural psychology', 'psychological first aid', 'psychological assessment', 'social-science statistics']],
 ];
 // Names in the data file that are already covered by a hand-written entry above.
 const SAME_AS: Record<string, string> = { 'Django REST Framework': 'DRF' };
 // Categories in the data file that go by another name here. Any other category gets a row of its own.
-const SKILL_ROW: Record<string, string> = { 'data & databases': 'backend', infrastructure: 'cloud' };
+const SKILL_ROW: Record<string, string> = { 'data & databases': 'backend', infrastructure: 'devops', testing: 'devops' };
 
 function skillRows(): [string, string[]][] {
   const known = new Set(CORE_SKILLS.flatMap(([, items]) => items.map(item => item.toLowerCase())));
@@ -642,10 +648,14 @@ export const commands: Command[] = [
     group: 'profile',
     run: () => (
       <>
-        core stack{'\n\n'}
+        <Dim>the short answer:</Dim> <Accent>Python · FastAPI · PostgreSQL · LLMs/RAG · AWS · Docker</Accent>
+        {'\n\n'}
+        <Dim>the long answer:</Dim>{'\n'}
         <Rows rows={skillRows().map(([label, items]) => [label, <Accent2>{items.join(', ')}</Accent2>])} />
-        {'\n'}I enjoy building systems that are not only functional but also resilient, understandable, and grounded
-        in user context.{'\n\n'}
+        {'\n'}
+        <Dim>pending install: vector databases, self-hosted inference and friends. they join this list once I have
+        shipped something with them, not before.</Dim>
+        {'\n\n'}
         <Dim>the measured version, straight from my repositories:</Dim> <Cmd>stack</Cmd>
       </>
     ),
