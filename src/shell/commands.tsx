@@ -352,59 +352,63 @@ function hireMe(): ReactNode {
 
 /* Kept in step with LinkedIn's Experience (revamped 2026-11-26): titles, types and dates
    as written there, and each note taken from that role's own bullets. */
-const EXPERIENCE: [string, string, string][] = [
-  [
-    'Apr 2026 to now',
-    'School Lead Educator, TechLit Africa',
-    'Digital literacy at Murengeti Primary School. Redesigned typing practice so learners stuck on level one now move steadily up, and built the Murengeti Lab System to retire the lab’s disagreeing spreadsheets.',
-  ],
-  [
-    'Feb 2026 to Apr 2026',
-    'Back End Developer (intern), Chakula, now Nawiri',
-    'Built the backend for Chema. When prompt instructions alone didn’t stop the model adding confidence scores, enforced the rule on its output instead. SARIMAX price forecasts, 20% more accurate.',
-  ],
-  ['Nov 2025 to Feb 2026', 'TechLeap Apprentice, Zynamis', ''],
-  ['Sep 2024 to Apr 2025', 'Class Representative, Kenyatta University', ''],
-  [
-    'May 2024 to Sep 2024',
-    'Student Psychologist (intern), Mathari National Teaching & Referral Hospital',
-    'Psychological first aid for in- and outpatients under senior psychologists’ supervision; co-facilitated group therapy.',
-  ],
-  [
-    'Mar 2024 to Aug 2024',
-    'Global Admissions Committee Member, Millennium Campus Network',
-    'Reviewed and scored 200+ applications for the Millennium Fellowship.',
-  ],
-  ['May 2023 to Jul 2023', 'Student Attaché (intern), KEMRI VCT centre at Kenyatta National Hospital', ''],
+type Role = { when: string; role: string; note?: string };
+const EXPERIENCE: Role[] = [
+  {
+    when: 'Apr 2026 to now',
+    role: 'School Lead Educator, TechLit Africa',
+    note: 'Digital literacy at Murengeti Primary School. Redesigned typing practice so learners stuck on level one now move steadily up, and built the Murengeti Lab System to retire the lab’s disagreeing spreadsheets.',
+  },
+  {
+    when: 'Feb 2026 to Apr 2026',
+    role: 'Back End Developer (intern), Chakula, now Nawiri',
+    note: 'Built the backend for Chema. When prompt instructions alone didn’t stop the model adding confidence scores, enforced the rule on its output instead. SARIMAX price forecasts, 20% more accurate.',
+  },
+  { when: 'Nov 2025 to Feb 2026', role: 'TechLeap Apprentice, Zynamis' },
+  { when: 'Sep 2024 to Apr 2025', role: 'Class Representative, Kenyatta University' },
+  {
+    when: 'May 2024 to Sep 2024',
+    role: 'Student Psychologist (intern), Mathari National Teaching & Referral Hospital',
+    note: 'Psychological first aid for in- and outpatients under senior psychologists’ supervision; co-facilitated group therapy.',
+  },
+  {
+    when: 'Mar 2024 to Aug 2024',
+    role: 'Global Admissions Committee Member, Millennium Campus Network',
+    note: 'Reviewed and scored 200+ applications for the Millennium Fellowship.',
+  },
+  { when: 'May 2023 to Jul 2023', role: 'Student Attaché (intern), KEMRI VCT centre at Kenyatta National Hospital' },
 ];
 
 /* LinkedIn's Education (revamped 2026-11-26), in its order: when, where, what, a note, still going. */
-const EDUCATION: [string, string, string, string, boolean][] = [
-  [
-    'Nov 2026 to Mar 2027',
-    'ATF AI School (African Technology Forum)',
-    'Building LLM-based AI Applications',
-    'Transformers and attention, embeddings, vector databases and RAG, agents with tools, evaluations, guardrails and red teaming. Started because building Chema made me curious about how models work underneath.',
-    true,
-  ],
-  [
-    'Jun 2026 to Aug 2026',
-    'Dev Weekends',
-    'Fellowship 2026, Full-Stack AI Development',
-    'A free, selective mentorship fellowship: 1,072 fellows chosen from 3,000+ applicants, three months of mentored building.',
-    false,
-  ],
-  ['Jan 2024 to Dec 2025', 'ALX Africa', 'ALX Software Engineering Programme', '', false],
-  ['May 2025 to Aug 2025', 'Ajira AWS re/Start', 'Cloud Computing: AWS Certified Cloud Practitioner', '', false],
-  [
-    'May 2025 to Sep 2025',
-    'Dimewise Africa',
-    'Novus Africa Mentorship Program, Tech Entrepreneurship',
-    'Design thinking, product validation and investor readiness for early-stage founders. I used it to rethink MindConnect, which grew into Healing Hive.',
-    false,
-  ],
-  ['Oct 2021 to Dec 2025', 'Kenyatta University', 'BA Psychology, Second Class Upper Division', '', false],
-  ['Jan 2017 to Apr 2021', 'Alliance Girls’ High School', 'High School Diploma (KCSE), B+', '', false],
+type Course = { when: string; school: string; course: string; note?: string; ongoing?: boolean };
+const EDUCATION: Course[] = [
+  {
+    when: 'Nov 2026 to Mar 2027',
+    school: 'ATF AI School (African Technology Forum)',
+    course: 'Building LLM-based AI Applications',
+    note: 'Transformers and attention, embeddings, vector databases and RAG, agents with tools, evaluations, guardrails and red teaming. Started because building Chema made me curious about how models work underneath.',
+    ongoing: true,
+  },
+  {
+    when: 'Jun 2026 to Aug 2026',
+    school: 'Dev Weekends',
+    course: 'Fellowship 2026, Full-Stack AI Development',
+    note: 'A free, selective mentorship fellowship: 1,072 fellows chosen from 3,000+ applicants, three months of mentored building.',
+  },
+  { when: 'Jan 2024 to Dec 2025', school: 'ALX Africa', course: 'ALX Software Engineering Programme' },
+  {
+    when: 'May 2025 to Aug 2025',
+    school: 'Ajira AWS re/Start',
+    course: 'Cloud Computing: AWS Certified Cloud Practitioner',
+  },
+  {
+    when: 'May 2025 to Sep 2025',
+    school: 'Dimewise Africa',
+    course: 'Novus Africa Mentorship Program, Tech Entrepreneurship',
+    note: 'Design thinking, product validation and investor readiness for early-stage founders. I used it to rethink MindConnect, which grew into Healing Hive.',
+  },
+  { when: 'Oct 2021 to Dec 2025', school: 'Kenyatta University', course: 'BA Psychology, Second Class Upper Division' },
+  { when: 'Jan 2017 to Apr 2021', school: 'Alliance Girls’ High School', course: 'High School Diploma (KCSE), B+' },
 ];
 
 const CERTIFICATIONS = [
@@ -721,7 +725,7 @@ export const commands: Command[] = [
         <Dim>$ git log career</Dim>{'\n\n'}
         <Rows
           stack
-          rows={EXPERIENCE.map(([when, role, note]) => [
+          rows={EXPERIENCE.map(({ when, role, note }) => [
             <Dim>{when}</Dim>,
             <>
               <Accent>{role}</Accent>
@@ -748,7 +752,7 @@ export const commands: Command[] = [
         <Dim>$ ls ~/learning</Dim>{'\n\n'}
         <Rows
           stack
-          rows={EDUCATION.map(([when, school, course, note, ongoing]) => [
+          rows={EDUCATION.map(({ when, school, course, note, ongoing }) => [
             <Dim>{when}</Dim>,
             <>
               <Accent>{school}</Accent> {ongoing ? <Accent2>[in progress]</Accent2> : <Dim>[done]</Dim>}
