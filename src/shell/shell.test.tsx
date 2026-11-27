@@ -93,6 +93,13 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('heads the home README with the LinkedIn role', async () => {
+    const { run } = shell();
+    const readme = await run('cat README.md');
+    expect(readme).toMatch(/Katheu Kilonzo: software engineer, backend and AI systems/);
+    expect(readme).toMatch(/starting with people/);
+  });
+
   it('answers whoami from the LinkedIn framing, and its manual calls no one a psychologist', async () => {
     const { run } = shell();
     await run('whoami');

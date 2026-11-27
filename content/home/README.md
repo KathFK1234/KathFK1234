@@ -1,8 +1,8 @@
-# Katheu Kilonzo — psychology graduate, backend engineer, human-centered systems builder
+# Katheu Kilonzo: software engineer, backend and AI systems
 
-I build technology where human behavior, data, cloud infrastructure, and practical engineering meet.
+I build backend and AI systems by starting with people. Studying psychology taught me how people think, learn and get stuck; engineering lets me turn that into software they can rely on.
 
-Psychology taught me to ask why people behave the way they do and what creates friction. Engineering taught me to turn that complexity into systems that are reliable, clear, and useful to real people.
+Most of it is Python, FastAPI and PostgreSQL, with LLMs where they earn their place.
 
 ## Where to look
 
@@ -10,4 +10,4 @@ Psychology taught me to ask why people behave the way they do and what creates f
   notes/      how I think while building
   research/   the psychology underneath the engineering
 
-Try `tree`, `cat projects/moodforecast-ai/README.md`, or `grep friction`.
+Try `tree`, `cat projects/chema-backend/README.md`, or `grep friction`.
