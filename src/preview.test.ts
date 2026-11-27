@@ -76,6 +76,14 @@ describe('how the preview describes Katheu', () => {
     expect(tag('twitter:description')).toEqual(tag('description'));
   });
 
+  it('gives search engines the same role and description in its structured data', () => {
+    const person = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)![1]);
+    expect(person['@type']).toBe('Person');
+    expect(person.jobTitle).toBe('Software Engineer, Backend & AI Systems');
+    expect(person.description).toBe(tag('description')[0]);
+    expect(person.url).toBe(SITE);
+  });
+
   it('never calls Katheu a psychologist: she holds a BA in Psychology, not a licence', () => {
     expect(html).not.toMatch(/psychologist/i);
   });
