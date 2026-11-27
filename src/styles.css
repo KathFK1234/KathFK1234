@@ -478,6 +478,16 @@ body {
     padding-left: 1ch;
     column-gap: 1.5ch;
   }
+  /* Long text beside a wide label leaves a word or two a line; the label goes above it instead. */
+  .rows-stack {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .rows-stack > span:nth-child(odd):not(:first-child) {
+    margin-top: 0.6em;
+  }
+  .rows-stack > span:nth-child(even) {
+    padding-left: 2ch;
+  }
 }
 
 /* Too narrow for six in a row: two even rows of three, rather than one button stretched alone. */

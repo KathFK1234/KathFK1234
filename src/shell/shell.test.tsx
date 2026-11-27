@@ -93,6 +93,12 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('stacks about and experience on narrow screens, so long text is not squeezed beside its label', async () => {
+    const { markup } = shell();
+    expect(await markup('about')).toContain('class="rows rows-stack"');
+    expect(await markup('experience')).toContain('class="rows rows-stack"');
+  });
+
   it('lists experience as on LinkedIn, newest first, with the admissions role under work, not volunteering', async () => {
     const { run } = shell();
     const experience = (await run('experience')).replace(/&amp;/g, '&');

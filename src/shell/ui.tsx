@@ -30,9 +30,10 @@ export function Link({ href, children }: { href: string; children: ReactNode }) 
   );
 }
 
-export function Rows({ rows }: { rows: [ReactNode, ReactNode][] }) {
+/** Two columns: a label and its text. `stack` puts each label above its text on a narrow screen, for long text. */
+export function Rows({ rows, stack = false }: { rows: [ReactNode, ReactNode][]; stack?: boolean }) {
   return (
-    <div className="rows">
+    <div className={stack ? 'rows rows-stack' : 'rows'}>
       {rows.map(([left, right], index) => (
         <Fragment key={index}>
           <span>{left}</span>

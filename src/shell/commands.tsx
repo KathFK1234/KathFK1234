@@ -393,6 +393,7 @@ export const commands: Command[] = [
         Studying psychology taught me how people think, learn and get stuck. Engineering lets me turn that into
         software they can rely on.{'\n\n'}
         <Rows
+          stack
           rows={[
             [
               <Accent2>by day</Accent2>,
@@ -671,6 +672,7 @@ export const commands: Command[] = [
       <>
         <Dim>$ git log career</Dim>{'\n\n'}
         <Rows
+          stack
           rows={EXPERIENCE.map(([when, role, note]) => [
             <Dim>{when}</Dim>,
             <>
