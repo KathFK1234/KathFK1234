@@ -168,13 +168,13 @@ Mental-health support for young people in Kenya: therapy and peer counselling wi
 </td>
 <td width="50%" valign="top">
 
-### Chema Backend
+### Chema
 
-A backend connecting agricultural knowledge, AI assistance, and decision support. Deliberately practical: useful output over impressive automation.
+A RAG backend for food-system intelligence. A Llama model served through Groq answers from retrieval over agricultural datasets, so it stays grounded in real data. When prompt instructions alone couldn't stop it adding confidence scores, the rule was enforced on its output instead.
 
-`FastAPI` `PostgreSQL` `Supabase` `Groq`
+`FastAPI` `PostgreSQL` `Llama` `Groq` `RAG` `Docker`
 
-Built at Chakula Africa · source is private
+Built at Chakula (now Nawiri) · source is private
 
 <br>
 

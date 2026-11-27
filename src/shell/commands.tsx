@@ -576,9 +576,11 @@ export const commands: Command[] = [
         {sourceOf('kazi-hakika')} ·{' '}
         <Cmd>cat projects/kazi-hakika/README.md</Cmd>
         {'\n\n'}
-        <Accent>Chema Backend</Accent> — an agricultural and data platform built to connect decision-support,
-        operational information, and AI assistance in a way that is practical for real work rather than abstract
-        automation. <Dim>(source is private)</Dim>
+        <Accent>Chema</Accent>: a RAG backend for food-system intelligence, built at Chakula (now Nawiri) in 2026. A
+        Llama model served through Groq answers from retrieval over agricultural datasets, so it stays grounded in
+        real data; when prompt instructions alone couldn’t stop it adding confidence scores, the rule was enforced on
+        its output instead. Around it: SARIMAX price forecasting, ETL, role-based access and rate limiting, shipped in
+        Docker on Railway. <Dim>(source is private)</Dim> · <Cmd>cat projects/chema-backend/README.md</Cmd>
         {'\n\n'}
         <Dim>go deeper:</Dim> <Cmd>cd projects</Cmd> <Dim>then</Dim> <Cmd>ls</Cmd> <Dim>or</Dim> <Cmd>tree projects</Cmd>
         {'\n'}

@@ -93,6 +93,16 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('describes Chema as on LinkedIn: a RAG backend, Llama through Groq, at Chakula (now Nawiri), private', async () => {
+    const { run } = shell();
+    const projects = await run('projects');
+    expect(projects).toMatch(/Chema: a RAG backend for food-system intelligence, built at Chakula \(now Nawiri\)/);
+    expect(projects).toMatch(/Llama model served through Groq.*enforced on\s+its output instead.*\(source is private\)/s);
+    const note = await run('cat projects/chema-backend/README.md');
+    expect(note).toMatch(/before it had any real users/);
+    expect(note).not.toMatch(/Chakula Africa/);
+  });
+
   it('lists the published poems under writing, also as poems and publications', async () => {
     const { run } = shell();
     const writing = await run('writing');
