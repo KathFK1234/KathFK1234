@@ -807,11 +807,15 @@ export const commands: Command[] = [
     aliases: ['cv'],
     run: () => (
       <>
-        short professional summary:{'\n\n'}
-        {'  Software Engineer + School Lead Educator\n'}
-        {'  AWS Certified Cloud Practitioner\n'}
-        {'  BA Psychology\n'}
-        {'  Python · FastAPI · Django · PostgreSQL · React · TypeScript · Docker · Git · Linux\n\n'}
+        <Dim>$ resume --short</Dim>{'\n\n'}
+        {'  '}
+        <Accent>Software Engineer, Backend &amp; AI Systems</Accent>
+        {'\n'}
+        {'  School Lead Educator at TechLit Africa\n'}
+        {'  BA Psychology · AWS Certified Cloud Practitioner\n'}
+        {'  Python · FastAPI · PostgreSQL · LLMs and RAG · AWS · Docker · React · TypeScript\n'}
+        {'  English and Swahili (native) · French (elementary)\n'}
+        {'  open to backend and AI engineering roles, in Nairobi or remote\n\n'}
         {'  '}
         <Link href={LINKS.linkedin}>linkedin profile</Link>
         {'\n  '}
@@ -855,8 +859,10 @@ export const commands: Command[] = [
         <Rows
           rows={[
             ['Name', 'Katheu Kilonzo'],
-            ['Role', 'software engineer, educator, systems thinker'],
-            ['Interests', 'psychology, AI, backend systems, product design'],
+            ['Role', 'software engineer (backend & AI systems), educator'],
+            ['Interests', 'responsible AI, evaluation and safety, education, young people’s mental health'],
+            ['Languages', 'English, Swahili, French (elementary)'],
+            ['Status', 'open to backend and AI roles, Nairobi or remote'],
             ['Verdict', 'interesting enough to keep investigating'],
           ]}
         />
@@ -1584,7 +1590,8 @@ export const commands: Command[] = [
               [<Accent2>Uptime</Accent2>, uptimeText(ctx)],
               [<Accent2>Shell</Accent2>, 'ksh (katheu shell)'],
               [<Accent2>Theme</Accent2>, `${ctx.prefs.theme} · ${FONTS[ctx.prefs.font].label}`],
-              [<Accent2>Stack</Accent2>, 'psychology + product + code'],
+              [<Accent2>Locale</Accent2>, 'en_KE · sw_KE · fr (elementary)'],
+              [<Accent2>Stack</Accent2>, 'python + fastapi + postgres + llms + people'],
             ]}
           />
         </div>

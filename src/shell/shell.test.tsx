@@ -93,6 +93,18 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('gives the LinkedIn role, languages and what Katheu is open to in resume, whois and neofetch', async () => {
+    const { run } = shell();
+    const resume = await run('resume');
+    expect(resume).toMatch(/Software Engineer, Backend &amp; AI Systems/);
+    expect(resume).toMatch(/English and Swahili \(native\) · French \(elementary\)/);
+    expect(resume).toMatch(/open to backend and AI engineering roles, in Nairobi or remote/);
+    const whois = await run('whois');
+    expect(whois).toMatch(/LanguagesEnglish, Swahili, French \(elementary\)/);
+    expect(whois).toMatch(/responsible AI, evaluation and safety/);
+    expect(await run('neofetch')).toMatch(/Localeen_KE · sw_KE · fr \(elementary\)/);
+  });
+
   it('lists volunteering as on LinkedIn, each with its dates', async () => {
     const { run } = shell();
     const volunteer = await run('volunteer');
