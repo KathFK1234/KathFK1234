@@ -4,27 +4,27 @@
   "languages": [
     {
       "name": "Python",
-      "bytes": 1685896,
+      "bytes": 1901950,
       "repos": 13
     },
     {
-      "name": "JavaScript",
-      "bytes": 752467,
-      "repos": 8
+      "name": "TypeScript",
+      "bytes": 808995,
+      "repos": 5
     },
     {
-      "name": "TypeScript",
-      "bytes": 714894,
-      "repos": 3
+      "name": "JavaScript",
+      "bytes": 755025,
+      "repos": 9
     },
     {
       "name": "CSS",
-      "bytes": 294894,
+      "bytes": 302211,
       "repos": 11
     },
     {
       "name": "HTML",
-      "bytes": 133563,
+      "bytes": 133980,
       "repos": 13
     },
     {
@@ -34,7 +34,7 @@
     },
     {
       "name": "Shell",
-      "bytes": 24972,
+      "bytes": 25202,
       "repos": 10
     },
     {
@@ -135,5 +135,5 @@
       "repos": 2
     }
   ],
-  "updated": "2026-11-26"
+  "updated": "2026-11-27"
 }
