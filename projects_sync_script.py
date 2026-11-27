@@ -104,14 +104,17 @@ class GitHub:
     def __init__(self, token: str | None):
         import requests
 
+        from sync_http import http
+
         self.requests = requests
+        self.http = http
         self.headers = {"Accept": "application/vnd.github+json"}
         if token:
             self.headers["Authorization"] = f"Bearer {token}"
 
     def get(self, path: str, **params):
         try:
-            response = self.requests.get(
+            response = self.http.get(
                 f"https://api.github.com{path}", params=params, headers=self.headers, timeout=TIMEOUT
             )
         except self.requests.RequestException as e:

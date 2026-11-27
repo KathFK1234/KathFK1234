@@ -30,6 +30,8 @@ from pathlib import Path
 import requests
 from requests import RequestException
 
+from sync_http import http
+
 QUERY = """
 query($login: String!) {
   user(login: $login) {
@@ -68,7 +70,7 @@ MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", 
 
 
 def fetch_activity(username, token):
-    response = requests.post(
+    response = http.post(
         "https://api.github.com/graphql",
         json={"query": QUERY, "variables": {"login": username}},
         headers={"Authorization": f"Bearer {token}"},

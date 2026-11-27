@@ -44,6 +44,8 @@ from urllib.parse import quote
 import requests
 from requests import RequestException
 
+from sync_http import http
+
 START_MARKER = "<!-- languages:start -->"
 END_MARKER = "<!-- languages:end -->"
 STACK_START_MARKER = "<!-- stack:start -->"
@@ -221,7 +223,7 @@ class GitHubLanguageFetcher:
             self.headers["Authorization"] = f"Bearer {token}"
 
     def _get(self, url, **params):
-        response = requests.get(url, headers=self.headers, params=params, timeout=20)
+        response = http.get(url, headers=self.headers, params=params, timeout=20)
         response.raise_for_status()
         return response
 
@@ -267,7 +269,7 @@ class GitHubLanguageFetcher:
         # A path can hold characters that mean something in a URL, such as # or ?
         path = quote(path)
         if repo["private"]:
-            response = requests.get(
+            response = http.get(
                 f"{repo['url']}/contents/{path}",
                 headers={**self.headers, "Accept": "application/vnd.github.raw+json"},
                 params={"ref": repo["default_branch"]},
@@ -275,7 +277,7 @@ class GitHubLanguageFetcher:
             )
         else:
             # raw.githubusercontent.com does not count against the API rate limit
-            response = requests.get(
+            response = http.get(
                 f"https://raw.githubusercontent.com/{repo['full_name']}/{repo['default_branch']}/{path}",
                 timeout=20,
             )

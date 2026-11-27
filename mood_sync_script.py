@@ -41,6 +41,8 @@ from pathlib import Path
 import requests
 from requests import RequestException
 
+from sync_http import http
+
 DEFAULT_REPO = "KathFK1234/moodforecast_ai"
 DEFAULT_API = "https://moodforecastai-production.up.railway.app"
 SERVICES_DIR = "backend/app/services"
@@ -58,7 +60,7 @@ def first_line(operation: dict) -> str:
 
 def read_openapi(api: str) -> dict:
     """Fetch the service's OpenAPI document."""
-    response = requests.get(f"{api.rstrip('/')}/openapi.json", timeout=TIMEOUT)
+    response = http.get(f"{api.rstrip('/')}/openapi.json", timeout=TIMEOUT)
     response.raise_for_status()
     return response.json()
 
@@ -122,7 +124,7 @@ def github_sources(repo: str, ref: str | None, token: str | None) -> dict[str, s
     headers = {"Accept": "application/vnd.github+json"}
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    listing = requests.get(
+    listing = http.get(
         f"https://api.github.com/repos/{repo}/contents/{SERVICES_DIR}",
         params={"ref": ref} if ref else None,
         headers=headers,
@@ -134,7 +136,7 @@ def github_sources(repo: str, ref: str | None, token: str | None) -> dict[str, s
     for entry in listing.json():
         if entry.get("type") == "file" and entry["name"].endswith(".py"):
             # The download URL is not an API call, so it does not use up the rate limit
-            raw = requests.get(entry["download_url"], timeout=TIMEOUT)
+            raw = http.get(entry["download_url"], timeout=TIMEOUT)
             raw.raise_for_status()
             sources[entry["name"]] = raw.text
     return sources

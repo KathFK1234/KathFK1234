@@ -15,6 +15,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import languages_update_script as languages
 import mood_sync_script as mood
 import projects_sync_script as projects
+import activity_card_script as activity
+import sync_http
 
 READ = {
     "private": True,
@@ -177,7 +179,7 @@ class Manifests(unittest.TestCase):
             return SimpleNamespace(status_code=200, text="{}", raise_for_status=lambda: None)
 
         public = {"private": False, "full_name": "me/app", "default_branch": "main", "url": "https://api.github.com/repos/me/app"}
-        with patch.object(languages.requests, "get", get):
+        with patch.object(languages.http, "get", get):
             fetcher.fetch_file(public, "web #2/what?/package.json")
             fetcher.fetch_file({**public, "private": True}, "web #2/what?/package.json")
         self.assertEqual(asked, [
@@ -250,3 +252,31 @@ class MoodSync(Quiet):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Retries(unittest.TestCase):
+    def test_retries_only_what_a_second_try_can_fix(self):
+        retry = sync_http.RETRY
+        for status in (429, 500, 502, 503, 504):
+            self.assertTrue(retry.is_retry("GET", status), status)
+        for status in (401, 403, 404, 409, 422):
+            self.assertFalse(retry.is_retry("GET", status), status)
+        # The read-only GraphQL query is a POST
+        self.assertTrue(retry.is_retry("POST", 502))
+        self.assertFalse(retry.is_retry("DELETE", 502))
+
+    def test_tries_a_few_times_and_never_waits_long(self):
+        retry = sync_http.RETRY
+        self.assertEqual(retry.total, 3)
+        self.assertLessEqual(retry.backoff_max, 30)
+        self.assertTrue(retry.respect_retry_after_header)
+
+    def test_every_https_request_goes_through_the_retrying_adapter(self):
+        adapter = sync_http.new_session().get_adapter("https://api.github.com/")
+        self.assertIs(adapter.max_retries, sync_http.RETRY)
+
+    def test_every_script_uses_the_shared_session(self):
+        self.assertIs(languages.http, sync_http.http)
+        self.assertIs(mood.http, sync_http.http)
+        self.assertIs(activity.http, sync_http.http)
+        self.assertIs(projects.GitHub(None).http, sync_http.http)
