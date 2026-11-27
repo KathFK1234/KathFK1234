@@ -93,6 +93,14 @@ describe('file system', () => {
 });
 
 describe('commands', () => {
+  it('tells the teaching note with LinkedIn’s names and the typing-practice redesign', async () => {
+    const { run } = shell();
+    const note = await run('cat research/education/teaching.md');
+    expect(note).toMatch(/Murengeti Primary School/);
+    expect(note).toMatch(/Joy-Village/);
+    expect(note).toMatch(/stuck on level one/);
+  });
+
   it('heads the home README with the LinkedIn role', async () => {
     const { run } = shell();
     const readme = await run('cat README.md');
