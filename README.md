@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://kathfk1234.github.io/KathFK1234/" target="_blank" rel="noopener noreferrer">
-  <img src="./assets/header.svg" alt="Terminal window reading: whoami — Katheu Kilonzo, psychology graduate, backend engineer, educator" width="840">
+  <img src="./assets/header.svg" alt="Terminal window reading: whoami, Katheu Kilonzo, software engineer, backend and AI systems, psychology graduate" width="840">
 </a>
 
 <br><br>
@@ -12,9 +12,11 @@
 
 <br>
 
-I build technology where human behavior, data, cloud infrastructure, and practical engineering meet. Psychology helps me understand the people; engineering lets me build for them.
+I build backend and AI systems by starting with people. Studying psychology taught me how people think, learn and get stuck; engineering lets me turn that into software they can rely on.
 
-Right now I am a **School Lead Educator at TechLit Africa**, leading hands-on digital literacy learning. Before that I was a **Backend Developer Intern at Chakula Africa**, building REST APIs and forecasting workflows for agricultural platforms.
+Right now I am a **School Lead Educator at TechLit Africa**, leading digital literacy at a rural primary school in Limuru, where I also built the **Murengeti Lab System** to replace spreadsheets that never agreed. Before that I was a **Back End Developer intern at Chakula (now Nawiri)**, building **Chema**, a RAG backend that keeps a Llama model's answers grounded in agricultural data. Lately I'm going deeper into how AI systems run underneath, with ATF AI School until March 2027.
+
+**Open to backend and AI engineering roles, in Nairobi or remote.**
 
 <br>
 
@@ -94,10 +96,10 @@ flowchart TD
 | --- | --- |
 | **Backend & systems** | Python · FastAPI · Django · Django REST Framework · PostgreSQL · SQL · authentication and business logic · API design |
 | **Frontend** | React · TypeScript · Vite · HTML · CSS · JavaScript · interfaces that explain themselves |
-| **Cloud & infrastructure** | AWS (Certified Cloud Practitioner) · Docker · Railway · Supabase · DigitalOcean · Linux · Git and GitHub workflows |
+| **Cloud & infrastructure** | AWS (Certified Cloud Practitioner) · Docker · Railway · Supabase · Linux · Git and GitHub workflows |
 | **Testing & delivery** | pytest · Vitest · GitHub Actions · automated checks before every deploy |
-| **AI & data** | LLM-powered applications · RAG systems · AI assistants · forecasting · data pipelines · human-AI interaction |
-| **Product & research** | User-centered design · systems thinking · behavioral analysis · research-driven problem solving |
+| **AI & data** | LLM applications · RAG · Llama through Groq · prompt engineering · ETL · time-series forecasting |
+| **Product & people** | User-centred design · design thinking and product validation · teaching · digital literacy · research-driven problem solving |
 
 <br>
 
@@ -229,15 +231,21 @@ A free job-application tracker with a board of verified roles, built first for t
 ```mermaid
 timeline
     2021 : BA Psychology begins at Kenyatta University
-    2023 : Student Attache at KEMRI VCT
+    2023 : Student Attaché at the KEMRI VCT centre
+         : Millennium Fellow, Art Therapy Clubhouse
     2024 : ALX Software Engineering begins
-         : Student Psychologist at Mathari Teaching and Referral Hospital
+         : Global Admissions Committee, Millennium Campus Network
+         : Student Psychologist intern at Mathari National Teaching and Referral Hospital
          : Class Representative at Kenyatta University
+         : Volunteer Educator at Joy-Village
     2025 : AWS Certified Cloud Practitioner
-         : BA Psychology completed
-         : Technical Apprentice with TechLeap at Zynamis
-    2026 : Backend Developer Intern at Chakula Africa
+         : Novus Africa Mentorship, where MindConnect became Healing Hive
+         : BA Psychology and ALX Software Engineering completed
+         : TechLeap Apprentice at Zynamis
+    2026 : Back End Developer intern at Chakula, now Nawiri
          : School Lead Educator at TechLit Africa
+         : Dev Weekends Fellowship, Full-Stack AI
+         : ATF AI School begins, Building LLM Applications
 ```
 
 <br>
@@ -254,9 +262,9 @@ timeline
 
 ## Currently exploring
 
-AI agents and agentic systems · backend architecture at scale · LLM-based products · cloud-native engineering · reliable ETL and forecasting workflows · API security · and the human questions that appear once a technical system reaches real users.
+Self-hosted LLM infrastructure: inference engines, RAG pipelines and agents · responsible AI, evaluation and safety · where AI meets education and young people's mental health · backend architecture · and the human questions that appear once a technical system reaches real users.
 
-Beyond code, I am usually thinking, writing, drawing, or learning about psychology, creativity, and human connection.
+Beyond code, I write poetry: two poems published in 2024 (type `writing` in the terminal). Otherwise I am usually drawing, or learning about psychology, creativity, and human connection.
 
 <br>
 
@@ -266,7 +274,8 @@ Beyond code, I am usually thinking, writing, drawing, or learning about psycholo
 
 | Try | What happens |
 | --- | --- |
-| `about` · `projects` · `skills` · `experience` | the short version of this page |
+| `about` · `projects` · `skills` · `experience` · `education` | the short version of this page |
+| `writing` · `whoami` · `neofetch` | the poems, a question back, and the system specs of a person |
 | `ls` · `cd projects/moodforecast-ai` · `tree` | browse real folders of notes and project write-ups |
 | `cat README.md` · `grep friction` · `find mood` | read and search them |
 | `mood nairobi` · `mood week tokyo` · `mood nairobi vs reykjavik` | live readings from the MoodForecast AI service: today's mood score and why, the week ahead, or two places side by side |
